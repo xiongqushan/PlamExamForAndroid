@@ -3,6 +3,7 @@ package com.ihaozuo.plamexam.ioc;
 import android.support.annotation.NonNull;
 
 import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.model.UserModel;
 import com.squareup.okhttp.OkHttpClient;
 
 import javax.inject.Singleton;
@@ -97,5 +98,11 @@ public class AppModule {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
         return retrofit;
+    }
+
+    @Provides
+    @Singleton
+    UserModel provideUserModel(){
+        return new UserModel();
     }
 }

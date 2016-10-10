@@ -5,8 +5,9 @@ import java.lang.annotation.RetentionPolicy;
 
 import javax.inject.Qualifier;
 
-@Qualifier
-@Retention(RetentionPolicy.RUNTIME)
-public @interface testQualifier{}
+public interface QualifierType {
+    @Qualifier
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface testQualifier{}
 
-
+}

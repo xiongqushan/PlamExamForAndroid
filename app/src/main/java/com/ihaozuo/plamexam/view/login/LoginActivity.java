@@ -36,6 +36,7 @@ import java.util.List;
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
+
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -98,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private void attemptLogin() {
         startActivity(new Intent(this, MainActivity.class));
-
+        finish();
 //        if (mAuthTask != null) {
 //            return;
 //        }
