@@ -17,7 +17,7 @@ android {
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
         manifestPlaceholders = [
-                JPUSH_PKGNAME: "haozuo.com.healthdoctor",
+                JPUSH_PKGNAME: "com.ihaozuo.plamexam",
                 JPUSH_APPKEY : "330bf15f3128cf7802eb9921", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
@@ -48,16 +48,17 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    apt 'com.google.dagger:dagger-compiler:2.2'
+    provided 'javax.annotation:jsr250-api:1.0'
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    compile project(':lib_PullToRefresh')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.google.guava:guava:11.0.2'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    apt 'com.google.dagger:dagger-compiler:2.2'
     compile 'com.google.dagger:dagger:2.2'
-    provided 'javax.annotation:jsr250-api:1.0'
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     compile 'com.facebook.fresco:fresco:0.13.0'
     compile 'com.squareup.retrofit:retrofit:2.0.0-beta2'
     compile 'com.squareup.retrofit:converter-gson:2.0.0-beta2'
@@ -66,5 +67,4 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
-
 }

@@ -26,7 +26,7 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/textsize_h1"
-            tools:text="哆啦A梦 女 23岁" />
+            tools:text="艾欧尼亚 男 18岁" />
 
         <ImageView
             android:id="@+id/img_actionbar_right"

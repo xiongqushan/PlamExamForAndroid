@@ -1,12 +1,10 @@
 package com.ihaozuo.plamexam.model;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.ihaozuo.plamexam.bean.BaseBean;
 import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +18,10 @@ import rx.schedulers.Schedulers;
  * Created by xiongwei1 on 2016/7/27.
  */
 public abstract class AbstractModel implements IBaseModel {
-    //    OkHttpClient mOkHttpClient;
     List<Subscriber> subscriberList;
 
-
-    public AbstractModel(@NonNull OkHttpClient okHttpClient) {
-//        mOkHttpClient=okHttpClient;
+    public AbstractModel() {
         subscriberList = new ArrayList<>();
-        Log.e("subscriberList", subscriberList.toString() + "");
     }
 
     public static <T> Observable.Transformer<T, T> applyAsySchedulers() {
@@ -43,7 +37,6 @@ public abstract class AbstractModel implements IBaseModel {
 
     protected <T> Subscriber<BaseBean<T>> getSubscriber(@NonNull final OnHandlerResultListener<RestResult<T>> callbackListener) {
         Subscriber subscriber = new Subscriber<BaseBean<T>>() {
-
             @Override
             public void onCompleted() {
             }
