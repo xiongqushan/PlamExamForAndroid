@@ -2,18 +2,17 @@ package com.ihaozuo.plamexam.view.home;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.view.base.BaseFragment;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment{
 
+
+    private View rootView;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -23,8 +22,11 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.home_frag, container, false);
+        if (rootView == null) {
+            rootView = inflater.inflate(R.layout.home_frag, container, false);
+            setCustomerTitle(rootView, "首页");
+        }
+        return rootView;
     }
 
 }

@@ -13,9 +13,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.AppComponent;
 import com.ihaozuo.plamexam.util.SystemBarTintUtil;
@@ -29,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setTranslucentStatus();
+        setTranslucentStatus(0);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -77,12 +75,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         tintManager.setStatusBarTintResource(resource);//状态栏无背景
     }
 
-    protected void setCustomerTitle(String title) {
-        TextView textView = (TextView) findViewById(R.id.txt_actionbar_title);
-        textView.setText(title);
-        findViewById(R.id.img_actionbar_left).setOnClickListener(finishActivity);
-    }
-
 
     protected AppComponent getAppComponent() {
         return HZApp.shareApplication().getAppComponent();
@@ -116,14 +108,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
-
-
-    View.OnClickListener finishActivity = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    };
 
 
 }

@@ -44,10 +44,10 @@ public class HZApp extends Application {
         super.onCreate();
         applictaion = this;
         JPushInterface.setDebugMode(BuildConfig.DEBUG);    // 设置开启日志,发布时请关闭日志
-        JPushInterface.init(applictaion);
+        JPushInterface.init(this);
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
-        PreferenceManager.init(applictaion);
-        MobclickAgent.setScenarioType(applictaion, MobclickAgent.EScenarioType.E_UM_NORMAL);
+        PreferenceManager.init(this);
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
         //FRESCO 配置渐进式加载JPEG图片
         ProgressiveJpegConfig pjpegConfig = new ProgressiveJpegConfig() {
@@ -61,11 +61,11 @@ public class HZApp extends Application {
                 return ImmutableQualityInfo.of(scanNumber, isGoodEnough, false);
             }
         };
-        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(applictaion)
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
                 .setProgressiveJpegConfig(pjpegConfig)
                 .setDownsampleEnabled(true) //图片代替resizeoption 向下采样  支持PNG和WebP
                 .build();
-        Fresco.initialize(applictaion, config);
+        Fresco.initialize(this, config);
 
 
         //讯飞语音转换

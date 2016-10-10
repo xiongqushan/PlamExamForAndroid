@@ -6,13 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTabHost;
-import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.view.base.BaseActivity;
 import com.ihaozuo.plamexam.view.consult.ConsultFragment;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
 import com.ihaozuo.plamexam.view.mine.MineFragment;
@@ -20,7 +20,7 @@ import com.ihaozuo.plamexam.view.mine.MineFragment;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     @Bind(android.R.id.tabhost)
     FragmentTabHost mTabHost;
 
@@ -35,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         supportFragmentManager = getSupportFragmentManager();
         mTabHost.setup(this, supportFragmentManager, R.id.realtabcontent);
-        addTab("首页", R.drawable.tabhost_home_btn, HomeFragment.class);
-        addTab("咨询", R.drawable.tabhost_consult_btn, ConsultFragment.class);
-        addTab("我的", R.drawable.tabhost_my_btn, MineFragment.class);
+        addTab("首页", R.drawable.tabhost_home, HomeFragment.class);
+        addTab("咨询", R.drawable.tabhost_consult, ConsultFragment.class);
+        addTab("我的", R.drawable.tabhost_mine, MineFragment.class);
 
     }
 
