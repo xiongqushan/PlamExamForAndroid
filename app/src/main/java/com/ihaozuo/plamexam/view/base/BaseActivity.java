@@ -2,7 +2,6 @@ package com.ihaozuo.plamexam.view.base;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -14,18 +13,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.ioc.AppComponent;
+import com.ihaozuo.plamexam.util.SystemBarTintUtil;
 import com.umeng.analytics.MobclickAgent;
 
-import haozuo.com.healthdoctor.R;
-import haozuo.com.healthdoctor.framework.HZApplication;
-import haozuo.com.healthdoctor.ioc.AppComponent;
-import haozuo.com.healthdoctor.util.SystemBarTintUtil;
-import haozuo.com.healthdoctor.view.consult.ConsultDetailActivity;
-
-//import com.umeng.analytics.MobclickAgent;
 
 /**
  * Created by xiongwei1 on 2016/7/8.
@@ -83,45 +78,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void setCustomerTitle(String title) {
-        TextView textView = (TextView) findViewById(R.id.txt_TitleBar_title);
+        TextView textView = (TextView) findViewById(R.id.txt_actionbar_title);
         textView.setText(title);
-        findViewById(R.id.btn_go_back).setOnClickListener(finishActivity);
+        findViewById(R.id.img_actionbar_left).setOnClickListener(finishActivity);
     }
 
-    protected void setTitleWithSearch(String title) {
-        TextView textView = (TextView) findViewById(R.id.txt_TitleBar_title);
-        ImageView btn_search = (ImageView) findViewById(R.id.btn_search);
-        textView.setText(title);
-        findViewById(R.id.btn_go_back).setOnClickListener(finishActivity);
-        btn_search.setOnClickListener(showSearchbar);
-        btn_search.setVisibility(View.VISIBLE);
-    }
-
-    protected void setTitleWithConsult(String title, final int CustomID) {
-        TextView textView = (TextView) findViewById(R.id.txt_TitleBar_title);
-        textView.setText(title);
-        findViewById(R.id.btn_go_back).setOnClickListener(finishActivity);
-        findViewById(R.id.btn_search).setVisibility(View.GONE);
-        findViewById(R.id.tv_Consult).setVisibility(View.VISIBLE);
-        findViewById(R.id.tv_Consult).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), ConsultDetailActivity.class);
-                intent.putExtra(ConsultDetailActivity.EXTRA_CONSULT_ITEM, CustomID);
-                startActivity(intent);
-            }
-        });
-    }
-
-    protected void setSearchBar() {
-        findViewById(R.id.txt_TitleBar_title).setVisibility(View.GONE);
-        findViewById(R.id.btn_search).setVisibility(View.GONE);
-        findViewById(R.id.et_TitleBar_search).setVisibility(View.VISIBLE);
-        findViewById(R.id.btn_go_back).setOnClickListener(finishActivity);
-    }
 
     protected AppComponent getAppComponent() {
-        return ((HZApplication) getApplication()).getAppComponent();
+        return HZApp.shareApplication().getAppComponent();
     }
 
     /**
@@ -161,13 +125,5 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     };
 
-    View.OnClickListener showSearchbar = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            findViewById(R.id.txt_TitleBar_title).setVisibility(View.GONE);
-            findViewById(R.id.btn_search).setVisibility(View.GONE);
-            findViewById(R.id.et_TitleBar_search).setVisibility(View.VISIBLE);
-        }
-    };
 
 }

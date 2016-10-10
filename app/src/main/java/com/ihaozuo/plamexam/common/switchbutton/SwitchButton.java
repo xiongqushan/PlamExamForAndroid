@@ -21,7 +21,8 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.CompoundButton;
 
-import haozuo.com.healthdoctor.R;
+import com.ihaozuo.plamexam.R;
+
 
 /**
  * SwitchButton widget which is easy to use
@@ -222,8 +223,6 @@ public class SwitchButton extends CompoundButton {
 	/**
 	 * setup zone for thumb to move
 	 * 
-	 * @param w
-	 * @param h
 	 */
 	private void setupSafeZone() {
 		int w = getMeasuredWidth();

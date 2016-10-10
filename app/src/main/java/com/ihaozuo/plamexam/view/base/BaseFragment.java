@@ -6,8 +6,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.app.Fragment;
 
-import haozuo.com.healthdoctor.BuildConfig;
-import haozuo.com.healthdoctor.framework.HZApplication;
+import com.ihaozuo.plamexam.BuildConfig;
+import com.ihaozuo.plamexam.framework.HZApp;
+
 
 /**
  * Created by xiongwei1 on 2016/8/1.
@@ -58,7 +59,7 @@ public class BaseFragment extends Fragment {
             getContext().unregisterReceiver(receiver);
         }
         if (BuildConfig.DEBUG) {
-            HZApplication.shareApplication().getRefWatcher().watch(this);
+            HZApp.shareApplication().getRefWatcher().watch(this);
         }
     }
 }

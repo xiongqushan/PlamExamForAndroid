@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:minHeight="65dp"
+    android:minWidth="150dp"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivbgLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/loadingiocn" />
+        <!--android:src="@drawable/bg_dialog_loading" />-->
+
+        <View
+            android:id="@+id/ivLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/ivbgLoading"
+            android:layout_alignLeft="@id/ivbgLoading"
+            android:layout_alignRight="@id/ivbgLoading"
+            android:layout_alignTop="@id/ivbgLoading" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="数据加载中…"
+        android:textColor="#000000"
+        android:visibility="gone" />
+
+</LinearLayout>
+

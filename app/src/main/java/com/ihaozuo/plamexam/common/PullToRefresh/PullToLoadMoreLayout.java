@@ -13,10 +13,11 @@ import android.view.animation.RotateAnimation;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.ihaozuo.plamexam.R;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-import haozuo.com.healthdoctor.R;
 
 /**
  * Created by hzguest3 on 2016/8/18.
