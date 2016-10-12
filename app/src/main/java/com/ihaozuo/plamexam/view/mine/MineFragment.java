@@ -24,7 +24,7 @@ public class MineFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.mine_frag, container, false);
-            setCustomerTitle(rootView, "我的", R.color.androidColorC);
+            setCustomerTitle(rootView, "我的");
         }
         return rootView;
     }

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">掌上体检</string>
+    <string name="splash_statent">asdf</string>
     <string name="system_exit">再按一次退出</string>
-    s_
+
     <string name="pull_to_refresh">下拉刷新</string>
     <string name="release_to_refresh">释放立即刷新</string>
     <string name="refreshing">正在刷新…</string>
