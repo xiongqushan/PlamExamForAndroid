@@ -1,6 +1,6 @@
 package com.ihaozuo.plamexam.ioc;
 
-import javax.inject.Singleton;
+import com.ihaozuo.plamexam.view.login.LoginActivity;
 
 import dagger.Component;
 
@@ -8,7 +8,8 @@ import dagger.Component;
  * Created by hzguest3 on 2016/10/10.
  */
 
-@Singleton
-@Component(modules = {LoginModule.class})
-public class LoginComponent {
+@ScopeType.LoginScope
+@Component(modules = {LoginModule.class},dependencies = {AppComponent.class})
+public interface LoginComponent {
+    void inject(LoginActivity loginActivity);
 }

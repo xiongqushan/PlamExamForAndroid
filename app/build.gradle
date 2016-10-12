@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
-//apply plugin: 'com.frogermcs.dagger2metrics'
+apply plugin: 'com.frogermcs.dagger2metrics'
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -45,6 +45,18 @@ android {
 //        }
 //    }
 }
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4' // 3
+        classpath 'com.frogermcs.dagger2metrics:dagger2metrics-plugin:0.2'
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'

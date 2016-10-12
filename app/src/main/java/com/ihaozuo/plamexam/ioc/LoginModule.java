@@ -1,10 +1,7 @@
 package com.ihaozuo.plamexam.ioc;
 
 import com.ihaozuo.plamexam.contract.LoginContract;
-import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.login.LoginFragment;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,12 +13,14 @@ import dagger.Provides;
 @Module
 public class LoginModule {
 
-    public LoginModule( ){
+    public LoginModule(){
     }
 
     @Provides
-    @Singleton
+    @ScopeType.LoginScope
     public LoginContract.ILoginView provideLoginView(){
         return LoginFragment.newInstance();
     }
+
+
 }

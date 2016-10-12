@@ -9,6 +9,8 @@ import com.ihaozuo.plamexam.view.base.IBaseView;
 public interface LoginContract {
     interface ILoginView extends IBaseView<ILoginPresenter>{
 
+        void goToHomePage();
+
     }
 
     interface ILoginPresenter extends IBasePresenter{

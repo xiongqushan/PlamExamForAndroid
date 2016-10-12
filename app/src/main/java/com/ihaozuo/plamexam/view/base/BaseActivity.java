@@ -9,9 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.AppComponent;
 import com.umeng.analytics.MobclickAgent;
@@ -24,6 +22,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        setTranslucentStatus(0);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
     }
 
@@ -54,11 +54,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    protected void setCustomerTitle(String title) {
-        TextView textView = (TextView) findViewById(R.id.txt_actionbar_title);
-        textView.setText(title);
-        findViewById(R.id.img_actionbar_left).setOnClickListener(finishActivity);
-    }
+
+//    @TargetApi(19)
+//    protected void setTranslucentStatus(int resource) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//            Window win = getWindow();
+//            WindowManager.LayoutParams winParams = win.getAttributes();
+//            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+//            winParams.flags |= bits;
+//            win.setAttributes(winParams);
+//        }
+//        SystemBarTintUtil tintManager = new SystemBarTintUtil(this);
+//        tintManager.setStatusBarTintEnabled(true);
+//        tintManager.setStatusBarTintResource(resource);//状态栏无背景
+//    }
 
     protected AppComponent getAppComponent() {
         return HZApp.shareApplication().getAppComponent();
@@ -92,14 +101,6 @@ public abstract class BaseActivity extends AppCompatActivity {
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
-
-
-    View.OnClickListener finishActivity = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            finish();
-        }
-    };
 
 
 }

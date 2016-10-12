@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layer_reload"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/item_press_white_gray">
+
+
+    <TextView
+        android:id="@+id/tv_reloadTips"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:drawablePadding="8dp"
+        android:drawableTop="@drawable/ic_retry"
+        android:gravity="center"
+        android:text="轻触屏幕重新连接"
+        android:textColor="@color/main_color_blue"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

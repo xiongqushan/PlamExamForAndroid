@@ -21,6 +21,7 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
     public LoginPresenter(@NonNull LoginContract.ILoginView loginView,@NonNull UserModel userModel){
         mLoginView = loginView;
         mUserModel = userModel;
+        loginView.setPresenter(this);
     }
 
     @Override
@@ -35,6 +36,16 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
     @Override
     public void start() {
-
+//        mLoginView.showDialog();
+//        mUserModel.GetSMSCode("12345", new OnHandlerResultListener<RestResult<Boolean>>() {
+//            @Override
+//            public void handlerResult(RestResult<Boolean> resultData) {
+//                if (resultData.LogicSuccess){
+//                    mLoginView.hideDialog();
+//                }else {
+//                    mLoginView.hideDialog(resultData.Message);
+//                }
+//            }
+//        });
     }
 }
