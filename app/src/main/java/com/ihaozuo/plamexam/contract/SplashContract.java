@@ -9,7 +9,7 @@ import com.ihaozuo.plamexam.view.base.IBaseView;
  */
 public interface SplashContract {
 
-    interface IWelcomeView extends IBaseView<ISplashPresenter> {
+    interface ISplashView extends IBaseView<ISplashPresenter> {
         void updateInfo( );
 
         void turnNextAty();

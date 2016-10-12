@@ -41,8 +41,6 @@ public class BaseFragment extends Fragment {
         view.findViewById(R.id.img_actionbar_left).setOnClickListener(finishActivity);
         View actionbar = view.findViewById(R.id.actionbar);
         if (actionbar != null) {
-//            int statusHeight = getStatusHeight(getActivity());
-//            actionbar.setPadding(0, statusHeight, 0, 0);
             initState(actionbar);
         }
         if (color != -1) {
@@ -68,7 +66,7 @@ public class BaseFragment extends Fragment {
     }
 
     //沉浸式Nav
-    private void navViewToTop(DrawerLayout drawerLayout) {
+    private void initNavState(DrawerLayout drawerLayout) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             drawerLayout.setFitsSystemWindows(true);
             drawerLayout.setClipToPadding(false);

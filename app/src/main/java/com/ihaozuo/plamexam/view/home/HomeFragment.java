@@ -7,15 +7,32 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.contract.HomeContract;
+import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.view.base.AbstractView;
 
-public class HomeFragment extends BaseFragment{
+public class HomeFragment extends AbstractView implements HomeContract.IHomeView {
 
 
     private View rootView;
 
     public HomeFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    protected IBasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    public void setPresenter(HomeContract.IHomePresenter presenter) {
+
+    }
+
+    @Override
+    protected View getRootView() {
+        return rootView;
     }
 
 
@@ -25,12 +42,11 @@ public class HomeFragment extends BaseFragment{
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.home_frag, container, false);
             setCustomerTitle(rootView, "首页");
+
+
         }
         getStatusHeight(getContext());
         return rootView;
     }
-
-
-
 
 }

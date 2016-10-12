@@ -81,6 +81,7 @@ public class AppModule {
         return httpClient;
     }
 
+
     @Provides
     @Singleton
     Retrofit createRetrofit(@NonNull OkHttpClient httpClient) {
