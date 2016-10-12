@@ -7,8 +7,10 @@ import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 
 public class SplashActivity extends BaseActivity {
 
@@ -22,8 +24,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                finish();
+                turnAction();
             }
         }, 2500);
     }
@@ -34,5 +35,14 @@ public class SplashActivity extends BaseActivity {
             return false;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    private void turnAction(){
+        if (UserManager.getInstance().exist()) {
+            startActivity(new Intent(SplashActivity.this, MainActivity.class));
+        }else {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        }
+        finish();
     }
 }

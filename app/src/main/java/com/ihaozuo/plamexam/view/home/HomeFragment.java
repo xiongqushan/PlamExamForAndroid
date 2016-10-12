@@ -45,8 +45,8 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
 
         }
+        getStatusHeight(getContext());
         return rootView;
     }
-
 
 }

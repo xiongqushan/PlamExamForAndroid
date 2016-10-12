@@ -7,14 +7,13 @@ public class PreferenceManager {
     /**
      * 保存Preference的name
      */
-    public static final String PREFERENCE_NAME = "HZ_HEALTHDOCTOR_SHAREDPREFERENCES";
+    public static final String PREFERENCE_NAME = "HZ_PLAMEXAM_SHAREDPREFERENCES";
     private static SharedPreferences mSharedPreferences;
     private static PreferenceManager mPreferencemManager;
     private static SharedPreferences.Editor editor;
 
     private static String SHARED_KEY_JPUSH = "SHARED_KEY_JPUSH";
     private static String SHARED_KEY_DOCTOE_jOB = "SHARED_KEY_DOCTOE_jOB";
-    private static String SHARED_KEY_DOCTOE_DEPT = "SHARED_KEY_DOCTOE_DEPT";
 
     private PreferenceManager(Context context) {
         mSharedPreferences = context.getSharedPreferences(PREFERENCE_NAME,
@@ -56,20 +55,6 @@ public class PreferenceManager {
 //    public void writeDoctorJob(String job) {
 //        editor.putString(SHARED_KEY_DOCTOE_jOB, job);
 //        editor.commit();
-//    }
-//
-//    public String readDoctorDept() {
-//        return mSharedPreferences.getString(SHARED_KEY_DOCTOE_DEPT, null);
-//    }
-//
-//    public void writeDoctorDept(String dept) {
-//        editor.putString(SHARED_KEY_DOCTOE_DEPT, dept);
-//        editor.commit();
-//    }
-//
-//    public void clear() {
-//        editor.remove(SHARED_KEY_DOCTOE_DEPT).commit();
-//        editor.remove(SHARED_KEY_DOCTOE_jOB).commit();
 //    }
 
 

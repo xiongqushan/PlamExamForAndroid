@@ -3,15 +3,13 @@ package com.ihaozuo.plamexam.framework;
 import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.facebook.imagepipeline.decoder.ProgressiveJpegConfig;
-import com.facebook.imagepipeline.image.ImmutableQualityInfo;
-import com.facebook.imagepipeline.image.QualityInfo;
+import com.frogermcs.dagger2metrics.Dagger2Metrics;
 import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.ioc.AppComponent;
 import com.ihaozuo.plamexam.ioc.AppModule;
 import com.ihaozuo.plamexam.ioc.DaggerAppComponent;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
+import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.umeng.analytics.MobclickAgent;
@@ -49,43 +47,27 @@ public class HZApp extends Application {
         PreferenceManager.init(this);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
-        //FRESCO 配置渐进式加载JPEG图片
-        ProgressiveJpegConfig pjpegConfig = new ProgressiveJpegConfig() {
-            @Override
-            public int getNextScanNumberToDecode(int scanNumber) {
-                return scanNumber + 2;
-            }
-
-            public QualityInfo getQualityInfo(int scanNumber) {
-                boolean isGoodEnough = (scanNumber >= 5);
-                return ImmutableQualityInfo.of(scanNumber, isGoodEnough, false);
-            }
-        };
-        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
-                .setProgressiveJpegConfig(pjpegConfig)
-                .setDownsampleEnabled(true) //图片代替resizeoption 向下采样  支持PNG和WebP
-                .build();
-        Fresco.initialize(this, config);
-
+        Fresco.initialize(this, ImageLoadUtils.getInstance(getApplicationContext())
+                .CustomConfig(getApplicationContext()));
 
         //讯飞语音转换
 //        SpeechUtility.createUtility(this, "appid=" + getString(R.string.app_id));
         // 以下语句用于设置日志开关（默认开启），设置成false时关闭语音云SDK日志打印
 //        Setting.setShowLog(BuildConfig.DEBUG);
 
-
         //leakcanary
         mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具
-//        if (BuildConfig.DEBUG){
-//            Dagger2Metrics.enableCapturing(this);
-//        }
+        if (BuildConfig.DEBUG){
+            Dagger2Metrics.enableCapturing(this);
+        }
 
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
     }
+
 
 
 }
