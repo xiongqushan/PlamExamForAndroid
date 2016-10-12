@@ -22,8 +22,7 @@ public class ConsultFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        if (rootView==null) {
+        if (rootView == null) {
             rootView = inflater.inflate(R.layout.consult_frag, container, false);
             setCustomerTitle(rootView, "咨询");
         }

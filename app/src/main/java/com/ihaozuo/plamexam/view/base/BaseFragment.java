@@ -57,7 +57,7 @@ public class BaseFragment extends Fragment {
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(localRect);
         statusHeight = localRect.top;
         if (0 == statusHeight) {
-            Class<?> localClass;
+            Class<?> localClass = null;
             try {
                 localClass = Class.forName("com.android.internal.R$dimen");
                 Object localObject = localClass.newInstance();
@@ -68,12 +68,6 @@ public class BaseFragment extends Fragment {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (java.lang.InstantiationException e) {
-                e.printStackTrace();
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            } catch (IllegalArgumentException e) {
-                e.printStackTrace();
-            } catch (SecurityException e) {
                 e.printStackTrace();
             } catch (NoSuchFieldException e) {
                 e.printStackTrace();

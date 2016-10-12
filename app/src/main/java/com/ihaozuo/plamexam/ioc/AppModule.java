@@ -36,7 +36,6 @@ public class AppModule {
     }
 
 
-
 //    @Provides
 //    @Singleton
 //    OkHttpClient createHttpClient() {
@@ -91,8 +90,8 @@ public class AppModule {
     @Singleton
     Retrofit createRetrofit(@NonNull OkHttpClient httpClient) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("")
-                .client(httpClient)
+                .baseUrl("http://api.k780.com:88/?app=phone.get&appkey=10003&sign=b59bc3ef6191eb9f747dd4e83c99f2a4&format=json")
+                //.client(httpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();

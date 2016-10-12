@@ -38,7 +38,6 @@ public class MainActivity extends BaseActivity {
         addTab("首页", R.drawable.tabhost_home, HomeFragment.class);
         addTab("咨询", R.drawable.tabhost_consult, ConsultFragment.class);
         addTab("我的", R.drawable.tabhost_mine, MineFragment.class);
-
     }
 
     private void addTab(String tabName, int drawable, Class fragment) {
@@ -67,7 +66,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             } else {
                 isExit = true;
-                Toast.makeText(this, getString(R.string.app_name), Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.system_exit), Toast.LENGTH_SHORT).show();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
