@@ -26,6 +26,10 @@ local.properties
 .gradle/
 build/
 lib_PullToRefresh/build/
+lib_PullToRefresh/*.iml
+
+
+
 # Local configuration file (sdk path, etc)
 local.properties
 
