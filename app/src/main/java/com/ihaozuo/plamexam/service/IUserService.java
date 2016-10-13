@@ -15,7 +15,7 @@ import rx.Observable;
  */
 public interface IUserService {
 
-    @POST(SysConfig.CONTROLLER_PRE_API_USER + "TestUserAPI")
+    @POST(SysConfig.CONTROLLER_PRE_API_VALUES + "TestUserAPI")
     Observable<BaseBean<Boolean>> testPost(@Body Map<String,Object> params);
 
 }

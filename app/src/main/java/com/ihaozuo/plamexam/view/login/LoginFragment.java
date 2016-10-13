@@ -63,6 +63,8 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, arr);
         phone.setAdapter(arrayAdapter);
 
+
+
         return rootView;
     }
 

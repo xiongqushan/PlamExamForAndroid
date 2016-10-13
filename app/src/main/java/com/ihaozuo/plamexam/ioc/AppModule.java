@@ -1,17 +1,26 @@
 package com.ihaozuo.plamexam.ioc;
 
 import android.support.annotation.NonNull;
+import android.util.Base64;
 
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.service.IUserService;
+import com.ihaozuo.plamexam.service.IValuesService;
+import com.ihaozuo.plamexam.util.JsonUtil;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.squareup.okhttp.Interceptor;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Singleton;
@@ -53,7 +62,14 @@ public class AppModule {
 
     @Provides
     @Singleton
+    IValuesService createValuesService(@NonNull Retrofit retrofit) {
+        return retrofit.create(IValuesService.class);
+    }
+
+    @Provides
+    @Singleton
     OkHttpClient createHttpClient() {
+
         OkHttpClient httpClient = new OkHttpClient();
         httpClient.setConnectTimeout(SysConfig.CONNECT_TIMEOUT, TimeUnit.SECONDS);
         httpClient.setWriteTimeout(SysConfig.WRITE_TIMEOUT, TimeUnit.SECONDS);
@@ -65,21 +81,44 @@ public class AppModule {
                 String originUrl = request.urlString();
                 request = request.newBuilder().url(originUrl).build();
                 String sign = "";
+                Map<String,Object> map = new TreeMap<String, Object>();
                 final Request copy = request.newBuilder().build();
                 final Buffer buffer = new Buffer();
                 copy.body().writeTo(buffer);
-                String postData = buffer.readUtf8().toLowerCase();
-                sign = StringUtil.encodeByMD5(postData);
+                String postData = buffer.readUtf8();
+                try {
+                    JSONObject jasonObject = new JSONObject(postData);
+                    map = JsonUtil.jsonToMap(jasonObject);
+                    map.put("Secret",BASIC_SIGN_SECRET);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                sign= JsonUtil.mapToString(map).toLowerCase();
+                sign = StringUtil.encodeByMD5(sign);
+                String usernameAndPassword = BASIC_USER_NAME + ":" + sign;
+                byte[] bytes = new byte[0];
+                try {
+                    bytes = usernameAndPassword.getBytes("ISO-8859-1");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                String encoded = Base64.encodeToString(bytes, Base64.NO_WRAP);
+                encoded = "BasicAuth " + encoded;
                 request = request.newBuilder()
                         .addHeader("Content-Type", "application/json; charset=UTF-8")
                         .addHeader("Accept", "application/json")
-                        .addHeader("basickey", sign)
+                        .addHeader("Authorization", encoded)
                         .build();
                 return chain.proceed(request);
             }
         });
         return httpClient;
     }
+
+
+
+
+
 
 
     @Provides

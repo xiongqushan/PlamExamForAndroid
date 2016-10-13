@@ -24,6 +24,8 @@ public class LoginActivity extends BaseActivity {
     LoginPresenter mLoginPresenter;
     @Inject
     LoginContract.ILoginView mLoginView;
+//    @Inject
+//    ValuesModel valuesModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +47,24 @@ public class LoginActivity extends BaseActivity {
             fragment = (LoginFragment) mLoginView;
             ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
         }
+
+
+//        findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                valuesModel.APITest(new OnHandlerResultListener<RestResult<testBean>>() {
+//                    @Override
+//                    public void handlerResult(RestResult resultData) {
+//                        Log.e("API_TEST",resultData.LogicSuccess+"");
+//                        if (!resultData.LogicSuccess){
+//                            Toast.makeText(LoginActivity.this,resultData.Message,Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                });
+//            }
+//        });
+
+
     }
 
 }

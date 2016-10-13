@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -225,6 +227,13 @@ public class HZUtils {
     public static String checkEmptyStr(String object) {
         if (StringUtil.isTrimEmpty(object)) return "未知";
         return object;
+    }
+
+    public static Map initParamsMap() {
+        Map<String, Object> params = new TreeMap<>();
+        params.put("timespan", System.currentTimeMillis());
+
+        return params;
     }
 
 }
