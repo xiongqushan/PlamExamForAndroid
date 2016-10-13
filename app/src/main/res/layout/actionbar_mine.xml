@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/actionbar"
+    android:layout_width="match_parent"
+    android:layout_height="192dp"
+    android:background="@color/main_color_blue">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionbar_high_48dp">
+
+        <ImageView
+            android:id="@+id/img_actionbar_left"
+            android:layout_width="@dimen/actionbar_high_48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:padding="@dimen/actionbar_padding"
+            android:src="@drawable/go_back" />
+
+        <TextView
+            android:id="@+id/txt_actionbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/actionbar_high_48dp"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textsize_h1"
+            tools:text="艾欧尼亚 男 18岁" />
+
+        <ImageView
+            android:id="@+id/img_actionbar_right"
+            android:layout_width="@dimen/actionbar_high_48dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/actionbar_padding"
+            android:src="@drawable/search_white"
+            android:visibility="invisible" />
+
+
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/layout_doctor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/img_doctorphoto"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/icon_user_defult"
+            fresco:failureImage="@drawable/icon_user_defult"
+            fresco:failureImageScaleType="fitXY"
+            fresco:roundAsCircle="true"
+            fresco:roundingBorderColor="@color/white"
+            fresco:roundingBorderWidth="2dp" />
+
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            tools:text="艾欧尼亚" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+

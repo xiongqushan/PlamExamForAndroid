@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">掌上体检</string>
+    <string name="splash_statent">asdf</string>
     <string name="system_exit">再按一次退出</string>
+
+    <string name="no_data">暂无数据</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
