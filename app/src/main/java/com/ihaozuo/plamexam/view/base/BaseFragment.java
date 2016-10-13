@@ -32,10 +32,10 @@ public class BaseFragment extends Fragment {
     };
 
     protected void setCustomerTitle(View view, String title) {
-        setCustomerTitle(view, title, -1);
+        setCustomerTitle(view, title, null);
     }
 
-    protected void setCustomerTitle(View view, String title, int color) {
+    protected void setCustomerTitle(View view, String title, String color) {
         TextView textView = (TextView) view.findViewById(R.id.txt_actionbar_title);
         textView.setText(title);
         view.findViewById(R.id.img_actionbar_left).setOnClickListener(finishActivity);
@@ -43,8 +43,8 @@ public class BaseFragment extends Fragment {
         if (actionbar != null) {
             initState(actionbar);
         }
-        if (color != -1) {
-            actionbar.setBackgroundColor(color);
+        if (color != null) {
+            actionbar.setBackgroundColor(Color.parseColor(color));
         }
     }
 
@@ -62,7 +62,7 @@ public class BaseFragment extends Fragment {
             WindowManager.LayoutParams localLayoutParams = getActivity().getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-        actionBar.setPadding(0,getStatusBarHeight(getActivity()),0,0);
+        actionBar.setPadding(0, getStatusBarHeight(getActivity()), 0, 0);
     }
 
     //沉浸式Nav
@@ -73,12 +73,12 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    protected int getStatusBarHeight(Activity activity){
+    protected int getStatusBarHeight(Activity activity) {
         Rect r = new Rect();
         activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(r);
-        if (r.top != 0){
+        if (r.top != 0) {
             return r.top;
-        }else {
+        } else {
             return getStatusHeight(activity.getBaseContext());
         }
     }

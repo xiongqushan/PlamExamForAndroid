@@ -2,6 +2,7 @@ package com.ihaozuo.plamexam.view.login;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.view.WindowManager;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
@@ -17,9 +18,6 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 
 
-/**
- * A login screen that offers login via email/password.
- */
 public class LoginActivity extends BaseActivity {
 
     @Inject
@@ -30,6 +28,8 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.content_act);
         ButterKnife.bind(this);
 

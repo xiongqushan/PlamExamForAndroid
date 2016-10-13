@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".view.login.LoginActivity" />
+        <activity android:name=".view.news.NewsDetailActivity" />
+        <activity android:name=".view.login.BindPhoneActivity"></activity>
     </application>
 
 </manifest>

@@ -5,11 +5,34 @@
 
     <include layout="@layout/actionbar_white" />
 
-    <TextView
-        android:id="@+id/test"
+    <com.ihaozuo.plamexam.common.Width16Heigth9ViewPager
+        android:id="@+id/BannerPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/divider_12dp" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="home" />
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/androidColorE" />
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="match_parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/androidColorC" />
+    </LinearLayout>
 
 </LinearLayout>

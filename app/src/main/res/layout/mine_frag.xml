@@ -7,10 +7,79 @@
 
     <include layout="@layout/actionbar_mine" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="mine" />
+
+    <include layout="@layout/divider_12dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutUserInfo"
+        style="@style/hlayout_h44">
+
+        <ImageView
+            android:layout_width="@dimen/actionbar_high_44dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/mine_layout_leftpadding"
+            android:src="@drawable/ic_user_info" />
+
+        <TextView
+            style="@style/txt_16sp_gray66"
+            android:text="@string/user_info" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include layout="@layout/next_gray_right_lauout" />
+    </LinearLayout>
+
+    <include layout="@layout/divider_12dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutSysSet"
+        style="@style/hlayout_h44">
+
+        <ImageView
+            android:layout_width="@dimen/actionbar_high_44dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/mine_layout_leftpadding"
+            android:src="@drawable/ic_user_info" />
+
+        <TextView
+            style="@style/txt_16sp_gray66"
+            android:text="@string/system_set" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include layout="@layout/next_gray_right_lauout" />
+    </LinearLayout>
+
+    <include layout="@layout/divider_12dp" />
+
+    <LinearLayout
+        android:id="@+id/layoutReportEx"
+        style="@style/hlayout_h44">
+
+        <ImageView
+            android:layout_width="@dimen/actionbar_high_44dp"
+            android:layout_height="match_parent"
+            android:padding="@dimen/mine_layout_leftpadding"
+            android:src="@drawable/ic_user_info" />
+
+        <TextView
+            style="@style/txt_16sp_gray66"
+            android:text="@string/report_example" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <include layout="@layout/next_gray_right_lauout" />
+    </LinearLayout>
+
+    <include layout="@layout/divider_d3" />
 
 </LinearLayout>

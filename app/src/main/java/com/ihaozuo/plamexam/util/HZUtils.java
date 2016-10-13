@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 /**
  * Created by zhangzhongyao on 2016/8/31.
  */
-public class UHealthUtils {
+public class HZUtils {
     private static final String DIR_CACHE = "UhealthCache";
 
     private static long lastClickTime;
