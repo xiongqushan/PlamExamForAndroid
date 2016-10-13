@@ -30,8 +30,6 @@
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.news.NewsDetailActivity" />
         <activity android:name=".view.login.BindPhoneActivity" />
-
-
     </application>
 
 </manifest>
