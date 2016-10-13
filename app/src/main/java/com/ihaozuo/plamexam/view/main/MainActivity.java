@@ -24,13 +24,14 @@ public class MainActivity extends BaseActivity {
     @Bind(android.R.id.tabhost)
     FragmentTabHost mTabHost;
 
+    public static String LOCAL_CLASS_NAME;
     private FragmentManager supportFragmentManager;
     private boolean isExit;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LOCAL_CLASS_NAME = getLocalClassName();
         setContentView(R.layout.main_act);
         ButterKnife.bind(this);
         supportFragmentManager = getSupportFragmentManager();

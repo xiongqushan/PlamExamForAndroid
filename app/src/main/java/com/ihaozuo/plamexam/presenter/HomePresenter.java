@@ -14,15 +14,15 @@ import javax.inject.Inject;
 public class HomePresenter extends AbstractPresenter implements HomeContract.IHomePresenter {
     HomeContract.IHomeView mHomeView;
 
-    @Override
-    public IBaseView getBaseView() {
-        return mHomeView;
-    }
-
     @Inject
     public HomePresenter(@NonNull HomeContract.IHomeView view) {
         mHomeView = view;
         mHomeView.setPresenter(this);
+    }
+
+    @Override
+    public IBaseView getBaseView() {
+        return mHomeView;
     }
 
     @Override

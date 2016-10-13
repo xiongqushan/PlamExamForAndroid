@@ -21,4 +21,7 @@ public interface IValuesService {
     @POST(SysConfig.CONTROLLER_PRE_API_VALUES + "AAA")
     Observable<BaseBean<testBean>> testPost2(@Body Map<String,Object> params);
 
+    @POST(SysConfig.CONTROLLER_PRE_API_System + "SMS")
+    Observable<BaseBean<testBean>> getCode(@Body Map<String,Object> params);
+
 }

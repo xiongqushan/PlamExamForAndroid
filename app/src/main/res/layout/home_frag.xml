@@ -29,6 +29,7 @@
             android:layout_height="match_parent" />
 
         <View
+            android:id="@+id/btn_consult"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"

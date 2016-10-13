@@ -21,6 +21,8 @@
     <string name="next">下一步</string>
     <string name="bind_phone">绑定手机</string>
 
+    <string name="consult_warning">健管师的回复内容仅作为建议，具体诊疗请前往医院进行</string>
+
     <string name="no_data">暂无数据</string>
 
 
@@ -31,6 +33,21 @@
     <string name="androidColorC">#FF99CC00</string>
     <string name="androidColorD">#FFFFBB33</string>
     <string name="androidColorE">#FFFF4444</string>
+    <string name="title_activity_consult1">ConsultActivity1</string>
+    <string name="title_activity_t">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
 
 
 </resources>

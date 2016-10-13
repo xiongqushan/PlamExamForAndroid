@@ -26,6 +26,10 @@
         <!--模糊 -->
     </style>
 
+    <style name="TV_LOGIN" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/main_color_blue</item>
+    </style>
+
     <!--SwitchButtonStyle-->
     <style name="MD">
         <item name="animationVelocity">6</item>
@@ -66,6 +70,11 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/gray_66</item>
         <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
 </resources>

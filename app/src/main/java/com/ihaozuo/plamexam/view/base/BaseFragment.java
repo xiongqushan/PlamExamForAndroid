@@ -12,11 +12,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 
 
 /**
@@ -37,8 +39,15 @@ public class BaseFragment extends Fragment {
 
     protected void setCustomerTitle(View view, String title, String color) {
         TextView textView = (TextView) view.findViewById(R.id.txt_actionbar_title);
+        ImageView btnLeft = (ImageView) view.findViewById(R.id.img_actionbar_left);
+
         textView.setText(title);
-        view.findViewById(R.id.img_actionbar_left).setOnClickListener(finishActivity);
+        if (!getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)){
+            btnLeft.setVisibility(View.VISIBLE);
+        }else {
+            btnLeft.setVisibility(View.INVISIBLE);
+        }
+        btnLeft.setOnClickListener(finishActivity);
         View actionbar = view.findViewById(R.id.actionbar);
         if (actionbar != null) {
             initState(actionbar);

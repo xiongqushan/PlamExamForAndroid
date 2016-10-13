@@ -1,6 +1,8 @@
 package com.ihaozuo.plamexam.view.home;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -16,11 +18,16 @@ import com.ihaozuo.plamexam.common.BannerFragment;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.consult.ConsultActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class HomeFragment extends AbstractView implements HomeContract.IHomeView {
+    @Bind(R.id.btn_consult)
+    View btnConsult;
+    private Context mContext;
     private boolean isDrag;
     private boolean isStop;
     private int maxLength = 10000;// bannerPagerNumber
@@ -64,12 +71,14 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (rootView == null) {
+            mContext = getContext();
             rootView = inflater.inflate(R.layout.home_frag, container, false);
             setCustomerTitle(rootView, getString(R.string.app_name));
             ButterKnife.bind(this, rootView);
             initView();
             autoBanner();
         }
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -117,6 +126,17 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             }
         });
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+//        ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.btn_consult)
+    public void goConsult() {
+        startActivity(new Intent(mContext, ConsultActivity.class));
     }
 
     private class HomePagerAdapter extends FragmentPagerAdapter {

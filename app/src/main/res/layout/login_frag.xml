@@ -29,7 +29,8 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/login"
                 android:textSize="@dimen/textsize_h2"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:clickable="false"/>
 
         </LinearLayout>
     </ScrollView>
