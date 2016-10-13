@@ -21,12 +21,12 @@ import cn.jpush.android.api.JPushInterface;
  * Created by zhangzhongyao on 16/10/09.
  */
 public class HZApp extends Application {
-    private static HZApp applictaion;
+    private static HZApp application;
     private RefWatcher mRefWatcher;
     private AppComponent mAppComponent;
 
     public static HZApp shareApplication() {
-        return applictaion;
+        return application;
     }
 
     public RefWatcher getRefWatcher() {
@@ -40,15 +40,15 @@ public class HZApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        applictaion = this;
+        application = this;
         JPushInterface.setDebugMode(BuildConfig.DEBUG);    // 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
         PreferenceManager.init(this);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
-        Fresco.initialize(this, ImageLoadUtils.getInstance(getApplicationContext())
-                .CustomConfig(getApplicationContext()));
+        Fresco.initialize(this, ImageLoadUtils.getInstance(this)
+                .CustomConfig(this));
 
         //讯飞语音转换
 //        SpeechUtility.createUtility(this, "appid=" + getString(R.string.app_id));
@@ -59,7 +59,7 @@ public class HZApp extends Application {
         mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             Dagger2Metrics.enableCapturing(this);
         }
 
@@ -67,7 +67,6 @@ public class HZApp extends Application {
                 .appModule(new AppModule(this))
                 .build();
     }
-
 
 
 }

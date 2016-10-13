@@ -68,4 +68,29 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="userinfo_label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/gray_28</item>
+        <item name="android:textSize">@dimen/textsize_h3_16sp</item>
+    </style>
+
+    <style name="userinfo_label_content">
+        <item name="android:textSize">@dimen/textsize_h3_16sp</item>
+        <item name="android:textColor">@color/gray_66</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="userinfo_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/actionbar_high_44dp</item>
+        <item name="android:paddingLeft">@dimen/userinfo_padding_12dp</item>
+        <item name="android:paddingRight">@dimen/userinfo_padding_12dp</item>
+        <item name="android:background">@drawable/item_press_white_gray</item>
+    </style>
+
 </resources>

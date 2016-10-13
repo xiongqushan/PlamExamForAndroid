@@ -22,6 +22,10 @@ public class BindPhoneFragment extends BaseFragment {
         // Required empty public constructor
     }
 
+    public static BindPhoneFragment newInstance() {
+        return new BindPhoneFragment();
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

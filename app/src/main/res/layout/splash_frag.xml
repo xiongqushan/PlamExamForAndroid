@@ -5,7 +5,7 @@
 
     <TextView
         android:id="@+id/tvSplash"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="128dp"
         android:layout_marginLeft="40dp"
         android:textColor="@color/white"
         android:textSize="28sp"

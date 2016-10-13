@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/divider_12dp" />
+
+    <RelativeLayout
+        android:id="@+id/layoutSetPhone"
+        style="@style/userinfo_layout"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/phone" />
+
+
+        <TextView
+            android:id="@+id/tvSetPhone"
+            style="@style/userinfo_label_content"
+            tools:text="13888888888" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3_margin" />
+
+    <RelativeLayout
+        android:id="@+id/layoutBindQQ"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/bind_qq" />
+
+
+        <TextView
+            android:id="@+id/tvQQState"
+            style="@style/userinfo_label_content"
+            android:layout_marginRight="@dimen/margin_right_set"
+            tools:text="@string/unbind" />
+
+        <include layout="@layout/next_set_right_layout" />
+
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3_margin" />
+
+    <RelativeLayout
+        android:id="@+id/layoutBindWeChat"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/bind_wechat" />
+
+        <TextView
+            android:id="@+id/tvWeChatState"
+            style="@style/userinfo_label_content"
+            android:layout_marginRight="@dimen/margin_right_set"
+            tools:text="@string/unbind" />
+
+        <include layout="@layout/next_set_right_layout" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3_margin" />
+
+    <RelativeLayout
+        android:id="@+id/layoutBindSina"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/bind_sina" />
+
+        <TextView
+            android:id="@+id/tvSinaState"
+            style="@style/userinfo_label_content"
+            android:layout_marginRight="@dimen/margin_right_set"
+            tools:text="@string/unbind" />
+
+        <include layout="@layout/next_set_right_layout" />
+    </RelativeLayout>
+
+
+    <include layout="@layout/divider_12dp" />
+
+    <RelativeLayout
+        android:id="@+id/layoutAboutUs"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/about_us" />
+
+        <include layout="@layout/next_set_right_layout" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3_margin" />
+
+    <RelativeLayout
+        android:id="@+id/layoutFeedback"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/advice_feedback" />
+
+        <include layout="@layout/next_set_right_layout" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3_margin" />
+
+    <RelativeLayout
+        android:id="@+id/layoutCheckUpdate"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/check_update" />
+
+        <include layout="@layout/next_set_right_layout" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_12dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/layoutDisclaimer"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/disclaimer" />
+
+        <include layout="@layout/next_set_right_layout" />
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3_margin" />
+
+    <RelativeLayout
+        android:id="@+id/layoutClearChache"
+        style="@style/userinfo_layout">
+
+        <TextView
+            style="@style/userinfo_label"
+            android:text="@string/clear_cache" />
+
+
+    </RelativeLayout>
+
+    <include layout="@layout/divider_d3" />
+
+
+</LinearLayout>
+
+    

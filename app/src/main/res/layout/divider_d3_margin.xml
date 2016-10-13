@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/userinfo_padding_12dp"
+        android:paddingRight="@dimen/userinfo_padding_12dp"
+        android:src="@color/divider_d3" />
+
+</merge>

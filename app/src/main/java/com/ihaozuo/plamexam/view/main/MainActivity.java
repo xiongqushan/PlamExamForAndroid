@@ -41,7 +41,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void addTab(String tabName, int drawable, Class fragment) {
-        View tabView = getLayoutInflater().inflate(R.layout.tab_item_layout,
+        View tabView = getLayoutInflater().inflate(R.layout.item_tab_layout,
                 null);
         TextView tabLabel = (TextView) tabView.findViewById(R.id.tv_tab_label);
         tabLabel.setText(tabName);

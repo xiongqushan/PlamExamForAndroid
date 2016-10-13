@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.mine.settings.AboutUsFragment">
+
+    <include layout="@layout/actionbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="192dp"
+                android:background="@color/androidColorB"
+                android:gravity="center"
+                android:text="好卓数据"
+                android:textColor="@color/white"
+                android:textSize="50dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:lineSpacingExtra="4dp"
+                android:text="        上海好卓数据服务有限公司成立于2014年7月11号，位于上海市徐汇区。提供个性化体检服务，在检前、检中和检后提供专业的技术支持和数据管理。优健康健管师服务平台是一款集“客户分组管理+咨询管理+重点关注”为一体的健康服务平台。优健康健管师服务平台V1.0经过多次打磨完善，已能满足健管师回复客户咨询、查看客户体检报告和照片病例、对客户重点关注等功能。三大功能模块图标简洁、内容全面、页面大气、实用亦美观。"
+                android:textColor="@color/gray_66"
+                android:textSize="@dimen/textsize_h2" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

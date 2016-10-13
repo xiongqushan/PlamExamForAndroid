@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
-
     <application
         android:name=".framework.HZApp"
         android:allowBackup="true"
@@ -30,6 +29,12 @@
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.news.NewsDetailActivity" />
         <activity android:name=".view.login.BindPhoneActivity" />
+        <activity android:name=".view.mine.UserInfoActivity" />
+        <activity android:name=".view.report.AddReportActivity" />
+        <activity android:name=".view.mine.settings.SysSetActivity" />
+        <activity android:name=".view.mine.settings.AboutUsActivity" />
+        <activity android:name=".view.mine.settings.AdviceActivity" />
+        <activity android:name=".view.mine.settings.DisclaimerActivity"></activity>
     </application>
 
 </manifest>
