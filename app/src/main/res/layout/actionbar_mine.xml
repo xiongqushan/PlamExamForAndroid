@@ -19,8 +19,8 @@
             android:layout_width="96dp"
             android:layout_height="96dp"
             android:src="@drawable/icon_user_default"
-            fresco:failureImage="@drawable/icon_user_default"
             fresco:failureImageScaleType="fitXY"
+            fresco:placeholderImage="@drawable/icon_user_default"
             fresco:roundAsCircle="true"
             fresco:roundingBorderColor="@color/white"
             fresco:roundingBorderWidth="2dp" />

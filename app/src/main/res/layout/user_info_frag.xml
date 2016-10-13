@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.mine.UserInfoFragment">
+
+    <include layout="@layout/actionbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_ee">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical">
+
+            <include layout="@layout/divider_12dp" />
+
+
+            <RelativeLayout
+                android:id="@+id/userPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:paddingBottom="@dimen/userinfo_padding_8dp"
+                android:paddingLeft="@dimen/userinfo_padding_12dp"
+                android:paddingRight="@dimen/userinfo_padding_12dp"
+                android:paddingTop="@dimen/userinfo_padding_8dp">
+
+                <TextView
+                    style="@style/userinfo_label"
+                    android:text="@string/photo" />
+
+
+                <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/CPhoto"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    fresco:placeholderImage="@drawable/icon_user_default"
+                    fresco:roundAsCircle="true" />
+            </RelativeLayout>
+
+            <include layout="@layout/divider_12dp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutUserName"
+                style="@style/userinfo_layout"
+                android:background="@color/white">
+
+                <TextView
+                    style="@style/userinfo_label"
+                    android:text="@string/name" />
+
+
+                <TextView
+                    android:id="@+id/tvUserName"
+                    style="@style/userinfo_label_content"
+                    tools:text="张三" />
+            </RelativeLayout>
+
+            <include layout="@layout/divider_d3_margin" />
+
+            <RelativeLayout
+                android:id="@+id/layoutUserPhone"
+                style="@style/userinfo_layout"
+                android:background="@color/white">
+
+                <TextView
+                    style="@style/userinfo_label"
+                    android:text="@string/phone" />
+
+
+                <TextView
+                    android:id="@+id/tvUserPhone"
+                    style="@style/userinfo_label_content"
+                    tools:text="13888888888" />
+            </RelativeLayout>
+
+            <include layout="@layout/divider_12dp" />
+
+            <RelativeLayout
+                android:id="@+id/layoutUserAuth"
+                style="@style/userinfo_layout">
+
+                <TextView
+                    style="@style/userinfo_label"
+                    android:text="@string/user_auth" />
+
+
+                <include layout="@layout/next_set_right_layout" />
+            </RelativeLayout>
+
+            <include layout="@layout/divider_d3" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

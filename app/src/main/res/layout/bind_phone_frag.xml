@@ -24,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/next"
+            android:text="@string/confirm"
             android:textSize="@dimen/textsize_h2"
             android:textStyle="bold" />
     </LinearLayout>

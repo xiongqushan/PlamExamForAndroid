@@ -17,11 +17,20 @@
     <dimen name="divider_1dp">1dp</dimen>
     <dimen name="divider_2dp">2dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    <dimen name="mine_layout_rightpadding">8dp</dimen>
-    <dimen name="mine_layout_leftpadding">8dp</dimen>
+    <dimen name="mine_img_rightpadding">8dp</dimen>
+    <dimen name="mine_img_leftpadding">8dp</dimen>
 
     <dimen name="card_margin">6dp</dimen>
 
+
     <dimen name="img_head">40dp</dimen>
     <dimen name="docinfo_padding">5dp</dimen>
+
+    <dimen name="userinfo_padding_8dp">8dp</dimen>
+    <dimen name="userinfo_padding_12dp">12dp</dimen>
+
+
+    <dimen name="img_width_set_right">24dp</dimen>
+    <dimen name="margin_right_set">30dp</dimen>
+
 </resources>

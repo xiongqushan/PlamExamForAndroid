@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.mine.settings.DisclaimerFragment">
+
+    <include layout="@layout/actionbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="192dp"
+                android:background="@color/androidColorB"
+                android:gravity="center"
+                android:text="好卓数据"
+                android:textColor="@color/white"
+                android:textSize="50dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:lineSpacingExtra="4dp"
+                android:text="        账户丢失、泄露免责：用户自行承担注册账号及密码的保管责任，并就其账号及密码项下之一切活动负全部责任。用户应注意网络安全防护，防止账号密码泄露，保证个人信息安全。因用户账户丢失或泄露给用户造成的损失，本平台不承担任何责任。"
+                android:textColor="@color/gray_66"
+                android:textSize="@dimen/textsize_h2" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

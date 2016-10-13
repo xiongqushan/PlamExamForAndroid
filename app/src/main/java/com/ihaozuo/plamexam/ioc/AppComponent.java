@@ -21,6 +21,7 @@ public interface AppComponent {
 
     IUserService getIUserService();
 
+    //    OkHttpClient getOkHttpClient();
 
     IValuesService getIValuesService();
 
