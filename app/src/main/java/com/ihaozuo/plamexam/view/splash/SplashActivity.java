@@ -1,32 +1,42 @@
 package com.ihaozuo.plamexam.view.splash;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 
+import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.manager.UserManager;
+import com.ihaozuo.plamexam.contract.SplashContract;
+import com.ihaozuo.plamexam.ioc.DaggerSplashComponent;
+import com.ihaozuo.plamexam.ioc.SplashModule;
+import com.ihaozuo.plamexam.presenter.SplashPresenter;
+import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
-import com.ihaozuo.plamexam.view.login.LoginActivity;
-import com.ihaozuo.plamexam.view.main.MainActivity;
+
+import javax.inject.Inject;
 
 public class SplashActivity extends BaseActivity {
+    @Inject
+    SplashPresenter mPresenter;
+    @Inject
+    SplashContract.ISplashView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.splash_act);
+        setContentView(R.layout.content_act);
+        DaggerSplashComponent.builder()
+                .appComponent(getAppComponent())
+                .splashModule(new SplashModule(BuildConfig.VERSION_CODE))
+                .build().inject(this);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                turnAction();
-            }
-        }, 2500);
+        SplashFragment fragment = (SplashFragment) getSupportFragmentManager().findFragmentById(R.id.frameContent);
+        if (fragment == null) {
+            fragment = (SplashFragment) mView;
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.frameContent);
+        }
     }
 
     @Override
@@ -37,12 +47,5 @@ public class SplashActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    private void turnAction(){
-        if (UserManager.getInstance().exist()) {
-            startActivity(new Intent(SplashActivity.this, MainActivity.class));
-        }else {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-        }
-        finish();
-    }
+
 }

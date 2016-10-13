@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.contract;
 
 
+import com.ihaozuo.plamexam.bean.UpdateInfoBean;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.IBaseView;
 
@@ -10,7 +11,7 @@ import com.ihaozuo.plamexam.view.base.IBaseView;
 public interface SplashContract {
 
     interface ISplashView extends IBaseView<ISplashPresenter> {
-        void updateInfo( );
+        void updateInfo(UpdateInfoBean bean);
 
         void turnNextAty();
     }

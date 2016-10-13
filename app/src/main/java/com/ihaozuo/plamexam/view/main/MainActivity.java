@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
-import com.ihaozuo.plamexam.view.consult.ConsultFragment;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
 import com.ihaozuo.plamexam.view.mine.MineFragment;
+import com.ihaozuo.plamexam.view.news.NewsListFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,9 +35,9 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         supportFragmentManager = getSupportFragmentManager();
         mTabHost.setup(this, supportFragmentManager, R.id.realtabcontent);
-        addTab("首页", R.drawable.tabhost_home, HomeFragment.class);
-        addTab("咨询", R.drawable.tabhost_consult, ConsultFragment.class);
-        addTab("我的", R.drawable.tabhost_mine, MineFragment.class);
+        addTab(getString(R.string.tab_home), R.drawable.tabhost_home, HomeFragment.class);
+        addTab(getString(R.string.tab_news), R.drawable.tabhost_consult, NewsListFragment.class);
+        addTab(getString(R.string.tab_mine), R.drawable.tabhost_mine, MineFragment.class);
     }
 
     private void addTab(String tabName, int drawable, Class fragment) {

@@ -14,6 +14,7 @@ import android.widget.AutoCompleteTextView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -26,8 +27,8 @@ import butterknife.OnClick;
  */
 public class LoginFragment extends AbstractView implements LoginContract.ILoginView {
 
-    @Bind(R.id.email)
-    AutoCompleteTextView email;
+    @Bind(R.id.phone)
+    AutoCompleteTextView phone;
     private LoginContract.ILoginPresenter mLoginPresenter;
     private View rootView;
     private Context mContext;
@@ -55,16 +56,12 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         mContext = getContext();
-        if (rootView == null) {
-            rootView = inflater.inflate(R.layout.login_act, container, false);
-        }
-
+        rootView = inflater.inflate(R.layout.login_frag, container, false);
         ButterKnife.bind(this, rootView);
         String[] arr = {"aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aac"};
         arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, arr);
-        email.setAdapter(arrayAdapter);
+        phone.setAdapter(arrayAdapter);
 
 
 
@@ -82,14 +79,25 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.email_sign_in_button)
-    public void login() {
-        startActivity(new Intent(mContext, MainActivity.class));
-        getActivity().finish();
+
+    @OnClick({R.id.btn_getAuthCode, R.id.btn_login})
+    public void onClick(View view) {
+        if (HZUtils.isFastDoubleClick()) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.btn_getAuthCode:
+                startActivity(new Intent(mContext, BindPhoneActivity.class));
+                getActivity().finish();
+                break;
+            case R.id.btn_login:
+                gotoMainPage();
+                break;
+        }
     }
 
     @Override
-    public void goToHomePage() {
+    public void gotoMainPage() {
         startActivity(new Intent(mContext, MainActivity.class));
         getActivity().finish();
     }

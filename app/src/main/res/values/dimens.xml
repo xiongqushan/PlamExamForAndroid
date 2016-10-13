@@ -5,15 +5,20 @@
 
     <dimen name="textsize_h1">20sp</dimen>
     <dimen name="textsize_h2">18sp</dimen>
-    <dimen name="textsize_h3">16sp</dimen>
+    <dimen name="textsize_h3_16sp">16sp</dimen>
     <dimen name="textsize_h4">14sp</dimen>
     <dimen name="textsize_h5">11sp</dimen>
 
     <dimen name="actionbar_high_48dp">48dp</dimen>
     <dimen name="actionbar_high_44dp">44dp</dimen>
     <dimen name="actionbar_padding">10dp</dimen>
+    <dimen name="edittext_high">56dp</dimen>
     <dimen name="divider">0.8dp</dimen>
     <dimen name="divider_1dp">1dp</dimen>
     <dimen name="divider_2dp">2dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="mine_layout_rightpadding">8dp</dimen>
+    <dimen name="mine_layout_leftpadding">8dp</dimen>
+
+    <dimen name="card_margin">6dp</dimen>
 </resources>

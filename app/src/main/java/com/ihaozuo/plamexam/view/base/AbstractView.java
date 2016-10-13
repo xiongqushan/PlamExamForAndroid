@@ -11,7 +11,7 @@ import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.CustomDialog;
 import com.ihaozuo.plamexam.util.LoadingDialog;
 import com.ihaozuo.plamexam.util.StringUtil;
-import com.ihaozuo.plamexam.util.UHealthUtils;
+import com.ihaozuo.plamexam.util.HZUtils;
 
 
 /**
@@ -110,7 +110,7 @@ public abstract class AbstractView extends BaseFragment {
             btnReload.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (UHealthUtils.isFastDoubleClick()) {
+                    if (HZUtils.isFastDoubleClick()) {
                         return;
                     }
                     IBasePresenter presenter = getPresenter();

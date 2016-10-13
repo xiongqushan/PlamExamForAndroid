@@ -1,7 +1,15 @@
 [
     {
+        "merged": "D:\\plamexamApp\\git\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\indicator_arrow.png",
+        "source": "D:\\plamexamApp\\git\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\indicator_arrow.png"
+    },
+    {
         "merged": "C:\\Users\\hzguest3\\Documents\\Project\\Android\\PlamExam\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\default_ptr_rotate.png",
         "source": "C:\\Users\\hzguest3\\Documents\\Project\\Android\\PlamExam\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\default_ptr_rotate.png"
+    },
+    {
+        "merged": "D:\\plamexamApp\\git\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\default_ptr_rotate.png",
+        "source": "D:\\plamexamApp\\git\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\default_ptr_rotate.png"
     },
     {
         "merged": "C:\\Users\\hzguest3\\Documents\\Project\\Android\\PlamExam\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\default_ptr_flip.png",
@@ -10,5 +18,9 @@
     {
         "merged": "C:\\Users\\hzguest3\\Documents\\Project\\Android\\PlamExam\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\indicator_arrow.png",
         "source": "C:\\Users\\hzguest3\\Documents\\Project\\Android\\PlamExam\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\indicator_arrow.png"
+    },
+    {
+        "merged": "D:\\plamexamApp\\git\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\default_ptr_flip.png",
+        "source": "D:\\plamexamApp\\git\\PlamExamForAndroid\\lib_PullToRefresh\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\default_ptr_flip.png"
     }
 ]
