@@ -28,13 +28,10 @@
         </activity>
         <activity android:name=".view.main.MainActivity" />
         <activity android:name=".view.login.LoginActivity" />
-<<<<<<< HEAD
         <activity android:name=".view.news.NewsDetailActivity" />
-        <activity android:name=".view.login.BindPhoneActivity"></activity>
-=======
+        <activity android:name=".view.login.BindPhoneActivity" />
 
 
->>>>>>> 5f4fdf897391552e60ef3b83617a128a82023b04
     </application>
 
 </manifest>

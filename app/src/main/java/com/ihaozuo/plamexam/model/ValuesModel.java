@@ -7,7 +7,7 @@ import com.ihaozuo.plamexam.bean.testBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.service.IValuesService;
-import com.ihaozuo.plamexam.util.UHealthUtils;
+import com.ihaozuo.plamexam.util.HZUtils;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -35,7 +35,7 @@ public class ValuesModel extends AbstractModel {
 
     public void APITest(final OnHandlerResultListener<RestResult<testBean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String,Object> params = UHealthUtils.initParamsMap();
+        Map<String,Object> params = HZUtils.initParamsMap();
         Map<String,Object> param = new TreeMap<>();
         String[] arr = new String[]{"@abc@wZZHO中\"<?>!@#$%^&*(_+213","@@abc@wZZHO中\"<?>!@#$%^&*(_+213@wZZHO中d","tes@abc@wZZHO中\"<?>!@#$%^&*(_+213"};
         param.put("ID",1);
