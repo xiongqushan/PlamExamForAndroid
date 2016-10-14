@@ -73,11 +73,6 @@
     </style>
 
 
-    <!--<style name="AppTheme.NoActionBar">-->
-        <!--<item name="windowActionBar">false</item>-->
-        <!--<item name="windowNoTitle">true</item>-->
-    <!--</style>-->
-
     <style name="userinfo_label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -102,6 +97,19 @@
         <item name="android:paddingRight">@dimen/userinfo_padding_12dp</item>
         <item name="android:background">@drawable/item_press_white_gray</item>
 
+    </style>
+
+    <style name="checkbox_consult_grade">
+        <item name="android:background">@drawable/bg_corner_white_blue_shape</item>
+        <item name="android:textColor">@color/textcolor_gray_white</item>
+        <item name="android:textSize">@dimen/textsize_h2</item>
+        <item name="android:paddingTop">@dimen/userinfo_padding_8dp</item>
+        <item name="android:paddingBottom">@dimen/userinfo_padding_8dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

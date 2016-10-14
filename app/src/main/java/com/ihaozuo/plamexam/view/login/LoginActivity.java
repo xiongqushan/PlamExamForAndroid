@@ -5,13 +5,10 @@ import android.support.v4.app.FragmentManager;
 import android.view.WindowManager;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.bean.RestResult;
-import com.ihaozuo.plamexam.bean.testBean;
 import com.ihaozuo.plamexam.contract.LoginContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerLoginComponent;
 import com.ihaozuo.plamexam.ioc.LoginModule;
-import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.model.ValuesModel;
 import com.ihaozuo.plamexam.presenter.LoginPresenter;
 import com.ihaozuo.plamexam.util.ActivityUtils;
@@ -52,13 +49,18 @@ public class LoginActivity extends BaseActivity {
             ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
         }
 
-        mValuesModel.APITest(new OnHandlerResultListener<RestResult<testBean>>() {
-            @Override
-            public void handlerResult(RestResult<testBean> resultData) {
-
-            }
-        });
-
+//        mValuesModel.APITest(new OnHandlerResultListener<RestResult<testBean>>() {
+//            @Override
+//            public void handlerResult(RestResult<testBean> resultData) {
+//                Log.e("handlerResult",resultData.toString());
+//            }
+//        });
+//        mValuesModel.APITestMultiPost(new OnHandlerResultListener<BaseBean>() {
+//            @Override
+//            public void handlerResult(BaseBean data) {
+//
+//            }
+//        });
 
 
     }

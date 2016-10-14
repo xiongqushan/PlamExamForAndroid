@@ -16,6 +16,8 @@ import rx.Observable;
 public interface ISystemService {
 
     @POST(SysConfig.CONTROLLER_PRE_API_System + "SMS")
-    Observable<BaseBean<testBean>> getAuthCode(@Body Map<String,Object> params);
+    Observable<BaseBean<testBean>> getAuthCode(@Body Map<String, Object> params);
+
+
 
 }

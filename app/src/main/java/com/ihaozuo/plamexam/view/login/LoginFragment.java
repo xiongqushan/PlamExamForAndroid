@@ -36,16 +36,16 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 
     @Bind(R.id.phone)
     AutoCompleteTextView phone;
+    @Bind(R.id.TVLayer_phone)
+    TextInputLayout TVLayerPhone;
     @Bind(R.id.et_authCode)
     EditText etAuthCode;
+    @Bind(R.id.TVLayer_authCode)
+    TextInputLayout TVLayerAuthCode;
     @Bind(R.id.btn_getAuthCode)
     Button btnGetAuthCode;
     @Bind(R.id.btn_login)
     Button btnLogin;
-    @Bind(R.id.TVLayer_phone)
-    TextInputLayout TVLayerPhone;
-    @Bind(R.id.TVLayer_authCode)
-    TextInputLayout TVLayerAuthCode;
     private LoginContract.ILoginPresenter mLoginPresenter;
     private View rootView;
     private Context mContext;
@@ -61,7 +61,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 //        String[] arr = {"aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aac"};
 //        arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, arr);
 //        phone.setAdapter(arrayAdapter);
-
+        phone.setText("13888888888");
         etAuthCode.addTextChangedListener(textWatch);
         phone.addTextChangedListener(textWatch);
         btnLogin.setClickable(false);

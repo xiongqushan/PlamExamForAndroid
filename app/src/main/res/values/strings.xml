@@ -23,6 +23,16 @@
     <string name="register">注册</string>
     <string name="next">下一步</string>
     <string name="bind_phone">绑定手机</string>
+    <string name="get_report">获取体检报告</string>
+    <string name="consult_grade">服务评价</string>
+    <string name="user_grade">客户满意度评价</string>
+    <string name="user_grade1">服务态度好</string>
+    <string name="user_grade2">专业知识强</string>
+    <string name="user_grade3">回复很及时</string>
+    <string name="user_grade4">沟通能力强</string>
+    <string name="hint_grade">您对此次服务的总评价</string>
+    <string name="commit_grade">提交评价</string>
+    <string name="report">体检报告</string>
 
     <string name="consult_warning">健管师的回复内容仅作为建议，具体诊疗请前往医院进行</string>
 
@@ -41,7 +51,7 @@
     <string name="bind">绑定</string>
     <string name="unbind">未绑定</string>
     <string name="binded">已绑定</string>
->>>>>>> bcb5fcb713709bd9cf25d0ac64b99f027de5b3f0
+    >>>>>>> bcb5fcb713709bd9cf25d0ac64b99f027de5b3f0
     <string name="no_data">暂无数据</string>
 
 

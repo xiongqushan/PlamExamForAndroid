@@ -7,12 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.view.consult.ConsultGradeActivity;
 import com.ihaozuo.plamexam.view.mine.settings.SysSetActivity;
 
 import butterknife.Bind;
@@ -73,7 +73,7 @@ public class MineFragment extends BaseFragment {
                 getActivity().startActivity(new Intent(getActivity(), SysSetActivity.class));
                 break;
             case R.id.layoutReportEx:
-                Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                getActivity().startActivity(new Intent(getActivity(), ConsultGradeActivity.class));
                 break;
         }
     }
