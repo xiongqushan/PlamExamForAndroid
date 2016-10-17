@@ -9,7 +9,7 @@ import dagger.Component;
  */
 
 @ScopeType.LoginScope
-@Component(modules = {LoginModule.class},dependencies = {AppComponent.class})
+@Component(modules = {LoginModule.class}, dependencies = {AppComponent.class})
 public interface LoginComponent {
     void inject(LoginActivity loginActivity);
 }

@@ -1,8 +1,14 @@
 package com.ihaozuo.plamexam.presenter;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.ihaozuo.plamexam.bean.BannerBean;
+import com.ihaozuo.plamexam.bean.NewsBean;
+import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.contract.HomeContract;
+import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
+import com.ihaozuo.plamexam.model.HomeModel;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
 
@@ -33,6 +39,20 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
     @Override
     public void start() {
+        new HomeModel().initData(new OnHandlerResultWithCompletedListener<RestResult>() {
+            @Override
+            public void handlerResult(RestResult bean) {
+                if (bean.Data instanceof BannerBean) {
+                    Log.e("BannerBean", "BannerBean");
+                } else if (bean.Data instanceof NewsBean) {
+                    Log.e("NewsBean", "NewsBean");
+                }
+            }
 
+            @Override
+            public void onCompleted() {
+                Log.e("Listener-nCompleted", "Listener-Completed");
+            }
+        });
     }
 }

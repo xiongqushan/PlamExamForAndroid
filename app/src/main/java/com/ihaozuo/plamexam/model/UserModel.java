@@ -25,8 +25,7 @@ public class UserModel extends AbstractModel {
     IUserService mIUserService;
 
     @Inject
-    public UserModel(@NonNull IUserService userService){
-        super();
+    public UserModel(@NonNull IUserService userService) {
         mIUserService = userService;
     }
 
@@ -34,7 +33,7 @@ public class UserModel extends AbstractModel {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = new TreeMap<>();
         params.put("Mobile", mobile);
-        params.put("timespan",System.currentTimeMillis()/1000L);
+        params.put("timespan", System.currentTimeMillis() / 1000L);
         params.put("paramSecret", BASIC_SIGN_SECRET);
         mIUserService.testPost(params)
                 .subscribeOn(Schedulers.io())

@@ -86,7 +86,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             initView();
             autoBanner();
         }
-        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -139,7 +138,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @OnClick({R.id.btn_report, R.id.btn_consult})

@@ -8,4 +8,11 @@ public class BaseBean<T> {
     public String Message;
     public T Data;
 
+    public BaseBean(T a) {
+        Data = a;
+        Code = 1;
+    }
+
+    public BaseBean() {
+    }
 }

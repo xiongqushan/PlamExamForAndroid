@@ -21,7 +21,7 @@ public abstract class AbstractModel implements IBaseModel {
     List<Subscriber> subscriberList;
 
     public AbstractModel() {
-        subscriberList = new ArrayList<>();
+//        subscriberList = new ArrayList<>();
     }
 
     public static <T> Observable.Transformer<T, T> applyAsySchedulers() {
@@ -59,6 +59,9 @@ public abstract class AbstractModel implements IBaseModel {
                 callbackListener.handlerResult(entity);
             }
         };
+        if (subscriberList == null) {
+            subscriberList = new ArrayList<>();
+        }
         subscriberList.add(subscriber);
         return subscriber;
     }
