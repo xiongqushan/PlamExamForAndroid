@@ -70,7 +70,6 @@ public class ConsultFragment extends AbstractView implements ConsultContract.ICo
             setCustomerTitle(rootView, "健康咨询服务");
         }
         ButterKnife.bind(this, rootView);
-
         mRecyclerView = pullRefreshRecycler.getRefreshableView();
         linearLayoutManager = new LinearLayoutManager(mContext);
         linearLayoutManager.setSmoothScrollbarEnabled(true);
@@ -107,9 +106,6 @@ public class ConsultFragment extends AbstractView implements ConsultContract.ICo
         ConsultDetailAdapter mAdapter = new ConsultDetailAdapter();
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.refreshList(list);
-
-
-        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -124,7 +120,6 @@ public class ConsultFragment extends AbstractView implements ConsultContract.ICo
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
 
 
 }

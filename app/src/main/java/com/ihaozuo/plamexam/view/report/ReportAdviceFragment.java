@@ -64,7 +64,7 @@ public class ReportAdviceFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_advice, null);
             }
             return convertView;
         }

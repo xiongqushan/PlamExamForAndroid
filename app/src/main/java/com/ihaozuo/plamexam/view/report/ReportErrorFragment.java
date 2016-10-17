@@ -34,7 +34,6 @@ public class ReportErrorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         rootView = inflater.inflate(R.layout.report_error_frag, container, false);
         ButterKnife.bind(this, rootView);
         initView();
@@ -56,7 +55,7 @@ public class ReportErrorFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_error, null);
             }
             return convertView;
         }

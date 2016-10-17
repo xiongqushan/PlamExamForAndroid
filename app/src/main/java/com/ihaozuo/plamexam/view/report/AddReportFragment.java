@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.view.report;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -69,6 +70,8 @@ public class AddReportFragment extends BaseFragment {
             case R.id.password:
                 break;
             case R.id.btn_login:
+                getActivity().sendBroadcast(new Intent(ReportListFragment.ADD_REPORT));
+                getActivity().finish();
                 break;
         }
     }

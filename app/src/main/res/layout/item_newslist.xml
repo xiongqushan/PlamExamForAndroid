@@ -6,7 +6,6 @@
     android:layout_marginBottom="@dimen/card_margin"
     android:layout_marginLeft="@dimen/card_margin"
     android:layout_marginRight="@dimen/card_margin"
-    android:background="@color/white"
     app:cardCornerRadius="@dimen/card_margin"
     app:cardUseCompatPadding="true">
     <!--app:cardCornerRadius="4dp"-->

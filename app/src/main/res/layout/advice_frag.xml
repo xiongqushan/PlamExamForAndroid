@@ -18,10 +18,11 @@
             <EditText
                 android:id="@+id/et_content"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="216dp"
                 android:layout_margin="12dp"
                 android:background="@drawable/bg_white_corner_shape"
-                android:hint="请在此输入你的意见..."
+                android:gravity="left|top"
+                android:hint="@string/hint_advice"
                 android:padding="12dp"
                 android:textSize="@dimen/textsize_h3_16sp" />
 

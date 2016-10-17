@@ -10,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.common.ChildListView;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 
 import butterknife.Bind;
@@ -50,6 +51,7 @@ public class ReportDetailFragment extends Fragment {
 
     private class ListAdapter extends SimpleBaseAdapter {
 
+
         @Override
         public int getCount() {
             return 10;
@@ -58,8 +60,25 @@ public class ReportDetailFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_detail, null);
             }
+            ChildListView childListView = (ChildListView) convertView.findViewById(R.id.listView_report_detail_child);
+
+            BaseAdapter adapter = new SimpleBaseAdapter() {
+                @Override
+                public int getCount() {
+                    return 10;
+                }
+
+                @Override
+                public View getView(int position, View convertView, ViewGroup parent) {
+                    if (convertView == null) {
+                        convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_error, null);
+                    }
+                    return convertView;
+                }
+            };
+            childListView.setAdapter(adapter);
             return convertView;
         }
     }

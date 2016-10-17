@@ -4,7 +4,6 @@ package com.ihaozuo.plamexam.view.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,35 +12,54 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.BannerFragment;
+import com.ihaozuo.plamexam.common.Constants;
+import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.contract.HomeContract;
+import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
+import com.ihaozuo.plamexam.ioc.HomeModule;
+import com.ihaozuo.plamexam.model.AbstractModel;
+import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
+import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
+
+import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscription;
+import rx.functions.Action1;
 
-public class HomeFragment extends AbstractView implements HomeContract.IHomeView {
-    @Bind(R.id.actionbar)
-    RelativeLayout actionbar;
-    @Bind(R.id.btn_report)
-    View btnReport;
-    @Bind(R.id.BannerPager)
+public class HomeFragment extends AbstractView implements HomeContract.IHomeView, View.OnClickListener {
+
+    @Bind(R.id.listview_home)
+    ListView mListView;
+
+    @Inject
+    HomePresenter mHomePresenter;
+    HomeContract.IHomePresenter mPresenter;
+
     ViewPager mViewPager;
-    @Bind(R.id.btn_consult)
-    View btnConsult;
     private Context mContext;
     private boolean isDrag;
-    private boolean isStop;
     private int maxLength = 10000;// bannerPagerNumber
     private View rootView;
+    private Subscription subscribePager;
 
 
     public HomeFragment() {
@@ -50,12 +68,12 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return mPresenter;
     }
 
     @Override
     public void setPresenter(HomeContract.IHomePresenter presenter) {
-
+        mPresenter = presenter;
     }
 
     @Override
@@ -66,13 +84,36 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onPause() {
         super.onPause();
-        isStop = true;
+        stopAutoBanner();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        isStop = false;
+        mPresenter.start();
+        startAutoBanner();
+    }
+
+    public void startAutoBanner() {
+        subscribePager = Observable.interval(Constants.TIME_DELAY_VIEWPAGER, TimeUnit.MILLISECONDS)
+                .compose(AbstractModel.<Long>applyAsySchedulers())
+                .subscribe(new Action1<Long>() {
+                    @Override
+                    public void call(Long aLong) {
+                        if (!isDrag) {
+                            int index = mViewPager.getCurrentItem() + 1;
+                            mViewPager.setCurrentItem(index);
+                            Toast.makeText(getActivity(), "aLong=" + aLong, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
+
+    public void stopAutoBanner() {
+        if (!subscribePager.isUnsubscribed()) {
+            subscribePager.unsubscribe();
+        }
     }
 
     @Override
@@ -83,26 +124,21 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             rootView = inflater.inflate(R.layout.home_frag, container, false);
             setCustomerTitle(rootView, getString(R.string.app_name));
             ButterKnife.bind(this, rootView);
+            DaggerHomeComponent.builder().appComponent(HZApp.shareApplication()
+                    .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
             initView();
-            autoBanner();
         }
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
-    private void autoBanner() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!isDrag && !isStop) {
-                    int index = mViewPager.getCurrentItem() + 1;
-                    mViewPager.setCurrentItem(index);
-                }
-                new Handler().postDelayed(this, 4000);
-            }
-        }, 4000);
-    }
 
     private void initView() {
+        View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.header_homelist, null);
+        mViewPager = (ViewPager) headerView.findViewById(R.id.BannerPager);
+        headerView.findViewById(R.id.btn_report).setOnClickListener(this);
+        headerView.findViewById(R.id.btn_consult).setOnClickListener(this);
+        headerView.findViewById(R.id.layout_home_news).setOnClickListener(this);
         PagerAdapter adapterPager = new HomePagerAdapter(getChildFragmentManager());
         mViewPager.setAdapter(adapterPager);
         mViewPager.setCurrentItem(maxLength / 2, false);
@@ -132,16 +168,41 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 }
             }
         });
+        ListAdapter adapter = new SimpleBaseAdapter() {
+            @Override
+            public int getCount() {
+                return 4;
+            }
 
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+                }
+                return convertView;
+            }
+        };
+        mListView.addHeaderView(headerView);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if ((position < mListView.getHeaderViewsCount() || HZUtils.isFastDoubleClick())) {
+                    return;
+                }
+                startActivity(new Intent(getActivity(), NewsDetailActivity.class));
+            }
+        });
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
 //        ButterKnife.unbind(this);
+        ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.btn_report, R.id.btn_consult})
+    @Override
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
@@ -152,6 +213,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 break;
             case R.id.btn_consult:
                 startActivity(new Intent(mContext, ConsultActivity.class));
+                break;
+            case R.id.layout_home_news:
+                ((MainActivity) getActivity()).setCurrentTab(1);
                 break;
         }
     }
@@ -171,6 +235,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         public Fragment getItem(int position) {
             return BannerFragment.newInstance(position % 5);
         }
+
     }
 
     @Override

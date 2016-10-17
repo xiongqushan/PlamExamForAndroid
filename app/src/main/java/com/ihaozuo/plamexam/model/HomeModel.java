@@ -8,6 +8,8 @@ import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
 
+import javax.inject.Inject;
+
 import rx.Observable;
 import rx.Subscriber;
 import rx.schedulers.Schedulers;
@@ -16,7 +18,7 @@ import rx.schedulers.Schedulers;
  * Created by zhangzhongyao on 2016/10/17.
  */
 public class HomeModel extends AbstractModel {
-
+    @Inject
     public HomeModel() {
     }
 

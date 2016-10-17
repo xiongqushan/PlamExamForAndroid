@@ -11,7 +11,8 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.view.base.AbstractView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewsDetailFragment extends BaseFragment {
+public class NewsDetailFragment extends AbstractView {
 
 
     @Bind(R.id.WebView)
@@ -30,6 +31,16 @@ public class NewsDetailFragment extends BaseFragment {
         // Required empty public constructor
     }
 
+    @Override
+    protected IBasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected View getRootView() {
+        return null;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,10 +48,11 @@ public class NewsDetailFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.news_detail_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.app_name), getString(R.string.androidColorE));
         ButterKnife.bind(this, rootView);
-        //initView();
+        initView();
         mWebView.getSettings().setJavaScriptEnabled(true);
-        String url = "https://www.baidu.com/";
+        String url = "http://article.h5.ihaozhuo.com/1475216088834.html";
         mWebView.loadUrl(url);
+        showDialog();
         return rootView;
     }
 
@@ -54,13 +66,17 @@ public class NewsDetailFragment extends BaseFragment {
             }
 
             public void onPageFinished(WebView view, String url) {
-
+                hideDialog();
             }
         });
 
         mWebView.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view,
                                           int newProgress) {
+
+                if (newProgress == 80) {
+                    hideDialog();
+                }
             }
         });
     }

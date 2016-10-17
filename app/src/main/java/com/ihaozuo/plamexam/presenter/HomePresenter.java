@@ -19,10 +19,12 @@ import javax.inject.Inject;
  */
 public class HomePresenter extends AbstractPresenter implements HomeContract.IHomePresenter {
     HomeContract.IHomeView mHomeView;
+    private HomeModel mHomeModel;
 
     @Inject
-    public HomePresenter(@NonNull HomeContract.IHomeView view) {
+    public HomePresenter(@NonNull HomeContract.IHomeView view, @NonNull HomeModel homeModel) {
         mHomeView = view;
+        mHomeModel = homeModel;
         mHomeView.setPresenter(this);
     }
 

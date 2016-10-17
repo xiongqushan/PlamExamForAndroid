@@ -29,7 +29,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!getLocalClassName().equals(ConsultActivity.LOCAL_CLASS_NAME)){
+        if (!getLocalClassName().equals(ConsultActivity.LOCAL_CLASS_NAME)) {
             initState();
         }
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

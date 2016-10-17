@@ -5,36 +5,19 @@
 
     <include layout="@layout/actionbar" />
 
-    <com.ihaozuo.plamexam.common.Width16Heigth9ViewPager
-        android:id="@+id/BannerPager"
+
+    <FrameLayout
+        android:id="@+id/rLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <include layout="@layout/divider_12dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="12dp">
-
-        <View
-            android:id="@+id/btn_report"
-            android:layout_width="0dp"
+        <ListView
+            android:id="@+id/listview_home"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/androidColorE" />
+            android:divider="@null" />
 
-        <View
-            android:layout_width="12dp"
-            android:layout_height="match_parent" />
+    </FrameLayout>
 
-        <View
-            android:id="@+id/btn_consult"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/androidColorC" />
-    </LinearLayout>
 
 </LinearLayout>

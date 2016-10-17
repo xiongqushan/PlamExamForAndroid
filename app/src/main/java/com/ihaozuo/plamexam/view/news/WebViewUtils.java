@@ -12,7 +12,7 @@ import java.io.File;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class WebViewUtils {
-    private static String DIR_CACHE = "1NJcache";
+    private static String DIR_CACHE = "PEcache";
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context

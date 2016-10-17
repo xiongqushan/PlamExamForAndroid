@@ -1,12 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <include layout="@layout/actionbar"/>
+    <include layout="@layout/actionbar" />
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -17,47 +17,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/consult_docinfo_layout"
+            <include
+                layout="@layout/consult_docinfo_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways|snap"/>
+                app:layout_scrollFlags="scroll|enterAlways|snap" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/consult_warning"
-                android:textSize="@dimen/textsize_h5"
                 android:background="@color/light_blue"
                 android:gravity="center"
+                android:maxLines="1"
                 android:padding="3dp"
                 android:singleLine="true"
-                android:maxLines="1"/>
+                android:text="@string/consult_warning"
+                android:textSize="@dimen/textsize_h5" />
 
         </android.support.design.widget.AppBarLayout>
 
 
-
         <!--<android.support.v7.widget.RecyclerView-->
-            <!--android:id="@+id/recyclerView"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+        <!--android:id="@+id/recyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
 
 
-            <!--<ListView-->
-                <!--android:id="@+id/lv_consultCotent"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-                <!--android:background="@color/colorPrimary"/>-->
+        <!--<ListView-->
+        <!--android:id="@+id/lv_consultCotent"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+        <!--android:background="@color/colorPrimary"/>-->
 
-        <com.handmark.pulltorefresh.library.extras.recyclerview.PullToRefreshRecyclerView
-            xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        <com.handmark.pulltorefresh.library.extras.recyclerview.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/pull_refresh_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:background="@color/colorPrimary"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             ptr:ptrMode="pullDownFromTop" />
 
 
@@ -77,7 +76,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/gray"/>
+        android:background="@color/gray" />
 
 </LinearLayout>
 
