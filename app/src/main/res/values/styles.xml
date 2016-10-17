@@ -11,7 +11,7 @@
     </style>
 
     <style name="AppSplash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
@@ -27,7 +27,7 @@
     </style>
 
     <style name="TV_LOGIN" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorAccent">@color/main_color_blue</item>
+        <item name="colorAccent">@color/edittext_color</item>
     </style>
 
     <!--SwitchButtonStyle-->

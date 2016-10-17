@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/actionbar_white" />
+    <include layout="@layout/actionbar" />
 
     <com.ihaozuo.plamexam.common.Width16Heigth9ViewPager
         android:id="@+id/BannerPager"

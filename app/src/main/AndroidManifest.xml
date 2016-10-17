@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
-
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -36,6 +35,7 @@
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.news.NewsDetailActivity" />
         <activity android:name=".view.login.BindPhoneActivity" />
+        <activity android:name=".view.consult.ConsultActivity" />
         <activity android:name=".view.mine.UserInfoActivity" />
         <activity android:name=".view.report.AddReportActivity" />
         <activity android:name=".view.mine.settings.SysSetActivity" />

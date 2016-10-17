@@ -48,14 +48,4 @@ public class PreferenceManager {
     }
 
 
-//    public String readDoctorJob() {
-//        return mSharedPreferences.getString(SHARED_KEY_DOCTOE_jOB, null);
-//    }
-//
-//    public void writeDoctorJob(String job) {
-//        editor.putString(SHARED_KEY_DOCTOE_jOB, job);
-//        editor.commit();
-//    }
-
-
 }

@@ -6,7 +6,6 @@ import android.util.Base64;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.service.IUserService;
-import com.ihaozuo.plamexam.service.IValuesService;
 import com.ihaozuo.plamexam.util.JsonUtil;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.squareup.okhttp.Interceptor;
@@ -62,12 +61,6 @@ public class AppModule {
 
     @Provides
     @Singleton
-    IValuesService createValuesService(@NonNull Retrofit retrofit) {
-        return retrofit.create(IValuesService.class);
-    }
-
-    @Provides
-    @Singleton
     OkHttpClient createHttpClient() {
 
         OkHttpClient httpClient = new OkHttpClient();
@@ -89,7 +82,8 @@ public class AppModule {
                 try {
                     JSONObject jasonObject = new JSONObject(postData);
                     map = JsonUtil.jsonToMap(jasonObject);
-                    map.put("Secret",BASIC_SIGN_SECRET);
+                    //先转小写，后排序
+                    map.put("secret",BASIC_SIGN_SECRET);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -114,12 +108,6 @@ public class AppModule {
         });
         return httpClient;
     }
-
-
-
-
-
-
 
     @Provides
     @Singleton

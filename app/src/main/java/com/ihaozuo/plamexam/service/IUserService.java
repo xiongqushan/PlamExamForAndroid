@@ -2,6 +2,7 @@
 package com.ihaozuo.plamexam.service;
 
 import com.ihaozuo.plamexam.bean.BaseBean;
+import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
 
 import java.util.Map;
@@ -15,7 +16,10 @@ import rx.Observable;
  */
 public interface IUserService {
 
-    @POST(SysConfig.CONTROLLER_PRE_API_VALUES + "TestUserAPI")
-    Observable<BaseBean<Boolean>> testPost(@Body Map<String,Object> params);
+    @POST(SysConfig.CONTROLLER_PRE_API_USER + "SMS")
+    Observable<BaseBean<Boolean>> getAuthCode(@Body Map<String,Object> params);
+
+    @POST(SysConfig.CONTROLLER_PRE_API_USER + "Register")
+    Observable<BaseBean<UserBean>> register(@Body Map<String,Object> params);
 
 }

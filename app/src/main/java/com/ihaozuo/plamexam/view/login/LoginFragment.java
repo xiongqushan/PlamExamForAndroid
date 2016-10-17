@@ -8,7 +8,11 @@ import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +20,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
@@ -39,13 +45,15 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
     @Bind(R.id.et_authCode)
     EditText etAuthCode;
     @Bind(R.id.btn_getAuthCode)
-    Button btnGetAuthCode;
+    TextView btnGetAuthCode;
     @Bind(R.id.btn_login)
     Button btnLogin;
     @Bind(R.id.TVLayer_phone)
     TextInputLayout TVLayerPhone;
     @Bind(R.id.TVLayer_authCode)
     TextInputLayout TVLayerAuthCode;
+    @Bind(R.id.tv_warning)
+    TextView tvWarning;
     private LoginContract.ILoginPresenter mLoginPresenter;
     private View rootView;
     private Context mContext;
@@ -64,7 +72,8 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 
         etAuthCode.addTextChangedListener(textWatch);
         phone.addTextChangedListener(textWatch);
-        btnLogin.setClickable(false);
+        btnLogin.setEnabled(false);
+        tvWarning.setText(getClickableSpan());
 
         return rootView;
     }
@@ -98,27 +107,36 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         mLoginPresenter = presenter;
     }
 
-
     @OnClick({R.id.btn_getAuthCode, R.id.btn_login})
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
         }
+        String phoneNum = phone.getText().toString();
+        String validCode = etAuthCode.getText().toString();
         switch (view.getId()) {
             case R.id.btn_getAuthCode:
-                time = new TimeCount(6000, 1000);
-                time.start();
+                if (StringUtil.isMobile(phoneNum)){
+                    mLoginPresenter.getAuthCode(phoneNum);
+                    time = new TimeCount(6000, 1000);
+                    time.start();
+                }else {
+                    TVLayerPhone.setError(getString(R.string.error_input_phone));
+//                    Toast.makeText(mContext,getString(R.string.error_input_phone),Toast.LENGTH_LONG).show();
+                }
+
                 //                startActivity(new Intent(mContext, BindPhoneActivity.class));
                 //                getActivity().finish();
                 break;
             case R.id.btn_login:
-                String phoneNum = phone.getText().toString();
 //                String authCode = etAuthCode.getText().toString();
                 if (!StringUtil.isMobile(phoneNum)) {
-                    TVLayerPhone.setError("请输入正确的手机号码！");
+                    TVLayerPhone.setErrorEnabled(true);
+                    TVLayerPhone.setError(getString(R.string.error_input_phone));
                 } else {
                     TVLayerPhone.setErrorEnabled(false);
-                    gotoMainPage();
+                    mLoginPresenter.register(phoneNum,validCode);
+//                    gotoMainPage();
                 }
                 break;
         }
@@ -145,7 +163,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         @Override
         public void onTick(long millisUntilFinished) {//计时过程显示
             btnGetAuthCode.setClickable(false);
-            btnGetAuthCode.setText(millisUntilFinished / 1000 + "S后重新获取");
+            btnGetAuthCode.setText(millisUntilFinished / 1000 + getString(R.string.reget_authcode));
         }
     }
 
@@ -165,11 +183,41 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         public void afterTextChanged(Editable s) {
             if (StringUtil.isEmpty(phone.getText().toString())
                     || StringUtil.isEmpty(etAuthCode.getText().toString())) {
-                btnLogin.setClickable(false);
+                btnLogin.setEnabled(false);
             } else {
-                btnLogin.setClickable(true);
+                btnLogin.setEnabled(true);
             }
 
         }
     };
+
+    private SpannableString getClickableSpan() {
+        View.OnClickListener GetUserContract = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(mContext, "用户协议", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        SpannableString sp = new SpannableString("注册登录即表示您同意我们的\n[掌上体检用户许可协议]");
+//        sp.setSpan(new StyleSpan(Typeface.BOLD), 13, 26, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new Clickable(GetUserContract), 13, 26, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.main_color_green)), 13, 26, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        return sp;
+    }
+
+    class Clickable extends ClickableSpan implements View.OnClickListener {
+        private final View.OnClickListener mListener;
+
+        public Clickable(View.OnClickListener l) {
+            mListener = l;
+        }
+
+        @Override
+        public void onClick(View v) {
+            mListener.onClick(v);
+        }
+    }
+
+
 }

@@ -11,13 +11,13 @@ import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.view.consult.ConsultActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
 
@@ -49,7 +49,7 @@ public class BaseFragment extends Fragment {
         }
         btnLeft.setOnClickListener(finishActivity);
         View actionbar = view.findViewById(R.id.actionbar);
-        if (actionbar != null) {
+        if (actionbar != null && !getActivity().getLocalClassName().equals(ConsultActivity.LOCAL_CLASS_NAME)) {
             initState(actionbar);
         }
         if (color != null) {
@@ -61,16 +61,6 @@ public class BaseFragment extends Fragment {
      * 沉浸式状态栏
      */
     protected void initState(View actionBar) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {//5.0及以上
-            View decorView = getActivity().getWindow().getDecorView();
-            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-            decorView.setSystemUiVisibility(option);
-            getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4到5.0
-            WindowManager.LayoutParams localLayoutParams = getActivity().getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
-        }
         actionBar.setPadding(0, getStatusBarHeight(getActivity()), 0, 0);
     }
 
