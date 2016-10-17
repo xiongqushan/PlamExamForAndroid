@@ -46,7 +46,6 @@ public class LoginActivity extends BaseActivity {
             ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
         }
 
-
     }
 
 }

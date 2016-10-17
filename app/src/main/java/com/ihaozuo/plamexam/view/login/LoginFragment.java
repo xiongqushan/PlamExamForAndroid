@@ -69,7 +69,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 //        String[] arr = {"aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aac"};
 //        arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, arr);
 //        phone.setAdapter(arrayAdapter);
-
+        phone.setText("13888888888");
         etAuthCode.addTextChangedListener(textWatch);
         phone.addTextChangedListener(textWatch);
         btnLogin.setEnabled(false);

@@ -1,0 +1,149 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ihaozuo.plamexam.view.consult.ConsultGradeFragment">
+
+    <include layout="@layout/actionbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/androidColorB" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/userinfo_padding_12dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_weight="1"
+            android:background="@color/gray_ee" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/userinfo_padding_12dp"
+            android:paddingRight="@dimen/userinfo_padding_12dp"
+            android:text="@string/user_grade"
+            android:textColor="@color/gray_66"
+            android:textSize="@dimen/textsize_h3_16sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_weight="1"
+            android:background="@color/gray_ee" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <RatingBar
+            android:id="@+id/RatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rating="5" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="0dp" />
+
+        <CheckBox
+            android:id="@+id/CheckBoxA"
+            style="@style/checkbox_consult_grade"
+            android:text="@string/user_grade1" />
+
+
+        <View
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="0dp" />
+
+        <CheckBox
+            android:id="@+id/CheckBoxB"
+            style="@style/checkbox_consult_grade"
+            android:text="@string/user_grade2" />
+
+        <View
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="0dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="0dp" />
+
+        <CheckBox
+            android:id="@+id/CheckBoxC"
+            style="@style/checkbox_consult_grade"
+            android:text="@string/user_grade3" />
+
+
+        <View
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="0dp" />
+
+        <CheckBox
+            android:id="@+id/CheckBoxD"
+            style="@style/checkbox_consult_grade"
+            android:text="@string/user_grade4" />
+
+        <View
+            android:layout_width="@dimen/activity_horizontal_margin"
+            android:layout_height="0dp" />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_content"
+        android:layout_width="match_parent"
+        android:layout_height="104dp"
+        android:layout_margin="12dp"
+        android:background="@drawable/bg_white_corner_shape"
+        android:gravity="top"
+        android:hint="@string/hint_grade"
+        android:padding="12dp"
+        android:textSize="@dimen/textsize_h3_16sp" />
+
+    <Button
+        android:id="@+id/btn_commit_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:text="提交"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

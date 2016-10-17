@@ -41,7 +41,7 @@ public class AddReportFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.add_report_frag, container, false);
-        setCustomerTitle(rootView, getString(R.string.bind_phone));
+        setCustomerTitle(rootView, getString(R.string.get_report));
         ButterKnife.bind(this, rootView);
         initView();
         return rootView;

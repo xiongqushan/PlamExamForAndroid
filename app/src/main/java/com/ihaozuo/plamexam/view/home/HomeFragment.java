@@ -4,6 +4,7 @@ package com.ihaozuo.plamexam.view.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -12,27 +13,34 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.BannerFragment;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultActivity;
+import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class HomeFragment extends AbstractView implements HomeContract.IHomeView {
+    @Bind(R.id.actionbar)
+    RelativeLayout actionbar;
+    @Bind(R.id.btn_report)
+    View btnReport;
+    @Bind(R.id.BannerPager)
+    ViewPager mViewPager;
     @Bind(R.id.btn_consult)
     View btnConsult;
     private Context mContext;
     private boolean isDrag;
     private boolean isStop;
     private int maxLength = 10000;// bannerPagerNumber
-    @Bind(R.id.BannerPager)
-    ViewPager mViewPager;
     private View rootView;
 
 
@@ -83,14 +91,14 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     }
 
     private void autoBanner() {
-        mViewPager.postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 if (!isDrag && !isStop) {
                     int index = mViewPager.getCurrentItem() + 1;
                     mViewPager.setCurrentItem(index);
                 }
-                mViewPager.postDelayed(this, 4000);
+                new Handler().postDelayed(this, 4000);
             }
         }, 4000);
     }
@@ -131,13 +139,24 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-//        ButterKnife.unbind(this);
+        ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.btn_consult)
-    public void goConsult() {
-        startActivity(new Intent(mContext, ConsultActivity.class));
+    @OnClick({R.id.btn_report, R.id.btn_consult})
+    public void onClick(View view) {
+        if (HZUtils.isFastDoubleClick()) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.btn_report:
+                startActivity(new Intent(mContext, ReportListActivity.class));
+                break;
+            case R.id.btn_consult:
+                startActivity(new Intent(mContext, ConsultActivity.class));
+                break;
+        }
     }
+
 
     private class HomePagerAdapter extends FragmentPagerAdapter {
         private HomePagerAdapter(FragmentManager fm) {

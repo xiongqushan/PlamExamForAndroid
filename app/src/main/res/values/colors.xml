@@ -6,6 +6,8 @@
     <color name="androidColorD">#FFFFBB33</color>
     <color name="androidColorE">#FFFF4444</color>
 
+    <color name="tab_report_checked">#FFFF4444</color>
+
     <color name="main_color_blue">#3AB4F1</color>
     <color name="main_color_green">#4ED625</color>
 

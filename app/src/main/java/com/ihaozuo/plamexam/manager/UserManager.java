@@ -79,8 +79,8 @@ public class UserManager {
 
 
     public boolean exist(){
-        return true;
-//        return getUserInfo()!=null;
+//        return true;
+        return getUserInfo()!=null;
     }
 
     public void clear(){

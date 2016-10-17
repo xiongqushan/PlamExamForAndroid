@@ -16,6 +16,8 @@
     <dimen name="divider">0.8dp</dimen>
     <dimen name="divider_1dp">1dp</dimen>
     <dimen name="divider_2dp">2dp</dimen>
+    <dimen name="bg_corners">8dp</dimen>
+    <dimen name="tab_report_corners">24dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="mine_img_rightpadding">8dp</dimen>
     <dimen name="mine_img_leftpadding">8dp</dimen>
