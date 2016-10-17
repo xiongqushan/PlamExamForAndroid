@@ -2,7 +2,11 @@ package com.ihaozuo.plamexam.presenter;
 
 import android.support.annotation.NonNull;
 
+import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.contract.LoginContract;
+import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.model.UserModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
@@ -18,9 +22,9 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
     private UserModel mUserModel;
 
     @Inject
-    public LoginPresenter(@NonNull LoginContract.ILoginView loginView,@NonNull UserModel userModel){
+    public LoginPresenter(@NonNull LoginContract.ILoginView loginView,@NonNull UserModel usermodel){
         mLoginView = loginView;
-        mUserModel = userModel;
+        mUserModel = usermodel;
         loginView.setPresenter(this);
     }
 
@@ -36,16 +40,42 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
     @Override
     public void start() {
-//        mLoginView.showDialog();
-//        mUserModel.GetSMSCode("12345", new OnHandlerResultListener<RestResult<Boolean>>() {
-//            @Override
-//            public void handlerResult(RestResult<Boolean> resultData) {
-//                if (resultData.LogicSuccess){
-//                    mLoginView.hideDialog();
-//                }else {
-//                    mLoginView.hideDialog(resultData.Message);
-//                }
-//            }
-//        });
+
+    }
+
+    @Override
+    public void getAuthCode(String mobile) {
+        mLoginView.showDialog();
+        mUserModel.getAuthCode(mobile, new OnHandlerResultListener<RestResult<Boolean>>() {
+            @Override
+            public void handlerResult(RestResult<Boolean> resultData) {
+                if (resultData.LogicSuccess){
+                    mLoginView.hideDialog();
+                }else {
+                    mLoginView.hideDialog(resultData.Message);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void register(String mobile,String validCode) {
+        mLoginView.showDialog();
+        mUserModel.register(mobile,validCode, new OnHandlerResultListener<RestResult<UserBean>>() {
+            @Override
+            public void handlerResult(RestResult<UserBean> resultData) {
+                if (resultData.LogicSuccess){
+                    UserBean userBean = new UserBean();
+                    userBean = resultData.Data;
+                    UserManager.getInstance().setUserInfo(userBean);
+
+                    mLoginView.hideDialog();
+
+                    mLoginView.gotoMainPage();
+                }else {
+                    mLoginView.hideDialog(resultData.Message);
+                }
+            }
+        });
     }
 }

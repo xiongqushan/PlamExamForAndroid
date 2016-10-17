@@ -13,7 +13,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.BannerFragment;
@@ -30,17 +30,17 @@ import butterknife.OnClick;
 
 public class HomeFragment extends AbstractView implements HomeContract.IHomeView {
     @Bind(R.id.actionbar)
-    LinearLayout actionbar;
+    RelativeLayout actionbar;
     @Bind(R.id.btn_report)
     View btnReport;
+    @Bind(R.id.BannerPager)
+    ViewPager mViewPager;
     @Bind(R.id.btn_consult)
     View btnConsult;
     private Context mContext;
     private boolean isDrag;
     private boolean isStop;
     private int maxLength = 10000;// bannerPagerNumber
-    @Bind(R.id.BannerPager)
-    ViewPager mViewPager;
     private View rootView;
 
 

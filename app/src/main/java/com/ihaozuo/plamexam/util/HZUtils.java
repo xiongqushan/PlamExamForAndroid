@@ -231,7 +231,7 @@ public class HZUtils {
 
     public static Map initParamsMap() {
         Map<String, Object> params = new TreeMap<>();
-        params.put("timespan", System.currentTimeMillis());
+        params.put("timespan", System.currentTimeMillis()/1000L);
 
         return params;
     }

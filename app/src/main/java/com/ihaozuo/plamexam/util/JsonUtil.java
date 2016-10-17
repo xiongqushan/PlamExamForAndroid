@@ -149,13 +149,14 @@ public class JsonUtil {
         Iterator<?> jsonKeys = jsonObj.keys();
         while (jsonKeys.hasNext()) {
             String jsonKey = (String) jsonKeys.next();
+            String jsonKeyLow = jsonKey.toLowerCase();
             Object jsonValObj = jsonObj.get(jsonKey);
             if (jsonValObj instanceof JSONArray) {
-                jsonMap.put(jsonKey, jsonToList((JSONArray) jsonValObj));
+                jsonMap.put(jsonKeyLow, jsonToList((JSONArray) jsonValObj));
             } else if (jsonValObj instanceof JSONObject) {
-                jsonMap.put(jsonKey, jsonToMap((JSONObject) jsonValObj));
+                jsonMap.put(jsonKeyLow, jsonToMap((JSONObject) jsonValObj));
             } else {
-                jsonMap.put(jsonKey, jsonValObj);
+                jsonMap.put(jsonKeyLow, jsonValObj);
             }
         }
         return jsonMap;

@@ -3,15 +3,17 @@ package com.ihaozuo.plamexam.model;
 import android.support.annotation.NonNull;
 
 import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.service.IUserService;
+import com.ihaozuo.plamexam.util.HZUtils;
 
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.inject.Inject;
 
+import retrofit.http.HEAD;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -29,13 +31,26 @@ public class UserModel extends AbstractModel {
         mIUserService = userService;
     }
 
-    public void GetSMSCode(String mobile, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+    public void getAuthCode(String mobile,final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String, Object> params = new TreeMap<>();
+        Map<String,Object> params = HZUtils.initParamsMap();
         params.put("Mobile", mobile);
         params.put("timespan", System.currentTimeMillis() / 1000L);
         params.put("paramSecret", BASIC_SIGN_SECRET);
-        mIUserService.testPost(params)
+        mIUserService.getAuthCode(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+
+    public void register(String mobile,String validCode,final OnHandlerResultListener<RestResult<UserBean>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        params.put("Mobile", mobile);
+        params.put("ValidCode", validCode);
+        params.put("OS", SysConfig.LOCAL_OPERATION_SYSTEM);
+        mIUserService.register(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

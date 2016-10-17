@@ -30,8 +30,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         LOCAL_CLASS_NAME = getLocalClassName();
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act);
         ButterKnife.bind(this);
         supportFragmentManager = getSupportFragmentManager();

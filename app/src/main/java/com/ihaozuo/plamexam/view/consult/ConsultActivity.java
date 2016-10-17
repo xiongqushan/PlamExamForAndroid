@@ -17,12 +17,17 @@ import javax.inject.Inject;
  */
 public class ConsultActivity extends BaseActivity {
 
+
+    public static String LOCAL_CLASS_NAME;
+
     @Inject
     ConsultFragment mConsultView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        LOCAL_CLASS_NAME = getLocalClassName();
         super.onCreate(savedInstanceState);
+        setTranslucentStatus(R.color.main_color_blue);
         setContentView(R.layout.content_act);
 
         DaggerConsultComponent.builder()
@@ -38,6 +43,7 @@ public class ConsultActivity extends BaseActivity {
             fragment = (ConsultFragment) mConsultView;
             ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
         }
+
 
     }
 }

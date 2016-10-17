@@ -15,6 +15,10 @@ public interface LoginContract {
 
     interface ILoginPresenter extends IBasePresenter{
 
+        void getAuthCode(String mobile);
+
+        void register(String mobile,String validCode);
+
     }
 }
 
