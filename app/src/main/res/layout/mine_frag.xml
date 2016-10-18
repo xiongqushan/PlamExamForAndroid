@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray_ee"
+    android:background="@color/gray_f2"
     android:orientation="vertical">
 
 
@@ -80,6 +80,6 @@
         <include layout="@layout/next_mine_right_lauout" />
     </LinearLayout>
 
-    <include layout="@layout/divider_d3" />
+    <include layout="@layout/divider_dd" />
 
 </LinearLayout>

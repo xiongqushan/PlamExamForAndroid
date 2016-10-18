@@ -99,7 +99,7 @@
                 android:layout_height="@dimen/divider"
                 android:layout_margin="8dp"
                 android:layout_toLeftOf="@id/tv_thirdpart_login"
-                android:background="@color/divider_d3" />
+                android:background="@color/divider_dd" />
 
 
             <View
@@ -107,7 +107,7 @@
                 android:layout_height="@dimen/divider"
                 android:layout_margin="8dp"
                 android:layout_toRightOf="@id/tv_thirdpart_login"
-                android:background="@color/divider_d3" />
+                android:background="@color/divider_dd" />
 
 
             <LinearLayout

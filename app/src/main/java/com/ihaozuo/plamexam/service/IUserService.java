@@ -1,10 +1,12 @@
 
 package com.ihaozuo.plamexam.service;
 
+import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.BaseBean;
 import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
 
+import java.util.List;
 import java.util.Map;
 
 import retrofit.http.Body;
@@ -17,9 +19,11 @@ import rx.Observable;
 public interface IUserService {
 
     @POST(SysConfig.CONTROLLER_PRE_API_USER + "SMS")
-    Observable<BaseBean<Boolean>> getAuthCode(@Body Map<String,Object> params);
+    Observable<BaseBean<Boolean>> getAuthCode(@Body Map<String, Object> params);
 
     @POST(SysConfig.CONTROLLER_PRE_API_USER + "Register")
-    Observable<BaseBean<UserBean>> register(@Body Map<String,Object> params);
+    Observable<BaseBean<UserBean>> register(@Body Map<String, Object> params);
+
+
 
 }

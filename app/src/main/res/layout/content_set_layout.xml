@@ -23,7 +23,7 @@
             tools:text="13888888888" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3_margin" />
+    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutBindQQ"
@@ -44,7 +44,7 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3_margin" />
+    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutBindWeChat"
@@ -63,7 +63,7 @@
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3_margin" />
+    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutBindSina"
@@ -96,7 +96,7 @@
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3_margin" />
+    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutFeedback"
@@ -109,7 +109,7 @@
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3_margin" />
+    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutCheckUpdate"
@@ -136,7 +136,7 @@
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3_margin" />
+    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutClearChache"
@@ -149,7 +149,7 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/divider_d3" />
+    <include layout="@layout/divider_dd" />
 
 
 </LinearLayout>

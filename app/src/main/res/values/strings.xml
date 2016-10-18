@@ -2,7 +2,7 @@
     <string name="app_name">掌上体检</string>
 
     <string name="tab_home">首页</string>
-    <string name="tab_news">资讯</string>
+    <string name="daily_news">每日资讯</string>
     <string name="tab_mine">我的</string>
     <string name="tab_consult">咨询</string>
     <string name="splash_statent">深度掌握全家健康信息\n实时关注家人健康动态</string>

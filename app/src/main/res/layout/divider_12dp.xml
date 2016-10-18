@@ -4,15 +4,15 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider"
-        android:background="@color/divider_d3" />
+        android:background="@color/divider_dd" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/gray_ee" />
+        android:layout_height="8dp"
+        android:background="@color/gray_f2" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider"
-        android:background="@color/divider_d3" />
+        android:background="@color/divider_dd" />
 </merge>

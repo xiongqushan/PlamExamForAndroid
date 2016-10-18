@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <!--&lt;!&ndash; 大小 &ndash;&gt;-->
+    <size
+        android:width="3dp"
+        android:height="18dp" /><!-- 宽度和高度 -->
+
+    <!-- 填充 -->
+    <solid android:color="@color/main_color_red" /><!-- 填充的颜色 -->
+
+    <!--&lt;!&ndash; 描边 &ndash;&gt;-->
+    <!--<stroke-->
+    <!--android:width="2dp"-->
+    <!--android:color="@color/black"-->
+    <!--android:dashWidth="1dp"-->
+    <!--android:dashGap="2dp"/>-->
+
+</shape>

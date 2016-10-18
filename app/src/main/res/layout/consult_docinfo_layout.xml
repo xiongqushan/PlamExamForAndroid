@@ -17,7 +17,7 @@
         android:layout_marginLeft="@dimen/docinfo_padding"
         android:layout_marginRight="@dimen/docinfo_padding"
         fresco:roundAsCircle="true"
-        fresco:placeholderImage="@drawable/banner1"
+        fresco:placeholderImage="@drawable/banner"
         fresco:placeholderImageScaleType="fitCenter" />
 
     <RelativeLayout

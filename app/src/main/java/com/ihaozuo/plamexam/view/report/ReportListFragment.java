@@ -3,7 +3,6 @@ package com.ihaozuo.plamexam.view.report;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,19 +12,22 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
+import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ReportListFragment extends AbstractView {
-    public static final String ADD_REPORT = "REPORTLISTFRAGMENT_ADD_REPORT";
+public class ReportListFragment extends AbstractView implements ReportContract.ReportListView {
+    public static final String REFRESH_REPORTLIST = "REPORTLIST_REPORTLISTFRAGMENT";
+
+    ReportContract.ReportListPresenter mPresenter;
 
     @Bind(R.id.layout_report_add)
     RelativeLayout layoutReportAdd;
@@ -39,7 +41,7 @@ public class ReportListFragment extends AbstractView {
 
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return mPresenter;
     }
 
     @Override
@@ -47,6 +49,11 @@ public class ReportListFragment extends AbstractView {
         return rootView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mPresenter.start();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,8 +62,14 @@ public class ReportListFragment extends AbstractView {
         setCustomerTitle(rootView, getString(R.string.report));
         ButterKnife.bind(this, rootView);
         initView();
-        registerCustomReceiver(ADD_REPORT);
+        registerCustomReceiver(REFRESH_REPORTLIST);
         return rootView;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPresenter.cancelRequest();
     }
 
     @Override
@@ -98,5 +111,22 @@ public class ReportListFragment extends AbstractView {
     @OnClick(R.id.layout_report_add)
     public void onClick() {
         startActivity(new Intent(getActivity(), AddReportActivity.class));
+    }
+
+    @Override
+    public void setPresenter(ReportContract.ReportListPresenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void showAddBtn() {
+        layoutReportAdd.setVisibility(View.VISIBLE);
+        mListView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void showReportList(List<ReportItemBean> dataList) {
+        layoutReportAdd.setVisibility(View.INVISIBLE);
+        mListView.setVisibility(View.VISIBLE);
     }
 }

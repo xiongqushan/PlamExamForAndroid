@@ -13,7 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,14 +25,15 @@ import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
 import com.ihaozuo.plamexam.ioc.HomeModule;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.AbstractModel;
 import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultActivity;
-import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
+import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -91,6 +92,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     public void onResume() {
         super.onResume();
         mPresenter.start();
+        mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
         startAutoBanner();
     }
 
@@ -168,7 +170,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 }
             }
         });
-        ListAdapter adapter = new SimpleBaseAdapter() {
+        BaseAdapter adapter = new SimpleBaseAdapter() {
             @Override
             public int getCount() {
                 return 4;
@@ -215,7 +217,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(new Intent(mContext, ConsultActivity.class));
                 break;
             case R.id.layout_home_news:
-                ((MainActivity) getActivity()).setCurrentTab(1);
+                startActivity(new Intent(getActivity(), NewsListActivity.class));
                 break;
         }
     }

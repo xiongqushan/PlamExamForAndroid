@@ -13,7 +13,6 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
-import retrofit.http.HEAD;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
@@ -31,9 +30,9 @@ public class UserModel extends AbstractModel {
         mIUserService = userService;
     }
 
-    public void getAuthCode(String mobile,final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+    public void getAuthCode(String mobile, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String,Object> params = HZUtils.initParamsMap();
+        Map<String, Object> params = HZUtils.initParamsMap();
         params.put("Mobile", mobile);
         params.put("timespan", System.currentTimeMillis() / 1000L);
         params.put("paramSecret", BASIC_SIGN_SECRET);
@@ -44,9 +43,9 @@ public class UserModel extends AbstractModel {
     }
 
 
-    public void register(String mobile,String validCode,final OnHandlerResultListener<RestResult<UserBean>> callbackListener) {
+    public void register(String mobile, String validCode, final OnHandlerResultListener<RestResult<UserBean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String,Object> params = HZUtils.initParamsMap();
+        Map<String, Object> params = HZUtils.initParamsMap();
         params.put("Mobile", mobile);
         params.put("ValidCode", validCode);
         params.put("OS", SysConfig.LOCAL_OPERATION_SYSTEM);

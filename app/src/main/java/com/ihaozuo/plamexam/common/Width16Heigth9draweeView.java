@@ -20,7 +20,7 @@ public class Width16Heigth9draweeView extends SimpleDraweeView {
         WindowManager wm = (WindowManager) getContext().getSystemService(
                 Context.WINDOW_SERVICE);
         width = wm.getDefaultDisplay().getWidth();
-        double proportion = (((double) 9) / 16);
+        double proportion = (((double) 2) / 3);
         height = (int) (width * proportion);
     }
 
