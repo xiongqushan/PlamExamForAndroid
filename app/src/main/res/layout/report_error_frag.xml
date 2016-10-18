@@ -4,11 +4,28 @@
     android:layout_height="match_parent"
     tools:context="com.ihaozuo.plamexam.view.report.ReportErrorFragment">
 
-    <ListView
-        android:scrollbars="none"
-        android:id="@+id/listview_error_report"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listview_error_report"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/btnReportError"
+            android:divider="@null"
+            android:scrollbars="none" />
+
+        <Button
+            android:id="@+id/btnReportError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="12dp"
+            android:layout_marginLeft="48dp"
+            android:layout_marginRight="48dp"
+            android:layout_marginTop="8dp"
+            android:text="选择异常项咨询" />
+    </RelativeLayout>
 
 </FrameLayout>

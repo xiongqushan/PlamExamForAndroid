@@ -16,12 +16,25 @@ import javax.inject.Inject;
  * Created by hzguest3 on 2016/10/13.
  */
 public class ConsultActivity extends BaseActivity {
-
+    public static boolean isForeground = false;
 
     public static String LOCAL_CLASS_NAME;
 
     @Inject
     ConsultFragment mConsultView;
+
+    @Override
+    public void onResume() {
+        isForeground = true;
+        super.onResume();
+    }
+
+
+    @Override
+    public void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +45,7 @@ public class ConsultActivity extends BaseActivity {
 
         DaggerConsultComponent.builder()
                 .appComponent(HZApp.shareApplication()
-                .getAppComponent())
+                        .getAppComponent())
                 .consultModule(new ConsultModule())
                 .build()
                 .inject(this);

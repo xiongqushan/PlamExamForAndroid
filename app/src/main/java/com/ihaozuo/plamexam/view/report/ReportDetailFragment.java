@@ -8,10 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.ChildListView;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
+import com.ihaozuo.plamexam.util.UIHelper;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -62,8 +65,14 @@ public class ReportDetailFragment extends Fragment {
             if (convertView == null) {
                 convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_detail, null);
             }
-            ChildListView childListView = (ChildListView) convertView.findViewById(R.id.listView_report_detail_child);
-
+            ChildListView childListView = UIHelper.getAdapterView(convertView, R.id.listView_report_detail_child);
+            TextView tvMainItem = UIHelper.getAdapterView(convertView, R.id.tvReportMainItem);
+            tvMainItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+                }
+            });
             BaseAdapter adapter = new SimpleBaseAdapter() {
                 @Override
                 public int getCount() {
@@ -79,6 +88,7 @@ public class ReportDetailFragment extends Fragment {
                 }
             };
             childListView.setAdapter(adapter);
+
             return convertView;
         }
     }
