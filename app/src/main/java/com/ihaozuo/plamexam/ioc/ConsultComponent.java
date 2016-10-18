@@ -1,6 +1,6 @@
 package com.ihaozuo.plamexam.ioc;
 
-import com.ihaozuo.plamexam.view.consult.ConsultActivity;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 
 import dagger.Component;
 
@@ -10,5 +10,7 @@ import dagger.Component;
 @ScopeType.ActivityScope
 @Component(modules = {ConsultModule.class}, dependencies = {AppComponent.class})
 public interface ConsultComponent {
-    void inject(ConsultActivity consultActivity);
+
+    void inject(ConsultDetailActivity consultDetailActivity);
+
 }

@@ -62,6 +62,21 @@
     <string name="no_data">暂无数据</string>
 
 
+    <!--语音听写APP_ID-->
+    <string name="app_id">5804a7be</string>
+    <!-- 听写 -->
+    <string name="text_begin">请开始说话…</string>
+    <string name="text_begin_recognizer">开始音频流识别</string>
+    <string name="text_upload_contacts">上传联系人</string>
+    <string name="text_upload_userwords">上传用户词表</string>
+    <string name="text_upload_success">上传成功</string>
+    <string name="text_userword_empty">词表下载失败或内容为空</string>
+    <string name="text_download_success">下载成功</string>
+    <string name="pref_key_iat_show">iat_show</string>
+    <string name="pref_title_iat_show">显示听写界面</string>
+    <string name="pref_title_iat_dwa">结果动态修正</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="androidColorA">#FF33B5E5</string>
@@ -72,18 +87,7 @@
     <string name="title_activity_consult1">ConsultActivity1</string>
     <string name="title_activity_t">Sign in</string>
 
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+
 
 
 </resources>

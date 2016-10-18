@@ -61,6 +61,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             turnNextAty();
 //            }
         }
+
         return rootView;
     }
 

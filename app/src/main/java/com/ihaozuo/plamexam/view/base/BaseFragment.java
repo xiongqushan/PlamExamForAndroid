@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
-import com.ihaozuo.plamexam.view.consult.ConsultActivity;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
 
@@ -49,7 +49,7 @@ public class BaseFragment extends Fragment {
         }
         btnLeft.setOnClickListener(finishActivity);
         View actionbar = view.findViewById(R.id.actionbar);
-        if (actionbar != null && !getActivity().getLocalClassName().equals(ConsultActivity.LOCAL_CLASS_NAME)) {
+        if (actionbar != null && !getActivity().getLocalClassName().equals(ConsultDetailActivity.LOCAL_CLASS_NAME)) {
             initState(actionbar);
         }
         if (color != null) {

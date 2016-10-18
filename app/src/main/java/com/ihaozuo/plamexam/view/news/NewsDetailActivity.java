@@ -1,12 +1,12 @@
 package com.ihaozuo.plamexam.view.news;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.util.ActivityUtils;
+import com.ihaozuo.plamexam.view.base.BaseActivity;
 
-public class NewsDetailActivity extends AppCompatActivity {
+public class NewsDetailActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

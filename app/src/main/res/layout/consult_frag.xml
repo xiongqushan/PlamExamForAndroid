@@ -37,46 +37,57 @@
         </android.support.design.widget.AppBarLayout>
 
 
-        <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/recyclerView"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+        <!--<com.handmark.pulltorefresh.library.extras.recyclerview.PullToRefreshRecyclerView-->
+            <!--xmlns:ptr="http://schemas.android.com/apk/res-auto"-->
+            <!--android:id="@+id/pull_refresh_recycler"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+            <!--android:background="@color/white"-->
+            <!--ptr:ptrMode="pullDownFromTop" />-->
 
-
-        <!--<ListView-->
-        <!--android:id="@+id/lv_consultCotent"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
-        <!--android:background="@color/colorPrimary"/>-->
-
-        <com.handmark.pulltorefresh.library.extras.recyclerview.PullToRefreshRecyclerView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        <android.support.v7.widget.RecyclerView
             android:id="@+id/pull_refresh_recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimary"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            ptr:ptrMode="pullDownFromTop" />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:src="@drawable/icon_user_default"
-            app:layout_scrollFlags="scroll|enterAlways|snap" />
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:borderWidth="0dp"
+                app:fabSize="mini"
+                app:backgroundTint="@color/colorPrimary"
+                app:layout_scrollFlags="scroll|enterAlways|snap" />
+
 
     </android.support.design.widget.CoordinatorLayout>
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/gray" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/divider"/>
+
+        <include layout="@layout/consult_edit_layout" />
+
+        <include layout="@layout/divider"/>
+
+        <View
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/gray"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
 
 </LinearLayout>
+
 

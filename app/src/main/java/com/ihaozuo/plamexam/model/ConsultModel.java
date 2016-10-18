@@ -1,10 +1,53 @@
 package com.ihaozuo.plamexam.model;
 
+import com.ihaozuo.plamexam.bean.ConsultDetailBean;
+import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
+import com.ihaozuo.plamexam.service.IConsultService;
+import com.ihaozuo.plamexam.util.HZUtils;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+
 /**
  * Created by hzguest3 on 2016/10/13.
  */
 public class ConsultModel extends AbstractModel implements IBaseModel{
 
-    public ConsultModel(){};
+    IConsultService mIConsultService;
+
+    @Inject
+    public ConsultModel(IConsultService consultService){
+        mIConsultService = consultService;
+    };
+
+    public void getConsultDetail(String accountId,final OnHandlerResultListener<RestResult<List<ConsultDetailBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        mIConsultService.getConsultDetail(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void sendMessage(String accountId,int type,String consultContent,final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        params.put("Type", 3);//1,3尚未约定
+        params.put("ConsultContent", consultContent);
+        params.put("AppendInfo", "");//暂时为空
+        mIConsultService.sendMessage(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
 
 }

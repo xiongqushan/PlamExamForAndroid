@@ -31,7 +31,7 @@ import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
-import com.ihaozuo.plamexam.view.consult.ConsultActivity;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
@@ -214,7 +214,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(new Intent(mContext, ReportListActivity.class));
                 break;
             case R.id.btn_consult:
-                startActivity(new Intent(mContext, ConsultActivity.class));
+                startActivity(new Intent(mContext, ConsultDetailActivity.class));
                 break;
             case R.id.layout_home_news:
                 startActivity(new Intent(getActivity(), NewsListActivity.class));
