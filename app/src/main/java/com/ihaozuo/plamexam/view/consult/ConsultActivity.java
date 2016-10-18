@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.contract.ConsultContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.ConsultModule;
 import com.ihaozuo.plamexam.ioc.DaggerConsultComponent;
+import com.ihaozuo.plamexam.presenter.ConsultPresenter;
 import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
 
@@ -20,8 +22,11 @@ public class ConsultActivity extends BaseActivity {
 
     public static String LOCAL_CLASS_NAME;
 
+
     @Inject
-    ConsultFragment mConsultView;
+    ConsultPresenter mConsultPresenter;
+    @Inject
+    ConsultContract.IConsultView mConsultView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +48,6 @@ public class ConsultActivity extends BaseActivity {
             fragment = (ConsultFragment) mConsultView;
             ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
         }
-
-
     }
+
 }

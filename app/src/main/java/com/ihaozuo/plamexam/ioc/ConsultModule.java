@@ -1,5 +1,6 @@
 package com.ihaozuo.plamexam.ioc;
 
+import com.ihaozuo.plamexam.contract.ConsultContract;
 import com.ihaozuo.plamexam.view.consult.ConsultFragment;
 
 import dagger.Module;
@@ -13,8 +14,9 @@ public class ConsultModule {
     public ConsultModule(){
     }
 
+    @ScopeType.ActivityScope
     @Provides
-    ConsultFragment provideConsultFragment(){
+    ConsultContract.IConsultView provideConsultFragment(){
         return ConsultFragment.newInstance();
     }
 }

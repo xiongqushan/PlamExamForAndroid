@@ -21,7 +21,6 @@ import rx.schedulers.Schedulers;
  * Created by hzguest3 on 2016/10/10.
  */
 public class UserModel extends AbstractModel {
-    private static final String BASIC_SIGN_SECRET = SysConfig.BASE_API[2];
 
     IUserService mIUserService;
 

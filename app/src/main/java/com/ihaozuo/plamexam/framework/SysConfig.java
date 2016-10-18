@@ -11,7 +11,7 @@ public class SysConfig {
     public static final String[] BASE_API = new String[]{"http://hz3bn04d2:8070/", "HZ_PME_API_V1", "1!2@3#4$5%6^"};//Test
 
     public static final String CONTROLLER_PRE_API_VALUES = "api/" + CURRENT_BASE_VERSION + "/Values/" ;
-    public static final String CONTROLLER_PRE_API_SYSTEM = "api/" + CURRENT_BASE_VERSION + "/System/" ;
+    public static final String CONTROLLER_PRE_API_CONSULT = "api/" + CURRENT_BASE_VERSION + "/Consult/" ;
     public static final String CONTROLLER_PRE_API_USER = "api/" + CURRENT_BASE_VERSION + "/User/" ;
 
 //    public static final String CONTROLLER_PRE_API_VALUES = "api/" + CURRENT_BASE_VERSION + "/" ;

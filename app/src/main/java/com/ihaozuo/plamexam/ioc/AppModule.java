@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.framework.SysConfig;
+import com.ihaozuo.plamexam.service.IConsultService;
 import com.ihaozuo.plamexam.service.IUserService;
 import com.ihaozuo.plamexam.util.JsonUtil;
 import com.ihaozuo.plamexam.util.StringUtil;
@@ -57,6 +58,12 @@ public class AppModule {
     @Singleton
     IUserService createUserService(@NonNull Retrofit retrofit) {
         return retrofit.create(IUserService.class);
+    }
+
+    @Provides
+    @Singleton
+    IConsultService createConsultService(@NonNull Retrofit retrofit) {
+        return retrofit.create(IConsultService.class);
     }
 
     @Provides

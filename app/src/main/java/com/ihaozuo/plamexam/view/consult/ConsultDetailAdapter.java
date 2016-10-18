@@ -15,30 +15,47 @@
  */
 package com.ihaozuo.plamexam.view.consult;
 
+import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.Adapter;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ConsultDetailBean;
+import com.ihaozuo.plamexam.bean.UserBean;
+import com.ihaozuo.plamexam.manager.UserManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConsultDetailAdapter extends Adapter<ConsultDetailAdapter.DefineViewHolder> {
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-    private List<String> list;
+public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
+
+    private List<ConsultDetailBean> list;
+    private Context mContext;
+    private UserBean mUserInfo;
 
     public ConsultDetailAdapter() {
         this.list = new ArrayList<>();
     }
 
-    public void refreshList(List<String> list){
+    public void refreshList(Context context, List<ConsultDetailBean> list) {
         this.list.clear();
         this.list.addAll(list);
+        this.mContext = context;
+        this.mUserInfo = UserManager.getInstance().getUserInfo();
         notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return this.list.get(position).SourceType;
     }
 
     @Override
@@ -46,31 +63,76 @@ public class ConsultDetailAdapter extends Adapter<ConsultDetailAdapter.DefineVie
         return list == null ? 0 : list.size();
     }
 
+
     @Override
-    public void onBindViewHolder(DefineViewHolder viewHolder, int position) {
-        viewHolder.setData(list.get(position));
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        View view;
+        switch (viewType) {
+            case 1:
+                view = layoutInflater.inflate(R.layout.item_left_consult_detail, parent, false);
+                return new ConsultLeftHolder(view);
+            case 2:
+                view = layoutInflater.inflate(R.layout.item_right_consult_datail, parent, false);
+                return new ConsultRightHolder(view);
+            default:
+                return null;
+        }
     }
 
     @Override
-    public DefineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.item_consult_detail, parent, false);
-        return new DefineViewHolder(view);
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        ConsultDetailBean consultDetailEntity = list.get(position);
+        if (null == consultDetailEntity){
+            return;
+        }
+        if (holder instanceof ConsultLeftHolder) {
+            bindLeftItem(consultDetailEntity, (ConsultLeftHolder) holder);
+        } else if (holder instanceof ConsultRightHolder){
+            bindRightItem(consultDetailEntity, (ConsultRightHolder) holder);
+        }
+
     }
 
-    static class DefineViewHolder extends ViewHolder {
 
-        TextView tvTitle;
+    public void bindLeftItem(ConsultDetailBean entity,ConsultLeftHolder holder){
+        holder.txtConsultCommiton.setText(entity.getDate());
+        holder.txtConsultItem.setText(entity.Content);
+    }
 
-        public DefineViewHolder(View itemView) {
+    public void bindRightItem(ConsultDetailBean entity,ConsultRightHolder holder){
+        holder.txtConsultCommiton.setText(entity.getDate());
+        holder.txtConsultItem.setText(entity.Content);
+    };
+
+    public class ConsultLeftHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.txt_consult_commiton)
+        TextView txtConsultCommiton;
+        @Bind(R.id.drawee_consult_item_photo)
+        SimpleDraweeView draweeConsultItemPhoto;
+        @Bind(R.id.txt_consult_item)
+        TextView txtConsultItem;
+
+        public ConsultLeftHolder(View itemView) {
             super(itemView);
-            tvTitle = (TextView) itemView.findViewById(R.id.tv_title);
-        }
+            ButterKnife.bind(this, itemView);
 
-        public void setData(String data) {
-            tvTitle.setText(data);
-        }
 
+        }
     }
 
+
+    public class ConsultRightHolder extends RecyclerView.ViewHolder {
+        @Bind(R.id.txt_consult_commiton)
+        TextView txtConsultCommiton;
+        @Bind(R.id.drawee_consult_item_photo)
+        SimpleDraweeView draweeConsultItemPhoto;
+        @Bind(R.id.txt_consult_item)
+        TextView txtConsultItem;
+
+        public ConsultRightHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
 }

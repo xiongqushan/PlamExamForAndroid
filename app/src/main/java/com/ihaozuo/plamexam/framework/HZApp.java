@@ -4,7 +4,10 @@ import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.frogermcs.dagger2metrics.Dagger2Metrics;
+import com.iflytek.cloud.Setting;
+import com.iflytek.cloud.SpeechUtility;
 import com.ihaozuo.plamexam.BuildConfig;
+import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.ioc.AppComponent;
 import com.ihaozuo.plamexam.ioc.AppModule;
 import com.ihaozuo.plamexam.ioc.DaggerAppComponent;
@@ -50,10 +53,9 @@ public class HZApp extends Application {
         Fresco.initialize(this, ImageLoadUtils.getInstance(this)
                 .CustomConfig(this));
 
-        //讯飞语音转换
-//        SpeechUtility.createUtility(this, "appid=" + getString(R.string.app_id));
-        // 以下语句用于设置日志开关（默认开启），设置成false时关闭语音云SDK日志打印
-//        Setting.setShowLog(BuildConfig.DEBUG);
+        //讯飞
+        SpeechUtility.createUtility(this, "appid=" + getString(R.string.app_id));
+        Setting.setShowLog(BuildConfig.DEBUG);
 
         //leakcanary
         mRefWatcher = LeakCanary.install(this);

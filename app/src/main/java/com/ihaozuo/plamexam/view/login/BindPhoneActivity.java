@@ -1,13 +1,12 @@
 package com.ihaozuo.plamexam.view.login;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.util.ActivityUtils;
-import com.ihaozuo.plamexam.view.splash.SplashFragment;
+import com.ihaozuo.plamexam.view.base.BaseActivity;
 
-public class BindPhoneActivity extends AppCompatActivity {
+public class BindPhoneActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

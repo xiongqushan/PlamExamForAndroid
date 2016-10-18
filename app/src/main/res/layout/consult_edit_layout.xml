@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_area"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/consult_tab_height"
+    app:layout_scrollFlags="scroll|enterAlways|snap"
+    tools:showIn="@layout/consult_frag">
+
+    <ImageView
+        android:id="@+id/btn_sound_message"
+        android:layout_width="@dimen/consult_btnsend_height"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/consult_customer_usuallymessage_marginleft"
+        android:src="@drawable/sound_message" />
+
+    <ImageView
+        android:id="@+id/btn_send"
+        android:layout_width="@dimen/consult_btnsend_height"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/consult_customer_usuallymessage_marginright"
+        android:src="@drawable/usually_message" />
+
+    <ImageView
+        android:id="@+id/btn_report"
+        android:layout_width="@dimen/consult_btnsend_height"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/btn_send"
+        android:layout_marginRight="@dimen/consult_customer_usuallymessage_marginright"
+        android:src="@drawable/usually_message" />
+
+    <EditText
+        android:id="@+id/edittxt_message"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/consult_edittext_margin"
+        android:layout_toLeftOf="@id/btn_report"
+        android:layout_toRightOf="@id/btn_sound_message"
+        android:background="@drawable/editview_bg_selector"
+        android:paddingRight="@dimen/consult_customer_edittext_padding"
+        android:paddingLeft="@dimen/consult_customer_edittext_padding"
+        tools:text="1234"
+        android:imeOptions="actionSend"
+        android:inputType="text" />
+
+</RelativeLayout>

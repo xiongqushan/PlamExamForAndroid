@@ -1,12 +1,12 @@
 package com.ihaozuo.plamexam.view.report;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.util.ActivityUtils;
+import com.ihaozuo.plamexam.view.base.BaseActivity;
 
-public class AddReportActivity extends AppCompatActivity {
+public class AddReportActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

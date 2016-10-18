@@ -10,5 +10,7 @@ import dagger.Component;
 @ScopeType.ActivityScope
 @Component(modules = {ConsultModule.class}, dependencies = {AppComponent.class})
 public interface ConsultComponent {
+
     void inject(ConsultActivity consultActivity);
+
 }
