@@ -1,12 +1,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
 
-    <include layout="@layout/actionbar"/>
+    <include layout="@layout/actionbar" />
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
@@ -17,23 +17,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <include layout="@layout/consult_docinfo_layout"
+            <include
+                layout="@layout/consult_docinfo_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways|snap"/>
+                app:layout_scrollFlags="scroll|enterAlways|snap" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/consult_warning"
-                android:textSize="@dimen/textsize_h5"
                 android:background="@color/light_blue"
                 android:gravity="center"
+                android:maxLines="1"
                 android:padding="3dp"
                 android:singleLine="true"
-                android:maxLines="1"/>
+                android:text="@string/consult_warning"
+                android:textSize="@dimen/textsize_h5" />
 
         </android.support.design.widget.AppBarLayout>
+
 
         <!--<com.handmark.pulltorefresh.library.extras.recyclerview.PullToRefreshRecyclerView-->
             <!--xmlns:ptr="http://schemas.android.com/apk/res-auto"-->

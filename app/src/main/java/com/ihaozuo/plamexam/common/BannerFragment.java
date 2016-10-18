@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.util.HZUtils;
@@ -54,6 +55,7 @@ public class BannerFragment extends Fragment {
                     if (HZUtils.isFastDoubleClick()) {
                         return;
                     }
+                    Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -17,8 +17,8 @@ import javax.inject.Inject;
 /**
  * Created by hzguest3 on 2016/10/13.
  */
-public class ConsultActivity extends BaseActivity {
-
+public class ConsultDetailActivity extends BaseActivity {
+    public static boolean isForeground = false;
 
     public static String LOCAL_CLASS_NAME;
 
@@ -29,6 +29,19 @@ public class ConsultActivity extends BaseActivity {
     ConsultContract.IConsultView mConsultView;
 
     @Override
+    public void onResume() {
+        isForeground = true;
+        super.onResume();
+    }
+
+
+    @Override
+    public void onPause() {
+        isForeground = false;
+        super.onPause();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         LOCAL_CLASS_NAME = getLocalClassName();
         super.onCreate(savedInstanceState);
@@ -37,7 +50,7 @@ public class ConsultActivity extends BaseActivity {
 
         DaggerConsultComponent.builder()
                 .appComponent(HZApp.shareApplication()
-                .getAppComponent())
+                        .getAppComponent())
                 .consultModule(new ConsultModule())
                 .build()
                 .inject(this);

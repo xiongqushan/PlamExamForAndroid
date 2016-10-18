@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/card_margin"
+    android:layout_marginLeft="@dimen/card_margin"
+    android:layout_marginRight="@dimen/card_margin"
+    app:cardCornerRadius="@dimen/card_margin"
+    app:cardUseCompatPadding="true">
+    <!--app:cardCornerRadius="4dp"-->
+    <!--app:cardElevation="5dp"-->
+    <!--app:cardMaxElevation="10dp"-->
+    <!--app:cardPreventCornerOverlap="true"-->
+    <!--app:cardUseCompatPadding="true">-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_press_white_gray"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/userinfo_padding_12dp">
+
+        <TextView
+            android:id="@+id/tvReportAdviceTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/androidColorA"
+            android:padding="@dimen/activity_horizontal_margin"
+            android:text="颈椎侧位检查"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvReportAdviceSubtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/img_newslist"
+            android:background="@color/androidColorE"
+            android:padding="@dimen/userinfo_padding_12dp"
+            android:text="    颈椎生理曲度变直，建议专家随访，颈椎生理曲度变直，建议专家随访。颈椎生理曲度变直，建议专家随访，颈椎生理曲度变直，建议专家随访。"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
+

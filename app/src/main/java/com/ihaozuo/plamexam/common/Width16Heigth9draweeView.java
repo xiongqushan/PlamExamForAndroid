@@ -1,20 +1,21 @@
 package com.ihaozuo.plamexam.common;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.WindowManager;
 
-public class Width16Heigth9ViewPager extends ViewPager {
+import com.facebook.drawee.view.SimpleDraweeView;
+
+public class Width16Heigth9draweeView extends SimpleDraweeView {
     int width = 0;
     int height = 0;
 
-    public Width16Heigth9ViewPager(Context context) {
+    public Width16Heigth9draweeView(Context context) {
         super(context);
     }
 
     @SuppressWarnings("deprecation")
-    public Width16Heigth9ViewPager(Context context, AttributeSet attrs) {
+    public Width16Heigth9draweeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         WindowManager wm = (WindowManager) getContext().getSystemService(
                 Context.WINDOW_SERVICE);

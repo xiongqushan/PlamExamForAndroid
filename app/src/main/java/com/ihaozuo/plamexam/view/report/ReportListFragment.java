@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
@@ -18,14 +19,17 @@ import com.ihaozuo.plamexam.view.base.AbstractView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReportListFragment extends AbstractView {
+    public static final String ADD_REPORT = "REPORTLISTFRAGMENT_ADD_REPORT";
 
-
-    @Bind(R.id.listReport)
+    @Bind(R.id.layout_report_add)
+    RelativeLayout layoutReportAdd;
+    @Bind(R.id.listview_report)
     ListView mListView;
     private View rootView;
 
@@ -51,7 +55,14 @@ public class ReportListFragment extends AbstractView {
         setCustomerTitle(rootView, getString(R.string.report));
         ButterKnife.bind(this, rootView);
         initView();
+        registerCustomReceiver(ADD_REPORT);
         return rootView;
+    }
+
+    @Override
+    protected void onReceiveBroadcast(String filterAction, Intent intent) {
+        layoutReportAdd.setVisibility(View.INVISIBLE);
+        mListView.setVisibility(View.VISIBLE);
     }
 
     private void initView() {
@@ -64,7 +75,7 @@ public class ReportListFragment extends AbstractView {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 if (convertView == null) {
-                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist, null);
                 }
                 return convertView;
             }
@@ -82,5 +93,10 @@ public class ReportListFragment extends AbstractView {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.layout_report_add)
+    public void onClick() {
+        startActivity(new Intent(getActivity(), AddReportActivity.class));
     }
 }

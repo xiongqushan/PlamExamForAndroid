@@ -22,11 +22,12 @@ import rx.schedulers.Schedulers;
  */
 public class UserModel extends AbstractModel {
 
+    private static final String BASIC_SIGN_SECRET = SysConfig.BASE_API[2];
+
     IUserService mIUserService;
 
     @Inject
-    public UserModel(@NonNull IUserService userService){
-        super();
+    public UserModel(@NonNull IUserService userService) {
         mIUserService = userService;
     }
 
@@ -34,12 +35,13 @@ public class UserModel extends AbstractModel {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String,Object> params = HZUtils.initParamsMap();
         params.put("Mobile", mobile);
+        params.put("timespan", System.currentTimeMillis() / 1000L);
+        params.put("paramSecret", BASIC_SIGN_SECRET);
         mIUserService.getAuthCode(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }
-
 
     public void register(String mobile,String validCode,final OnHandlerResultListener<RestResult<UserBean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);

@@ -9,6 +9,6 @@
         android:id="@+id/listview_detail_report"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:button="@null" />
+        android:divider="@null" />
 
 </FrameLayout>

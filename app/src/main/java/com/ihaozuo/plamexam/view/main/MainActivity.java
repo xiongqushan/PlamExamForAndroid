@@ -28,6 +28,10 @@ public class MainActivity extends BaseActivity {
     private FragmentManager supportFragmentManager;
     private boolean isExit;
 
+    public void setCurrentTab(int page) {
+        mTabHost.setCurrentTab(page);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         LOCAL_CLASS_NAME = getLocalClassName();
