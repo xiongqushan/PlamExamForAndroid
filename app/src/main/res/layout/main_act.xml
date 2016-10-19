@@ -36,19 +36,38 @@
                 <TextView
                     android:id="@+id/tv_tab_line"
                     android:layout_width="match_parent"
-                    android:layout_height="0.6dp"
+                    android:layout_height="0.8dp"
                     android:layout_weight="0"
-                    android:background="#66666666" />
+                    android:background="#66888888" />
 
-                <TabWidget
-                    android:id="@android:id/tabs"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:divider="#00000000"
-                    android:orientation="horizontal"
-                    android:padding="4dp" />
+                    android:layout_height="wrap_content">
+
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:divider="#00000000"
+                        android:orientation="horizontal"
+                        android:padding="2dp" />
+
+                    <ImageView
+                        android:id="@+id/unreadMarkTab"
+                        android:layout_width="@dimen/unread_mark"
+                        android:layout_height="@dimen/unread_mark"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="@dimen/unread_mark"
+                        android:layout_marginTop="4dp"
+                        android:src="@drawable/unread_mark_shape" />
+
+                </FrameLayout>
+
+
             </LinearLayout>
         </android.support.v4.app.FragmentTabHost>
+
+
     </FrameLayout>
 </LinearLayout>

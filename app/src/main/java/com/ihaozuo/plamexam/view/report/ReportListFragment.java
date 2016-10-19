@@ -52,7 +52,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
+        // mPresenter.start();
     }
 
     @Override
@@ -69,7 +69,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
     @Override
     public void onStop() {
         super.onStop();
-        mPresenter.cancelRequest();
+        //   mPresenter.cancelRequest();
     }
 
     @Override

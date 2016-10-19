@@ -1,29 +1,39 @@
 package com.ihaozuo.plamexam.common;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.BannerBean;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.ImageLoadUtils;
+import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class BannerFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_BANNERFRAGMENT";
-    private int[] images = {R.drawable.banner};
+    private static List<BannerBean> dataList;
+    private int position;
 
     private View view;
 
     public BannerFragment() {
     }
 
-    private int position;
+//    public BannerFragment(List<BannerBean> bannerList, int position) {
+//        dataList = bannerList;
+//        this.position = position;
+//    }
 
 
     public static BannerFragment newInstance(int position) {
@@ -32,6 +42,12 @@ public class BannerFragment extends Fragment {
         BannerFragment fragment = new BannerFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+
+    public static BannerFragment newInstance(List<BannerBean> bannerList, int position) {
+        dataList = bannerList;
+        return newInstance(position);
     }
 
     @Override
@@ -47,19 +63,38 @@ public class BannerFragment extends Fragment {
         if (view == null) {
             view = inflater.inflate(R.layout.banner_frag, container,
                     false);
-            ImageView img = (ImageView) view.findViewById(R.id.imgBanner);
-            img.setImageResource(images[0]);
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (HZUtils.isFastDoubleClick()) {
-                        return;
+            SimpleDraweeView img = (SimpleDraweeView) view.findViewById(R.id.imgBanner);
+            if (dataList == null) {
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (HZUtils.isFastDoubleClick()) {
+                            return;
+                        }
+                        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, getString(R.string.url_default));
+                        startActivity(intent);
                     }
-                    Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
-                }
-            });
+                });
+            } else {
+                ImageLoadUtils.getInstance(HZApp.shareApplication()).display(dataList.get(position).ImageUrl, img);
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (HZUtils.isFastDoubleClick()) {
+                            return;
+                        }
+                        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, dataList.get(position).LinkUrl);
+                        startActivity(intent);
+
+                    }
+                });
+            }
+
         }
         return view;
     }
+
 
 }

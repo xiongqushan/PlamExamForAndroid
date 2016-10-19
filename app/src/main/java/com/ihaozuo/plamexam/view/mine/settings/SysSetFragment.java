@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 
@@ -73,7 +74,7 @@ public class SysSetFragment extends BaseFragment {
     }
 
     private void initView() {
-        tvSetPhone.setText("13888888888");
+        tvSetPhone.setText(UserManager.getInstance().getUserInfo().Mobile);
         tvQQState.setText(getString(R.string.unbind));
         tvWeChatState.setText(getString(R.string.unbind));
         tvSinaState.setText(getString(R.string.unbind));

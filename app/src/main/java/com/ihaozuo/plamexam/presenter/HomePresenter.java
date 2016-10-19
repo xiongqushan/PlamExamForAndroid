@@ -2,15 +2,15 @@ package com.ihaozuo.plamexam.presenter;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.bean.UnreadMarkBean;
 import com.ihaozuo.plamexam.contract.HomeContract;
-import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
+import com.ihaozuo.plamexam.model.ConsultModel;
 import com.ihaozuo.plamexam.model.HomeModel;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
@@ -25,11 +25,13 @@ import javax.inject.Inject;
 public class HomePresenter extends AbstractPresenter implements HomeContract.IHomePresenter {
     HomeContract.IHomeView mHomeView;
     private HomeModel mHomeModel;
+    private ConsultModel mConsultModel;
 
     @Inject
-    public HomePresenter(@NonNull HomeContract.IHomeView view, @NonNull HomeModel homeModel) {
+    public HomePresenter(@NonNull HomeContract.IHomeView view, @NonNull HomeModel homeModel, @NonNull ConsultModel consultModel) {
         mHomeView = view;
         mHomeModel = homeModel;
+        mConsultModel = consultModel;
         mHomeView.setPresenter(this);
     }
 
@@ -68,10 +70,50 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
         mHomeView.showDialog();
         mHomeModel.getBaner(departId, new OnHandlerResultListener<RestResult<List<BannerBean>>>() {
             @Override
-            public void handlerResult(RestResult<List<BannerBean>> resultData) {
-                Toast.makeText(HZApp.shareApplication(), resultData.Message, Toast.LENGTH_SHORT).show();
+            public void handlerResultSuccess(RestResult<List<BannerBean>> resultData) {
+                mHomeView.initBanner(resultData.Data);
                 mHomeView.hideDialog();
             }
+
+            @Override
+            public void handlerResultError(RestResult<List<BannerBean>> resultData) {
+                mHomeView.hideDialog(resultData.Message);
+            }
+
+        });
+    }
+
+    @Override
+    public void getUnreadMartState(String accountId) {
+        mConsultModel.getUnreadMarkState(accountId, new OnHandlerResultListener<RestResult<List<UnreadMarkBean>>>() {
+            @Override
+            public void handlerResultSuccess(RestResult<List<UnreadMarkBean>> resultData) {
+                if (resultData.Data != null && resultData.Data.size() > 0) {
+                    mHomeView.showUnreadMark();
+                }
+            }
+
+            @Override
+            public void handlerResultError(RestResult<List<UnreadMarkBean>> resultData) {
+
+            }
+
+        });
+    }
+
+    @Override
+    public void removeUnreadMark(String accountId) {
+        mConsultModel.removeUnreadMark(accountId, new OnHandlerResultListener<RestResult<Boolean>>() {
+            @Override
+            public void handlerResultSuccess(RestResult<Boolean> resultData) {
+
+            }
+
+            @Override
+            public void handlerResultError(RestResult<Boolean> resultData) {
+
+            }
+
         });
     }
 }

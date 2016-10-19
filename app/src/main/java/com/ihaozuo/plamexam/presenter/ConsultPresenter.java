@@ -26,7 +26,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     private UserBean mUserInfo;
 
     @Inject
-    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel){
+    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel) {
         mIConsultView = iConsultView;
         mConsultModel = consultModel;
         mIConsultView.setPresenter(this);
@@ -49,34 +49,55 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     }
 
     @Override
-    public void getConsultDetail(){
+    public void getConsultDetail() {
         mIConsultView.showDialog();
         mConsultModel.getConsultDetail(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
             @Override
-            public void handlerResult(RestResult<List<ConsultDetailBean>> resultData) {
-                if (resultData.LogicSuccess){
-                    mIConsultView.refreshConsultList(resultData.Data);
-                    mIConsultView.hideDialog();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
-                }
+            public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
+                mIConsultView.refreshConsultList(resultData.Data);
+                mIConsultView.hideDialog();
             }
+
+            @Override
+            public void handlerResultError(RestResult<List<ConsultDetailBean>> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
+            }
+
+//            @Override
+//            public void handlerResult(RestResult<List<ConsultDetailBean>> resultData) {
+//                if (resultData.LogicSuccess){
+//                    mIConsultView.refreshConsultList(resultData.Data);
+//                    mIConsultView.hideDialog();
+//                }else {
+//                    mIConsultView.hideDialog(resultData.Message);
+//                }
+//            }
         });
     }
 
 
     @Override
-    public void sendMessage(int type, String consultContent){
+    public void sendMessage(int type, String consultContent) {
         mIConsultView.showDialog();
         mConsultModel.sendMessage(mUserInfo.AccountId, type, consultContent, new OnHandlerResultListener<RestResult<Boolean>>() {
             @Override
-            public void handlerResult(RestResult<Boolean> resultData) {
-                if (resultData.LogicSuccess){
-                    mIConsultView.hideDialog();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
-                }
+            public void handlerResultSuccess(RestResult<Boolean> resultData) {
+                mIConsultView.hideDialog();
             }
+
+            @Override
+            public void handlerResultError(RestResult<Boolean> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
+            }
+
+//            @Override
+//            public void handlerResult(RestResult<Boolean> resultData) {
+//                if (resultData.LogicSuccess) {
+//                    mIConsultView.hideDialog();
+//                } else {
+//                    mIConsultView.hideDialog(resultData.Message);
+//                }
+//            }
         });
     }
 

@@ -43,6 +43,7 @@
     <string name="scale_down_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleDownShowBehavior</string>
     <string name="scale_up_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleUpShowBehavior</string>
     <string name="swipe_dismiss_behavior">android.support.design.widget.SwipeDismissBehavior</string>
+    <string name="url_default">http://article.h5.ihaozhuo.com/1475216088834.html</string>
 
     <string name="phone">手机号</string>
     <string name="photo">头像</string>
@@ -86,8 +87,6 @@
     <string name="androidColorE">#FFFF4444</string>
     <string name="title_activity_consult1">ConsultActivity1</string>
     <string name="title_activity_t">Sign in</string>
-
-
 
 
 </resources>

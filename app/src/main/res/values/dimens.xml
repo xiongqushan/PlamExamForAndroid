@@ -25,6 +25,7 @@
     <dimen name="divider_2dp">2dp</dimen>
     <dimen name="divider_9dp">9dp</dimen>
     <dimen name="bg_corners">8dp</dimen>
+    <dimen name="unread_mark">10dp</dimen>
     <dimen name="corners">6dp</dimen>
     <dimen name="tab_report_corners">24dp</dimen>
     <dimen name="fab_margin">16dp</dimen>

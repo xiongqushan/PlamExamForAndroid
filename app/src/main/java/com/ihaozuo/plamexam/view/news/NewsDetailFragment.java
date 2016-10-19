@@ -49,7 +49,10 @@ public class NewsDetailFragment extends AbstractView {
         setCustomerTitle(rootView, getString(R.string.app_name), getString(R.string.androidColorE));
         ButterKnife.bind(this, rootView);
         initView();
-        String url = "http://article.h5.ihaozhuo.com/1475216088834.html";
+        String url = getActivity().getIntent().getStringExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY);
+        if (url == null) {
+            url = getString(R.string.url_default);
+        }
         showDialog();
         mWebView.loadUrl(url);
         return rootView;

@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.BannerBean;
+import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.BannerFragment;
 import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
@@ -36,6 +38,7 @@ import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -61,6 +64,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     private int maxLength = 10000;// bannerPagerNumber
     private View rootView;
     private Subscription subscribePager;
+    private List newsList;
 
 
     public HomeFragment() {
@@ -92,11 +96,17 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     public void onResume() {
         super.onResume();
         mPresenter.start();
-        mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
+        mPresenter.getUnreadMartState(UserManager.getInstance().getUserInfo().AccountId);
+        mPresenter.removeUnreadMark(UserManager.getInstance().getUserInfo().AccountId);
+        // mPresenter.getBanner(123);
         startAutoBanner();
     }
 
     public void startAutoBanner() {
+        if (mViewPager.getChildCount() < 2 || mViewPager == null) {
+            return;
+        }
+        stopAutoBanner();
         subscribePager = Observable.interval(Constants.TIME_DELAY_VIEWPAGER, TimeUnit.MILLISECONDS)
                 .compose(AbstractModel.<Long>applyAsySchedulers())
                 .subscribe(new Action1<Long>() {
@@ -113,7 +123,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
 
     public void stopAutoBanner() {
-        if (!subscribePager.isUnsubscribed()) {
+        if (subscribePager != null && !subscribePager.isUnsubscribed()) {
             subscribePager.unsubscribe();
         }
     }
@@ -129,8 +139,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             DaggerHomeComponent.builder().appComponent(HZApp.shareApplication()
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
             initView();
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
         }
-        ButterKnife.bind(this, rootView);
+        ButterKnife.bind(this, rootView);// TODO 多次切换空指针
         return rootView;
     }
 
@@ -141,9 +152,72 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         headerView.findViewById(R.id.btn_report).setOnClickListener(this);
         headerView.findViewById(R.id.btn_consult).setOnClickListener(this);
         headerView.findViewById(R.id.layout_home_news).setOnClickListener(this);
-        PagerAdapter adapterPager = new HomePagerAdapter(getChildFragmentManager());
+        initBanner(null);
+        BaseAdapter adapter = new SimpleBaseAdapter() {
+            @Override
+            public int getCount() {
+                if (newsList == null) {
+                    return 4;
+                }
+                if (newsList.size() > 4) {
+                    return 4;
+                }
+                return newsList.size();
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                if (convertView == null) {
+                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+                }
+                return convertView;
+            }
+        };
+        mListView.addHeaderView(headerView);
+        mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position < mListView.getHeaderViewsCount() || HZUtils.isFastDoubleClick()) {
+                    return;
+                }
+                startActivity(new Intent(getActivity(), NewsDetailActivity.class));
+            }
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (HZUtils.isFastDoubleClick()) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.btn_report:
+                startActivity(new Intent(mContext, ReportListActivity.class));
+                break;
+            case R.id.btn_consult:
+                startActivity(new Intent(mContext, ConsultDetailActivity.class));
+                break;
+            case R.id.layout_home_news:
+                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                break;
+        }
+    }
+
+    @Override
+    public void initBanner(List<BannerBean> bannerList) {
+        PagerAdapter adapterPager = new HomePagerAdapter(getChildFragmentManager(), bannerList);
         mViewPager.setAdapter(adapterPager);
-        mViewPager.setCurrentItem(maxLength / 2, false);
+        if (bannerList != null && bannerList.size() > 1) {
+            mViewPager.setCurrentItem((bannerList.size() * maxLength) / 2, false);
+        }
+        startAutoBanner();
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageSelected(int arg0) {
@@ -170,72 +244,47 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 }
             }
         });
-        BaseAdapter adapter = new SimpleBaseAdapter() {
-            @Override
-            public int getCount() {
-                return 4;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
-                }
-                return convertView;
-            }
-        };
-        mListView.addHeaderView(headerView);
-        mListView.setAdapter(adapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if ((position < mListView.getHeaderViewsCount() || HZUtils.isFastDoubleClick())) {
-                    return;
-                }
-                startActivity(new Intent(getActivity(), NewsDetailActivity.class));
-            }
-        });
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-//        ButterKnife.unbind(this);
-        ButterKnife.unbind(this);
+    public void initNews(List<NewsBean> newsList) {
+
     }
 
     @Override
-    public void onClick(View view) {
-        if (HZUtils.isFastDoubleClick()) {
-            return;
-        }
-        switch (view.getId()) {
-            case R.id.btn_report:
-                startActivity(new Intent(mContext, ReportListActivity.class));
-                break;
-            case R.id.btn_consult:
-                startActivity(new Intent(mContext, ConsultDetailActivity.class));
-                break;
-            case R.id.layout_home_news:
-                startActivity(new Intent(getActivity(), NewsListActivity.class));
-                break;
-        }
+    public void showUnreadMark() {
+
+    }
+
+    @Override
+    public void hideUnreadMark() {
+
     }
 
 
     private class HomePagerAdapter extends FragmentPagerAdapter {
-        private HomePagerAdapter(FragmentManager fm) {
+
+        private List<BannerBean> bannerList;
+
+        public HomePagerAdapter(FragmentManager fm, List<BannerBean> bannerList) {
             super(fm);
+            this.bannerList = bannerList;
         }
 
         @Override
         public int getCount() {
-            return maxLength;
+            if (bannerList == null || bannerList.size() < 2) {
+                return 1;
+            }
+            return bannerList.size() * maxLength;
         }
 
         @Override
         public Fragment getItem(int position) {
-            return BannerFragment.newInstance(position % 5);
+            if (bannerList == null || bannerList.size() < 2) {
+                return BannerFragment.newInstance(bannerList, 0);
+            }
+            return BannerFragment.newInstance(bannerList, position % bannerList.size());
         }
 
     }

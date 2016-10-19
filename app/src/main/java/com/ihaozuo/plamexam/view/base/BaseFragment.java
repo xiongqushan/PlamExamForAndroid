@@ -40,11 +40,10 @@ public class BaseFragment extends Fragment {
     protected void setCustomerTitle(View view, String title, String color) {
         TextView textView = (TextView) view.findViewById(R.id.txt_actionbar_title);
         ImageView btnLeft = (ImageView) view.findViewById(R.id.img_actionbar_left);
-
         textView.setText(title);
-        if (!getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)){
+        if (!getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
             btnLeft.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             btnLeft.setVisibility(View.INVISIBLE);
         }
         btnLeft.setOnClickListener(finishActivity);

@@ -24,12 +24,6 @@ public class MineFragment extends BaseFragment {
     SimpleDraweeView imgUser;
     @Bind(R.id.tvUserName)
     TextView tvUserName;
-    //    @Bind(R.id.layoutUserInfo)
-//    LinearLayout layoutUserInfo;
-//    @Bind(R.id.layoutSysSet)
-//    LinearLayout layoutSysSet;
-//    @Bind(R.id.layoutReportEx)
-//    LinearLayout layoutReportEx;
     private View rootView;
 
     public MineFragment() {
