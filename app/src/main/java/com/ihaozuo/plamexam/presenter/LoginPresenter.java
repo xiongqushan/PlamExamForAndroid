@@ -20,6 +20,8 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
     private LoginContract.ILoginView mLoginView;
     private UserModel mUserModel;
+    private UserBean mUserBean;
+
 
     @Inject
     public LoginPresenter(@NonNull LoginContract.ILoginView loginView,@NonNull UserModel usermodel){
@@ -65,17 +67,15 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
             @Override
             public void handlerResult(RestResult<UserBean> resultData) {
                 if (resultData.LogicSuccess){
-                    UserBean userBean = new UserBean();
-                    userBean = resultData.Data;
-                    UserManager.getInstance().setUserInfo(userBean);
-
-                    mLoginView.hideDialog();
-
-                    mLoginView.gotoMainPage();
+                    mUserBean = new UserBean();
+                    mUserBean = resultData.Data;
+                    UserManager.getInstance().setUserInfo(mUserBean);
                 }else {
                     mLoginView.hideDialog(resultData.Message);
                 }
             }
         });
     }
+
+
 }

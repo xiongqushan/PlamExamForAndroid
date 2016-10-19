@@ -26,8 +26,10 @@ import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ConsultDetailBean;
+import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.manager.UserManager;
+import com.ihaozuo.plamexam.util.ImageLoadUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,16 +42,24 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
     private List<ConsultDetailBean> list;
     private Context mContext;
     private UserBean mUserInfo;
+    private DoctorInfoBean mDoctorInfo;
 
     public ConsultDetailAdapter() {
         this.list = new ArrayList<>();
+        this.mDoctorInfo = new DoctorInfoBean();
     }
 
-    public void refreshList(Context context, List<ConsultDetailBean> list) {
+    public void refreshList(Context context, List<ConsultDetailBean> list, DoctorInfoBean doctorInfoBean) {
         this.list.clear();
         this.list.addAll(list);
         this.mContext = context;
         this.mUserInfo = UserManager.getInstance().getUserInfo();
+        this.mDoctorInfo = doctorInfoBean;
+        notifyDataSetChanged();
+    }
+
+    public void addReply(ConsultDetailBean replyContent) {
+        this.list.add(replyContent);
         notifyDataSetChanged();
     }
 
@@ -69,12 +79,14 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         View view;
         switch (viewType) {
-            case 1:
-                view = layoutInflater.inflate(R.layout.item_left_consult_detail, parent, false);
-                return new ConsultLeftHolder(view);
-            case 2:
+            case 1://客户回复
                 view = layoutInflater.inflate(R.layout.item_right_consult_datail, parent, false);
                 return new ConsultRightHolder(view);
+
+            case 2://健管师内容
+                view = layoutInflater.inflate(R.layout.item_left_consult_detail, parent, false);
+                return new ConsultLeftHolder(view);
+
             default:
                 return null;
         }
@@ -96,6 +108,9 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
 
 
     public void bindLeftItem(ConsultDetailBean entity,ConsultLeftHolder holder){
+        if (null != mDoctorInfo.ImageSrc){
+            ImageLoadUtils.getInstance(mContext).display(mDoctorInfo.ImageSrc,holder.draweeConsultItemPhoto);
+        }
         holder.txtConsultCommiton.setText(entity.getDate());
         holder.txtConsultItem.setText(entity.Content);
     }
@@ -116,7 +131,6 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
         public ConsultLeftHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-
 
         }
     }

@@ -7,9 +7,11 @@
     <dimen name="textsize_h2">18sp</dimen>
     <dimen name="textsize_h3_16sp">16sp</dimen>
     <dimen name="textsize_h4">14sp</dimen>
-    <dimen name="textsize_h5">11sp</dimen>
+    <dimen name="textsize_h5_12sp">12sp</dimen>
+    <dimen name="textsize_h6_11sp">11sp</dimen>
 
     <dimen name="corner_radius1">7dp</dimen>
+    <dimen name="corner_radius2">50dp</dimen>
 
     <dimen name="actionbar_high_48dp">48dp</dimen>
     <dimen name="actionbar_high_44dp">44dp</dimen>
@@ -33,22 +35,24 @@
     <dimen name="login_margin_vertical">36dp</dimen>
     <dimen name="img_thirdpart_logo">39dp</dimen>
 
-    <dimen name="img_head">40dp</dimen>
-    <dimen name="docinfo_padding">5dp</dimen>
+    <dimen name="img_head">60dp</dimen>
+    <dimen name="docinfo_padding">10dp</dimen>
     <dimen name="consult_tab_height">50dp</dimen>
     <dimen name="consult_btnsend_height">25dp</dimen>
-    <dimen name="consult_edittext_margin">3dp</dimen>
+    <dimen name="consult_edittext_margin_top">3dp</dimen>
+    <dimen name="consult_edittext_margin_bottom">8dp</dimen>
     <dimen name="consult_btnsend_padding">13dp</dimen>
-    <dimen name="consult_customer_usuallymessage_marginright">12dp</dimen>
-    <dimen name="consult_customer_usuallymessage_marginleft">12dp</dimen>
-    <dimen name="consult_customer_edittext_padding">5dp</dimen>
+    <dimen name="consult_customer_usuallymessage_marginright">9dp</dimen>
+    <dimen name="consult_customer_usuallymessage_marginleft">10dp</dimen>
+    <dimen name="consult_customer_edittext_padding">13dp</dimen>
     <dimen name="consult_textview_padding_left">12dp</dimen>
+    <dimen name="fab_hight">45dp</dimen>
 
-    <dimen name="consult_detail_paddingbottom">15dp</dimen>
-    <dimen name="consult_photo_height">60dp</dimen>
+    <dimen name="consult_detail_margintop">25dp</dimen>
+    <dimen name="consult_photo_height">45dp</dimen>
     <dimen name="consult_photo_margin">4dp</dimen>
     <dimen name="consult_photo_margintop">9dp</dimen>
-    <dimen name="consult_photot_marginleft">12dp</dimen>
+    <dimen name="consult_photot_marginleft">10dp</dimen>
     <dimen name="consult_textview_margintop">15dp</dimen>
     <dimen name="consult_textview_marginleft">10dp</dimen>
 

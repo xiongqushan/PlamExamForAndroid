@@ -11,5 +11,7 @@ public interface HomeContract {
     }
 
     interface IHomePresenter extends IBasePresenter {
+
+
     }
 }

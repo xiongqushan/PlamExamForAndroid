@@ -129,6 +129,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             initView();
         }
         ButterKnife.bind(this, rootView);
+
         return rootView;
     }
 

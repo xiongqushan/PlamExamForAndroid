@@ -50,4 +50,16 @@ public class ConsultModel extends AbstractModel implements IBaseModel{
                 .subscribe(subscriber);
     }
 
+    public void sendGrade(String accountId,int score,String content,final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        params.put("Score", score);
+        params.put("Content", content);
+        mIConsultService.sendGrade(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
 }

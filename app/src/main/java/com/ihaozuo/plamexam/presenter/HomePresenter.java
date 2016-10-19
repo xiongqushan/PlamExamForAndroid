@@ -6,8 +6,10 @@ import android.util.Log;
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.HomeModel;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
@@ -20,11 +22,13 @@ import javax.inject.Inject;
 public class HomePresenter extends AbstractPresenter implements HomeContract.IHomePresenter {
     HomeContract.IHomeView mHomeView;
     private HomeModel mHomeModel;
+    private UserBean mUserBean;
 
     @Inject
     public HomePresenter(@NonNull HomeContract.IHomeView view, @NonNull HomeModel homeModel) {
         mHomeView = view;
         mHomeModel = homeModel;
+        mUserBean = UserManager.getInstance().getUserInfo();
         mHomeView.setPresenter(this);
     }
 
@@ -35,12 +39,13 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
     @Override
     public IBaseModel[] getBaseModelList() {
-        return new IBaseModel[]{};
+        return new IBaseModel[]{mHomeModel};
     }
 
 
     @Override
     public void start() {
+
         new HomeModel().initData(new OnHandlerResultWithCompletedListener<RestResult>() {
             @Override
             public void handlerResult(RestResult bean) {
@@ -57,4 +62,6 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
             }
         });
     }
+
+
 }

@@ -19,6 +19,12 @@ public interface ScopeType {
     @Documented
     @Scope
     @Retention(RetentionPolicy.RUNTIME)
+    public @interface ConsultScope {
+    }
+
+    @Documented
+    @Scope
+    @Retention(RetentionPolicy.RUNTIME)
     public @interface LoginScope {
     }
 

@@ -19,6 +19,10 @@ public interface LoginContract {
 
         void register(String mobile,String validCode);
 
+//        void getDoctorID();
+//
+//        void getDoctorList();
+
     }
 }
 

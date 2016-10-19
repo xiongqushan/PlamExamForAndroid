@@ -75,6 +75,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 //        }
+
 //        actionBar.setPadding(0, getStatusBarHeight(getActivity()), 0, 0);
     }
 
@@ -115,6 +116,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 return true;
             }
         }
+
         // 如果焦点不是EditText则忽略，这个发生在视图刚绘制完，第一个焦点不在EditView上，和用户用轨迹球选择其他的焦点
         return false;
     }

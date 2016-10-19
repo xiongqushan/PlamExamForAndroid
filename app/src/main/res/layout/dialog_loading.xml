@@ -17,7 +17,7 @@
             android:id="@+id/ivbgLoading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/loadingiocn" />
+            android:background="@drawable/logo" />
         <!--android:src="@drawable/bg_dialog_loading" />-->
 
         <View

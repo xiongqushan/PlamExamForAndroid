@@ -26,13 +26,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_blue"
+                android:background="@color/gray_cc"
                 android:gravity="center"
                 android:maxLines="1"
                 android:padding="3dp"
                 android:singleLine="true"
                 android:text="@string/consult_warning"
-                android:textSize="@dimen/textsize_h5" />
+                android:textSize="@dimen/textsize_h5_12sp"
+                android:textColor="@color/white"/>
 
         </android.support.design.widget.AppBarLayout>
 
@@ -46,23 +47,40 @@
             <!--android:background="@color/white"-->
             <!--ptr:ptrMode="pullDownFromTop" />-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/pull_refresh_recycler"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_Layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/pull_refresh_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                app:borderWidth="0dp"
-                app:fabSize="mini"
-                app:backgroundTint="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|enterAlways|snap" />
+        <!--<android.support.design.widget.FloatingActionButton-->
+            <!--android:id="@+id/fab"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:layout_margin="@dimen/fab_margin"-->
+            <!--app:borderWidth="0dp"-->
+            <!--app:fabSize="normal"-->
+            <!--app:backgroundTint="@color/fab_bg"-->
+            <!--android:src="@drawable/fab_bg"-->
+            <!--app:layout_scrollFlags="scroll|enterAlways|snap" />-->
+
+        <ImageButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/fab_bg"
+            android:background="@drawable/fab_bg_selector"/>
 
 
     </android.support.design.widget.CoordinatorLayout>
@@ -77,13 +95,6 @@
         <include layout="@layout/consult_edit_layout" />
 
         <include layout="@layout/divider"/>
-
-        <View
-            android:id="@+id/bottom_sheet"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/gray"
-            android:visibility="gone"/>
 
     </LinearLayout>
 

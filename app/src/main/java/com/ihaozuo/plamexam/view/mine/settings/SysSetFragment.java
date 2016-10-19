@@ -12,8 +12,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.manager.DoctorManager;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.view.login.LoginActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -85,7 +89,16 @@ public class SysSetFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.layoutSetPhone, R.id.layoutBindQQ, R.id.layoutBindWeChat, R.id.layoutBindSina, R.id.layoutAboutUs, R.id.layoutFeedback, R.id.layoutCheckUpdate, R.id.layoutDisclaimer, R.id.layoutClearChache})
+    @OnClick({R.id.layoutSetPhone,
+            R.id.layoutBindQQ,
+            R.id.layoutBindWeChat,
+            R.id.layoutBindSina,
+            R.id.layoutAboutUs,
+            R.id.layoutFeedback,
+            R.id.layoutCheckUpdate,
+            R.id.layoutDisclaimer,
+            R.id.layoutClearChache,
+            R.id.btn_logout})
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
@@ -113,6 +126,14 @@ public class SysSetFragment extends BaseFragment {
                 break;
             case R.id.layoutClearChache:
                 break;
+            case R.id.btn_logout:
+                UserManager.getInstance().clear();
+                DoctorManager.getInstance().clear();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                sendCustomBroadcast(MainActivity.FINISHACTIVITY);
+                getActivity().finish();
+                break;
         }
     }
+
 }

@@ -56,9 +56,9 @@ public class ConsultDetailActivity extends BaseActivity {
                 .inject(this);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        ConsultFragment fragment = (ConsultFragment) fragmentManager.findFragmentById(R.id.frameContent);
+        ConsultDetailFragment fragment = (ConsultDetailFragment) fragmentManager.findFragmentById(R.id.frameContent);
         if (fragment == null) {
-            fragment = (ConsultFragment) mConsultView;
+            fragment = (ConsultDetailFragment) mConsultView;
             ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
         }
     }

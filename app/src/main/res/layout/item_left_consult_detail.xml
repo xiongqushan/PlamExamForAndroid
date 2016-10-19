@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/consult_detail_margintop"
     android:orientation="vertical">
 
     <TextView
@@ -18,7 +19,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/consult_detail_paddingbottom"
         android:paddingRight="@dimen/consult_photo_height">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -37,8 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/consult_textview_marginleft"
             android:layout_marginRight="50dp"
-            android:layout_marginTop="@dimen/consult_textview_margintop"
             android:layout_toRightOf="@id/drawee_consult_item_photo"
+            android:layout_alignTop="@id/drawee_consult_item_photo"
             android:background="@drawable/chat_icon_bubble_left_v2"
             android:gravity="left|center_vertical"
             android:paddingTop="6dp"
@@ -46,8 +46,7 @@
             android:paddingRight="6dp"
             android:paddingLeft="@dimen/consult_textview_padding_left"
             android:textSize="@dimen/textsize_h4"
-            tools:text="12341234\n1\n1234123\n43"/>
-
+            tools:text="12341234\n1\n1234123\n431111111111111111111111111111111111111111"/>
 
     </RelativeLayout>
 </LinearLayout>

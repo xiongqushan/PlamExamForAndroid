@@ -22,4 +22,7 @@ public interface IConsultService {
     @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "Send")
     Observable<BaseBean<Boolean>> sendMessage(@Body Map<String,Object> params);
 
+    @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "Comment")
+    Observable<BaseBean<Boolean>> sendGrade(@Body Map<String,Object> params);
+
 }

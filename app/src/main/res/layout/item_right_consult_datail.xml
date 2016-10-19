@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/consult_detail_margintop"
     android:orientation="vertical">
 
     <TextView
@@ -11,13 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textSize="@dimen/textsize_h4"/>
+        android:textSize="@dimen/textsize_h4"
+        tools:text="2016年1月20日"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/consult_detail_paddingbottom"
         android:paddingLeft="@dimen/consult_photo_height">
 
         <com.facebook.drawee.view.SimpleDraweeView
@@ -37,8 +38,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="@dimen/consult_textview_marginleft"
-            android:layout_marginTop="@dimen/consult_textview_margintop"
             android:layout_toLeftOf="@id/drawee_consult_item_photo"
+            android:layout_alignTop="@id/drawee_consult_item_photo"
             android:background="@drawable/chat_icon_bubble_right_v2"
             android:gravity="left|center_vertical"
             android:paddingTop="6dp"
@@ -46,6 +47,6 @@
             android:paddingLeft="6dp"
             android:paddingRight="@dimen/consult_textview_padding_left"
             android:textSize="@dimen/textsize_h4"
-            tools:text="1234\n1234123\23124\2"/>
+            tools:text="1234\n1234123\23124\2111111111111111111111111111111111111111111111111111111111111111111111"/>
     </RelativeLayout>
 </LinearLayout>
