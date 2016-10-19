@@ -12,6 +12,7 @@ public interface HomeContract {
 
     interface IHomePresenter extends IBasePresenter {
 
+        void getBanner(int departId);
 
     }
 }

@@ -10,8 +10,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.contract.ReportContract;
+import com.ihaozuo.plamexam.manager.UserManager;
+import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
-import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.view.base.AbstractView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -20,17 +23,27 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddReportFragment extends BaseFragment {
+public class AddReportFragment extends AbstractView implements ReportContract.ReportGetView {
 
 
     @Bind(R.id.phone)
     EditText phone;
-    @Bind(R.id.password)
-    EditText password;
+    @Bind(R.id.et_Name)
+    EditText etName;
     private View rootView;
 
     public AddReportFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    protected IBasePresenter getPresenter() {
+        return null;
+    }
+
+    @Override
+    protected View getRootView() {
+        return null;
     }
 
     public static AddReportFragment newInstance() {
@@ -49,7 +62,7 @@ public class AddReportFragment extends BaseFragment {
     }
 
     private void initView() {
-        phone.setText("13888888888");
+        phone.setText(UserManager.getInstance().getUserInfo().Mobile);
         phone.setEnabled(false);
     }
 
@@ -59,7 +72,7 @@ public class AddReportFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.phone, R.id.password, R.id.btn_login})
+    @OnClick({R.id.phone, R.id.et_Name, R.id.btn_login})
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
@@ -67,12 +80,17 @@ public class AddReportFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.phone:
                 break;
-            case R.id.password:
+            case R.id.et_Name:
                 break;
             case R.id.btn_login:
-                getActivity().sendBroadcast(new Intent(ReportListFragment.ADD_REPORT));
+                getActivity().sendBroadcast(new Intent(ReportListFragment.REFRESH_REPORTLIST));
                 getActivity().finish();
                 break;
         }
+    }
+
+    @Override
+    public void setPresenter(ReportContract.ReportGetPresenter presenter) {
+
     }
 }

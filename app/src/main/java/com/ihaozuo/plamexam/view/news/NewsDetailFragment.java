@@ -49,10 +49,9 @@ public class NewsDetailFragment extends AbstractView {
         setCustomerTitle(rootView, getString(R.string.app_name), getString(R.string.androidColorE));
         ButterKnife.bind(this, rootView);
         initView();
-        mWebView.getSettings().setJavaScriptEnabled(true);
         String url = "http://article.h5.ihaozhuo.com/1475216088834.html";
-        mWebView.loadUrl(url);
         showDialog();
+        mWebView.loadUrl(url);
         return rootView;
     }
 
@@ -73,7 +72,6 @@ public class NewsDetailFragment extends AbstractView {
         mWebView.setWebChromeClient(new WebChromeClient() {
             public void onProgressChanged(WebView view,
                                           int newProgress) {
-
                 if (newProgress == 80) {
                     hideDialog();
                 }

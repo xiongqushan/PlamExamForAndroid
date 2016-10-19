@@ -73,7 +73,6 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     private ConsultDetailAdapter mAdapter;
     private DoctorInfoBean mDoctorInfo;
 
-
     public ConsultDetailFragment() {
     }
 

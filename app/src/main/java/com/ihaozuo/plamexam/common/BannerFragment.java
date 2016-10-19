@@ -16,7 +16,7 @@ import com.ihaozuo.plamexam.util.HZUtils;
  */
 public class BannerFragment extends Fragment {
     public static final String ARG_PAGE = "ARG_BANNERFRAGMENT";
-    private int[] images = {R.drawable.banner1, R.drawable.banner2, R.drawable.banner5, R.drawable.banner4, R.drawable.banner5};
+    private int[] images = {R.drawable.banner};
 
     private View view;
 
@@ -48,7 +48,7 @@ public class BannerFragment extends Fragment {
             view = inflater.inflate(R.layout.banner_frag, container,
                     false);
             ImageView img = (ImageView) view.findViewById(R.id.imgBanner);
-            img.setImageResource(images[position]);
+            img.setImageResource(images[0]);
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

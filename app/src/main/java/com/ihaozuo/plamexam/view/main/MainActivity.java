@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
         supportFragmentManager = getSupportFragmentManager();
         mTabHost.setup(this, supportFragmentManager, R.id.realtabcontent);
         addTab(getString(R.string.tab_home), R.drawable.tabhost_home, HomeFragment.class);
-        addTab(getString(R.string.tab_news), R.drawable.tabhost_consult, NewsListFragment.class);
+        addTab(getString(R.string.tab_consult), R.drawable.tabhost_consult, NewsListFragment.class);
         addTab(getString(R.string.tab_mine), R.drawable.tabhost_mine, MineFragment.class);
     }
 

@@ -25,7 +25,7 @@
             android:layout_height="@dimen/actionbar_high_48dp"
             android:layout_centerInParent="true"
             android:gravity="center"
-            android:textColor="@color/gray_28"
+            android:textColor="@color/gray_33"
             android:textSize="@dimen/textsize_h1"
             tools:text="艾欧尼亚 男 18岁" />
 

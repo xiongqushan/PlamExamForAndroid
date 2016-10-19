@@ -28,6 +28,10 @@ public class NewsListFragment extends AbstractView {
         // Required empty public constructor
     }
 
+    public static NewsListFragment newInstance() {
+        return new NewsListFragment();
+    }
+
     @Override
     protected IBasePresenter getPresenter() {
         return null;
@@ -44,7 +48,7 @@ public class NewsListFragment extends AbstractView {
                              Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.news_list_frag, container, false);
-            setCustomerTitle(rootView, getString(R.string.tab_news));
+            setCustomerTitle(rootView, getString(R.string.tab_consult));
             ButterKnife.bind(this, rootView);
             initView();
         }

@@ -4,6 +4,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider"
-        android:background="@color/divider_d3" />
+        android:background="@color/divider_dd" />
 
 </merge>

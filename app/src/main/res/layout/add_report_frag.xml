@@ -34,7 +34,7 @@
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/et_Name"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/actionbar_high_44dp"
                 android:hint="@string/hint_input_report_name"

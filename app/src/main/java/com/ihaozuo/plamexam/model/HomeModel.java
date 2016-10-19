@@ -1,12 +1,19 @@
 package com.ihaozuo.plamexam.model;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.BaseBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
+import com.ihaozuo.plamexam.service.IHomeService;
+import com.ihaozuo.plamexam.util.HZUtils;
+
+import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -18,8 +25,21 @@ import rx.schedulers.Schedulers;
  * Created by zhangzhongyao on 2016/10/17.
  */
 public class HomeModel extends AbstractModel {
+    private IHomeService mIHomeService;
+
     @Inject
-    public HomeModel() {
+    public HomeModel(@NonNull IHomeService iHomeService) {
+        mIHomeService = iHomeService;
+    }
+
+    public void getBaner(int departId, final OnHandlerResultListener<RestResult<List<BannerBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("DepartId", departId);
+        mIHomeService.getBanner(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
+
     }
 
     public void initData(final OnHandlerResultWithCompletedListener<RestResult> callback) {

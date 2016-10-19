@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.framework.SysConfig;
+import com.ihaozuo.plamexam.service.IHomeService;
 import com.ihaozuo.plamexam.service.IConsultService;
 import com.ihaozuo.plamexam.service.IUserService;
 import com.ihaozuo.plamexam.util.JsonUtil;
@@ -62,6 +63,12 @@ public class AppModule {
 
     @Provides
     @Singleton
+    IHomeService createHomeService(@NonNull Retrofit retrofit) {
+        return retrofit.create(IHomeService.class);
+    }
+
+    @Provides
+    @Singleton
     IConsultService createConsultService(@NonNull Retrofit retrofit) {
         return retrofit.create(IConsultService.class);
     }
@@ -81,7 +88,7 @@ public class AppModule {
                 String originUrl = request.urlString();
                 request = request.newBuilder().url(originUrl).build();
                 String sign = "";
-                Map<String,Object> map = new TreeMap<String, Object>();
+                Map<String, Object> map = new TreeMap<String, Object>();
                 final Request copy = request.newBuilder().build();
                 final Buffer buffer = new Buffer();
                 copy.body().writeTo(buffer);
@@ -90,11 +97,11 @@ public class AppModule {
                     JSONObject jasonObject = new JSONObject(postData);
                     map = JsonUtil.jsonToMap(jasonObject);
                     //先转小写，后排序
-                    map.put("secret",BASIC_SIGN_SECRET);
+                    map.put("secret", BASIC_SIGN_SECRET);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                sign= JsonUtil.mapToString(map).toLowerCase();
+                sign = JsonUtil.mapToString(map).toLowerCase();
                 sign = StringUtil.encodeByMD5(sign);
                 String usernameAndPassword = BASIC_USER_NAME + ":" + sign;
                 byte[] bytes = new byte[0];
