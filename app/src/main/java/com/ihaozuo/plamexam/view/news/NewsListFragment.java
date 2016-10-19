@@ -48,7 +48,7 @@ public class NewsListFragment extends AbstractView {
                              Bundle savedInstanceState) {
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.news_list_frag, container, false);
-            setCustomerTitle(rootView, getString(R.string.tab_consult));
+            setCustomerTitle(rootView, getString(R.string.daily_news));
             ButterKnife.bind(this, rootView);
             initView();
         }

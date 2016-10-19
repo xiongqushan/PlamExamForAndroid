@@ -8,9 +8,11 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -107,6 +109,22 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             }
         });
 
+        //回复框回车监听
+        edittxtMessage.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm.isActive()) {
+                        imm.hideSoftInputFromWindow(v.getApplicationWindowToken(), 0);
+                        sendMessage();
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
         return rootView;
     }
 
@@ -161,12 +179,9 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
                 break;
 
             case R.id.btn_send:
-                String editContent = edittxtMessage.getText().toString();
-                if (!StringUtil.isEmpty(editContent)) {
-                    mIConsultPresenter.sendMessage(1, editContent);
-                } else {
-                    Toast.makeText(mContext, "请先输入内容！", Toast.LENGTH_LONG).show();
-                }
+                sendMessage();
+
+
                 break;
 
             case R.id.fab:
@@ -197,9 +212,18 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         if (swipeLayout.isRefreshing()) {
             swipeLayout.setRefreshing(false);
         }
-        mAdapter.refreshList(mContext, consultDetailList, mDoctorInfo);
+        mAdapter.refreshList(mContext, consultDetailList, getDoctorInfo());
         mRecyclerView.scrollToPosition(consultDetailList.size());
     }
+
+    public void sendMessage(){
+        String editContent = edittxtMessage.getText().toString();
+        if (!StringUtil.isEmpty(editContent)) {
+            mIConsultPresenter.sendMessage(1, editContent);
+        } else {
+            Toast.makeText(mContext, "请先输入内容！", Toast.LENGTH_LONG).show();
+        }
+    };
 
 
 }

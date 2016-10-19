@@ -2,6 +2,7 @@ package com.ihaozuo.plamexam.model;
 
 import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.bean.UnreadMarkBean;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.service.IConsultService;
 import com.ihaozuo.plamexam.util.HZUtils;
@@ -18,18 +19,19 @@ import rx.schedulers.Schedulers;
 /**
  * Created by hzguest3 on 2016/10/13.
  */
-public class ConsultModel extends AbstractModel implements IBaseModel{
+public class ConsultModel extends AbstractModel implements IBaseModel {
 
     IConsultService mIConsultService;
 
     @Inject
-    public ConsultModel(IConsultService consultService){
+    public ConsultModel(IConsultService consultService) {
         mIConsultService = consultService;
-    };
+    }
 
-    public void getConsultDetail(String accountId,final OnHandlerResultListener<RestResult<List<ConsultDetailBean>>> callbackListener) {
+
+    public void getConsultDetail(String accountId, final OnHandlerResultListener<RestResult<List<ConsultDetailBean>>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String,Object> params = HZUtils.initParamsMap();
+        Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.getConsultDetail(params)
                 .subscribeOn(Schedulers.io())
@@ -37,9 +39,9 @@ public class ConsultModel extends AbstractModel implements IBaseModel{
                 .subscribe(subscriber);
     }
 
-    public void sendMessage(String accountId,int type,String consultContent,final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+    public void sendMessage(String accountId, int type, String consultContent, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String,Object> params = HZUtils.initParamsMap();
+        Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         params.put("Type", 3);//1,3尚未约定
         params.put("ConsultContent", consultContent);
@@ -56,7 +58,24 @@ public class ConsultModel extends AbstractModel implements IBaseModel{
         params.put("AccountId", accountId);
         params.put("Score", score);
         params.put("Content", content);
-        mIConsultService.sendGrade(params)
+        mIConsultService.sendGrade(params);
+    }
+
+    public void getUnreadMarkState(String accountId, final OnHandlerResultListener<RestResult<List<UnreadMarkBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        mIConsultService.getUnreadMarkState(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void removeUnreadMark(String accountId, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        mIConsultService.RemoveUnreadMark(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

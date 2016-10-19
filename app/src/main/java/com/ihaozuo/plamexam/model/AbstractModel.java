@@ -44,7 +44,7 @@ public abstract class AbstractModel implements IBaseModel {
             @Override
             public void onError(Throwable e) {
                 RestResult<T> entity = new RestResult<T>(e.getMessage());
-                callbackListener.handlerResult(entity);
+                callbackListener.handlerResultError(entity);
             }
 
             @Override
@@ -53,11 +53,24 @@ public abstract class AbstractModel implements IBaseModel {
                 if (resultBean.Code > 0) {
                     T result = resultBean.Data;
                     entity = new RestResult<T>(result);
+                    callbackListener.handlerResultSuccess(entity);
                 } else {
                     entity = new RestResult<T>(resultBean.Message);
+                    callbackListener.handlerResultError(entity);
                 }
-                callbackListener.handlerResult(entity);
+                //callbackListener.handlerResult(entity);
             }
+//            @Override
+//            public void onNext(BaseBean<T> resultBean) {
+//                RestResult<T> entity = null;
+//                if (resultBean.Code > 0) {
+//                    T result = resultBean.Data;
+//                    entity = new RestResult<T>(result);
+//                } else {
+//                    entity = new RestResult<T>(resultBean.Message);
+//                }
+//                callbackListener.handlerResult(entity);
+//            }
         };
         if (subscriberList == null) {
             subscriberList = new ArrayList<>();

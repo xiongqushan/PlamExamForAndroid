@@ -6,16 +6,16 @@ import android.view.WindowManager;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
-public class Width16Heigth9draweeView extends SimpleDraweeView {
+public class Width16Heigth9DraweeView extends SimpleDraweeView {
     int width = 0;
     int height = 0;
 
-    public Width16Heigth9draweeView(Context context) {
+    public Width16Heigth9DraweeView(Context context) {
         super(context);
     }
 
     @SuppressWarnings("deprecation")
-    public Width16Heigth9draweeView(Context context, AttributeSet attrs) {
+    public Width16Heigth9DraweeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         WindowManager wm = (WindowManager) getContext().getSystemService(
                 Context.WINDOW_SERVICE);

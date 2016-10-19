@@ -43,7 +43,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         doctorIDBoolean = false;
         doctorListBoolean = false;
         consultDetailList = new ArrayList<>();
-
         mIConsultView = iConsultView;
         mConsultModel = consultModel;
         mUserModel = userModel;
@@ -82,17 +81,18 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     public void getConsultDetail(){
         mConsultModel.getConsultDetail(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
             @Override
-            public void handlerResult(RestResult<List<ConsultDetailBean>> resultData) {
-                if (resultData.LogicSuccess){
-//                    mIConsultView.refreshConsultList(resultData.Data);
-                    consultDetailList = resultData.Data;
-                    consultListBoolean = true;
+            public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
+                consultDetailList = resultData.Data;
+                consultListBoolean = true;
 //                    mIConsultView.hideDialog();
-                    toggleDialog();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
-                }
+                toggleDialog();
             }
+
+            @Override
+            public void handlerResultError(RestResult<List<ConsultDetailBean>> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
+            }
+
         });
     }
 
@@ -101,35 +101,37 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     public void sendMessage(final int type, final String consultContent){
         mIConsultView.showDialog();
         mConsultModel.sendMessage(mUserInfo.AccountId, type, consultContent, new OnHandlerResultListener<RestResult<Boolean>>() {
-            @Override
-            public void handlerResult(RestResult<Boolean> resultData) {
-                if (resultData.LogicSuccess){
 
-                    mIConsultView.addReply(creatReplayContent(consultContent,type));
-                    mIConsultView.hideDialog();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
-                }
+            @Override
+            public void handlerResultSuccess(RestResult<Boolean> resultData) {
+                mIConsultView.addReply(creatReplayContent(consultContent,type));
+                mIConsultView.hideDialog();
+
             }
+
+            @Override
+            public void handlerResultError(RestResult<Boolean> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
+            }
+
         });
     }
-
-
 
     public void getDoctorID() {
         mUserModel.getDoctorId(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<String>>() {
             @Override
-            public void handlerResult(RestResult<String> resultData) {
-                if (resultData.LogicSuccess){
-                    if(resultData.Data!= null){
-                        UserManager.getInstance().setDoctorID(resultData.Data);
-                    }
-                    doctorIDBoolean = true;
-//                    mLoginView.hideDialog();
-                    toggleDialog();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
+            public void handlerResultSuccess(RestResult<String> resultData) {
+                if(resultData.Data!= null){
+                    UserManager.getInstance().setDoctorID(resultData.Data);
                 }
+                doctorIDBoolean = true;
+//                    mLoginView.hideDialog();
+                toggleDialog();
+            }
+
+            @Override
+            public void handlerResultError(RestResult<String> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
             }
         });
     }
@@ -137,17 +139,18 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     public void getDoctorList() {
         mUserModel.getDoctorList(new OnHandlerResultListener<RestResult<List<DoctorInfoBean>>>() {
             @Override
-            public void handlerResult(RestResult<List<DoctorInfoBean>> resultData) {
-                if (resultData.LogicSuccess){
-                    if(resultData.Data!= null){
-                        DoctorManager.getInstance().setDoctorList(resultData.Data);
-                    }
-//                    mLoginView.hideDialog();
-                    doctorListBoolean = true;
-                    toggleDialog();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
+            public void handlerResultSuccess(RestResult<List<DoctorInfoBean>> resultData) {
+                if(resultData.Data!= null){
+                    DoctorManager.getInstance().setDoctorList(resultData.Data);
                 }
+//                    mLoginView.hideDialog();
+                doctorListBoolean = true;
+                toggleDialog();
+            }
+
+            @Override
+            public void handlerResultError(RestResult<List<DoctorInfoBean>> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
             }
         });
     }

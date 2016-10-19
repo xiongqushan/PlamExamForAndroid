@@ -50,13 +50,15 @@ public class ConsultGradePresenter extends AbstractPresenter implements ConsultG
         mIConsultView.showDialog();
         mConsultModel.sendGrade(mUserInfo.AccountId, score, content, new OnHandlerResultListener<RestResult<Boolean>>() {
             @Override
-            public void handlerResult(RestResult<Boolean> resultData) {
-                if (resultData.LogicSuccess){
-                    mIConsultView.hideDialog();
-                    mIConsultView.finishView();
-                }else {
-                    mIConsultView.hideDialog(resultData.Message);
-                }
+            public void handlerResultSuccess(RestResult<Boolean> resultData) {
+                mIConsultView.hideDialog();
+                mIConsultView.finishView();
+            }
+
+            @Override
+            public void handlerResultError(RestResult<Boolean> resultData) {
+                mIConsultView.hideDialog(resultData.Message);
+
             }
         });
     }

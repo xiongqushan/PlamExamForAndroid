@@ -13,12 +13,13 @@
     <!--android:src="@drawable/banner1" />-->
 
 
-    <com.ihaozuo.plamexam.common.Width16Heigth9ImageView
+    <com.ihaozuo.plamexam.common.Width16Heigth9DraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imgBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scaleType="centerCrop"
-        android:src="@drawable/banner" />
+        fresco:failureImageScaleType="centerCrop"
+        fresco:placeholderImage="@drawable/banner"
+        fresco:placeholderImageScaleType="centerCrop" />
 
 
 </RelativeLayout>

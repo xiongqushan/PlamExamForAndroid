@@ -7,6 +7,7 @@ import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
 
 public class NewsDetailActivity extends BaseActivity {
+    public static final String URL_NEWSDETAILACTIVITY = "URL_NEWSDETAILACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -7,13 +7,13 @@ public class PreferenceManager {
     /**
      * 保存Preference的name
      */
-    public static final String PREFERENCE_NAME = "HZ_PLAMEXAM_SHAREDPREFERENCES";
+    public static final String PREFERENCE_NAME = "HZ_PLAMEXAM_SP";
     private static SharedPreferences mSharedPreferences;
     private static PreferenceManager mPreferencemManager;
     private static SharedPreferences.Editor editor;
 
     private static String SHARED_KEY_JPUSH = "SHARED_KEY_JPUSH";
-    private static String SHARED_KEY_DOCTOE_jOB = "SHARED_KEY_DOCTOE_jOB";
+    private static String SHARED_KEY_DOCTOE_JOB = "SHARED_KEY_DOCTOE_JOB";
 
     private PreferenceManager(Context context) {
         mSharedPreferences = context.getSharedPreferences(PREFERENCE_NAME,

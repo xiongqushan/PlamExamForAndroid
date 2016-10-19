@@ -64,7 +64,7 @@ public class ImageLoadUtils {
     private Postprocessor redMeshPostprocessor = null; // 图片后处理器
     private ControllerListener controllerListener = null;
 
-    public void initContext(Context context){
+    public void initContext(Context context) {
         this.context = context;
     }
 
@@ -83,7 +83,7 @@ public class ImageLoadUtils {
 //        hierarchy.setFailureImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置加载失败的占位图
 //        hierarchy.setRetryImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置重试加载的占位图
 //        hierarchy.setProgressBarImage(new ProgressBarDrawable()); // 图片加载进度条, 如果想精确显示加载进度，需要重写 Drawable.onLevelChange
-        hierarchy.setFadeDuration(250); // 淡出效果
+        hierarchy.setFadeDuration(1500); // 淡出效果
         return hierarchy;
     }
 
@@ -115,7 +115,7 @@ public class ImageLoadUtils {
         }
 
         if (controllerListener == null) {
-            controllerListener = new BaseControllerListener(){
+            controllerListener = new BaseControllerListener() {
                 @Override
                 public void onFinalImageSet(String id, Object imageInfo, Animatable animatable) {
                     /* 成功 */
@@ -161,6 +161,7 @@ public class ImageLoadUtils {
      * Content provider： content:// <br/>
      * asset目录下的资源： asset:// <br/>
      * res目录下的资源： Uri uri = Uri.parse("res://包名(实际可以是任何字符串甚至留空)/" + R.drawable.ic_launcher);
+     *
      * @param uri
      * @param simpleDraweeView
      */

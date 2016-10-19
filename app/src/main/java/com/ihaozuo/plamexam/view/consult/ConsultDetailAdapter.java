@@ -106,7 +106,6 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
 
     }
 
-
     public void bindLeftItem(ConsultDetailBean entity,ConsultLeftHolder holder){
         if (null != mDoctorInfo.ImageSrc){
             ImageLoadUtils.getInstance(mContext).display(mDoctorInfo.ImageSrc,holder.draweeConsultItemPhoto);
