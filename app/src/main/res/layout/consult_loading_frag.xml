@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/actionbar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="invisible"/>
+
+
+    <ImageView
+        android:id="@+id/btn_consult_loading"
+        android:layout_width="@dimen/consult_loading_height"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:src="@drawable/btn_consult_loading"
+        android:layout_gravity="center"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="66dp"
+        android:textSize="@dimen/textsize_h3_16sp"
+        android:lineSpacingExtra="5dp"
+        android:text="1 位健管师将为您提供健康咨询\nloading..."/>
+
+</LinearLayout>

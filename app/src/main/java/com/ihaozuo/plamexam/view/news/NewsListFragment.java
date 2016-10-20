@@ -1,17 +1,16 @@
 package com.ihaozuo.plamexam.view.news;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 
@@ -23,6 +22,7 @@ public class NewsListFragment extends AbstractView {
     @Bind(R.id.NewsList)
     ListView mListView;
     private View rootView;
+    private Context mContext;
 
     public NewsListFragment() {
         // Required empty public constructor
@@ -47,6 +47,7 @@ public class NewsListFragment extends AbstractView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (rootView == null) {
+            mContext = getContext();
             rootView = inflater.inflate(R.layout.news_list_frag, container, false);
             setCustomerTitle(rootView, getString(R.string.daily_news));
             ButterKnife.bind(this, rootView);
@@ -56,7 +57,7 @@ public class NewsListFragment extends AbstractView {
     }
 
     private void initView() {
-        BaseAdapter adapter = new ListAdapter();
+        NewsListAdapter adapter = new NewsListAdapter(mContext);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,20 +67,6 @@ public class NewsListFragment extends AbstractView {
         });
     }
 
-    class ListAdapter extends SimpleBaseAdapter {
-        @Override
-        public int getCount() {
-            return 20;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
-            }
-            return convertView;
-        }
-    }
 
     @Override
     public void onDestroyView() {

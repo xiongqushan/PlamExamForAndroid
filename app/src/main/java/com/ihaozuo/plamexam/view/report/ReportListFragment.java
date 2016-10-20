@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
@@ -34,6 +35,8 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     RelativeLayout layoutReportAdd;
     @Bind(R.id.listview_report)
     ListView mListView;
+    @Bind(R.id.tv_getReport)
+    TextView tvGetReport;
     private View rootView;
 
     public ReportListFragment() {
@@ -80,8 +83,9 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
 
     @Override
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
-        layoutReportAdd.setVisibility(View.INVISIBLE);
-        mListView.setVisibility(View.VISIBLE);
+//        mListView.setVisibility(View.VISIBLE);
+//        tvGetReport.setVisibility(View.INVISIBLE);
+        showReportList(null);
     }
 
     private void initView() {
@@ -131,6 +135,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     public void showAddBtn() {
         layoutReportAdd.setVisibility(View.VISIBLE);
         mListView.setVisibility(View.INVISIBLE);
+        tvGetReport.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -146,5 +151,6 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     public void showReportList(List<ReportItemBean> dataList) {
         layoutReportAdd.setVisibility(View.INVISIBLE);
         mListView.setVisibility(View.VISIBLE);
+        tvGetReport.setVisibility(View.VISIBLE);
     }
 }

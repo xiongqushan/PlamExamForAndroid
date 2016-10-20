@@ -13,16 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
+import com.ihaozuo.plamexam.common.AutoViewPager;
 import com.ihaozuo.plamexam.common.BannerFragment;
 import com.ihaozuo.plamexam.common.Constants;
-import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
@@ -36,6 +35,7 @@ import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
+import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     HomePresenter mHomePresenter;
     HomeContract.IHomePresenter mPresenter;
 
-    ViewPager mViewPager;
+    AutoViewPager mViewPager;
     private Context mContext;
     private boolean isDrag;
     private int maxLength = 10000;// bannerPagerNumber
@@ -98,7 +98,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         mPresenter.start();
         mPresenter.getUnreadMartState(UserManager.getInstance().getUserInfo().AccountId);
         mPresenter.removeUnreadMark(UserManager.getInstance().getUserInfo().AccountId);
-        // mPresenter.getBanner(123);
+         mPresenter.getBanner(123);
         startAutoBanner();
     }
 
@@ -139,7 +139,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             DaggerHomeComponent.builder().appComponent(HZApp.shareApplication()
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
             initView();
-            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
+//            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
         }
         return rootView;
     }
@@ -147,33 +147,39 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     private void initView() {
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.header_homelist, null);
-        mViewPager = (ViewPager) headerView.findViewById(R.id.BannerPager);
+//        mViewPager = (ViewPager) headerView.findViewById(R.id.BannerPager);
+        mViewPager = (AutoViewPager) headerView.findViewById(R.id.BannerPager);
         headerView.findViewById(R.id.btn_report).setOnClickListener(this);
         headerView.findViewById(R.id.btn_consult).setOnClickListener(this);
         headerView.findViewById(R.id.layout_home_news).setOnClickListener(this);
         initBanner(null);
-        BaseAdapter adapter = new SimpleBaseAdapter() {
-            @Override
-            public int getCount() {
-                if (newsList == null) {
-                    return 4;
-                }
-                if (newsList.size() > 4) {
-                    return 4;
-                }
-                return newsList.size();
-            }
 
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
-                }
-                return convertView;
-            }
-        };
+//        BaseAdapter adapter = new SimpleBaseAdapter() {
+//            @Override
+//            public int getCount() {
+//                if (newsList == null) {
+//                    return 4;
+//                }
+//                if (newsList.size() > 4) {
+//                    return 4;
+//                }
+//                return newsList.size();
+//            }
+//
+//            @Override
+//            public View getView(int position, View convertView, ViewGroup parent) {
+//                if (convertView == null) {
+//                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_newslist, null);
+//                    TextView btn_share = (TextView) convertView.findViewById(R.id.btn_share);
+//                }
+//                return convertView;
+//            }
+//        };
+
+        NewsListAdapter adapter = new NewsListAdapter(mContext);
         mListView.addHeaderView(headerView);
         mListView.setAdapter(adapter);
+//        adapter.refreshList(List<NewsBean>);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

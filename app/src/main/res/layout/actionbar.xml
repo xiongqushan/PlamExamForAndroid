@@ -29,14 +29,25 @@
             android:textSize="@dimen/textsize_h1"
             tools:text="艾欧尼亚 男 18岁" />
 
-        <ImageView
-            android:id="@+id/img_actionbar_right"
-            android:layout_width="@dimen/actionbar_high_48dp"
+        <!--<ImageView-->
+            <!--android:id="@+id/img_actionbar_right"-->
+            <!--android:layout_width="@dimen/actionbar_high_48dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:padding="@dimen/actionbar_padding"-->
+            <!--android:src="@drawable/search_white"-->
+            <!--android:visibility="invisible" />-->
+
+        <TextView
+            android:id="@+id/tv_getReport"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
+            tools:text="添加报告"
+            android:textColor="@color/white"
             android:layout_alignParentRight="true"
-            android:padding="@dimen/actionbar_padding"
-            android:src="@drawable/search_white"
-            android:visibility="invisible" />
+            android:padding="5dp"
+            android:visibility="invisible"/>
 
 
     </RelativeLayout>
