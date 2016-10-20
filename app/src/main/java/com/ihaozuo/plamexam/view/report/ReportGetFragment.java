@@ -10,11 +10,15 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,31 +27,32 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddReportFragment extends AbstractView implements ReportContract.ReportGetView {
+public class ReportGetFragment extends AbstractView implements ReportContract.IReportGetView {
 
-
+    ReportContract.IReportGetPresenter mPresenter;
     @Bind(R.id.phone)
     EditText phone;
     @Bind(R.id.et_Name)
     EditText etName;
     private View rootView;
 
-    public AddReportFragment() {
+    public ReportGetFragment() {
         // Required empty public constructor
     }
 
+
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return mPresenter;
     }
 
     @Override
     protected View getRootView() {
-        return null;
+        return rootView;
     }
 
-    public static AddReportFragment newInstance() {
-        return new AddReportFragment();
+    public static ReportGetFragment newInstance() {
+        return new ReportGetFragment();
     }
 
 
@@ -66,31 +71,51 @@ public class AddReportFragment extends AbstractView implements ReportContract.Re
         phone.setEnabled(false);
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        mPresenter.cancelRequest();
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.phone, R.id.et_Name, R.id.btn_login})
+    @OnClick(R.id.btn_login)
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
         }
         switch (view.getId()) {
-            case R.id.phone:
-                break;
-            case R.id.et_Name:
-                break;
             case R.id.btn_login:
-                getActivity().sendBroadcast(new Intent(ReportListFragment.REFRESH_REPORTLIST));
-                getActivity().finish();
+                String name = etName.getText().toString();
+                if (StringUtil.isEmpty(name)) {
+                    etName.requestFocus();
+                    etName.setFocusableInTouchMode(true);
+                    etName.setError("不能为空");
+                    return;
+                }
+                mPresenter.getReport(UserManager.getInstance().getUserInfo().Mobile, name);
                 break;
         }
     }
 
     @Override
-    public void setPresenter(ReportContract.ReportGetPresenter presenter) {
+    public void setPresenter(ReportContract.IReportGetPresenter presenter) {
+        mPresenter = presenter;
+    }
 
+    @Override
+    public void showReportList(List<ReportItemBean> datalList) {
+        if (datalList != null && datalList.size() > 0) {
+            Intent intent = new Intent(ReportListFragment.REFRESH_REPORTLIST);
+            //intent.putExtra("listobj", (Serializable) datalList);
+            getActivity().sendBroadcast(intent);
+            getActivity().finish();
+        } else {
+            hideDialog("暂无报告");
+            //TODO
+            Intent intent = new Intent(ReportListFragment.REFRESH_REPORTLIST);
+            getActivity().sendBroadcast(intent);
+            getActivity().finish();
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.ihaozuo.plamexam.contract;
 
+import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.IBaseView;
@@ -10,27 +11,36 @@ import java.util.List;
  * Created by zhangzhongyao on 2016/10/18.
  */
 public interface ReportContract {
-    interface ReportGetView extends IBaseView<ReportGetPresenter> {
+    interface IReportGetView extends IBaseView<IReportGetPresenter> {
+        void showReportList(List<ReportItemBean> datalList);
     }
 
-    interface ReportGetPresenter extends IBasePresenter {
+    interface IReportGetPresenter extends IBasePresenter {
+        void getReport(String mobile, String realName);
     }
 
-    interface ReportListView extends IBaseView<ReportListPresenter> {
+    interface IReportListView extends IBaseView<IReportListPresenter> {
         void showAddBtn();
+
+        void toggleRetryLayer(boolean show);
 
         void showReportList(List<ReportItemBean> dataList);
     }
 
-    interface ReportListPresenter extends IBasePresenter {
+    interface IReportListPresenter extends IBasePresenter {
+        void getReportList();
     }
 
 
-    interface ReportDetailView extends IBaseView<ReportDetailPresenter> {
+    interface IReportDetailView extends IBaseView<IReportDetailPresenter> {
+
+        void updateFragment(ReportDetailBean reportDetailBean);
+
+        void toggleRetryLayer(boolean show);
     }
 
-    interface ReportDetailPresenter extends IBasePresenter {
-
+    interface IReportDetailPresenter extends IBasePresenter {
+        void getReportDetail(String workNo, String checkUnitCode);
     }
 
 }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 import com.ihaozuo.plamexam.view.consult.ConsultGradeActivity;
@@ -43,7 +44,7 @@ public class MineFragment extends BaseFragment {
     }
 
     private void initView() {
-        tvUserName.setText("艾欧尼亚");
+        tvUserName.setText(UserManager.getInstance().getUserInfo().RealName);
     }
 
     @Override
@@ -53,13 +54,16 @@ public class MineFragment extends BaseFragment {
     }
 
 
-    @OnClick({R.id.layoutUserInfo, R.id.layoutSysSet, R.id.layoutReportEx})
+    @OnClick({R.id.layoutUser, R.id.layoutUserInfo, R.id.layoutSysSet, R.id.layoutReportEx})
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
         }
 
         switch (view.getId()) {
+            case R.id.layoutUser:
+                getActivity().startActivity(new Intent(getActivity(), UserInfoActivity.class));
+                break;
             case R.id.layoutUserInfo:
                 getActivity().startActivity(new Intent(getActivity(), UserInfoActivity.class));
                 break;

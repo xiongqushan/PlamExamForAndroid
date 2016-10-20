@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 
-import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.SplashContract;
 import com.ihaozuo.plamexam.ioc.DaggerSplashComponent;
@@ -29,7 +28,7 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.content_act);
         DaggerSplashComponent.builder()
                 .appComponent(getAppComponent())
-                .splashModule(new SplashModule(BuildConfig.VERSION_CODE))
+                .splashModule(new SplashModule())
                 .build().inject(this);
 
         SplashFragment fragment = (SplashFragment) getSupportFragmentManager().findFragmentById(R.id.frameContent);

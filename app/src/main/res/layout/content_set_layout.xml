@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/divider_12dp" />
 
     <RelativeLayout
         android:id="@+id/layoutSetPhone"
         style="@style/userinfo_layout"
+        android:layout_marginTop="@dimen/padding_9dp"
         android:background="@color/white">
 
         <TextView
@@ -23,11 +23,11 @@
             tools:text="13888888888" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutBindQQ"
-        style="@style/userinfo_layout">
+        style="@style/userinfo_layout"
+        android:visibility="gone">
 
         <TextView
             style="@style/userinfo_label"
@@ -44,11 +44,11 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutBindWeChat"
-        style="@style/userinfo_layout">
+        style="@style/userinfo_layout"
+        android:visibility="gone">
 
         <TextView
             style="@style/userinfo_label"
@@ -63,11 +63,11 @@
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_dd_margin" />
 
     <RelativeLayout
         android:id="@+id/layoutBindSina"
-        style="@style/userinfo_layout">
+        style="@style/userinfo_layout"
+        android:visibility="gone">
 
         <TextView
             style="@style/userinfo_label"
@@ -83,11 +83,10 @@
     </RelativeLayout>
 
 
-    <include layout="@layout/divider_12dp" />
-
     <RelativeLayout
         android:id="@+id/layoutAboutUs"
-        style="@style/userinfo_layout">
+        style="@style/userinfo_layout"
+        android:layout_marginTop="@dimen/padding_9dp">
 
         <TextView
             style="@style/userinfo_label"
@@ -122,12 +121,11 @@
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_12dp" />
-
 
     <RelativeLayout
         android:id="@+id/layoutDisclaimer"
-        style="@style/userinfo_layout">
+        style="@style/userinfo_layout"
+        android:layout_marginTop="@dimen/padding_9dp">
 
         <TextView
             style="@style/userinfo_label"
@@ -146,10 +144,8 @@
             style="@style/userinfo_label"
             android:text="@string/clear_cache" />
 
-
+        <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
-
-    <include layout="@layout/divider_dd" />
 
 
 </LinearLayout>

@@ -43,8 +43,8 @@ public abstract class AbstractModel implements IBaseModel {
 
             @Override
             public void onError(Throwable e) {
-                RestResult<T> entity = new RestResult<T>(e.getMessage());
-                callbackListener.handlerResultError(entity);
+                //RestResult<T> entity = new RestResult<T>(e.getMessage());
+                callbackListener.handlerResultError(e.getMessage());
             }
 
             @Override
@@ -55,10 +55,9 @@ public abstract class AbstractModel implements IBaseModel {
                     entity = new RestResult<T>(result);
                     callbackListener.handlerResultSuccess(entity);
                 } else {
-                    entity = new RestResult<T>(resultBean.Message);
-                    callbackListener.handlerResultError(entity);
+                    // entity = new RestResult<T>(resultBean.Message);
+                    callbackListener.handlerResultError(resultBean.Message);
                 }
-                //callbackListener.handlerResult(entity);
             }
 //            @Override
 //            public void onNext(BaseBean<T> resultBean) {
@@ -81,6 +80,9 @@ public abstract class AbstractModel implements IBaseModel {
 
     @Override
     public void cancelRequest() {
+        if (subscriberList == null) {
+            return;
+        }
         for (Subscriber subscriber : subscriberList) {
             if (!subscriber.isUnsubscribed()) {
                 subscriber.unsubscribe();

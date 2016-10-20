@@ -24,10 +24,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class ReportListFragment extends AbstractView implements ReportContract.ReportListView {
-    public static final String REFRESH_REPORTLIST = "REPORTLIST_REPORTLISTFRAGMENT";
+public class ReportListFragment extends AbstractView implements ReportContract.IReportListView {
+    public static final String REFRESH_REPORTLIST = "REFRESH_REPORTLIST_REPORTLISTFRAGMENT";
+    public static final String INTENTKEY_REPORTLIST = "INTENTKEY_REPORTLIST_REPORTLISTFRAGMENT";
 
-    ReportContract.ReportListPresenter mPresenter;
+    ReportContract.IReportListPresenter mPresenter;
 
     @Bind(R.id.layout_report_add)
     RelativeLayout layoutReportAdd;
@@ -38,6 +39,11 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
     public ReportListFragment() {
         // Required empty public constructor
     }
+
+    public static ReportListFragment newInstance() {
+        return new ReportListFragment();
+    }
+
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -52,7 +58,6 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
     @Override
     public void onResume() {
         super.onResume();
-        // mPresenter.start();
     }
 
     @Override
@@ -63,13 +68,14 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
         ButterKnife.bind(this, rootView);
         initView();
         registerCustomReceiver(REFRESH_REPORTLIST);
+        mPresenter.start();
         return rootView;
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        //   mPresenter.cancelRequest();
+        mPresenter.cancelRequest();
     }
 
     @Override
@@ -97,7 +103,10 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getActivity(), ReportActivity.class));
+                Intent intent = new Intent(getActivity(), ReportActivity.class);
+                intent.putExtra(ReportActivity.INTENTKEY_WORKNO, "WORKNO");
+                intent.putExtra(ReportActivity.INTENTKEY_CHECKUNITCODE, "CHECKUNITCODE");
+                startActivity(intent);
             }
         });
     }
@@ -110,11 +119,11 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
 
     @OnClick(R.id.layout_report_add)
     public void onClick() {
-        startActivity(new Intent(getActivity(), AddReportActivity.class));
+        startActivity(new Intent(getActivity(), ReportGetActivity.class));
     }
 
     @Override
-    public void setPresenter(ReportContract.ReportListPresenter presenter) {
+    public void setPresenter(ReportContract.IReportListPresenter presenter) {
         mPresenter = presenter;
     }
 
@@ -122,6 +131,15 @@ public class ReportListFragment extends AbstractView implements ReportContract.R
     public void showAddBtn() {
         layoutReportAdd.setVisibility(View.VISIBLE);
         mListView.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void toggleRetryLayer(boolean show) {
+        if (show) {
+            showRetryLayer(R.id.rLayout);
+        } else {
+            hideRetryLayer(R.id.rLayout);
+        }
     }
 
     @Override

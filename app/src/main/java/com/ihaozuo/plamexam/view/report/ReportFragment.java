@@ -14,17 +14,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ReportDetailBean;
+import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ReportFragment extends AbstractView {
+public class ReportFragment extends AbstractView implements ReportContract.IReportDetailView {
 
+    ReportContract.IReportDetailPresenter mPresenter;
 
     @Bind(R.id.rb_error_report)
     RadioButton rbError;
@@ -42,9 +42,13 @@ public class ReportFragment extends AbstractView {
         // Required empty public constructor
     }
 
+    public static ReportFragment newInstance() {
+        return new ReportFragment();
+    }
+
     @Override
     protected IBasePresenter getPresenter() {
-        return null;
+        return mPresenter;
     }
 
     @Override
@@ -60,6 +64,7 @@ public class ReportFragment extends AbstractView {
         setCustomerTitle(rootView, getString(R.string.report));
         ButterKnife.bind(this, rootView);
         initView();
+        mPresenter.start();
         return rootView;
     }
 
@@ -104,6 +109,25 @@ public class ReportFragment extends AbstractView {
 
             }
         });
+    }
+
+    @Override
+    public void setPresenter(ReportContract.IReportDetailPresenter presenter) {
+        mPresenter = presenter;
+    }
+
+    @Override
+    public void updateFragment(ReportDetailBean reportDetailBean) {
+
+    }
+
+    @Override
+    public void toggleRetryLayer(boolean show) {
+        if (show) {
+            showRetryLayer(R.id.rLayout);
+        } else {
+            hideRetryLayer(R.id.rLayout);
+        }
     }
 
     private class ReportPagerAdapter extends FragmentPagerAdapter {

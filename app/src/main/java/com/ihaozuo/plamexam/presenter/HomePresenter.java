@@ -76,9 +76,10 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
             }
 
             @Override
-            public void handlerResultError(RestResult<List<BannerBean>> resultData) {
-                mHomeView.hideDialog(resultData.Message);
+            public void handlerResultError(String message) {
+                mHomeView.hideDialog(message);
             }
+
 
         });
     }
@@ -94,10 +95,9 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
             }
 
             @Override
-            public void handlerResultError(RestResult<List<UnreadMarkBean>> resultData) {
-
+            public void handlerResultError(String message) {
+                mHomeView.hideDialog(message);
             }
-
         });
     }
 
@@ -110,10 +110,9 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
             }
 
             @Override
-            public void handlerResultError(RestResult<Boolean> resultData) {
-
+            public void handlerResultError(String message) {
+                mHomeView.hideDialog(message);
             }
-
         });
     }
 }

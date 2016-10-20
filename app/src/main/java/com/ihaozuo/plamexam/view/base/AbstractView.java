@@ -101,7 +101,7 @@ public abstract class AbstractView extends BaseFragment {
         }
     }
 
-    protected void showRetryLayer(int frameLayoutContainerId) {
+    public void showRetryLayer(int frameLayoutContainerId) {
         FrameLayout rLayout = (FrameLayout) getRootView().findViewById(frameLayoutContainerId);
         View btnReload = getRootView().findViewById(ID_BTNRELOAD);
         if (btnReload == null) {

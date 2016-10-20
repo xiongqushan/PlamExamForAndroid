@@ -29,16 +29,16 @@ public class ConsultDetailActivity extends BaseActivity {
     ConsultContract.IConsultView mConsultView;
 
     @Override
-    public void onResume() {
+    public void onStart() {
         isForeground = true;
-        super.onResume();
+        super.onStart();
     }
 
 
     @Override
-    public void onPause() {
+    public void onStop() {
         isForeground = false;
-        super.onPause();
+        super.onStop();
     }
 
     @Override

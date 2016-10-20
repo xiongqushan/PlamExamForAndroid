@@ -4,20 +4,15 @@
     android:background="@color/gray_f2"
     android:orientation="vertical">
 
-
     <include layout="@layout/actionbar_mine" />
-
-
-    <include layout="@layout/divider_12dp" />
 
     <LinearLayout
         android:id="@+id/layoutUserInfo"
-        style="@style/hlayout_h44">
+        style="@style/hlayout_h44"
+        android:layout_marginTop="@dimen/padding_9dp">
 
         <ImageView
-            android:layout_width="@dimen/actionbar_high_44dp"
-            android:layout_height="match_parent"
-            android:padding="@dimen/mine_img_leftpadding"
+            style="@style/img_mine"
             android:src="@drawable/ic_user_info" />
 
         <TextView
@@ -32,17 +27,20 @@
         <include layout="@layout/next_mine_right_lauout" />
     </LinearLayout>
 
-    <include layout="@layout/divider_12dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/white"
+        android:paddingLeft="51dp"
+        android:src="@color/divider_dd" />
 
     <LinearLayout
         android:id="@+id/layoutSysSet"
         style="@style/hlayout_h44">
 
         <ImageView
-            android:layout_width="@dimen/actionbar_high_44dp"
-            android:layout_height="match_parent"
-            android:padding="@dimen/mine_img_leftpadding"
-            android:src="@drawable/ic_user_info" />
+            style="@style/img_mine"
+            android:src="@drawable/ic_system_set" />
 
         <TextView
             style="@style/txt_16sp_gray66"
@@ -56,17 +54,20 @@
         <include layout="@layout/next_mine_right_lauout" />
     </LinearLayout>
 
-    <include layout="@layout/divider_12dp" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/white"
+        android:paddingLeft="51dp"
+        android:src="@color/divider_dd" />
 
     <LinearLayout
         android:id="@+id/layoutReportEx"
         style="@style/hlayout_h44">
 
         <ImageView
-            android:layout_width="@dimen/actionbar_high_44dp"
-            android:layout_height="match_parent"
-            android:padding="@dimen/mine_img_leftpadding"
-            android:src="@drawable/ic_user_info" />
+            style="@style/img_mine"
+            android:src="@drawable/ic_report_ex" />
 
         <TextView
             style="@style/txt_16sp_gray66"
@@ -80,6 +81,5 @@
         <include layout="@layout/next_mine_right_lauout" />
     </LinearLayout>
 
-    <include layout="@layout/divider_dd" />
 
 </LinearLayout>

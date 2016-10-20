@@ -13,13 +13,11 @@ import javax.inject.Inject;
  */
 public class SplashPresenter extends AbstractPresenter implements SplashContract.ISplashPresenter {
     private SplashContract.ISplashView mView;
-    private int currVersion;
 
     @Inject
-    public SplashPresenter(@NonNull SplashContract.ISplashView iSplashView, @NonNull int currVersion) {
+    public SplashPresenter(@NonNull SplashContract.ISplashView iSplashView) {
         mView = iSplashView;
         mView.setPresenter(this);
-        this.currVersion = currVersion;
     }
 
     @Override

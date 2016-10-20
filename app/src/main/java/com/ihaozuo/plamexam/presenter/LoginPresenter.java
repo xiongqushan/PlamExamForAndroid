@@ -53,18 +53,10 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
             }
 
             @Override
-            public void handlerResultError(RestResult<Boolean> resultData) {
-                mLoginView.hideDialog(resultData.Message);
+            public void handlerResultError(String message) {
+                mLoginView.hideDialog(message);
             }
 
-//            @Override
-//            public void handlerResult(RestResult<Boolean> resultData) {
-//                if (resultData.LogicSuccess){
-//                    mLoginView.hideDialog();
-//                }else {
-//                    mLoginView.hideDialog(resultData.Message);
-//                }
-//            }
         });
     }
 
@@ -80,9 +72,10 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
             }
 
             @Override
-            public void handlerResultError(RestResult<UserBean> resultData) {
-                mLoginView.hideDialog(resultData.Message);
+            public void handlerResultError(String message) {
+                mLoginView.hideDialog(message);
             }
+
         });
     }
 }

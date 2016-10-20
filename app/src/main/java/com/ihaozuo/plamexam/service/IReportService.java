@@ -16,12 +16,12 @@ import rx.Observable;
  * Created by zhangzhongyao on 2016/10/18.
  */
 public interface IReportService {
+    @POST(SysConfig.CONTROLLER_PRE_API_REPORT + "Add")
+    Observable<BaseBean<List<ReportItemBean>>> addReport(@Body Map<String, Object> params);
 
-
-    @POST(SysConfig.CONTROLLER_PRE_API_REPORT + "getReportList")
+    @POST(SysConfig.CONTROLLER_PRE_API_REPORT + "Reports")
     Observable<BaseBean<List<ReportItemBean>>> getReportList(@Body Map<String, Object> params);
 
-    @POST(SysConfig.CONTROLLER_PRE_API_USER + "getBanner")
+    @POST(SysConfig.CONTROLLER_PRE_API_REPORT + "ReportInfo")
     Observable<BaseBean<ReportDetailBean>> getReportDetail(@Body Map<String, Object> params);
-
 }

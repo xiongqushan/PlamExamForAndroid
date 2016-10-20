@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 
@@ -43,7 +44,13 @@ public class UserInfoFragment extends BaseFragment {
         rootView = inflater.inflate(R.layout.user_info_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.user_info));
         ButterKnife.bind(this, rootView);
+        initView();
         return rootView;
+    }
+
+    private void initView() {
+        tvUserName.setText(UserManager.getInstance().getUserInfo().RealName);
+        tvUserPhone.setText(UserManager.getInstance().getUserInfo().Mobile);
     }
 
     @Override

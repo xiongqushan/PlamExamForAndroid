@@ -14,7 +14,8 @@
             android:id="@+id/layout_report_add"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/item_press_white_gray">
+            android:background="@drawable/item_press_white_gray"
+            android:visibility="invisible">
 
             <ImageView
                 android:layout_width="wrap_content"

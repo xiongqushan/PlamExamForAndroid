@@ -12,14 +12,10 @@ import dagger.Provides;
 @Module
 public class SplashModule {
 
-    int currVersion;
 
     public SplashModule() {
     }
 
-    public SplashModule(int currVersion) {
-        this.currVersion = currVersion;
-    }
 
 
     @Provides
@@ -29,9 +25,4 @@ public class SplashModule {
     }
 
 
-    @Provides
-    @ScopeType.ActivityScope
-    int provideCurrVersion() {
-        return currVersion;
-    }
 }

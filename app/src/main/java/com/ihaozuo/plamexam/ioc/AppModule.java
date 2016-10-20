@@ -7,6 +7,7 @@ import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.service.IHomeService;
 import com.ihaozuo.plamexam.service.IConsultService;
+import com.ihaozuo.plamexam.service.IReportService;
 import com.ihaozuo.plamexam.service.IUserService;
 import com.ihaozuo.plamexam.util.JsonUtil;
 import com.ihaozuo.plamexam.util.StringUtil;
@@ -71,6 +72,12 @@ public class AppModule {
     @Singleton
     IConsultService createConsultService(@NonNull Retrofit retrofit) {
         return retrofit.create(IConsultService.class);
+    }
+
+    @Provides
+    @Singleton
+    IReportService createReportService(@NonNull Retrofit retrofit) {
+        return retrofit.create(IReportService.class);
     }
 
     @Provides

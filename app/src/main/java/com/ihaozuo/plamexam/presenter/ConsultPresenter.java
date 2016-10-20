@@ -59,19 +59,10 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             }
 
             @Override
-            public void handlerResultError(RestResult<List<ConsultDetailBean>> resultData) {
-                mIConsultView.hideDialog(resultData.Message);
+            public void handlerResultError(String message) {
+                mIConsultView.hideDialog(message);
             }
 
-//            @Override
-//            public void handlerResult(RestResult<List<ConsultDetailBean>> resultData) {
-//                if (resultData.LogicSuccess){
-//                    mIConsultView.refreshConsultList(resultData.Data);
-//                    mIConsultView.hideDialog();
-//                }else {
-//                    mIConsultView.hideDialog(resultData.Message);
-//                }
-//            }
         });
     }
 
@@ -86,18 +77,9 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             }
 
             @Override
-            public void handlerResultError(RestResult<Boolean> resultData) {
-                mIConsultView.hideDialog(resultData.Message);
+            public void handlerResultError(String message) {
+                mIConsultView.hideDialog(message);
             }
-
-//            @Override
-//            public void handlerResult(RestResult<Boolean> resultData) {
-//                if (resultData.LogicSuccess) {
-//                    mIConsultView.hideDialog();
-//                } else {
-//                    mIConsultView.hideDialog(resultData.Message);
-//                }
-//            }
         });
     }
 

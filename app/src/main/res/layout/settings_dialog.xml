@@ -4,13 +4,34 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textColor="@color/gray_66"
-        android:textSize="19sp" />
+        android:layout_gravity="center"
+        android:padding="@dimen/padding_12dp">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="108dp"
+            android:layout_gravity="center"
+            android:src="@drawable/bg_settings_dialog" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@color/white"
+            android:paddingBottom="4dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="4dp"
+            android:text="是否清理缓存？"
+            android:textColor="@color/gray_33"
+            android:textSize="19sp" />
+    </FrameLayout>
+
 
     <View
         android:layout_width="match_parent"
@@ -25,10 +46,11 @@
         <TextView
             android:id="@+id/tv_cancel"
             android:layout_width="0dp"
-            android:padding="10dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/item_press_white_gray"
             android:gravity="center"
+            android:padding="10dp"
             android:text="取消"
             android:textColor="@color/main_color_blue"
             android:textSize="20sp" />
@@ -43,9 +65,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/item_press_white_gray"
             android:gravity="center"
-            android:text="确定"
             android:padding="10dp"
+            android:text="确定"
             android:textColor="@color/main_color_blue"
             android:textSize="20sp" />
     </LinearLayout>

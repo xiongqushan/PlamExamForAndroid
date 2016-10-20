@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
@@ -32,16 +33,10 @@ public class SysSetFragment extends BaseFragment {
     RelativeLayout layoutSetPhone;
     @Bind(R.id.tvQQState)
     TextView tvQQState;
-    @Bind(R.id.layoutBindQQ)
-    RelativeLayout layoutBindQQ;
     @Bind(R.id.tvWeChatState)
     TextView tvWeChatState;
-    @Bind(R.id.layoutBindWeChat)
-    RelativeLayout layoutBindWeChat;
     @Bind(R.id.tvSinaState)
     TextView tvSinaState;
-    @Bind(R.id.layoutBindSina)
-    RelativeLayout layoutBindSina;
     @Bind(R.id.layoutAboutUs)
     RelativeLayout layoutAboutUs;
     @Bind(R.id.layoutFeedback)
@@ -75,9 +70,9 @@ public class SysSetFragment extends BaseFragment {
 
     private void initView() {
         tvSetPhone.setText(UserManager.getInstance().getUserInfo().Mobile);
-        tvQQState.setText(getString(R.string.unbind));
-        tvWeChatState.setText(getString(R.string.unbind));
-        tvSinaState.setText(getString(R.string.unbind));
+//        tvQQState.setText(getString(R.string.unbind));
+//        tvWeChatState.setText(getString(R.string.unbind));
+//        tvSinaState.setText(getString(R.string.unbind));
     }
 
     @Override
@@ -86,7 +81,16 @@ public class SysSetFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.layoutSetPhone, R.id.layoutBindQQ, R.id.layoutBindWeChat, R.id.layoutBindSina, R.id.layoutAboutUs, R.id.layoutFeedback, R.id.layoutCheckUpdate, R.id.layoutDisclaimer, R.id.layoutClearChache})
+    @OnClick({R.id.layoutSetPhone,
+            R.id.layoutBindQQ,
+            R.id.layoutBindWeChat,
+            R.id.layoutBindSina,
+            R.id.layoutAboutUs,
+            R.id.layoutFeedback,
+            R.id.layoutCheckUpdate,
+            R.id.layoutDisclaimer,
+            R.id.layoutClearChache,
+            R.id.btn_logout})
     public void onClick(View view) {
         if (HZUtils.isFastDoubleClick()) {
             return;
@@ -95,12 +99,12 @@ public class SysSetFragment extends BaseFragment {
         switch (view.getId()) {
 //            case R.id.layoutSetPhone:
 //                break;
-            case R.id.layoutBindQQ:
-                break;
-            case R.id.layoutBindWeChat:
-                break;
-            case R.id.layoutBindSina:
-                break;
+//            case R.id.layoutBindQQ:
+//                break;
+//            case R.id.layoutBindWeChat:
+//                break;
+//            case R.id.layoutBindSina:
+//                break;
             case R.id.layoutAboutUs:
                 getActivity().startActivity(new Intent(getActivity(), AboutUsActivity.class));
                 break;
@@ -113,6 +117,20 @@ public class SysSetFragment extends BaseFragment {
                 getActivity().startActivity(new Intent(getActivity(), DisclaimerActivity.class));
                 break;
             case R.id.layoutClearChache:
+                new SettingsDialog(getActivity(), new SettingsDialog.OnDialogListener() {
+                    @Override
+                    public void OnDialogConfirmListener() {
+
+                    }
+                }).setContentText("是否清理缓存？").show();
+                break;
+            case R.id.btn_logout:
+                new SettingsDialog(getActivity(), new SettingsDialog.OnDialogListener() {
+                    @Override
+                    public void OnDialogConfirmListener() {
+
+                    }
+                }).setContentText("确定退出登录？").show();
                 break;
         }
     }

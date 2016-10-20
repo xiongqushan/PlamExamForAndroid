@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_f2"
     android:orientation="vertical"
     tools:context=".view.mine.UserInfoFragment">
 
@@ -13,13 +14,10 @@
         android:background="@color/gray_f2">
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-
+            android:layout_marginTop="@dimen/padding_9dp"
             android:orientation="vertical">
-
-            <include layout="@layout/divider_12dp" />
 
 
             <RelativeLayout
@@ -39,14 +37,15 @@
 
                 <com.facebook.drawee.view.SimpleDraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
                     android:id="@+id/CPhoto"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="41dp"
+                    android:layout_height="41dp"
                     android:layout_alignParentRight="true"
-                    fresco:placeholderImage="@drawable/icon_user_default"
+                    fresco:placeholderImage="@drawable/ic_user_small"
                     fresco:roundAsCircle="true" />
             </RelativeLayout>
 
-            <include layout="@layout/divider_12dp" />
+            <include layout="@layout/divider_dd_margin" />
+
 
             <RelativeLayout
                 android:id="@+id/layoutUserName"
@@ -82,9 +81,9 @@
                     tools:text="13888888888" />
             </RelativeLayout>
 
-            <include layout="@layout/divider_12dp" />
 
             <RelativeLayout
+                android:layout_marginTop="@dimen/padding_9dp"
                 android:id="@+id/layoutUserAuth"
                 style="@style/userinfo_layout">
 
@@ -93,10 +92,11 @@
                     android:text="@string/user_auth" />
 
 
-                <include layout="@layout/next_set_right_layout" />
+                <TextView
+                    android:id="@+id/tvAuthState"
+                    style="@style/userinfo_label_content"
+                    android:text="@string/auth_0" />
             </RelativeLayout>
-
-            <include layout="@layout/divider_dd" />
 
 
         </LinearLayout>

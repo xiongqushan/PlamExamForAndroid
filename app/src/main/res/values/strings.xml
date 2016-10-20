@@ -21,7 +21,7 @@
     <string name="reget_authcode">秒后重新获取</string>
     <string name="cancel">取消</string>
     <string name="login">登  录</string>
-    <string name="quit">退出登录</string>
+    <string name="logout">退出登录</string>
     <string name="confirm">确认</string>
     <string name="register">注册</string>
     <string name="next">下一步</string>
@@ -38,6 +38,8 @@
     <string name="report">体检报告</string>
     <string name="add_report">添加报告</string>
     <string name="health_consult">健康咨询</string>
+    <string name="auth_0">未认证</string>
+    <string name="auth_1">已认证</string>
 
     <string name="consult_warning">健管师的回复内容仅作为建议，具体诊疗请前往医院进行</string>
     <string name="scale_down_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleDownShowBehavior</string>
@@ -45,7 +47,7 @@
     <string name="swipe_dismiss_behavior">android.support.design.widget.SwipeDismissBehavior</string>
     <string name="url_default">http://article.h5.ihaozhuo.com/1475216088834.html</string>
 
-    <string name="phone">手机号</string>
+    <string name="phone">手机号码</string>
     <string name="photo">头像</string>
     <string name="name">姓名</string>
     <string name="user_auth">实名认证</string>

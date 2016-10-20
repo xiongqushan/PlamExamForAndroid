@@ -45,7 +45,7 @@
         <activity android:name=".view.login.BindPhoneActivity" />
         <activity android:name=".view.consult.ConsultDetailActivity" />
         <activity android:name=".view.mine.UserInfoActivity" />
-        <activity android:name=".view.report.AddReportActivity" />
+        <activity android:name=".view.report.ReportGetActivity" />
         <activity android:name=".view.mine.settings.SysSetActivity" />
         <activity android:name=".view.mine.settings.AboutUsActivity" />
         <activity

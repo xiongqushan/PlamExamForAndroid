@@ -68,8 +68,8 @@
     <style name="txt_16sp_gray66">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/gray_66</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/gray_33</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 
@@ -78,12 +78,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:textColor">@color/gray_33</item>
-        <item name="android:textSize">@dimen/textsize_h3_16sp</item>
+        <item name="android:textSize">@dimen/textsize_h2</item>
     </style>
 
     <style name="userinfo_label_content">
         <item name="android:textSize">@dimen/textsize_h3_16sp</item>
-        <item name="android:textColor">@color/gray_66</item>
+        <item name="android:textColor">@color/gray_99</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentRight">true</item>
@@ -110,6 +110,25 @@
         <item name="android:layout_weight">1</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="img_mine">
+        <item name="android:layout_width">@dimen/img_mine</item>
+        <item name="android:layout_height">@dimen/img_mine</item>
+        <item name="android:layout_marginLeft">@dimen/padding_12dp</item>
+        <item name="android:layout_marginRight">@dimen/padding_10dp</item>
+    </style>
+
+    <style name="btn_blue_corner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/padding_15dp</item>
+        <item name="android:layout_marginLeft">44dp</item>
+        <item name="android:layout_marginRight">44dp</item>
+        <item name="android:layout_marginTop">@dimen/padding_9dp</item>
+        <item name="android:background">@drawable/bg_blue_corner_shape</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/textsize_h2</item>
     </style>
 
 </resources>

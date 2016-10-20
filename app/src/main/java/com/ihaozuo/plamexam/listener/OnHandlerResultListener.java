@@ -6,5 +6,5 @@ package com.ihaozuo.plamexam.listener;
 public interface OnHandlerResultListener<T> {
     void handlerResultSuccess(T resultData);
 
-    void handlerResultError(T resultData);
+    void handlerResultError(String message);
 }

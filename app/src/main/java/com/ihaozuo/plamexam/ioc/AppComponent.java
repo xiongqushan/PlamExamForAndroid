@@ -3,6 +3,7 @@ package com.ihaozuo.plamexam.ioc;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.service.IHomeService;
 import com.ihaozuo.plamexam.service.IConsultService;
+import com.ihaozuo.plamexam.service.IReportService;
 import com.ihaozuo.plamexam.service.IUserService;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -25,6 +26,8 @@ public interface AppComponent {
     IHomeService getIHomeService();
 
     IConsultService getIConsultService();
+
+    IReportService getIReportService();
 
     //    OkHttpClient getOkHttpClient();
 

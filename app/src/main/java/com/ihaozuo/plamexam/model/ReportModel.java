@@ -27,17 +27,30 @@ public class ReportModel extends AbstractModel {
         mIReportService = iReportService;
     }
 
-    public void getReportList(final OnHandlerResultListener<RestResult<List<ReportItemBean>>> callbackListener) {
+    public void addReportList(String mobile, String realName, final OnHandlerResultListener<RestResult<List<ReportItemBean>>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("Mobile", mobile);
+        params.put("RealName", realName);
+        mIReportService.addReport(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
+    }
+
+    public void getReportList(String accountId, final OnHandlerResultListener<RestResult<List<ReportItemBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
         mIReportService.getReportList(params)
                 .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
-    public void getReportDetail(final OnHandlerResultListener<RestResult<ReportDetailBean>> callbackListener) {
+    public void getReportDetail(String workNo, String checkUnitCode, final OnHandlerResultListener<RestResult<ReportDetailBean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("WorkNo", workNo);
+        params.put("CheckUnitCode", checkUnitCode);
         mIReportService.getReportDetail(params)
                 .compose(applyAsySchedulers())
                 .subscribe(subscriber);

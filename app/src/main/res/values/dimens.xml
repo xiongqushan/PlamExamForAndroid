@@ -12,9 +12,11 @@
     <dimen name="corner_radius1">7dp</dimen>
 
     <dimen name="actionbar_high_48dp">48dp</dimen>
-    <dimen name="actionbar_high_44dp">44dp</dimen>
+    <dimen name="actionbar_high_44dp">49dp</dimen>
+    <dimen name="actionbar_high_mine">242dp</dimen>
     <dimen name="actionbar_padding">10dp</dimen>
     <dimen name="edittext_high">47dp</dimen>
+    <dimen name="img_mine">29dp</dimen>
     <dimen name="padding_15dp">15dp</dimen>
     <dimen name="padding_12dp">12dp</dimen>
     <dimen name="padding_10dp">10dp</dimen>

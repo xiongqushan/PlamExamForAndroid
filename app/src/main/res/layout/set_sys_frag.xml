@@ -17,9 +17,8 @@
     </ScrollView>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/quit" />
+        android:id="@+id/btn_logout"
+        style="@style/btn_blue_corner"
+        android:text="@string/logout" />
 
 </LinearLayout>
