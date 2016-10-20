@@ -21,6 +21,7 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
     private LoginContract.ILoginView mLoginView;
     private UserModel mUserModel;
 
+
     @Inject
     public LoginPresenter(@NonNull LoginContract.ILoginView loginView, @NonNull UserModel usermodel) {
         mLoginView = loginView;
@@ -78,4 +79,6 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
         });
     }
+
+
 }

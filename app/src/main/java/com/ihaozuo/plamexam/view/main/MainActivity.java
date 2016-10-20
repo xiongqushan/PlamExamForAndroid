@@ -21,6 +21,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
+
+    public static final String FINISHACTIVITY = "FINISHACTIVITY";
+
     @Bind(android.R.id.tabhost)
     FragmentTabHost mTabHost;
 

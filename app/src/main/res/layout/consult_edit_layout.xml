@@ -11,11 +11,11 @@
     tools:showIn="@layout/consult_frag">
 
     <ImageView
-        android:id="@+id/btn_sound_message"
+        android:id="@+id/btn_voice"
         android:layout_width="@dimen/consult_btnsend_height"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/consult_customer_usuallymessage_marginleft"
-        android:src="@drawable/sound_message" />
+        android:src="@drawable/btn_voice" />
 
     <ImageView
         android:id="@+id/btn_send"
@@ -23,7 +23,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_marginRight="@dimen/consult_customer_usuallymessage_marginright"
-        android:src="@drawable/usually_message" />
+        android:src="@drawable/btn_send" />
 
     <ImageView
         android:id="@+id/btn_report"
@@ -31,16 +31,19 @@
         android:layout_height="match_parent"
         android:layout_toLeftOf="@id/btn_send"
         android:layout_marginRight="@dimen/consult_customer_usuallymessage_marginright"
-        android:src="@drawable/usually_message" />
+        android:src="@drawable/btn_report"/>
 
     <EditText
         android:id="@+id/edittxt_message"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_margin="@dimen/consult_edittext_margin"
+        android:layout_marginTop="@dimen/consult_edittext_margin_top"
+        android:layout_marginBottom="@dimen/consult_edittext_margin_bottom"
+        android:layout_marginLeft="@dimen/consult_customer_usuallymessage_marginright"
+        android:layout_marginRight="@dimen/consult_customer_usuallymessage_marginright"
         android:layout_toLeftOf="@id/btn_report"
-        android:layout_toRightOf="@id/btn_sound_message"
+        android:layout_toRightOf="@id/btn_voice"
         android:background="@drawable/editview_bg_selector"
         android:paddingRight="@dimen/consult_customer_edittext_padding"
         android:paddingLeft="@dimen/consult_customer_edittext_padding"

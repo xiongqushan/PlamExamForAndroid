@@ -10,15 +10,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.bean.ReportItemBean;
+import com.ihaozuo.plamexam.bean.ReportAddBean;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -104,8 +102,8 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
     }
 
     @Override
-    public void showReportList(List<ReportItemBean> datalList) {
-        if (datalList != null && datalList.size() > 0) {
+    public void showReportList(ReportAddBean reportAddBean) {
+        if (reportAddBean.Reports != null && reportAddBean.Reports.size() > 0) {
             Intent intent = new Intent(ReportListFragment.REFRESH_REPORTLIST);
             //intent.putExtra("listobj", (Serializable) datalList);
             getActivity().sendBroadcast(intent);

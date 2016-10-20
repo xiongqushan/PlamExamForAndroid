@@ -17,7 +17,6 @@ public class SysConfig {
 
     public static final String CONTROLLER_PRE_API_CONSULT = "api/" + CURRENT_BASE_VERSION + "/Consult/" ;
 
-
     public static final int CONNECT_TIMEOUT = 30;
     public static final int WRITE_TIMEOUT = 30;
     public static final int READ_TIMEOUT = 40;

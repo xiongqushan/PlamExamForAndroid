@@ -141,7 +141,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             initView();
             mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
         }
-        ButterKnife.bind(this, rootView);// TODO 多次切换空指针
         return rootView;
     }
 
@@ -189,7 +188,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
+//        ButterKnife.unbind(this);
     }
 
     @Override

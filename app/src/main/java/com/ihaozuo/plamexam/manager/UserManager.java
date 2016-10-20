@@ -12,7 +12,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.ref.SoftReference;
 
 /**
  * Created by hzguest3 on 2016/10/11.
@@ -20,9 +19,9 @@ import java.lang.ref.SoftReference;
 public class UserManager {
     private static final String SP_NAME = "USER";
     private static final String USER_INFO_KEY = "USER_INFO_KEY";
+    private static String USER_DOCTOR_ID;
     private static UserManager _instance;
     private SharedPreferences sharedPreferences;
-    private SoftReference<UserBean> _currentEntity;
     private UserBean _currentUserEntity;
     private UserManager() {
         if (null == sharedPreferences) {
@@ -77,6 +76,13 @@ public class UserManager {
         return  _currentUserEntity;
     }
 
+    public void setDoctorID(String doctorID){
+        USER_DOCTOR_ID=doctorID;
+    }
+
+    public String getDoctorID(){
+        return  USER_DOCTOR_ID;
+    }
 
     public boolean exist(){
 //        return true;

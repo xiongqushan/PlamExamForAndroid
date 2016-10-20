@@ -2,15 +2,13 @@ package com.ihaozuo.plamexam.presenter;
 
 import android.support.annotation.NonNull;
 
-import com.ihaozuo.plamexam.bean.ReportItemBean;
+import com.ihaozuo.plamexam.bean.ReportAddBean;
 import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.model.ReportModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -48,9 +46,9 @@ public class ReportGetPresenter extends AbstractPresenter implements ReportContr
     @Override
     public void getReport(String mobile, String realName) {
         mView.showDialog();
-        mReportModel.addReportList(mobile, realName, new OnHandlerResultListener<RestResult<List<ReportItemBean>>>() {
+        mReportModel.addReportList(mobile, realName, new OnHandlerResultListener<RestResult<ReportAddBean>>() {
             @Override
-            public void handlerResultSuccess(RestResult<List<ReportItemBean>> resultData) {
+            public void handlerResultSuccess(RestResult<ReportAddBean> resultData) {
                 mView.showReportList(resultData.Data);
             }
 

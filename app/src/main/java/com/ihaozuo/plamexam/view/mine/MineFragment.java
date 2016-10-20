@@ -13,8 +13,9 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
-import com.ihaozuo.plamexam.view.consult.ConsultGradeActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.mine.settings.SysSetActivity;
+import com.ihaozuo.plamexam.view.report.ReportActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -39,6 +40,7 @@ public class MineFragment extends BaseFragment {
             rootView = inflater.inflate(R.layout.mine_frag, container, false);
             ButterKnife.bind(this, rootView);
             initView();
+            registerCustomReceiver(MainActivity.FINISHACTIVITY);
         }
         return rootView;
     }
@@ -53,6 +55,12 @@ public class MineFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
+    @Override
+    protected void onReceiveBroadcast(String filterAction, Intent intent) {
+        if (filterAction.equals(MainActivity.FINISHACTIVITY)) {
+            getActivity().finish();
+        }
+    }
 
     @OnClick({R.id.layoutUser, R.id.layoutUserInfo, R.id.layoutSysSet, R.id.layoutReportEx})
     public void onClick(View view) {
@@ -71,7 +79,7 @@ public class MineFragment extends BaseFragment {
                 getActivity().startActivity(new Intent(getActivity(), SysSetActivity.class));
                 break;
             case R.id.layoutReportEx:
-                getActivity().startActivity(new Intent(getActivity(), ConsultGradeActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), ReportActivity.class));
                 break;
         }
     }

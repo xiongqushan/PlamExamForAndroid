@@ -17,46 +17,50 @@
         android:layout_marginLeft="@dimen/docinfo_padding"
         android:layout_marginRight="@dimen/docinfo_padding"
         fresco:roundAsCircle="true"
-        fresco:placeholderImage="@drawable/banner"
-        fresco:placeholderImageScaleType="fitCenter" />
+        fresco:placeholderImage="@drawable/user_default_url"
+        fresco:placeholderImageScaleType="fitCenter"
+        fresco:failureImage="@drawable/user_default_url"
+        fresco:failureImageScaleType="fitCenter"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:padding="@dimen/docinfo_padding"
+        android:layout_height="87dp"
         android:layout_weight="1"
         android:layout_gravity="center_vertical"
         android:gravity="center">
-
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="@dimen/textsize_h2"
-            android:text="健管师"/>
+            android:textSize="@dimen/textsize_h3_16sp"
+            tools:text="健管师"/>
 
         <TextView
-            android:id="@+id/tv_role"
+            android:id="@+id/tv_Speciality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/tv_name"
             android:layout_toRightOf="@+id/tv_name"
+            android:layout_marginLeft="10dp"
             android:ellipsize="end"
             android:padding="3dp"
-            android:textSize="@dimen/textsize_h3_16sp"
-            android:text="全科医生，高级健康管理师，全科医生，高级健康管理师"/>
+            android:textSize="@dimen/textsize_h5_12sp"
+            android:textColor="@color/gray_99"
+            tools:text="全科医生，高级健康管理师，全科医生，高级健康管理师"/>
 
         <TextView
             android:id="@+id/tv_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/tv_name"
-            android:layout_below="@+id/tv_role"
+            android:layout_below="@+id/tv_Speciality"
             android:maxLines="2"
             android:ellipsize="end"
             android:padding="3dp"
-            android:textSize="@dimen/textsize_h4"
+            android:textSize="@dimen/textsize_h5_12sp"
+            android:textColor="@color/gray_66"
             android:text="工作时间：工作日9:00-17:30，节假日回复时间：72小时内，请您耐心等待，感谢您的咨询！"/>
 
     </RelativeLayout>

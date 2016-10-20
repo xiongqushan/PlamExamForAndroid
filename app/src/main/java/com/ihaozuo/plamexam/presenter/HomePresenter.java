@@ -65,6 +65,7 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
         });
     }
 
+
     @Override
     public void getBanner(int departId) {
         mHomeView.showDialog();

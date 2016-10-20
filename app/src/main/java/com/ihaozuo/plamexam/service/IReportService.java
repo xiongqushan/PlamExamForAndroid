@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.service;
 
 import com.ihaozuo.plamexam.bean.BaseBean;
+import com.ihaozuo.plamexam.bean.ReportAddBean;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
@@ -17,7 +18,7 @@ import rx.Observable;
  */
 public interface IReportService {
     @POST(SysConfig.CONTROLLER_PRE_API_REPORT + "Add")
-    Observable<BaseBean<List<ReportItemBean>>> addReport(@Body Map<String, Object> params);
+    Observable<BaseBean<ReportAddBean>> addReport(@Body Map<String, Object> params);
 
     @POST(SysConfig.CONTROLLER_PRE_API_REPORT + "Reports")
     Observable<BaseBean<List<ReportItemBean>>> getReportList(@Body Map<String, Object> params);

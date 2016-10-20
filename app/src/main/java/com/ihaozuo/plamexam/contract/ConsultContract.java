@@ -14,6 +14,10 @@ public interface ConsultContract {
 
         void refreshConsultList(List<ConsultDetailBean> list);
 
+        void setDoctorInfo();
+
+        void addReply(ConsultDetailBean replyContent);
+
     }
 
     interface IConsultPresenter extends IBasePresenter{

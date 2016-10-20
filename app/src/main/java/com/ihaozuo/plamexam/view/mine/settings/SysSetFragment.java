@@ -13,9 +13,13 @@ import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
+
+import com.ihaozuo.plamexam.manager.DoctorManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.view.login.LoginActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -128,10 +132,15 @@ public class SysSetFragment extends BaseFragment {
                 new SettingsDialog(getActivity(), new SettingsDialog.OnDialogListener() {
                     @Override
                     public void OnDialogConfirmListener() {
-
+                        UserManager.getInstance().clear();
+                        DoctorManager.getInstance().clear();
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+                        sendCustomBroadcast(MainActivity.FINISHACTIVITY);
+                        getActivity().finish();
                     }
                 }).setContentText("确定退出登录？").show();
                 break;
         }
     }
+
 }

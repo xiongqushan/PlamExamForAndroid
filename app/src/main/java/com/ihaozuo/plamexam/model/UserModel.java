@@ -2,6 +2,7 @@ package com.ihaozuo.plamexam.model;
 
 import android.support.annotation.NonNull;
 
+import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
@@ -9,6 +10,7 @@ import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.service.IUserService;
 import com.ihaozuo.plamexam.util.HZUtils;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -51,6 +53,36 @@ public class UserModel extends AbstractModel {
         params.put("ValidCode", validCode);
         params.put("OS", SysConfig.LOCAL_OPERATION_SYSTEM);
         mIUserService.register(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void getDoctorId(String accountId, final OnHandlerResultListener<RestResult<String>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        mIUserService.getDoctorId(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void getDoctorList(final OnHandlerResultListener<RestResult<List<DoctorInfoBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        mIUserService.getDoctorList(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void modifyUserInfo(String accountId,String realName, final OnHandlerResultListener<RestResult<List<DoctorInfoBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String,Object> params = HZUtils.initParamsMap();
+        params.put("AccountId",accountId);
+        params.put("RealName",realName);
+        mIUserService.modifyUserInfo(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

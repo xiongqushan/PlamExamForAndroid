@@ -2,10 +2,12 @@ package com.ihaozuo.plamexam.model;
 
 import android.support.annotation.NonNull;
 
+import com.ihaozuo.plamexam.bean.ReportAddBean;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.service.IReportService;
 import com.ihaozuo.plamexam.util.HZUtils;
 
@@ -27,9 +29,10 @@ public class ReportModel extends AbstractModel {
         mIReportService = iReportService;
     }
 
-    public void addReportList(String mobile, String realName, final OnHandlerResultListener<RestResult<List<ReportItemBean>>> callbackListener) {
+    public void addReportList(String mobile, String realName, final OnHandlerResultListener<RestResult<ReportAddBean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", UserManager.getInstance().getUserInfo().AccountId);
         params.put("Mobile", mobile);
         params.put("RealName", realName);
         mIReportService.addReport(params)

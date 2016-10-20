@@ -61,7 +61,7 @@
         <!-- 移动统计分析 -->
         <meta-data
             android:name="IFLYTEK_APPKEY"
-            android:value="5804a7be" />
+            android:value="@string/app_id" />
         <meta-data
             android:name="IFLYTEK_CHANNEL"
             android:value="COM.IHAOZUO.PLAMEXAM" />
