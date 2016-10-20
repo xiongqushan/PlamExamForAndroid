@@ -43,6 +43,8 @@
     <dimen name="login_margin_vertical">36dp</dimen>
     <dimen name="img_thirdpart_logo">39dp</dimen>
 
+    <dimen name="consult_loading_height">122dp</dimen>
+
     <dimen name="img_head">60dp</dimen>
     <dimen name="docinfo_padding">10dp</dimen>
     <dimen name="consult_tab_height">50dp</dimen>

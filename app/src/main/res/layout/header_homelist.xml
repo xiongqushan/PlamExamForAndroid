@@ -6,10 +6,14 @@
     android:paddingBottom="4dp">
     <!--<android.support.v4.view.ViewPager-->
     <com.ihaozuo.plamexam.common.AutoViewPager
-
         android:id="@+id/BannerPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <!--<com.ihaozuo.plamexam.common.Banner.XBanner-->
+        <!--android:id="@+id/BannerPager"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"/>-->
 
     <!--<include layout="@layout/divider_9dp" />-->
 

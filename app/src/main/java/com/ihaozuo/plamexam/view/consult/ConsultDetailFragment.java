@@ -30,6 +30,7 @@ import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.Voice2TxtUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
 import java.util.List;
 
@@ -45,8 +46,6 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     ImageView imgActionbarLeft;
     @Bind(R.id.txt_actionbar_title)
     TextView txtActionbarTitle;
-    @Bind(R.id.img_actionbar_right)
-    ImageView imgActionbarRight;
     @Bind(R.id.actionbar)
     RelativeLayout actionbar;
     @Bind(R.id.img_head)
@@ -175,13 +174,11 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
                 break;
 
             case R.id.btn_report:
-
+                startActivity(new Intent(mContext, ReportListActivity.class));
                 break;
 
             case R.id.btn_send:
                 sendMessage();
-
-
                 break;
 
             case R.id.fab:

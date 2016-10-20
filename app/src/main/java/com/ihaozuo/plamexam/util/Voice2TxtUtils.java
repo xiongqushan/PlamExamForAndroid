@@ -228,5 +228,6 @@ public class Voice2TxtUtils {
     public static void destroyIat(){
         mIat.cancel();
         mIat.destroy();
+        mContext = null;
     }
 }

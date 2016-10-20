@@ -64,7 +64,7 @@ public class BannerFragment extends Fragment {
             view = inflater.inflate(R.layout.banner_frag, container,
                     false);
             SimpleDraweeView img = (SimpleDraweeView) view.findViewById(R.id.imgBanner);
-            if (dataList == null) {
+            if (dataList == null || dataList.size() == 0) {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

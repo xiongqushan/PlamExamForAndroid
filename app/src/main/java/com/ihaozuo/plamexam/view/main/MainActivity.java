@@ -13,9 +13,9 @@ import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
+import com.ihaozuo.plamexam.view.consult.ConsultLoadingFragment;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
 import com.ihaozuo.plamexam.view.mine.MineFragment;
-import com.ihaozuo.plamexam.view.news.NewsListFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -37,6 +37,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         LOCAL_CLASS_NAME = getLocalClassName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act);
@@ -44,7 +46,8 @@ public class MainActivity extends BaseActivity {
         supportFragmentManager = getSupportFragmentManager();
         mTabHost.setup(this, supportFragmentManager, R.id.realtabcontent);
         addTab(getString(R.string.tab_home), R.drawable.tabhost_home, HomeFragment.class);
-        addTab(getString(R.string.tab_consult), R.drawable.tabhost_consult, NewsListFragment.class);
+//        addTab(getString(R.string.tab_consult), R.drawable.tabhost_consult, NewsListFragment.class);
+        addTab(getString(R.string.tab_consult), R.drawable.tabhost_consult, ConsultLoadingFragment.class);
         addTab(getString(R.string.tab_mine), R.drawable.tabhost_mine, MineFragment.class);
     }
 

@@ -12,6 +12,11 @@ public class Width16Heigth9DraweeView extends SimpleDraweeView {
 
     public Width16Heigth9DraweeView(Context context) {
         super(context);
+        WindowManager wm = (WindowManager) getContext().getSystemService(
+                Context.WINDOW_SERVICE);
+        width = wm.getDefaultDisplay().getWidth();
+        double proportion = (((double) 2) / 3);
+        height = (int) (width * proportion);
     }
 
     @SuppressWarnings("deprecation")

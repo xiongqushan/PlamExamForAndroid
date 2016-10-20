@@ -7,11 +7,6 @@
 
     <include layout="@layout/actionbar" />
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="80dp"-->
-        <!--android:background="@color/androidColorB" />-->
-
     <include layout="@layout/consult_docinfo_layout"/>
 
     <LinearLayout
@@ -131,7 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="104dp"
         android:layout_margin="12dp"
-        android:background="@drawable/bg_white_corner_shape"
+        android:background="@drawable/bg_white_corner_selector"
         android:gravity="top"
         android:hint="@string/hint_grade"
         android:padding="12dp"

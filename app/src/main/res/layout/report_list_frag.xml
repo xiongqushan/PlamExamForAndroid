@@ -23,7 +23,6 @@
                 android:layout_centerHorizontal="true"
                 android:padding="@dimen/userinfo_padding_12dp"
                 android:src="@drawable/ic_add_report" />
-            w
 
             <TextView
                 android:id="@+id/add"
