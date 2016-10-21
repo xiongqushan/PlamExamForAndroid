@@ -14,11 +14,13 @@ public interface HomeContract {
     interface IHomeView extends IBaseView<IHomePresenter> {
         void initBanner(List<BannerBean> bannerList);
 
-        void initNews(List<NewsBean> newsList);
+//        void initNews(List<NewsBean> newsList);
 
         void showUnreadMark();
 
-        void hideUnreadMark();
+//        void hideUnreadMark();
+
+        void refreshNewsList(List<NewsBean> newsList);
 
     }
 
@@ -28,6 +30,8 @@ public interface HomeContract {
 
         void getUnreadMartState(String accountId);
 
-        void removeUnreadMark(String accountId);
+//        void removeUnreadMark(String accountId);
+
+        void getNewsList(int pageIndex,int pageSize);
     }
 }

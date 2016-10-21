@@ -35,6 +35,11 @@ public class ImageLoadUtils {
         public static ImageLoadUtils instance = new ImageLoadUtils();
     }
 
+//    public static ImageLoadUtils getInstance(Context context) {
+//        UtilsHolder.instance.initContext(context);
+//        return UtilsHolder.instance;
+//    }
+//
     public static ImageLoadUtils getInstance(Context context) {
         UtilsHolder.instance.initContext(context);
         return UtilsHolder.instance;
@@ -68,9 +73,30 @@ public class ImageLoadUtils {
         this.context = context;
     }
 
-    public GenericDraweeHierarchy initHierarchy(SimpleDraweeView simpleDraweeView) {
+//    public GenericDraweeHierarchy initHierarchy(SimpleDraweeView simpleDraweeView) {
+//        GenericDraweeHierarchy hierarchy = simpleDraweeView.getHierarchy();
+////        hierarchy.setPlaceholderImage(R.drawable.pic_loading); // 修改占位图
+//        hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP); // 修改缩放类型
+//        hierarchy.setActualImageFocusPoint(new PointF(0.5f, 0.5f)); // 居中显示
+//        RoundingParams roundingParams = RoundingParams.fromCornersRadius(10);
+//        roundingParams.setCornersRadius(10);
+////        roundingParams.setBorder(R.color.gray, 1); // 设置边框颜色及宽度
+//        // roundingParams.setOverlayColor(R.color.transparent); // 固定背景颜色
+//        // roundingParams.setCornersRadii(10, 10, 10, 10); // 指定四个角的圆角度数
+////         roundingParams.setRoundAsCircle(false); // 设置为圆圈
+////        hierarchy.setRoundingParams(roundingParams); // 设置圆角
+////        hierarchy.setFailureImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置加载失败的占位图
+////        hierarchy.setRetryImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置重试加载的占位图
+////        hierarchy.setProgressBarImage(new ProgressBarDrawable()); // 图片加载进度条, 如果想精确显示加载进度，需要重写 Drawable.onLevelChange
+//        hierarchy.setFadeDuration(1500); // 淡出效果
+//        return hierarchy;
+//    }
+
+    public GenericDraweeHierarchy initHierarchyWithPlacehold(SimpleDraweeView simpleDraweeView, int placeHoldImage) {
         GenericDraweeHierarchy hierarchy = simpleDraweeView.getHierarchy();
-//        hierarchy.setPlaceholderImage(R.drawable.pic_loading); // 修改占位图
+        if(placeHoldImage!=0){
+            hierarchy.setPlaceholderImage(placeHoldImage); // 修改占位图
+        }
         hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP); // 修改缩放类型
         hierarchy.setActualImageFocusPoint(new PointF(0.5f, 0.5f)); // 居中显示
         RoundingParams roundingParams = RoundingParams.fromCornersRadius(10);
@@ -83,7 +109,7 @@ public class ImageLoadUtils {
 //        hierarchy.setFailureImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置加载失败的占位图
 //        hierarchy.setRetryImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置重试加载的占位图
 //        hierarchy.setProgressBarImage(new ProgressBarDrawable()); // 图片加载进度条, 如果想精确显示加载进度，需要重写 Drawable.onLevelChange
-        hierarchy.setFadeDuration(1500); // 淡出效果
+//        hierarchy.setFadeDuration(1500); // 淡出效果
         return hierarchy;
     }
 
@@ -166,7 +192,7 @@ public class ImageLoadUtils {
      * @param simpleDraweeView
      */
     public void display(Uri uri, SimpleDraweeView simpleDraweeView) {
-        simpleDraweeView.setHierarchy(initHierarchy(simpleDraweeView));
+        simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView, 0));
         simpleDraweeView.setController(initController(simpleDraweeView, uri));
     }
 
@@ -174,5 +200,13 @@ public class ImageLoadUtils {
 
         Uri uri = Uri.parse(url);
         display(uri, simpleDraweeView);
+    }
+
+    public void display(String url, SimpleDraweeView simpleDraweeView,int placeHoldImage) {
+
+        Uri uri = Uri.parse(url);
+        simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView,placeHoldImage));
+        simpleDraweeView.setController(initController(simpleDraweeView, uri));
+
     }
 }

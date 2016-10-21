@@ -1,19 +1,12 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:padding="@dimen/padding_10dp">
 
 
-    <!--<ImageView-->
-    <!--android:id="@+id/imgBanner"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:scaleType="centerCrop"-->
-    <!--android:src="@drawable/banner1" />-->
-
-
-    <com.ihaozuo.plamexam.common.Width16Heigth9DraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
+<com.ihaozuo.plamexam.common.Width16Heigth9DraweeView xmlns:fresco="http://schemas.android.com/apk/res-auto"
         android:id="@+id/imgBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

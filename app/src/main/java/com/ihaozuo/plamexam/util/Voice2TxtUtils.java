@@ -35,21 +35,21 @@ public class Voice2TxtUtils {
     public static final String PREFER_NAME = "com.iflytek.setting";
     public static final String PREF_KEY_IAT_SHOW = "com.iflytek.setting";
     public static final String TEXT_BEGIN = "请开始说话…";
-    private static String TAG = ConsultDetailFragment.class.getSimpleName();
-    private static SpeechRecognizer mIat;                                                              // 语音听写对象
-    private static RecognizerDialog mIatDialog;                                                       // 语音听写UI
-    private static HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();         // 用HashMap存储听写结果
-    private static String mEngineType = SpeechConstant.TYPE_CLOUD;                                   // 引擎类型
-    static int ret = 0;                                                                                 // 函数调用返回值
-    private static Toast mToast;
-    private static SharedPreferences mSharedPreferences;
-    private static EditText mEditText;
+    private  String TAG = ConsultDetailFragment.class.getSimpleName();
+    private  SpeechRecognizer mIat;                                                              // 语音听写对象
+    private  RecognizerDialog mIatDialog;                                                       // 语音听写UI
+    private  HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();                     // 用HashMap存储听写结果
+    private  String mEngineType = SpeechConstant.TYPE_CLOUD;                                  // 引擎类型
+    static int ret = 0;                                                                          // 函数调用返回值
+    private  Toast mToast;
+    private  SharedPreferences mSharedPreferences;
+    private  EditText mEditText;
 
-    private static Context mContext;
+    private Context mContext;
 
+    public Voice2TxtUtils(){}
 
-
-    public static void getVoiceContent(EditText edittxtMessage) {
+    public void getVoiceContent(EditText edittxtMessage) {
         mEditText = edittxtMessage;
 
         // 移动数据分析，收集开始听写事件
@@ -80,7 +80,7 @@ public class Voice2TxtUtils {
         }
     }
 
-    public static void initSpeechRecognizer(Context context) {
+    public void initSpeechRecognizer(Context context) {
         mContext = context;
         mIat = SpeechRecognizer.createRecognizer(mContext, mInitListener);
         mIatDialog = new RecognizerDialog(mContext, mInitListener);
@@ -89,7 +89,7 @@ public class Voice2TxtUtils {
         mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
     }
 
-    private static InitListener mInitListener = new InitListener() {
+    private InitListener mInitListener = new InitListener() {
 
         @Override
         public void onInit(int code) {
@@ -100,7 +100,7 @@ public class Voice2TxtUtils {
         }
     };
 
-    private static RecognizerListener mRecognizerListener = new RecognizerListener() {
+    private RecognizerListener mRecognizerListener = new RecognizerListener() {
 
         @Override
         public void onBeginOfSpeech() {
@@ -149,7 +149,7 @@ public class Voice2TxtUtils {
         }
     };
 
-    private static void printResult(RecognizerResult results) {
+    private void printResult(RecognizerResult results) {
         String text = JsonParser.parseIatResult(results.getResultString());
         String sn = null;       // 读取json结果中的sn字段
         try {
@@ -171,7 +171,7 @@ public class Voice2TxtUtils {
         mEditText.setSelection(mEditText.length());
     }
 
-    private static RecognizerDialogListener mRecognizerDialogListener = new RecognizerDialogListener() {
+    private RecognizerDialogListener mRecognizerDialogListener = new RecognizerDialogListener() {
         public void onResult(RecognizerResult results, boolean isLast) {
             printResult(results);
         }
@@ -185,12 +185,12 @@ public class Voice2TxtUtils {
 
     };
 
-    private static void showTip(final String str) {
+    private void showTip(final String str) {
         mToast.setText(str);
         mToast.show();
     }
 
-    public static void setParam() {
+    public void setParam() {
         // 清空参数
         mIat.setParameter(SpeechConstant.PARAMS, null);
         // 设置听写引擎
@@ -225,7 +225,7 @@ public class Voice2TxtUtils {
         mIat.setParameter(SpeechConstant.ASR_AUDIO_PATH, Environment.getExternalStorageDirectory() + "/msc/iat.wav");
     }
 
-    public static void destroyIat(){
+    public void destroyIat(){
         mIat.cancel();
         mIat.destroy();
         mContext = null;

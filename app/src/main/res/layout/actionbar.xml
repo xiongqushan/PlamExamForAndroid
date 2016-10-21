@@ -16,7 +16,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:padding="@dimen/actionbar_padding"
-            android:src="@drawable/go_back"
+            android:src="@drawable/btn_goback"
             android:visibility="invisible" />
 
         <TextView
@@ -39,11 +39,11 @@
             <!--android:visibility="invisible" />-->
 
         <TextView
-            android:id="@+id/tv_getReport"
+            android:id="@+id/tv_addReport"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            tools:text="添加报告"
+            android:text="添加报告"
             android:textColor="@color/white"
             android:layout_alignParentRight="true"
             android:padding="5dp"

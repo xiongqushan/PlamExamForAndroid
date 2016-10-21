@@ -8,8 +8,8 @@ import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
-import com.ihaozuo.plamexam.util.CustomDialog;
-import com.ihaozuo.plamexam.util.LoadingDialog;
+import com.ihaozuo.plamexam.common.dialog.CustomDialog;
+import com.ihaozuo.plamexam.common.dialog.LoadingDialog;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.HZUtils;
 

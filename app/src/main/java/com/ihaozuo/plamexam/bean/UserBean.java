@@ -11,7 +11,7 @@ public class UserBean implements Serializable{
     public String AccountId;
     public String RealName;
     public String Mobile;
-    public int DepartId;
+    public String DepartId;
     public String DepartName;
     public String OS;
     public String lastUpdateDate;

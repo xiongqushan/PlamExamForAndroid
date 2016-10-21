@@ -35,7 +35,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     RelativeLayout layoutReportAdd;
     @Bind(R.id.listview_report)
     ListView mListView;
-    @Bind(R.id.tv_getReport)
+    @Bind(R.id.tv_addReport)
     TextView tvGetReport;
     private View rootView;
 
@@ -69,8 +69,9 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
         rootView = inflater.inflate(R.layout.report_list_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.report));
         ButterKnife.bind(this, rootView);
-        initView();
         registerCustomReceiver(REFRESH_REPORTLIST);
+
+        initView();
         mPresenter.start();
         return rootView;
     }
@@ -85,7 +86,9 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
 //        mListView.setVisibility(View.VISIBLE);
 //        tvGetReport.setVisibility(View.INVISIBLE);
-        showReportList(null);
+//        if (filterAction.equals(REFRESH_REPORTLIST)){
+            showReportList(null);
+//        }
     }
 
     private void initView() {
@@ -118,7 +121,6 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     @OnClick(R.id.layout_report_add)

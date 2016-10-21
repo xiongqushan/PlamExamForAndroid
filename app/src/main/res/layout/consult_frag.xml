@@ -80,7 +80,8 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/fab_bg"
-            android:background="@drawable/fab_bg_selector"/>
+            android:background="@drawable/fab_bg_selector"
+            android:visibility="invisible"/>
 
 
     </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.view.report;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,9 +12,11 @@ import android.widget.ListView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ReportErrorFragment extends Fragment {
 
@@ -43,6 +46,11 @@ public class ReportErrorFragment extends Fragment {
     private void initView() {
         BaseAdapter adapter = new ListAdapter();
         mListView.setAdapter(adapter);
+    }
+
+    @OnClick(R.id.btnReportError)
+    public void onClick() {
+        startActivity(new Intent(getContext(), ConsultDetailActivity.class));
     }
 
     private class ListAdapter extends SimpleBaseAdapter {

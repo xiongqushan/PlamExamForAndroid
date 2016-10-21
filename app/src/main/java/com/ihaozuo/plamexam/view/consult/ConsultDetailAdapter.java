@@ -28,6 +28,7 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.bean.UserBean;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 
@@ -108,7 +109,7 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
 
     public void bindLeftItem(ConsultDetailBean entity,ConsultLeftHolder holder){
         if (null != mDoctorInfo.ImageSrc){
-            ImageLoadUtils.getInstance(mContext).display(mDoctorInfo.ImageSrc,holder.draweeConsultItemPhoto);
+            ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mDoctorInfo.ImageSrc,holder.draweeConsultItemPhoto);
         }
         holder.txtConsultCommiton.setText(entity.getDate());
         holder.txtConsultItem.setText(entity.Content);

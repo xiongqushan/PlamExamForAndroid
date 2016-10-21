@@ -40,8 +40,8 @@ public class SettingsDialog extends Dialog {
         WindowManager.LayoutParams p = window.getAttributes();  //获取对话框当前的参数值
 //        p.height = (int) (ScreenUtils.getScreenHeight(context) * 0.3);   //高度设置为屏幕的0.3
 //        p.width = (int) (ScreenUtils.getScreenWidth(context) * 0.8);    //宽度设置为屏幕的0.6
-        p.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        p.width = WindowManager.LayoutParams.WRAP_CONTENT;
+//        p.height = WindowManager.LayoutParams.WRAP_CONTENT;
+//        p.width = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(p);     //设置生效
     }
 

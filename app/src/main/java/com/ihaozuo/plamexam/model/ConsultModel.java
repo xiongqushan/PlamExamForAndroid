@@ -43,7 +43,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
-        params.put("Type", 3);//1,3尚未约定
+        params.put("Type", type);//1,3尚未约定
         params.put("ConsultContent", consultContent);
         params.put("AppendInfo", "");//暂时为空
         mIConsultService.sendMessage(params)

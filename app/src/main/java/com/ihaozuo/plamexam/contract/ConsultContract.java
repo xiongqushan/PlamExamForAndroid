@@ -18,6 +18,8 @@ public interface ConsultContract {
 
         void addReply(ConsultDetailBean replyContent);
 
+        void removeUnreadMark();
+
     }
 
     interface IConsultPresenter extends IBasePresenter{

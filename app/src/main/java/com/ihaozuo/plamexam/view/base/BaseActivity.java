@@ -1,7 +1,10 @@
 package com.ihaozuo.plamexam.view.base;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +28,8 @@ import com.umeng.analytics.MobclickAgent;
  * Created by xiongwei1 on 2016/7/8.
  */
 public abstract class BaseActivity extends AppCompatActivity {
+    private BroadcastReceiver receiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,6 +132,33 @@ public abstract class BaseActivity extends AppCompatActivity {
             im.hideSoftInputFromWindow(token,
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
+    }
+
+    protected void registerCustomReceiver(String activeName) {
+        String[] filterActiveNames = new String[]{activeName};
+        registerCustomReceiver(filterActiveNames);
+    }
+
+    protected void registerCustomReceiver(String[] filterActiveNames) {
+        if (receiver != null) {
+            getBaseContext().unregisterReceiver(receiver);
+        }
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String actionName = intent.getAction();
+                onReceiveBroadcast(actionName, intent);
+            }
+        };
+        IntentFilter filter = new IntentFilter();
+        for (String activeName : filterActiveNames) {
+            filter.addAction(activeName);
+        }
+        getBaseContext().registerReceiver(receiver, filter);
+    }
+
+    protected void onReceiveBroadcast(String filterAction, Intent intent) {
+
     }
 
 
