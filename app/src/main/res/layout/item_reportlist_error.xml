@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/card_margin"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    app:cardCornerRadius="@dimen/card_margin"
-    app:cardUseCompatPadding="true">
-    <!--app:cardCornerRadius="4dp"-->
-    <!--app:cardElevation="5dp"-->
-    <!--app:cardMaxElevation="10dp"-->
-    <!--app:cardPreventCornerOverlap="true"-->
-    <!--app:cardUseCompatPadding="true">-->
+    android:background="@color/white">
 
 
     <RelativeLayout
+        android:id="@+id/content_comment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/userinfo_padding_12dp"
-        android:layout_marginRight="@dimen/userinfo_padding_12dp"
+        android:layout_toLeftOf="@+id/checkbox_report_error"
         android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:paddingTop="8dp">
+        android:paddingBottom="@dimen/padding_9dp"
+        android:paddingLeft="@dimen/padding_12dp"
+        android:paddingRight="@dimen/padding_12dp"
+        android:paddingTop="@dimen/padding_9dp">
 
         <TextView
             android:id="@+id/lineCenter"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/divider"
+            android:layout_height="0dp"
             android:layout_below="@+id/tvTitle"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:background="@color/divider_dd"
             android:visibility="visible" />
 
@@ -39,7 +29,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:text="阿斯蒂芬"
             android:textColor="@color/gray_33"
             android:textSize="@dimen/textsize_h3_16sp" />
@@ -50,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="12"
-            android:textColor="#FFFA7981"
+            android:textColor="@color/gray_33"
             android:textSize="@dimen/textsize_h3_16sp" />
 
         <TextView
@@ -58,10 +48,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/lineCenter"
-            android:layout_marginRight="12dp"
+            android:layout_marginRight="8dp"
             android:layout_toLeftOf="@+id/tvUnit"
             android:text="金鳞岂是池中物"
-            android:textColor="@color/gray_b2"
+            android:textColor="@color/gray_66"
             android:textSize="@dimen/textsize_h4" />
 
         <TextView
@@ -71,10 +61,28 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/lineCenter"
             android:text="单位:uml/ml"
-            android:textColor="@color/gray_b2"
+            android:textColor="@color/gray_66"
             android:textSize="@dimen/textsize_h4" />
     </RelativeLayout>
 
+    <CheckBox
+        android:id="@+id/checkbox_report_error"
+        android:layout_width="44dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/content_comment"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/content_comment"
+        android:gravity="center"
+        android:padding="@dimen/padding_10dp"
+        android:visibility="gone" />
 
-</android.support.v7.widget.CardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:layout_below="@+id/content_comment"
+        android:background="@color/divider_dd" />
+
+
+</RelativeLayout>
 

@@ -6,6 +6,7 @@ import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
+import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.model.ReportModel;
@@ -63,6 +64,8 @@ public class ReportListPresenter extends AbstractPresenter implements ReportCont
                     mView.hideDialog("暂无报告");
                 }
                 mView.toggleRetryLayer(false);
+                ReportManager.getInstance().setReportList(resultData.Data);
+                ReportManager.getInstance().setFirstRequest(false);
             }
 
             @Override

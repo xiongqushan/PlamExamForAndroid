@@ -9,12 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
-
 import com.ihaozuo.plamexam.manager.DoctorManager;
+import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
@@ -99,7 +98,6 @@ public class SysSetFragment extends BaseFragment {
         if (HZUtils.isFastDoubleClick()) {
             return;
         }
-        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
         switch (view.getId()) {
 //            case R.id.layoutSetPhone:
 //                break;
@@ -134,6 +132,7 @@ public class SysSetFragment extends BaseFragment {
                     public void OnDialogConfirmListener() {
                         UserManager.getInstance().clear();
                         DoctorManager.getInstance().clear();
+                        ReportManager.getInstance().clear();
                         startActivity(new Intent(getContext(), LoginActivity.class));
                         sendCustomBroadcast(MainActivity.FINISHACTIVITY);
                         getActivity().finish();

@@ -4,18 +4,18 @@
     <item>
         <shape>
             <!--    边框颜色 -->
-            <solid android:color="@color/gray_f2" />
+            <solid android:color="@color/main_color_blue" />
         </shape>
     </item>
-    <!-- 给View的上 左  右设置8dp的边框 -->
-    <item
-        android:bottom="1dp"
-        android:top="1dp">
-        <shape>
-            <!--     View填充颜色 -->
-            <solid android:color="@color/tab_report_checked" />
-        </shape>
-    </item>
+    <!-- 给View的上 左  右设置1dp的边框 -->
+    <!--<item-->
+        <!--android:bottom="1dp"-->
+        <!--android:top="1dp">-->
+        <!--<shape>-->
+            <!--&lt;!&ndash;     View填充颜色 &ndash;&gt;-->
+            <!--<solid android:color="@color/main_color_blue" />-->
+        <!--</shape>-->
+    <!--</item>-->
 
 </layer-list>
 

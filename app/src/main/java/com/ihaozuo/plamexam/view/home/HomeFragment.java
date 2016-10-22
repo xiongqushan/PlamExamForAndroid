@@ -98,7 +98,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         mPresenter.start();
         mPresenter.getUnreadMartState(UserManager.getInstance().getUserInfo().AccountId);
         mPresenter.removeUnreadMark(UserManager.getInstance().getUserInfo().AccountId);
-         mPresenter.getBanner(123);
+        // mPresenter.getBanner("123");
         startAutoBanner();
     }
 
@@ -139,7 +139,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             DaggerHomeComponent.builder().appComponent(HZApp.shareApplication()
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
             initView();
-//            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartId);
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
         }
         return rootView;
     }

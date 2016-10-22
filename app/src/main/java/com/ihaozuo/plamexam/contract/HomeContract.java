@@ -24,7 +24,7 @@ public interface HomeContract {
 
     interface IHomePresenter extends IBasePresenter {
 
-        void getBanner(int departId);
+        void getBanner(String departCode);
 
         void getUnreadMartState(String accountId);
 

@@ -1,6 +1,5 @@
 package com.ihaozuo.plamexam.contract;
 
-import com.ihaozuo.plamexam.bean.ReportAddBean;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
@@ -13,7 +12,7 @@ import java.util.List;
  */
 public interface ReportContract {
     interface IReportGetView extends IBaseView<IReportGetPresenter> {
-        void showReportList(ReportAddBean reportAddBean);
+        void showReportList();
     }
 
     interface IReportGetPresenter extends IBasePresenter {

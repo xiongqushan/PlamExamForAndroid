@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:gravity="center"
-            tools:text="添加报告"
+            android:text="添加报告"
             android:textColor="@color/white"
             android:layout_alignParentRight="true"
             android:padding="5dp"

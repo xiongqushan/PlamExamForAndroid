@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,9 +15,12 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.contract.ReportContract;
+import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.UIHelper;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -26,9 +28,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ReportListFragment extends AbstractView implements ReportContract.IReportListView {
-    public static final String REFRESH_REPORTLIST = "REFRESH_REPORTLIST_REPORTLISTFRAGMENT";
+    public static final String FILTER_REFRESH_REPORTLIST = "REFRESH_REPORTLIST_REPORTLISTFRAGMENT";
     public static final String INTENTKEY_REPORTLIST = "INTENTKEY_REPORTLIST_REPORTLISTFRAGMENT";
 
+    private List<ReportItemBean> dataList = new ArrayList();
     ReportContract.IReportListPresenter mPresenter;
 
     @Bind(R.id.layout_report_add)
@@ -38,6 +41,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     @Bind(R.id.tv_getReport)
     TextView tvGetReport;
     private View rootView;
+    private ListAdapter adapter;
 
     public ReportListFragment() {
         // Required empty public constructor
@@ -70,8 +74,19 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
         setCustomerTitle(rootView, getString(R.string.report));
         ButterKnife.bind(this, rootView);
         initView();
-        registerCustomReceiver(REFRESH_REPORTLIST);
-        mPresenter.start();
+        registerCustomReceiver(FILTER_REFRESH_REPORTLIST);
+        List<ReportItemBean> reportList = ReportManager.getInstance().getReportList();
+        if (reportList == null || reportList.size() == 0) {
+            if (ReportManager.getInstance().getFirstRequest()) {
+                mPresenter.start();
+            } else {
+                showAddBtn();
+            }
+
+        } else {
+            showReportList(reportList);
+        }
+
         return rootView;
     }
 
@@ -83,33 +98,21 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
 
     @Override
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
-//        mListView.setVisibility(View.VISIBLE);
-//        tvGetReport.setVisibility(View.INVISIBLE);
-        showReportList(null);
+        showReportList(ReportManager.getInstance().getReportList());
+        layoutReportAdd.setVisibility(View.INVISIBLE);
+        mListView.setVisibility(View.VISIBLE);
+        tvGetReport.setVisibility(View.VISIBLE);
     }
 
     private void initView() {
-        BaseAdapter adapter = new SimpleBaseAdapter() {
-            @Override
-            public int getCount() {
-                return 10;
-            }
-
-            @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
-                if (convertView == null) {
-                    convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist, null);
-                }
-                return convertView;
-            }
-        };
+        adapter = new ListAdapter();
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ReportActivity.class);
-                intent.putExtra(ReportActivity.INTENTKEY_WORKNO, "WORKNO");
-                intent.putExtra(ReportActivity.INTENTKEY_CHECKUNITCODE, "CHECKUNITCODE");
+                intent.putExtra(ReportActivity.INTENTKEY_WORKNO, dataList.get(position).WorkNo);
+                intent.putExtra(ReportActivity.INTENTKEY_CHECKUNITCODE, dataList.get(position).CheckUnitCode);
                 startActivity(intent);
             }
         });
@@ -121,7 +124,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
         ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.layout_report_add)
+    @OnClick({R.id.layout_report_add, R.id.tv_getReport})
     public void onClick() {
         startActivity(new Intent(getActivity(), ReportGetActivity.class));
     }
@@ -149,8 +152,34 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
 
     @Override
     public void showReportList(List<ReportItemBean> dataList) {
+        adapter.refresh(dataList);
         layoutReportAdd.setVisibility(View.INVISIBLE);
         mListView.setVisibility(View.VISIBLE);
         tvGetReport.setVisibility(View.VISIBLE);
+    }
+
+    private class ListAdapter extends SimpleBaseAdapter {
+
+        @Override
+        public int getCount() {
+            return dataList.size();
+        }
+
+        public void refresh(List<ReportItemBean> data) {
+            dataList = data;
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist, null);
+            }
+            TextView tvDepart = UIHelper.getAdapterView(convertView, R.id.tvReportDepart);
+            TextView tvTime = UIHelper.getAdapterView(convertView, R.id.tvReportTime);
+            tvDepart.setText(dataList.get(position).CustomerName);
+            tvTime.setText(dataList.get(position).ReportDate);
+            return convertView;
+        }
     }
 }

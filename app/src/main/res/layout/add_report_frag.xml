@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_f2"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -9,51 +10,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_vertical_margin">
+        android:layout_marginTop="@dimen/padding_9dp"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-        <android.support.design.widget.TextInputLayout
+        <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+        <EditText
+            android:id="@+id/phone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/actionbar_high_44dp"
+            android:background="@color/white"
+            android:hint="@string/hint_input_phone"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/padding_12dp"
+            android:paddingRight="@dimen/padding_12dp"
+            android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/phone"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_high_44dp"
-                android:enabled="false"
-                android:hint="@string/hint_current_phone"
-                android:inputType="phone"
-                android:maxLines="1"
-                android:singleLine="true" />
+        <!--</android.support.design.widget.TextInputLayout>-->
 
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/divider"
+            android:background="@color/white"
+            android:paddingLeft="@dimen/padding_12dp"
+            android:paddingRight="@dimen/padding_12dp"
+            android:src="@color/divider_dd" />
 
-            <EditText
-                android:id="@+id/et_Name"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_high_44dp"
-                android:hint="@string/hint_input_report_name"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true" />
+        <!--<android.support.design.widget.TextInputLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-        </android.support.design.widget.TextInputLayout>
-
-        <Button
-            android:id="@+id/btn_login"
+        <EditText
+            android:id="@+id/et_Name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/confirm"
-            android:textSize="@dimen/textsize_h2"
-            android:textStyle="bold" />
+            android:layout_height="@dimen/actionbar_high_44dp"
+            android:background="@color/white"
+            android:hint="@string/hint_input_report_name"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingLeft="@dimen/padding_12dp"
+            android:paddingRight="@dimen/padding_12dp"
+            android:singleLine="true" />
+
+        <!--</android.support.design.widget.TextInputLayout>-->
 
     </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_login"
+        style="@style/btn_blue_corner"
+        android:layout_marginTop="50dp"
+        android:text="@string/confirm" />
 
 
 </LinearLayout>
