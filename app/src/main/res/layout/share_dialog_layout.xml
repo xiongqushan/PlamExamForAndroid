@@ -1,11 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:paddingBottom="50dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="分享"/>
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/btn_weixin"
+            android:layout_width="@dimen/btn_share_height"
+            android:layout_height="@dimen/btn_share_height"
+            android:background="@drawable/weixin_share"/>
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/btn_qq"
+            android:layout_width="@dimen/btn_share_height"
+            android:layout_height="@dimen/btn_share_height"
+            android:src="@drawable/qq_share"/>
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="50dp">
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/btn_weibo"
+            android:layout_width="@dimen/btn_share_height"
+            android:layout_height="@dimen/btn_share_height"
+            android:background="@drawable/weibo_share"/>
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
+        <ImageView
+            android:id="@+id/btn_pengyouquan"
+            android:layout_width="@dimen/btn_share_height"
+            android:layout_height="@dimen/btn_share_height"
+            android:src="@drawable/penyouquan_share"/>
+
+        <View
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/btn_close"
+        android:layout_width="@dimen/btn_close_height"
+        android:layout_height="@dimen/btn_close_height"
+        android:src="@drawable/close_share"
+        android:layout_gravity="center"
+        android:layout_marginTop="60dp"/>
 
 </LinearLayout>

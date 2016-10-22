@@ -5,12 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
+import com.ihaozuo.plamexam.common.dialog.ShareDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +71,10 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"分享",Toast.LENGTH_LONG).show();
+
+                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog);
+                shareDialog.show();
+
             }
         });
 
