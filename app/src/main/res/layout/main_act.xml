@@ -60,7 +60,8 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginLeft="@dimen/unread_mark"
                         android:layout_marginTop="4dp"
-                        android:src="@drawable/unread_mark_shape" />
+                        android:src="@drawable/unread_mark_shape"
+                        android:visibility="invisible"/>
 
                 </FrameLayout>
 

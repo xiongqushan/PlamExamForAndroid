@@ -25,7 +25,7 @@
             android:layout_width="@dimen/logo_height"
             android:layout_height="@dimen/logo_height"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo" />
+            android:src="@drawable/logo_login" />
 
         <ImageView
             android:layout_width="128dp"
@@ -58,6 +58,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:maxLines="2"
+            android:lineSpacingExtra="5dp"
             tools:text="注册登录即表示您同意我们的\n[掌上体检用户许可协议]" />
 
 

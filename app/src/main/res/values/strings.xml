@@ -43,6 +43,7 @@
     <string name="auth_1">已认证</string>
 
     <string name="consult_warning">健管师的回复内容仅作为建议，具体诊疗请前往医院进行</string>
+    <string name="workTime">工作时间：工作日9:00-17:30，节假日回复时间：72小时内，请您耐心等待，感谢您的咨询！</string>
     <string name="scale_down_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleDownShowBehavior</string>
     <string name="scale_up_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleUpShowBehavior</string>
     <string name="swipe_dismiss_behavior">android.support.design.widget.SwipeDismissBehavior</string>
@@ -67,7 +68,8 @@
 
 
     <!--语音听写APP_ID-->
-    <string name="app_id">5804a7be</string>
+    <string name="xunfei_app_id">5804a7be</string>
+    <string name="JPush_app_id">750c95297adeffc03b5439cb</string>
     <!-- 听写 -->
     <string name="text_begin">请开始说话…</string>
     <string name="text_begin_recognizer">开始音频流识别</string>

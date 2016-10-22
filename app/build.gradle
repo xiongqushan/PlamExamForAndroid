@@ -32,7 +32,7 @@ android {
         }
         manifestPlaceholders = [
                 JPUSH_PKGNAME: "com.ihaozuo.plamexam",
-                JPUSH_APPKEY : "330bf15f3128cf7802eb9921", //JPush上注册的包名对应的appkey.
+                JPUSH_APPKEY : "750c95297adeffc03b5439cb", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
     }
@@ -56,6 +56,7 @@ android {
         exclude('LICENSE.txt')
     }
 }
+
 
 buildscript {
     repositories {
@@ -93,4 +94,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
+
 }

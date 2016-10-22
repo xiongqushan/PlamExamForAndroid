@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,11 +26,13 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.contract.ConsultContract;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.Voice2TxtUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
 import java.util.List;
@@ -64,6 +67,13 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     SwipeRefreshLayout swipeLayout;
     @Bind(R.id.edittxt_message)
     EditText edittxtMessage;
+    @Bind(R.id.fab)
+    ImageButton fab;
+    @Bind(R.id.tv_description)
+    TextView tvDescription;
+
+    public static boolean isForeground = false;
+    public static final String REFRESH_COSULTD_LIST = "REFRESH_COSULTD_LIST";
 
     private View rootView;
     private Context mContext;
@@ -73,6 +83,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     private RecyclerView mRecyclerView;
     private ConsultDetailAdapter mAdapter;
     private DoctorInfoBean mDoctorInfo;
+    private Voice2TxtUtils voice2TxtUtils;
 
     public ConsultDetailFragment() {
     }
@@ -90,7 +101,8 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             setCustomerTitle(rootView, "健康咨询服务");
         }
         ButterKnife.bind(this, rootView);
-        Voice2TxtUtils.initSpeechRecognizer(mContext);
+        voice2TxtUtils = new Voice2TxtUtils();
+        voice2TxtUtils.initSpeechRecognizer(mContext);
 
         mRecyclerView = pullRefreshRecycler;
         ((DefaultItemAnimator) mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);
@@ -104,7 +116,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                 mIConsultPresenter.getConsultDetail();
+                mIConsultPresenter.getConsultDetail();
             }
         });
 
@@ -124,30 +136,47 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             }
         });
 
+        registerCustomReceiver(REFRESH_COSULTD_LIST);
+
         return rootView;
+    }
+
+    @Override
+    protected void onReceiveBroadcast(String filterAction, Intent intent) {
+        if (REFRESH_COSULTD_LIST.equals(filterAction)){
+            mIConsultPresenter.getConsultDetail();
+        }
+    }
+
+
+    @Override
+    public void removeUnreadMark(){
+        sendCustomBroadcast(MainActivity.REMOVE_UNREAD_MARK);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        isForeground = true;
         mIConsultPresenter.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
+        isForeground = false;
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        voice2TxtUtils.destroyIat();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Voice2TxtUtils.destroyIat();
     }
 
 
@@ -170,7 +199,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_voice:
-                Voice2TxtUtils.getVoiceContent(edittxtMessage);
+                voice2TxtUtils.getVoiceContent(edittxtMessage);
                 break;
 
             case R.id.btn_report:
@@ -191,10 +220,12 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public void setDoctorInfo() {
         mDoctorInfo = getDoctorInfo();
         if (null != mDoctorInfo.ImageSrc) {
-            ImageLoadUtils.getInstance(mContext).display(mDoctorInfo.ImageSrc, imgHead);
+            ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mDoctorInfo.ImageSrc, imgHead);
         }
         tvName.setText(mDoctorInfo.RealName);
         tvSpeciality.setText(mDoctorInfo.Speciality);
+        tvDescription.setText(getString(R.string.workTime));
+        fab.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -213,14 +244,14 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         mRecyclerView.scrollToPosition(consultDetailList.size());
     }
 
-    public void sendMessage(){
+    public void sendMessage() {
         String editContent = edittxtMessage.getText().toString();
         if (!StringUtil.isEmpty(editContent)) {
             mIConsultPresenter.sendMessage(1, editContent);
         } else {
             Toast.makeText(mContext, "请先输入内容！", Toast.LENGTH_LONG).show();
         }
-    };
+    }
 
 
 }

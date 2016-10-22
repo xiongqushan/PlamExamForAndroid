@@ -42,6 +42,30 @@ public class HomeModel extends AbstractModel {
 
     }
 
+    public void addFeedback(String departName,String realName, String mobile, String content,final OnHandlerResultListener<RestResult<List<BannerBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("DepartName", departName);
+        params.put("RealName", realName);
+        params.put("Mobile", mobile);
+        params.put("FeedbackContent", content);
+        mIHomeService.addFeedback(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
+
+    }
+
+    public void getNewsList(int pageIndex,int pageSize,final OnHandlerResultListener<RestResult<List<NewsBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("PageIndex", pageIndex);
+        params.put("PageSize", pageSize);
+        mIHomeService.getNewsList(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
+
+    }
+
     public void initData(final OnHandlerResultWithCompletedListener<RestResult> callback) {
         final Observable<BaseBean<BannerBean>> observable1 = Observable.just(new BaseBean<BannerBean>(new BannerBean()));
         final Observable<BaseBean<NewsBean>> observable2 = Observable.just(new BaseBean<NewsBean>(new NewsBean()));

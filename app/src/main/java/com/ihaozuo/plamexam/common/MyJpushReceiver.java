@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.ihaozuo.plamexam.view.consult.ConsultDetailFragment;
+import com.ihaozuo.plamexam.view.main.MainActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,10 +39,10 @@ public class MyJpushReceiver extends BroadcastReceiver {
 
         } else if (JPushInterface.ACTION_MESSAGE_RECEIVED.equals(intent
                 .getAction())) {
-            Log.d(TAG,
-                    "[MyReceiver] 接收到推送下来的自定义消息: "
-                            + bundle.getString(JPushInterface.EXTRA_MESSAGE));
-//            processCustomMessage(context, bundle);
+            Log.d(TAG, "[MyReceiver] 接收到推送下来的自定义消息: "
+                    + bundle.getString(JPushInterface.EXTRA_MESSAGE));
+
+//            senBroadcastToActivity(context, bundle);
 
         } else if (JPushInterface.ACTION_NOTIFICATION_RECEIVED.equals(intent
                 .getAction())) {
@@ -48,33 +51,27 @@ public class MyJpushReceiver extends BroadcastReceiver {
                     .getInt(JPushInterface.EXTRA_NOTIFICATION_ID);
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
+            // TODO 向指定的ACTIVITY发送广播
+            senBroadcastToActivity(context, bundle);
+
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent
                 .getAction())) {
+            Log.e(TAG, "[MyReceiver] 用户点击打开了通知" + printBundle(bundle));
             Intent intentPush = new Intent();
             // TODO 打开自定义的Activity
-//            boolean exist = UserManager.getInstance().exist();
-//            Log.e(TAG, "getInstance:" + exist);
-//            if (exist) {
-//                Log.e(TAG, "HomeActivity:");
-//                intentPush.setClass(context, HomeActivity.class);
-//            } else {
-//                Log.e(TAG, "WelcomeActivity:");
-//                intentPush.setClass(context, WelcomeActivity.class);
-//            }
-//            intentPush.putExtras(bundle);
-////            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-//                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            context.startActivity(intentPush);
-//            Log.e(TAG, "[MyReceiver] 用户点击打开了通知" + printBundle(bundle));
+            Log.e(TAG, "MainActivity:");
+            intentPush.setClass(context, MainActivity.class);
+            intentPush.putExtras(bundle);
+//            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            context.startActivity(intentPush);
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent
                 .getAction())) {
             Log.d(TAG,
                     "[MyReceiver] 用户收到到RICH PUSH CALLBACK: "
                             + bundle.getString(JPushInterface.EXTRA_EXTRA));
-            // 在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity，
-            // 打开一个网页等..
 
         } else if (JPushInterface.ACTION_CONNECTION_CHANGE.equals(intent
                 .getAction())) {
@@ -120,6 +117,18 @@ public class MyJpushReceiver extends BroadcastReceiver {
             }
         }
         return sb.toString();
+    }
+
+
+    //send msg to MainActivity
+    private void senBroadcastToActivity(Context context, Bundle bundle) {
+        if (ConsultDetailFragment.isForeground) {
+            Intent msgIntent = new Intent(ConsultDetailFragment.REFRESH_COSULTD_LIST);
+            context.sendBroadcast(msgIntent);
+        }else{
+            Intent msgIntent = new Intent(MainActivity.SHOW_UNREAD_MARK);
+            context.sendBroadcast(msgIntent);
+        }
     }
 
 }

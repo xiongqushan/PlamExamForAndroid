@@ -65,7 +65,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     @Override
     public void start() {
         mIConsultView.showDialog();
-
         if (null != UserManager.getInstance().getDoctorID()) {
             doctorIDBoolean = true;
         }
@@ -84,7 +83,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
                 consultDetailList = resultData.Data;
                 consultListBoolean = true;
-//                    mIConsultView.hideDialog();
+                removeUnreadMark();
                 toggleDialog();
             }
 
@@ -106,7 +105,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             public void handlerResultSuccess(RestResult<Boolean> resultData) {
                 mIConsultView.addReply(creatReplayContent(consultContent, type));
                 mIConsultView.hideDialog();
-
             }
 
             @Override
@@ -156,6 +154,20 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         });
     }
 
+    public void removeUnreadMark() {
+        mConsultModel.removeUnreadMark(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<Boolean>>() {
+            @Override
+            public void handlerResultSuccess(RestResult<Boolean> resultData) {
+                mIConsultView.removeUnreadMark();
+            }
+
+            @Override
+            public void handlerResultError(String message) {
+
+            }
+        });
+    }
+
     public void toggleDialog() {
         if (consultListBoolean && doctorIDBoolean && doctorListBoolean) {
             mIConsultView.setDoctorInfo();
@@ -178,5 +190,8 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         replyContent.setDate(new Date());
         return replyContent;
     }
+
+
+
 
 }

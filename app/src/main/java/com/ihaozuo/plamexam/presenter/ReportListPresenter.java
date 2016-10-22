@@ -56,13 +56,13 @@ public class ReportListPresenter extends AbstractPresenter implements ReportCont
         mReportModel.getReportList(accountId, new OnHandlerResultListener<RestResult<List<ReportItemBean>>>() {
             @Override
             public void handlerResultSuccess(RestResult<List<ReportItemBean>> resultData) {
-                if (resultData.Data != null && resultData.Data.size() > 0) {
+//                if (resultData.Data != null && resultData.Data.size() > 0) {
                     mView.showReportList(resultData.Data);
                     mView.hideDialog();
-                } else {
-                    mView.showAddBtn();
-                    mView.hideDialog("暂无报告");
-                }
+//                } else {
+//                    mView.showAddBtn();
+//                    mView.hideDialog("暂无报告");
+//                }
                 mView.toggleRetryLayer(false);
                 ReportManager.getInstance().setReportList(resultData.Data);
                 ReportManager.getInstance().setFirstRequest(false);

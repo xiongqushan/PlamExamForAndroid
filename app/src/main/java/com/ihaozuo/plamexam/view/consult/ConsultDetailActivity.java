@@ -18,7 +18,6 @@ import javax.inject.Inject;
  * Created by hzguest3 on 2016/10/13.
  */
 public class ConsultDetailActivity extends BaseActivity {
-    public static boolean isForeground = false;
 
     public static String LOCAL_CLASS_NAME;
 
@@ -30,14 +29,12 @@ public class ConsultDetailActivity extends BaseActivity {
 
     @Override
     public void onStart() {
-        isForeground = true;
         super.onStart();
     }
 
 
     @Override
     public void onStop() {
-        isForeground = false;
         super.onStop();
     }
 

@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.view.report;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
@@ -25,6 +26,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -85,15 +88,15 @@ public class ReportErrorFragment extends Fragment {
             return;
         }
         showCheckBox = !showCheckBox;
+        adapter.notifyDataSetChanged();
         if (showCheckBox) {
             btnReportError.setText("咨询");
-
         } else {
             StringBuffer selectData = getSelectData();
             Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
             btnReportError.setText("选择异常项咨询");
+            startActivity(new Intent(getContext(), ConsultDetailActivity.class));
         }
-        adapter.notifyDataSetChanged();
     }
 
 

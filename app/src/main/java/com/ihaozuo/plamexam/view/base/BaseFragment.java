@@ -22,6 +22,7 @@ import com.ihaozuo.plamexam.manager.DoctorManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
+import com.ihaozuo.plamexam.view.report.ReportGetActivity;
 
 import java.util.List;
 
@@ -45,17 +46,28 @@ public class BaseFragment extends Fragment {
     protected void setCustomerTitle(View view, String title, String color) {
         TextView textView = (TextView) view.findViewById(R.id.txt_actionbar_title);
         ImageView btnLeft = (ImageView) view.findViewById(R.id.img_actionbar_left);
-        textView.setText(title);
-        if (!getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
+        TextView tvAddReport = (TextView) view.findViewById(R.id.tv_addReport);
+        View actionbar = view.findViewById(R.id.actionbar);
+        if (textView!=null) textView.setText(title);
+
+        if (btnLeft!=null && !getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
             btnLeft.setVisibility(View.VISIBLE);
+            btnLeft.setOnClickListener(finishActivity);
         } else {
             btnLeft.setVisibility(View.INVISIBLE);
         }
-        btnLeft.setOnClickListener(finishActivity);
-        View actionbar = view.findViewById(R.id.actionbar);
+
+        if (tvAddReport!=null)tvAddReport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), ReportGetActivity.class));
+            }
+        });
+
         if (actionbar != null && !getActivity().getLocalClassName().equals(ConsultDetailActivity.LOCAL_CLASS_NAME)) {
             initState(actionbar);
         }
+
         if (color != null) {
             actionbar.setBackgroundColor(Color.parseColor(color));
         }

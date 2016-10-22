@@ -2,7 +2,7 @@ package com.ihaozuo.plamexam.view.base;
 
 
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
-import com.ihaozuo.plamexam.util.CustomDialog;
+import com.ihaozuo.plamexam.common.dialog.CustomDialog;
 
 /**
  * Created by xiongwei1 on 2016/7/4.

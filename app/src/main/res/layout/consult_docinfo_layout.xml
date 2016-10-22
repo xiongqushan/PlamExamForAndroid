@@ -60,7 +60,7 @@
             android:padding="3dp"
             android:textSize="@dimen/textsize_h5_12sp"
             android:textColor="@color/gray_66"
-            android:text="工作时间：工作日9:00-17:30，节假日回复时间：72小时内，请您耐心等待，感谢您的咨询！"/>
+            tools:text="@string/tv_workTime"/>
 
     </RelativeLayout>
 
