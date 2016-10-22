@@ -18,7 +18,6 @@ public interface HomeContract {
 
         void showUnreadMark();
 
-//        void hideUnreadMark();
 
         void refreshNewsList(List<NewsBean> newsList);
 
@@ -26,12 +25,12 @@ public interface HomeContract {
 
     interface IHomePresenter extends IBasePresenter {
 
-        void getBanner(int departId);
+        void getBanner(String departCode);
 
         void getUnreadMartState(String accountId);
 
 //        void removeUnreadMark(String accountId);
 
-        void getNewsList(int pageIndex,int pageSize);
+        void getNewsList(int pageIndex, int pageSize);
     }
 }

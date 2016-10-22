@@ -32,10 +32,10 @@ public class HomeModel extends AbstractModel {
         mIHomeService = iHomeService;
     }
 
-    public void getBaner(int departId, final OnHandlerResultListener<RestResult<List<BannerBean>>> callbackListener) {
+    public void getBaner(String departCode, final OnHandlerResultListener<RestResult<List<BannerBean>>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
-        params.put("DepartId", departId);
+        params.put("DepartCode", departCode);
         mIHomeService.getBanner(params)
                 .compose(applyAsySchedulers())
                 .subscribe(subscriber);

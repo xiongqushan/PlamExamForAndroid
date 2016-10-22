@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     tools:context="com.ihaozuo.plamexam.view.report.ReportDetailFragment">
 
-    <ListView
-        android:scrollbars="none"
+    <com.ihaozuo.plamexam.common.pinnedheaderlistview.PinnedHeaderListView
         android:id="@+id/listview_detail_report"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@null" />
+        android:divider="@null"
+        android:scrollbars="none" />
 
 </FrameLayout>

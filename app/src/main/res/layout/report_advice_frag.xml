@@ -2,12 +2,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_f2"
     tools:context="com.ihaozuo.plamexam.view.report.ReportAdviceFragment">
 
+
     <ListView
+
         android:id="@+id/listview_adcive_report"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/padding_9dp"
         android:divider="@null"
         android:scrollbars="none" />
 

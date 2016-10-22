@@ -21,6 +21,7 @@ import android.support.v7.widget.RecyclerView.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -31,14 +32,17 @@ import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
+import com.ihaozuo.plamexam.util.StringUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
+
 
     private List<ConsultDetailBean> list;
     private Context mContext;
@@ -96,29 +100,49 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ConsultDetailBean consultDetailEntity = list.get(position);
-        if (null == consultDetailEntity){
+        if (null == consultDetailEntity) {
             return;
         }
         if (holder instanceof ConsultLeftHolder) {
             bindLeftItem(consultDetailEntity, (ConsultLeftHolder) holder);
-        } else if (holder instanceof ConsultRightHolder){
+        } else if (holder instanceof ConsultRightHolder) {
             bindRightItem(consultDetailEntity, (ConsultRightHolder) holder);
         }
 
     }
 
-    public void bindLeftItem(ConsultDetailBean entity,ConsultLeftHolder holder){
-        if (null != mDoctorInfo.ImageSrc){
-            ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mDoctorInfo.ImageSrc,holder.draweeConsultItemPhoto);
+    public void bindLeftItem(ConsultDetailBean entity, ConsultLeftHolder holder) {
+        if (null != mDoctorInfo.ImageSrc) {
+            ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mDoctorInfo.ImageSrc, holder.draweeConsultItemPhoto);
         }
         holder.txtConsultCommiton.setText(entity.getDate());
         holder.txtConsultItem.setText(entity.Content);
     }
 
-    public void bindRightItem(ConsultDetailBean entity,ConsultRightHolder holder){
+    public void bindRightItem(ConsultDetailBean entity, ConsultRightHolder holder) {
+        List<String> reportInfoList = new ArrayList<String>();
+        if (!StringUtil.isEmpty(entity.AppendInfo)){
+            reportInfoList = Arrays.asList(entity.AppendInfo.split(";"));
+        }
+
+        switch (entity.Type){
+            case 1:
+                holder.reportConsultItem.setVisibility(View.INVISIBLE);
+                holder.txtConsultItem.setVisibility(View.VISIBLE);
+                holder.txtConsultItem.setText(entity.Content);
+                break;
+
+            case 3:
+                holder.reportConsultItem.setVisibility(View.VISIBLE);
+                holder.txtConsultItem.setVisibility(View.INVISIBLE);
+                holder.tvReportTitle.setText(reportInfoList.get(2));
+                holder.tvReportDate.setText(reportInfoList.get(3));
+                break;
+        }
         holder.txtConsultCommiton.setText(entity.getDate());
-        holder.txtConsultItem.setText(entity.Content);
-    };
+    }
+
+    ;
 
     public class ConsultLeftHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.txt_consult_commiton)
@@ -143,10 +167,17 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
         SimpleDraweeView draweeConsultItemPhoto;
         @Bind(R.id.txt_consult_item)
         TextView txtConsultItem;
+        @Bind(R.id.tv_reportTitle)
+        TextView tvReportTitle;
+        @Bind(R.id.tv_reportDate)
+        TextView tvReportDate;
+        @Bind(R.id.report_consult_item)
+        LinearLayout reportConsultItem;
 
         public ConsultRightHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
+
 }

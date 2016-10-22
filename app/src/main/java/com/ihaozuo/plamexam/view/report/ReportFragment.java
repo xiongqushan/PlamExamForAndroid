@@ -19,12 +19,14 @@ import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ReportFragment extends AbstractView implements ReportContract.IReportDetailView {
 
-    ReportContract.IReportDetailPresenter mPresenter;
 
     @Bind(R.id.rb_error_report)
     RadioButton rbError;
@@ -37,6 +39,8 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
     @Bind(R.id.viewpager_report)
     ViewPager mViewPager;
     private View rootView;
+    private ReportContract.IReportDetailPresenter mPresenter;
+    private List<Fragment> fragList = new ArrayList();
 
     public ReportFragment() {
         // Required empty public constructor
@@ -69,6 +73,9 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
     }
 
     private void initView() {
+        fragList.add(ReportErrorFragment.newInstance());
+        fragList.add(ReportDetailFragment.newInstance());
+        fragList.add(ReportAdviceFragment.newInstance());
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -118,7 +125,8 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
 
     @Override
     public void updateFragment(ReportDetailBean reportDetailBean) {
-
+        ((ReportDetailFragment) fragList.get(1)).initView(reportDetailBean);
+        ((ReportErrorFragment) fragList.get(0)).initView(reportDetailBean);
     }
 
     @Override
@@ -138,13 +146,7 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
 
         @Override
         public Fragment getItem(int position) {
-            if (position == 1) {
-                return ReportDetailFragment.newInstance();
-            }
-            if (position == 2) {
-                return ReportAdviceFragment.newInstance();
-            }
-            return ReportErrorFragment.newInstance();
+            return fragList.get(position);
         }
 
         @Override

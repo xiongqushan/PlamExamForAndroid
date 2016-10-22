@@ -6,27 +6,21 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.common.ChildListView;
-import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
-import com.ihaozuo.plamexam.util.UIHelper;
+import com.ihaozuo.plamexam.bean.ReportDetailBean;
+import com.ihaozuo.plamexam.common.pinnedheaderlistview.PinnedHeaderListView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ReportDetailFragment extends Fragment {
 
 
     @Bind(R.id.listview_detail_report)
-    ListView mListView;
+    PinnedHeaderListView mListView;
     private View rootView;
 
     public ReportDetailFragment() {
@@ -43,55 +37,26 @@ public class ReportDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.report_detail_frag, container, false);
         ButterKnife.bind(this, rootView);
-        initView();
         return rootView;
     }
 
-    private void initView() {
-        BaseAdapter adapter = new ListAdapter();
+    public void initView(ReportDetailBean bean) {
+        ReportDetailAdapter adapter = new ReportDetailAdapter(bean);
+        mListView.setPinHeaders(true);
         mListView.setAdapter(adapter);
-    }
+        mListView.setOnItemClickListener(new PinnedHeaderListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
 
-    private class ListAdapter extends SimpleBaseAdapter {
-
-
-        @Override
-        public int getCount() {
-            return 10;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_detail, null);
             }
-            ChildListView childListView = UIHelper.getAdapterView(convertView, R.id.listView_report_detail_child);
-            TextView tvMainItem = UIHelper.getAdapterView(convertView, R.id.tvReportMainItem);
-            tvMainItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
-                }
-            });
-            BaseAdapter adapter = new SimpleBaseAdapter() {
-                @Override
-                public int getCount() {
-                    return 10;
-                }
 
-                @Override
-                public View getView(int position, View convertView, ViewGroup parent) {
-                    if (convertView == null) {
-                        convertView = LayoutInflater.from(getActivity()).inflate(R.layout.item_reportlist_error, null);
-                    }
-                    return convertView;
-                }
-            };
-            childListView.setAdapter(adapter);
-
-            return convertView;
-        }
+            @Override
+            public void onSectionClick(AdapterView<?> adapterView, View view, int section, long id) {
+                Toast.makeText(getActivity(), "艾欧尼亚", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     @Override
     public void onDestroyView() {

@@ -3,7 +3,6 @@ package com.ihaozuo.plamexam.view.mine.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,18 +12,17 @@ import android.widget.TextView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
 import com.ihaozuo.plamexam.manager.DoctorManager;
+import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class SysSetFragment extends BaseFragment {
 
 
@@ -130,6 +128,10 @@ public class SysSetFragment extends BaseFragment {
                     public void OnDialogConfirmListener() {
                         UserManager.getInstance().clear();
                         DoctorManager.getInstance().clear();
+                        ReportManager.getInstance().clear();
+                        startActivity(new Intent(getContext(), LoginActivity.class));
+                        sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
+                        getActivity().finish();
                         sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
                     }
                 }).setContentText("确定退出登录？").show();

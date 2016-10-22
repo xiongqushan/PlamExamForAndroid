@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.bean.ReportAddBean;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
@@ -66,7 +65,11 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
 
     private void initView() {
         phone.setText(UserManager.getInstance().getUserInfo().Mobile);
-        phone.setEnabled(false);
+        String realName = UserManager.getInstance().getUserInfo().RealName;
+        if (StringUtil.isNotEmpty(realName)) {
+            etName.setText(realName);
+        }
+//        phone.setEnabled(false);
     }
 
 
@@ -102,18 +105,9 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
     }
 
     @Override
-    public void showReportList(ReportAddBean reportAddBean) {
-        if (reportAddBean.Reports != null && reportAddBean.Reports.size() > 0) {
-            Intent intent = new Intent(ReportListFragment.REFRESH_REPORTLIST);
-            //intent.putExtra("listobj", (Serializable) datalList);
-            getActivity().sendBroadcast(intent);
-            getActivity().finish();
-        } else {
-            hideDialog("暂无报告");
-            //TODO
-            Intent intent = new Intent(ReportListFragment.REFRESH_REPORTLIST);
-            getActivity().sendBroadcast(intent);
-            getActivity().finish();
-        }
+    public void showReportList() {
+        Intent intent = new Intent(ReportListFragment.FILTER_REFRESH_REPORTLIST);
+        getActivity().sendBroadcast(intent);
+        getActivity().finish();
     }
 }

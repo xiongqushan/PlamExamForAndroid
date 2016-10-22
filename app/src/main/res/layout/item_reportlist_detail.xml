@@ -1,54 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/card_margin"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    app:cardCornerRadius="@dimen/card_margin"
-    app:cardUseCompatPadding="true">
-    <!--app:cardCornerRadius="4dp"-->
-    <!--app:cardElevation="5dp"-->
-    <!--app:cardMaxElevation="10dp"-->
-    <!--app:cardPreventCornerOverlap="true"-->
-    <!--app:cardUseCompatPadding="true">-->
+    android:background="@color/blue_light"
+    android:gravity="center_vertical"
+    android:padding="@dimen/padding_12dp">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/line_white_shape" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvReportMainItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:text="一般检查"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
+    <ImageView
+        android:layout_width="19dp"
+        android:layout_height="19dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_report_detail_right" />
 
-        <TextView
-            android:id="@+id/tvReportMainItem"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/userinfo_padding_8dp"
-            android:layout_marginRight="@dimen/userinfo_padding_8dp"
-            android:background="@color/androidColorC"
-            android:gravity="right"
-            android:paddingBottom="10dp"
-            android:paddingRight="12dp"
-            android:paddingTop="10dp"
-            android:text="一般检查"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-
-        <com.ihaozuo.plamexam.common.ChildListView
-            android:id="@+id/listView_report_detail_child"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:divider="@null"
-            android:scrollbars="none" />
-
-    </LinearLayout>
-
-
-</android.support.v7.widget.CardView>
+</RelativeLayout>
 

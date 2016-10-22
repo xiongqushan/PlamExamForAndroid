@@ -15,11 +15,10 @@ import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.model.UserModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by hzguest3 on 2016/10/13.
@@ -38,11 +37,14 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     private boolean doctorListBoolean;
 
     @Inject
-    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel, @NonNull UserModel userModel) {
+    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel, @NonNull UserModel userModel,@NonNull @Named("CONSULT_DETAIL_LIST") List<ConsultDetailBean> list) {
         consultListBoolean = false;
         doctorIDBoolean = false;
         doctorListBoolean = false;
-        consultDetailList = new ArrayList<>();
+//        consultDetailList = new ArrayList<>();
+        if (list.size() != 0){
+            consultDetailList = list;
+        }
         mIConsultView = iConsultView;
         mConsultModel = consultModel;
         mUserModel = userModel;
@@ -65,13 +67,16 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     @Override
     public void start() {
         mIConsultView.showDialog();
+        if (null != consultDetailList){
+            consultListBoolean = true;
+        }
         if (null != UserManager.getInstance().getDoctorID()) {
             doctorIDBoolean = true;
         }
         if (null != DoctorManager.getInstance().getDoctorList()) {
             doctorListBoolean = true;
         }
-        if (!consultListBoolean) getConsultDetail();
+        if (!consultListBoolean ) getConsultDetail();
         if (!doctorIDBoolean) getDoctorID();
         if (!doctorListBoolean) getDoctorList();
     }
@@ -187,7 +192,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         replyContent.Content = consultContent;
         replyContent.DoctorId = mDoctorID;
         replyContent.Type = type;
-        replyContent.setDate(new Date());
+        replyContent.setDate();
         return replyContent;
     }
 

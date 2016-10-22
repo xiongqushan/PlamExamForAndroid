@@ -73,7 +73,7 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
 
     @Override
-    public void getBanner(int departId) {
+    public void getBanner(String departId) {
         mHomeView.showDialog();
         mHomeModel.getBaner(departId, new OnHandlerResultListener<RestResult<List<BannerBean>>>() {
             @Override

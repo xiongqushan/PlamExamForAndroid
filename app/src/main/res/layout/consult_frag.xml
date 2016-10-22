@@ -91,11 +91,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/divider"/>
+        <include layout="@layout/divider_dd"/>
 
         <include layout="@layout/consult_edit_layout" />
 
-        <include layout="@layout/divider"/>
+        <include layout="@layout/divider_dd"/>
 
     </LinearLayout>
 

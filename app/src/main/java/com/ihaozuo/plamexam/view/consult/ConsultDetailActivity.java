@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.contract.ConsultContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.ConsultModule;
@@ -11,6 +12,9 @@ import com.ihaozuo.plamexam.ioc.DaggerConsultComponent;
 import com.ihaozuo.plamexam.presenter.ConsultPresenter;
 import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -21,9 +25,11 @@ public class ConsultDetailActivity extends BaseActivity {
 
     public static String LOCAL_CLASS_NAME;
 
+    private List<ConsultDetailBean> mConsultDatailList;
 
     @Inject
     ConsultPresenter mConsultPresenter;
+
     @Inject
     ConsultContract.IConsultView mConsultView;
 
@@ -44,11 +50,12 @@ public class ConsultDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setTranslucentStatus(R.color.main_color_blue);
         setContentView(R.layout.content_act);
+        mConsultDatailList = new ArrayList<ConsultDetailBean>();
 
         DaggerConsultComponent.builder()
                 .appComponent(HZApp.shareApplication()
-                        .getAppComponent())
-                .consultModule(new ConsultModule())
+                .getAppComponent())
+                .consultModule(new ConsultModule(mConsultDatailList))
                 .build()
                 .inject(this);
 

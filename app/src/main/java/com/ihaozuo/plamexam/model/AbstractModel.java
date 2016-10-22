@@ -44,7 +44,8 @@ public abstract class AbstractModel implements IBaseModel {
             @Override
             public void onError(Throwable e) {
                 //RestResult<T> entity = new RestResult<T>(e.getMessage());
-                callbackListener.handlerResultError(e.getMessage());
+                //callbackListener.handlerResultError(e.getMessage());
+                callbackListener.handlerResultError("网络异常，请重连");
             }
 
             @Override
