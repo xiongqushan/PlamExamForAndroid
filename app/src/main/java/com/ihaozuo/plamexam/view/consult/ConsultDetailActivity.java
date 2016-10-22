@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.contract.ConsultContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.ConsultModule;
@@ -11,6 +12,8 @@ import com.ihaozuo.plamexam.ioc.DaggerConsultComponent;
 import com.ihaozuo.plamexam.presenter.ConsultPresenter;
 import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,6 +23,7 @@ import javax.inject.Inject;
 public class ConsultDetailActivity extends BaseActivity {
 
     public static String LOCAL_CLASS_NAME;
+    public static final String INTENT_KEY_CONSULT_FROM_REPORT = "REPORT_CONSULTDETAILACTIVITY";
 
 
     @Inject
@@ -44,7 +48,7 @@ public class ConsultDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setTranslucentStatus(R.color.main_color_blue);
         setContentView(R.layout.content_act);
-
+        List<ConsultDetailBean> dataConsult = (List<ConsultDetailBean>) getIntent().getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT);
         DaggerConsultComponent.builder()
                 .appComponent(HZApp.shareApplication()
                         .getAppComponent())

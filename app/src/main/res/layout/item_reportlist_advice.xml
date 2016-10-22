@@ -4,18 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/padding_9dp">
-    <!--app:cardCornerRadius="4dp"-->
-    <!--app:cardElevation="5dp"-->
-    <!--app:cardMaxElevation="10dp"-->
-    <!--app:cardPreventCornerOverlap="true"-->
-    <!--app:cardUseCompatPadding="true">-->
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:paddingBottom="@dimen/padding_10dp"
         android:paddingLeft="@dimen/padding_12dp"
@@ -24,22 +18,24 @@
 
         <TextView
             android:id="@+id/tvReportAdviceTitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:includeFontPadding="false"
             android:text="颈椎侧位检查"
             android:textColor="@color/gray_33"
-            android:textSize="18sp" />
+            android:textSize="@dimen/textsize_h3_16sp" />
 
         <TextView
             android:id="@+id/tvReportAdviceSubtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/padding_15dp"
+            android:layout_marginTop="@dimen/padding_12dp"
             android:layout_toRightOf="@+id/img_newslist"
+            android:includeFontPadding="false"
             android:text="颈椎生理曲度变直，建议专家随访，颈椎生理曲度变直，建议专家随访。颈椎生理曲度变直，建议专家随访，颈椎生理曲度变直，建议专家随访。"
             android:textColor="@color/gray_66"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     </LinearLayout>
 

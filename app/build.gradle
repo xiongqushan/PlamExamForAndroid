@@ -3,7 +3,7 @@ apply plugin: 'com.neenbedankt.android-apt'
 apply plugin: 'com.frogermcs.dagger2metrics'
 android {
 //    MD5: D5:28:D9:5E:20:E8:F3:9A:4F:47:DA:E8:11:4B:5E:2B
-//    md5: 28d95e20e8f39a4f47dae8114b5e2b
+//    md5: d528d95e20e8f39a4f47dae8114b5e2b
 //    SHA1: 74:E1:AB:E5:7A:18:A5:9B:01:C3:89:2A:54:A6:91:AD:24:81:00:48
     //配置keystore签名
     signingConfigs {

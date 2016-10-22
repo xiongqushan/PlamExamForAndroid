@@ -25,7 +25,7 @@ public class PinnedHeaderListView extends ListView implements OnScrollListener {
 
     }
 
-    private PinnedSectionedHeaderAdapter mAdapter;
+    public PinnedSectionedHeaderAdapter mAdapter;
     private View mCurrentHeader;
     private int mCurrentHeaderViewType = 0;
     private float mHeaderOffset;

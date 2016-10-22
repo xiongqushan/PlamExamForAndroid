@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.view.report;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,11 +15,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +31,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class ReportFragment extends AbstractView implements ReportContract.IReportDetailView {
-
 
     @Bind(R.id.rb_error_report)
     RadioButton rbError;
@@ -70,6 +74,14 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
         initView();
         mPresenter.start();
         return rootView;
+    }
+
+    public void sendMsgForReport(ReportDetailBean bean, String content) {
+        if (StringUtil.isEmpty(content)) {
+            startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
+            return;
+        }
+        mPresenter.sendMsgForReport(bean, content);
     }
 
     private void initView() {
@@ -127,6 +139,7 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
     public void updateFragment(ReportDetailBean reportDetailBean) {
         ((ReportDetailFragment) fragList.get(1)).initView(reportDetailBean);
         ((ReportErrorFragment) fragList.get(0)).initView(reportDetailBean);
+        ((ReportAdviceFragment) fragList.get(2)).initView(reportDetailBean.GeneralAdvices);
     }
 
     @Override
@@ -136,6 +149,13 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
         } else {
             hideRetryLayer(R.id.rLayout);
         }
+    }
+
+    @Override
+    public void turnConsultDetail(List<ConsultDetailBean> data) {
+        Intent intent = new Intent(getActivity(), ConsultDetailActivity.class);
+        intent.putExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT, (Serializable) data);
+        startActivity(intent);
     }
 
     private class ReportPagerAdapter extends FragmentPagerAdapter {
@@ -159,5 +179,6 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+        mPresenter.cancelRequest();
     }
 }

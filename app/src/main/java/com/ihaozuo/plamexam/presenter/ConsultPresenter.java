@@ -59,7 +59,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
 
     @Override
     public IBaseModel[] getBaseModelList() {
-        return new IBaseModel[]{mConsultModel};
+        return new IBaseModel[]{mConsultModel, mUserModel};
     }
 
     @Override
@@ -71,9 +71,9 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         if (null != DoctorManager.getInstance().getDoctorList()) {
             doctorListBoolean = true;
         }
-        if (!consultListBoolean) getConsultDetail();
         if (!doctorIDBoolean) getDoctorID();
         if (!doctorListBoolean) getDoctorList();
+        if (!consultListBoolean) getConsultDetail();
     }
 
     @Override
@@ -190,8 +190,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         replyContent.setDate(new Date());
         return replyContent;
     }
-
-
 
 
 }
