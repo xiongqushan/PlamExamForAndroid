@@ -77,13 +77,13 @@ buildscript {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile files('libs/Msc.jar')
+    compile files('libs/Sunflower.jar')
     testCompile 'junit:junit:4.12'
     apt 'com.google.dagger:dagger-compiler:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
-    compile files('libs/Msc.jar')
-    compile files('libs/Sunflower.jar')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:support-v4:23.4.0'
@@ -100,28 +100,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
-    compile files('libs/umeng_social_api.jar')
-    compile files('libs/umeng_social_net.jar')
-    compile files('libs/umeng_social_view.jar')
-    compile files('libs/SocialSDK_QQZone_3.jar')
-    compile files('libs/SocialSDK_umengqq.jar')
-    compile files('libs/SocialSDK_umengsina.jar')
-    compile files('libs/SocialSDK_umengwx.jar')
-    compile files('libs/SocialSDK_WeiXin_2.jar')
-    compile files('libs/SocialSDK_Sina.jar')
-    compile files('libs/weiboSDKCore_3.1.4.jar')
-    compile files('libs/libapshare.jar')
-    compile files('libs/line-android-sdk-3.1.19.jar')
-    compile files('libs/mta-sdk-1.6.2.jar')
-    compile files('libs/open_sdk_r5756_lite.jar')
-    compile files('libs/SocialSDK_flickr.jar')
-    compile files('libs/SocialSDK_foursquare.jar')
-    compile files('libs/SocialSDK_gplus.jar')
-    compile files('libs/SocialSDK_pinterest.jar')
-    compile files('libs/SocialSDK_pocket.jar')
-    compile files('libs/SocialSDK_tencentWB_1.jar')
-    compile files('libs/SocialSDK_tencentWB_2.jar')
-    compile files('libs/SocialSDK_tencentWB_3.jar')
-    compile files('libs/SocialSDK_tumblr.jar')
-    compile files('libs/SocialSDK_WeiXin_1.jar')
+
 }

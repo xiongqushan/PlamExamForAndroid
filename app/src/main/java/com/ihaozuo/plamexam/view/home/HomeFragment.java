@@ -71,7 +71,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     public void onResume() {
         super.onResume();
         mPresenter.start();
-        // mPresenter.getBanner("123");
     }
 
     public void onDestroyView() {
@@ -106,7 +105,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             initView();
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
 //            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
-            mPresenter.getBanner("bjbr001");
+            mPresenter.getBanner("bjbr003");
         }
         return rootView;
     }
@@ -170,15 +169,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void initBanner(final List<BannerBean> sourceList) {
         mBannerList = new ArrayList<BannerBean>();
-        if (null == sourceList || sourceList.size() == 0) {
-            BannerBean defaultBanner = new BannerBean();
-            defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
-            defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
-            mBannerList.add(defaultBanner);
-        } else {
-            mBannerList.addAll(sourceList);
-        }
-
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, SimpleDraweeView view, int position) {
@@ -195,6 +185,15 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(intent);
             }
         });
+
+        if (null == sourceList || sourceList.size() == 0) {
+            BannerBean defaultBanner = new BannerBean();
+            defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
+            defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
+            mBannerList.add(defaultBanner);
+        } else {
+            mBannerList.addAll(sourceList);
+        }
         mViewPager.setData(mBannerList);
     }
 

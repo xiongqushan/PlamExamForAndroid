@@ -85,7 +85,6 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
                 mHomeView.hideDialog(message);
             }
 
-
         });
     }
 
@@ -111,21 +110,6 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
         });
     }
 
-//    @Override
-//    public void removeUnreadMark(String accountId) {
-//        mConsultModel.removeUnreadMark(accountId, new OnHandlerResultListener<RestResult<Boolean>>() {
-//            @Override
-//            public void handlerResultSuccess(RestResult<Boolean> resultData) {
-//
-//            }
-//
-//            @Override
-//            public void handlerResultError(String message) {
-//                mHomeView.hideDialog(message);
-//            }
-//        });
-//    }
-
     @Override
     public void getNewsList(int pageIndex,int pageSize) {
         mHomeModel.getNewsList(pageIndex, pageSize, new OnHandlerResultListener<RestResult<List<NewsBean>>>() {
@@ -142,7 +126,5 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
             }
         });
     }
-
-
 
 }
