@@ -52,9 +52,9 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
                 .subscribe(subscriber);
     }
 
-    public void sendGrade(String accountId,int score,String content,final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+    public void sendGrade(String accountId, int score, String content, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
-        Map<String,Object> params = HZUtils.initParamsMap();
+        Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         params.put("Score", score);
         params.put("Content", content);
@@ -76,6 +76,24 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.RemoveUnreadMark(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber);
+    }
+
+    public void sendMsgForReport(String accountId, String type, String content, String code,
+                                 String no, String name, String date,
+                                 final OnHandlerResultListener<RestResult<List<ConsultDetailBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("AccountId", accountId);
+        params.put("Type", type);
+        params.put("ConsultContent", content);
+        params.put("CheckUnitCode", code);
+        params.put("WorkNo", no);
+        params.put("CheckUnitName", name);
+        params.put("ReportDate", date);
+        mIConsultService.sendMsgForReport(params)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);

@@ -2,12 +2,13 @@ package com.ihaozuo.plamexam.bean;
 
 import com.ihaozuo.plamexam.util.DateUtil;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by hzguest3 on 2016/10/17.
  */
-public class ConsultDetailBean {
+public class ConsultDetailBean implements Serializable {
     public String AccountId;
     public String DoctorId;
     public int Type;
@@ -22,5 +23,6 @@ public class ConsultDetailBean {
 
     public void setDate(){
         this.Date =DateUtil.date2Str(new Date(), "yyyy-MM-dd'T'HH:mm:ss");;
+
     }
 }

@@ -61,6 +61,7 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
         this.mUserInfo = UserManager.getInstance().getUserInfo();
         this.mDoctorInfo = doctorInfoBean;
         notifyDataSetChanged();
+
     }
 
     public void addReply(ConsultDetailBean replyContent) {
@@ -121,22 +122,23 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
 
     public void bindRightItem(ConsultDetailBean entity, ConsultRightHolder holder) {
         List<String> reportInfoList = new ArrayList<String>();
-        if (!StringUtil.isEmpty(entity.AppendInfo)){
-            reportInfoList = Arrays.asList(entity.AppendInfo.split(";"));
-        }
 
-        switch (entity.Type){
+        switch (entity.Type) {
             case 1:
-                holder.reportConsultItem.setVisibility(View.INVISIBLE);
+                holder.reportConsultItem.setVisibility(View.GONE);
                 holder.txtConsultItem.setVisibility(View.VISIBLE);
                 holder.txtConsultItem.setText(entity.Content);
                 break;
 
             case 3:
+                if (!StringUtil.isEmpty(entity.AppendInfo)) {
+                    reportInfoList = Arrays.asList(entity.AppendInfo.split(";", -1));
+                }
                 holder.reportConsultItem.setVisibility(View.VISIBLE);
-                holder.txtConsultItem.setVisibility(View.INVISIBLE);
+                holder.txtConsultItem.setVisibility(View.GONE);
                 holder.tvReportTitle.setText(reportInfoList.get(2));
                 holder.tvReportDate.setText(reportInfoList.get(3));
+                holder.tvReportContent.setText(entity.Content);
                 break;
         }
         holder.txtConsultCommiton.setText(entity.getDate());
@@ -173,6 +175,8 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
         TextView tvReportDate;
         @Bind(R.id.report_consult_item)
         LinearLayout reportConsultItem;
+        @Bind(R.id.tv_reportContent)
+        TextView tvReportContent;
 
         public ConsultRightHolder(View itemView) {
             super(itemView);

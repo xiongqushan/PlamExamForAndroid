@@ -74,6 +74,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     public static boolean isForeground = false;
     public static final String REFRESH_COSULTD_LIST = "REFRESH_COSULTD_LIST";
+    public static final String REFRESH_COSULTD_WITH_REPORT = "REFRESH_COSULTD_WITH_REPORT";
 
     private View rootView;
     private Context mContext;
@@ -137,7 +138,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         });
 
         registerCustomReceiver(REFRESH_COSULTD_LIST);
-
+        mIConsultPresenter.start();
         return rootView;
     }
 
@@ -154,11 +155,11 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         sendCustomBroadcast(MainActivity.REMOVE_UNREAD_MARK);
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
         isForeground = true;
-        mIConsultPresenter.start();
     }
 
     @Override
@@ -241,7 +242,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             swipeLayout.setRefreshing(false);
         }
         mAdapter.refreshList(mContext, consultDetailList, getDoctorInfo());
-        mRecyclerView.scrollToPosition(consultDetailList.size());
+        mRecyclerView.scrollToPosition(consultDetailList.size()-1);
     }
 
     public void sendMessage() {

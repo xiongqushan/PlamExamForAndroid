@@ -37,12 +37,12 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     private boolean doctorListBoolean;
 
     @Inject
-    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel, @NonNull UserModel userModel,@NonNull @Named("CONSULT_DETAIL_LIST") List<ConsultDetailBean> list) {
+    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel, @NonNull UserModel userModel, @NonNull @Named("CONSULT_DETAIL_LIST") List<ConsultDetailBean> list) {
         consultListBoolean = false;
         doctorIDBoolean = false;
         doctorListBoolean = false;
 //        consultDetailList = new ArrayList<>();
-        if (list.size() != 0){
+        if (list.size() != 0) {
             consultDetailList = list;
         }
         mIConsultView = iConsultView;
@@ -61,13 +61,13 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
 
     @Override
     public IBaseModel[] getBaseModelList() {
-        return new IBaseModel[]{mConsultModel};
+        return new IBaseModel[]{mConsultModel, mUserModel};
     }
 
     @Override
     public void start() {
-        mIConsultView.showDialog();
-        if (null != consultDetailList){
+
+        if (null != consultDetailList) {
             consultListBoolean = true;
         }
         if (null != UserManager.getInstance().getDoctorID()) {
@@ -76,10 +76,24 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         if (null != DoctorManager.getInstance().getDoctorList()) {
             doctorListBoolean = true;
         }
-        if (!consultListBoolean ) getConsultDetail();
-        if (!doctorIDBoolean) getDoctorID();
-        if (!doctorListBoolean) getDoctorList();
+
+        if (!consultListBoolean || !doctorIDBoolean || !doctorListBoolean) {
+            mIConsultView.showDialog();
+            if (!consultListBoolean) getConsultDetail();
+            if (!doctorIDBoolean) getDoctorID();
+            if (!doctorListBoolean) getDoctorList();
+        } else {
+            toggleDialog();
+        }
+
     }
+
+    public void refresh(List<ConsultDetailBean> list) {
+        mIConsultView.refreshConsultList(list);
+        mIConsultView.setDoctorInfo();
+    }
+
+    ;
 
     @Override
     public void getConsultDetail() {
@@ -87,6 +101,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             @Override
             public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
                 consultDetailList = resultData.Data;
+                mIConsultView.refreshConsultList(consultDetailList);
                 consultListBoolean = true;
                 removeUnreadMark();
                 toggleDialog();
@@ -177,11 +192,12 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         if (consultListBoolean && doctorIDBoolean && doctorListBoolean) {
             mIConsultView.setDoctorInfo();
             mIConsultView.refreshConsultList(consultDetailList);
+            consultDetailList.clear();
             mIConsultView.hideDialog();
 
             consultListBoolean = false;
-//            doctorIDBoolean = false;
-//            doctorListBoolean = false;
+            doctorIDBoolean = false;
+            doctorListBoolean = false;
         }
     }
 
@@ -195,8 +211,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         replyContent.setDate();
         return replyContent;
     }
-
-
 
 
 }

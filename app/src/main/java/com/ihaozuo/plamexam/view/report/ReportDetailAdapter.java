@@ -120,7 +120,6 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
         }
         TextView tvTitle = UIHelper.getAdapterView(layout, R.id.tvReportMainItem);
         tvTitle.setText(datalist.CheckItems.get(section).CheckItemName);
-
         return layout;
     }
 

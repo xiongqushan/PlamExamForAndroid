@@ -1,7 +1,6 @@
 package com.ihaozuo.plamexam.view.report;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
@@ -27,8 +26,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -45,6 +42,8 @@ public class ReportErrorFragment extends Fragment {
     private List<ReportDetailBean.CheckItemsBean.CheckResultsBean> dataList = new ArrayList<>();
     private Map<Integer, Boolean> checkMap = new ArrayMap<Integer, Boolean>();
     private boolean showCheckBox;
+    private ReportFragment mReportFragment;
+    private ReportDetailBean mReportDetailBean;
 
     public ReportErrorFragment() {
         // Required empty public constructor
@@ -59,6 +58,7 @@ public class ReportErrorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.report_error_frag, container, false);
+        mReportFragment = (ReportFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.frameContent);
         ButterKnife.bind(this, rootView);
         adapter = new ListAdapter();
         mListView.setAdapter(adapter);
@@ -66,6 +66,7 @@ public class ReportErrorFragment extends Fragment {
     }
 
     public void initView(ReportDetailBean reportDetailBean) {
+        mReportDetailBean = reportDetailBean;
         int CheckItemSize = reportDetailBean.CheckItems.size();
         for (int i = 0; i < CheckItemSize; i++) {
             int CheckResultSize = reportDetailBean.CheckItems.get(i).CheckResults.size();
@@ -95,7 +96,10 @@ public class ReportErrorFragment extends Fragment {
             StringBuffer selectData = getSelectData();
             Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
             btnReportError.setText("选择异常项咨询");
-            startActivity(new Intent(getContext(), ConsultDetailActivity.class));
+            if (mReportDetailBean == null) {
+                return;
+            }
+            mReportFragment.sendMsgForReport(mReportDetailBean, String.valueOf(selectData));
         }
     }
 
@@ -169,17 +173,14 @@ public class ReportErrorFragment extends Fragment {
             Integer index = iterator.next();
             if (checkMap.get(index)) {
                 num++;
-                data.append("\n" + dataList.get(index).CheckIndexName + " : " + dataList.get(index).ResultValue);
-                if (StringUtil.isNotEmpty(dataList.get(index).ValueRefFormat)) {
-                    data.append("  参考值 : " + dataList.get(index).ValueRefFormat + " " + dataList.get(index).Unit);
-                }
-
+                data.append("\n" + "[" + dataList.get(index).CheckIndexName + " : " + dataList.get(index).ResultValue + "]");
+//                if (StringUtil.isNotEmpty(dataList.get(index).ValueRefFormat)) {
+//                    data.append("  参考值 : " + dataList.get(index).ValueRefFormat + " " + dataList.get(index).Unit);
+//                }
             }
         }
         if (num > 0) {
-            data.insert(0, "选中 ( " + num + " ) 项 " + ": ");
-        } else {
-            data.insert(0, "选中 ( " + num + " ) 项");
+            data.insert(0, "异常 ( " + num + " ) 项 " + ": ");
         }
         return data;
     }

@@ -5,4 +5,5 @@ package com.ihaozuo.plamexam.common;
  */
 public class Constants {
     public static final long TIME_DELAY_VIEWPAGER = 4000;
+    public static final String TYPE_SENDFORREPORT = "3";
 }

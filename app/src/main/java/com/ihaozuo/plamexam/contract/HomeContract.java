@@ -18,7 +18,6 @@ public interface HomeContract {
 
         void showUnreadMark();
 
-
         void refreshNewsList(List<NewsBean> newsList);
 
     }

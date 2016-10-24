@@ -26,7 +26,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit.http.HEAD;
 
 public class ReportListFragment extends AbstractView implements ReportContract.IReportListView {
     public static final String FILTER_REFRESH_REPORTLIST = "REFRESH_REPORTLIST_REPORTLISTFRAGMENT";
@@ -88,7 +87,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
         }
         registerCustomReceiver(FILTER_REFRESH_REPORTLIST);
         initView();
-        mPresenter.start();
+//        mPresenter.start();
         return rootView;
     }
 

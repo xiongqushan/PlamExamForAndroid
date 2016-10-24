@@ -11,4 +11,5 @@ public class ReportItemBean implements Serializable {
     public String CustomerName;
     public String ReportName;
     public String ReportDate;
+    public String ReportDateFormat;
 }

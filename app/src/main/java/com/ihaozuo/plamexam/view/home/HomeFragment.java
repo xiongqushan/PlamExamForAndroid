@@ -20,13 +20,13 @@ import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
 import com.ihaozuo.plamexam.ioc.HomeModule;
-import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
@@ -49,7 +49,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     HomePresenter mHomePresenter;
     HomeContract.IHomePresenter mPresenter;
 
-    XBanner mViewPager;
+    private XBanner mViewPager;
     private Context mContext;
     private int maxLength = 10000;// bannerPagerNumber
     private View rootView;
@@ -98,8 +98,10 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             ButterKnife.bind(this, rootView);
             DaggerHomeComponent.builder().appComponent(HZApp.shareApplication()
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
+
             initView();
-            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+//            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+            mPresenter.getBanner("bjbr001");
         }
         return rootView;
     }
@@ -171,11 +173,13 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(intent);
             }
         });
+
+        mViewPager.setData(bannerList);
     }
 
     @Override
     public void showUnreadMark() {
-
+        sendCustomBroadcast(MainActivity.SHOW_UNREAD_MARK);
     }
 
 

@@ -47,7 +47,7 @@
             android:paddingLeft="6dp"
             android:paddingRight="@dimen/consult_textview_padding_left"
             android:textSize="@dimen/textsize_h4"
-            android:visibility="invisible"
+            android:visibility="gone"
             tools:text="1234\n1234123\23124\2111111111111111111111111111111111111111111111111111111111111111111111"/>
 
         <LinearLayout
@@ -66,7 +66,7 @@
             android:paddingRight="@dimen/consult_textview_padding_left"
             android:textSize="@dimen/textsize_h4"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/tv_reportTitle"
@@ -89,6 +89,7 @@
                 android:layout_margin="8dp"/>
 
             <TextView
+                android:id="@+id/tv_reportContent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:lineSpacingExtra="3dp"

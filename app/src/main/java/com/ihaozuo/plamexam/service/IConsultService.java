@@ -31,6 +31,9 @@ public interface IConsultService {
     Observable<BaseBean<Boolean>> RemoveUnreadMark(@Body Map<String, Object> params);
 
     @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "Comment")
-    Observable<BaseBean<Boolean>> sendGrade(@Body Map<String,Object> params);
+    Observable<BaseBean<Boolean>> sendGrade(@Body Map<String, Object> params);
+
+    @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "SendForReport")
+    Observable<BaseBean<List<ConsultDetailBean>>> sendMsgForReport(@Body Map<String, Object> params);
 
 }

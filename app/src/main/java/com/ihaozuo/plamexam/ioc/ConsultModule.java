@@ -29,10 +29,10 @@ public class ConsultModule {
         return ConsultDetailFragment.newInstance();
     }
 
-    @ScopeType.ActivityScope
     @Provides
     @Named("CONSULT_DETAIL_LIST")
     List<ConsultDetailBean> provideConsultDetailList(){
         return mConsultDetailList;
     }
+
 }
