@@ -39,6 +39,7 @@
         <item name="colorAccent">@color/edittext_color</item>
     </style>
 
+
     <!--SwitchButtonStyle-->
     <style name="MD">
         <item name="animationVelocity">6</item>

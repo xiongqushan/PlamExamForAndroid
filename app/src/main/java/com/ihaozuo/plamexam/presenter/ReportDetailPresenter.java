@@ -75,15 +75,34 @@ public class ReportDetailPresenter extends AbstractPresenter implements ReportCo
         });
     }
 
+//    @Override
+//    public void sendMsgForReport(ReportDetailBean bean, String content) {
+//        mView.showDialog();
+//        mConsultModel.sendMsgForReport(UserManager.getInstance().getUserInfo().AccountId, Constants.TYPE_SENDFORREPORT,
+//                content, bean.CheckUnitCode, bean.WorkNo, bean.CheckUnitName, bean.ReportDateFormat,
+//                new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
+//                    @Override
+//                    public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
+//                        mView.turnConsultDetail(resultData.Data);
+//                        mView.hideDialog();
+//                    }
+//
+//                    @Override
+//                    public void handlerResultError(String message) {
+//                        mView.hideDialog(message);
+//                    }
+//                });
+//    }
+
     @Override
-    public void sendMsgForReport(ReportDetailBean bean, String content) {
+    public void sendReport(ReportDetailBean bean, String content) {
         mView.showDialog();
-        mConsultModel.sendMsgForReport(UserManager.getInstance().getUserInfo().AccountId, Constants.TYPE_SENDFORREPORT,
+        mConsultModel.SendReport(UserManager.getInstance().getUserInfo().AccountId, Constants.TYPE_SENDFORREPORT,
                 content, bean.CheckUnitCode, bean.WorkNo, bean.CheckUnitName, bean.ReportDateFormat,
                 new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
                     @Override
                     public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
-                        mView.turnConsultDetail(resultData.Data);
+                        mView.turnConsultDetail();
                         mView.hideDialog();
                     }
 

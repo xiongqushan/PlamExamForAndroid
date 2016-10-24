@@ -11,6 +11,7 @@ import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
@@ -21,8 +22,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
@@ -31,6 +32,7 @@ import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.main.MainActivity;
+import com.ihaozuo.plamexam.view.mine.settings.DisclaimerActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -78,7 +80,10 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         phone.addTextChangedListener(textWatch);
         btnLogin.setEnabled(false);
         tvWarning.setText(getClickableSpan());
-
+        tvWarning.setMovementMethod(LinkMovementMethod.getInstance());
+        if (BuildConfig.DEBUG){
+            phone.setText("13651646955");
+        }
         return rootView;
     }
 
@@ -199,14 +204,15 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         View.OnClickListener GetUserContract = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "用户协议", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mContext, "用户协议", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mContext, DisclaimerActivity.class));
             }
         };
 
-        SpannableString sp = new SpannableString("注册登录即表示您同意我们的\n[掌上体检用户许可协议]");
+        SpannableString sp = new SpannableString(getString(R.string.login_statent));
 //        sp.setSpan(new StyleSpan(Typeface.BOLD), 13, 26, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new Clickable(GetUserContract), 13, 26, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.main_color_green)), 13, 26, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        sp.setSpan(new Clickable(GetUserContract), 13, 25, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.main_color_blue)), 13, 25, Spanned.SPAN_EXCLUSIVE_INCLUSIVE);
         return sp;
     }
 

@@ -1,9 +1,7 @@
 package com.ihaozuo.plamexam.view.consult;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
-import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ConsultDetailBean;
@@ -49,14 +47,14 @@ public class ConsultDetailActivity extends BaseActivity {
         super.onStop();
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);
-        Toast.makeText(this, "onNewIntent", Toast.LENGTH_SHORT).show();
-        List<ConsultDetailBean> list = (List<ConsultDetailBean>) intent.getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT);
-        mConsultPresenter.refresh(list);
-    }
+//    @Override
+//    protected void onNewIntent(Intent intent) {
+//        super.onNewIntent(intent);
+//        setIntent(intent);
+//        Toast.makeText(this, "onNewIntent", Toast.LENGTH_SHORT).show();
+//        List<ConsultDetailBean> list = (List<ConsultDetailBean>) intent.getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT);
+//        mConsultPresenter.refresh(list);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,14 +63,14 @@ public class ConsultDetailActivity extends BaseActivity {
         setTranslucentStatus(R.color.main_color_blue);
         setContentView(R.layout.content_act);
         mConsultDatailList = new ArrayList<ConsultDetailBean>();
-        if (null != getIntent().getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT)) {
-            mConsultDatailList.addAll((List<ConsultDetailBean>) getIntent().getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT));
-        }
-        mConsultModule = new ConsultModule(mConsultDatailList);
+//        if (null != getIntent().getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT)) {
+//            mConsultDatailList.addAll((List<ConsultDetailBean>) getIntent().getSerializableExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT));
+//        }
+
         DaggerConsultComponent.builder()
                 .appComponent(HZApp.shareApplication()
                 .getAppComponent())
-                .consultModule(mConsultModule)
+                .consultModule(new ConsultModule())
                 .build()
                 .inject(this);
 

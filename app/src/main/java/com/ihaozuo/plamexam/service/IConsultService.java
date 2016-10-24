@@ -36,4 +36,7 @@ public interface IConsultService {
     @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "SendForReport")
     Observable<BaseBean<List<ConsultDetailBean>>> sendMsgForReport(@Body Map<String, Object> params);
 
+    @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "SendReport")
+    Observable<BaseBean<Boolean>> SendReport(@Body Map<String, Object> params);
+
 }

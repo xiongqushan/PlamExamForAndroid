@@ -18,7 +18,6 @@ import com.ihaozuo.plamexam.view.base.IBaseView;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 /**
  * Created by hzguest3 on 2016/10/13.
@@ -37,14 +36,10 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     private boolean doctorListBoolean;
 
     @Inject
-    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel, @NonNull UserModel userModel, @NonNull @Named("CONSULT_DETAIL_LIST") List<ConsultDetailBean> list) {
+    public ConsultPresenter(@NonNull ConsultContract.IConsultView iConsultView, @NonNull ConsultModel consultModel, @NonNull UserModel userModel) {
         consultListBoolean = false;
         doctorIDBoolean = false;
         doctorListBoolean = false;
-//        consultDetailList = new ArrayList<>();
-        if (list.size() != 0) {
-            consultDetailList = list;
-        }
         mIConsultView = iConsultView;
         mConsultModel = consultModel;
         mUserModel = userModel;
@@ -67,9 +62,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     @Override
     public void start() {
 
-        if (null != consultDetailList) {
-            consultListBoolean = true;
-        }
         if (null != UserManager.getInstance().getDoctorID()) {
             doctorIDBoolean = true;
         }
@@ -88,10 +80,10 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
 
     }
 
-    public void refresh(List<ConsultDetailBean> list) {
-        mIConsultView.refreshConsultList(list);
-        mIConsultView.setDoctorInfo();
-    }
+//    public void refresh(List<ConsultDetailBean> list) {
+//        mIConsultView.refreshConsultList(list);
+//        mIConsultView.setDoctorInfo();
+//    }
 
     @Override
     public void getConsultDetail() {
@@ -100,7 +92,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
                 consultDetailList = resultData.Data;
                 consultListBoolean = true;
-                removeUnreadMark();
+//                removeUnreadMark();
                 toggleDialog();
             }
 
@@ -171,6 +163,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         });
     }
 
+    @Override
     public void removeUnreadMark() {
         mConsultModel.removeUnreadMark(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<Boolean>>() {
             @Override

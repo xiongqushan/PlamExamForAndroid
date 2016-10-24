@@ -15,15 +15,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailFragment;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,12 +75,20 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
         return rootView;
     }
 
-    public void sendMsgForReport(ReportDetailBean bean, String content) {
+//    public void sendMsgForReport(ReportDetailBean bean, String content) {
+//        if (StringUtil.isEmpty(content)) {
+//            startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
+//            return;
+//        }
+//        mPresenter.sendMsgForReport(bean, content);
+//    }
+
+    public void sendMsg(ReportDetailBean bean, String content) {
         if (StringUtil.isEmpty(content)) {
             startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
             return;
         }
-        mPresenter.sendMsgForReport(bean, content);
+        mPresenter.sendReport(bean, content);
     }
 
     private void initView() {
@@ -151,10 +158,17 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
         }
     }
 
+//    @Override
+//    public void turnConsultDetail(List<ConsultDetailBean> data) {
+//        Intent intent = new Intent(getActivity(), ConsultDetailActivity.class);
+//        intent.putExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT, (Serializable) data);
+//        startActivity(intent);
+//    }
+
     @Override
-    public void turnConsultDetail(List<ConsultDetailBean> data) {
+    public void turnConsultDetail() {
         Intent intent = new Intent(getActivity(), ConsultDetailActivity.class);
-        intent.putExtra(ConsultDetailActivity.INTENT_KEY_CONSULT_FROM_REPORT, (Serializable) data);
+        sendCustomBroadcast(ConsultDetailFragment.REFRESH_COSULTD_LIST);
         startActivity(intent);
     }
 

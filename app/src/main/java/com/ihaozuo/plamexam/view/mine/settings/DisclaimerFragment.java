@@ -10,6 +10,7 @@ import android.webkit.WebView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 
+
 public class DisclaimerFragment extends BaseFragment {
 
 
@@ -27,8 +28,7 @@ public class DisclaimerFragment extends BaseFragment {
         setCustomerTitle(rootView, getString(R.string.disclaimer));
         WebView webView = (WebView) rootView.findViewById(R.id.webview);
         // 加载assets目录下的文件
-        String url = "file:///android_asset/disclaimer.html";
-        webView.loadUrl(url);
+        webView.loadUrl("file:///android_asset/disclaimer.html");
         return rootView;
     }
 

@@ -5,8 +5,8 @@ import android.util.Base64;
 
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.framework.SysConfig;
-import com.ihaozuo.plamexam.service.IHomeService;
 import com.ihaozuo.plamexam.service.IConsultService;
+import com.ihaozuo.plamexam.service.IHomeService;
 import com.ihaozuo.plamexam.service.IReportService;
 import com.ihaozuo.plamexam.service.IUserService;
 import com.ihaozuo.plamexam.util.JsonUtil;
@@ -139,6 +139,8 @@ public class AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .build();
+//        .addConverterFactory(JsonConverterFactory.create())
+
         return retrofit;
     }
 }

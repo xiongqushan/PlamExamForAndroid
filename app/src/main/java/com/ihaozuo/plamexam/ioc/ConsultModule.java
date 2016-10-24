@@ -1,12 +1,7 @@
 package com.ihaozuo.plamexam.ioc;
 
-import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.contract.ConsultContract;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailFragment;
-
-import java.util.List;
-
-import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,22 +12,14 @@ import dagger.Provides;
 @Module
 public class ConsultModule {
 
-    private List<ConsultDetailBean> mConsultDetailList;
 
-    public ConsultModule(List<ConsultDetailBean> consultDetailList){
-        mConsultDetailList = consultDetailList;
+    public ConsultModule(){
     }
 
     @ScopeType.ActivityScope
     @Provides
     ConsultContract.IConsultView provideConsultFragment(){
         return ConsultDetailFragment.newInstance();
-    }
-
-    @Provides
-    @Named("CONSULT_DETAIL_LIST")
-    List<ConsultDetailBean> provideConsultDetailList(){
-        return mConsultDetailList;
     }
 
 }

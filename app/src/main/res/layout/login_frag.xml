@@ -52,15 +52,6 @@
             android:textSize="@dimen/textsize_h2"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_warning"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:maxLines="2"
-            android:lineSpacingExtra="5dp"
-            tools:text="注册登录即表示您同意我们的\n[掌上体检用户许可协议]" />
-
 
     </LinearLayout>
 
@@ -142,6 +133,17 @@
             </LinearLayout>
 
         </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_warning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:gravity="center"
+            android:layout_marginBottom="@dimen/padding_15dp"
+            tools:text="注册登录即表示您同意我们的[掌上体检用户许可协议]"
+            android:textSize="@dimen/textsize_h5_12sp"
+            android:textColor="@color/gray_66"/>
 
 
     </FrameLayout>

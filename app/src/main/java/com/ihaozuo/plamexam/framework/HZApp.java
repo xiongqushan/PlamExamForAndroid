@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.frogermcs.dagger2metrics.Dagger2Metrics;
 import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
 import com.ihaozuo.plamexam.BuildConfig;
@@ -70,9 +69,9 @@ public class HZApp extends Application {
         mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具
-        if (BuildConfig.DEBUG) {
-            Dagger2Metrics.enableCapturing(this);
-        }
+//        if (BuildConfig.DEBUG) {
+//            Dagger2Metrics.enableCapturing(this);
+//        }
 
 
         UMShareAPI.get(this);
@@ -81,7 +80,6 @@ public class HZApp extends Application {
                 .appModule(new AppModule(this))
                 .build();
     }
-
 
 
     String getCurProcessName(Context context) {
@@ -101,7 +99,7 @@ public class HZApp extends Application {
 
     {
         //微信 wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
-        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
+        PlatformConfig.setWeixin("wx35e5655ba6776765", "a01938c93230a27b338cf5bece21adea");
         PlatformConfig.setSinaWeibo("436196584", "e7e5b817ca06547ef20f3a9c5bd4f650");
         PlatformConfig.setQQZone("1105699103", "W0grAATJYfxpI7NC");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
