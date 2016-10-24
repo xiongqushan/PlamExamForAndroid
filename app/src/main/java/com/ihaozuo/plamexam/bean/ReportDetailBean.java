@@ -20,7 +20,7 @@ public class ReportDetailBean {
     public String CommitUserName;
     public String WorkNo;
     public List<String> GroupIds;
-    public String ReportDateForamt;
+    public String ReportDateFormat;
     //public String[] GroupIds;
 
     public List<CheckItemsBean> CheckItems;

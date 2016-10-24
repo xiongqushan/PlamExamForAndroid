@@ -23,6 +23,7 @@ public class UserManager {
     private static UserManager _instance;
     private SharedPreferences sharedPreferences;
     private UserBean _currentUserEntity;
+
     private UserManager() {
         if (null == sharedPreferences) {
             sharedPreferences = HZApp.shareApplication().getSharedPreferences(SP_NAME, Activity.MODE_PRIVATE);
@@ -36,60 +37,71 @@ public class UserManager {
         return _instance;
     }
 
-    public void setUserInfo(UserBean userEntity){
+    public void setUserInfo(UserBean userEntity) {
         try {
-            _currentUserEntity=userEntity;
+            _currentUserEntity = userEntity;
             // 保存对象
-            SharedPreferences.Editor sharedata =sharedPreferences.edit();
-            ByteArrayOutputStream bos=new ByteArrayOutputStream();
-            ObjectOutputStream os=new ObjectOutputStream(bos);
+            SharedPreferences.Editor sharedata = sharedPreferences.edit();
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ObjectOutputStream os = new ObjectOutputStream(bos);
             //将对象序列化写入byte缓存
             os.writeObject(userEntity);
             String bytesToHexString = StringUtil.bytesToHexString(bos.toByteArray());
             sharedata.putString(USER_INFO_KEY, bytesToHexString);
             sharedata.apply();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public UserBean getUserInfo(){
-        if(_currentUserEntity==null){
+    public UserBean getUserInfo() {
+        if (_currentUserEntity == null) {
             try {
                 if (sharedPreferences.contains(USER_INFO_KEY)) {
                     String localData = sharedPreferences.getString(USER_INFO_KEY, "");
-                    if(!StringUtil.isEmpty(localData)){
+                    if (!StringUtil.isEmpty(localData)) {
                         byte[] stringToBytes = StringUtil.StringToBytes(localData);
-                        ByteArrayInputStream bis=new ByteArrayInputStream(stringToBytes);
-                        ObjectInputStream is=new ObjectInputStream(bis);
+                        ByteArrayInputStream bis = new ByteArrayInputStream(stringToBytes);
+                        ObjectInputStream is = new ObjectInputStream(bis);
                         //返回反序列化得到的对象
                         Object localObject = is.readObject();
-                        UserBean localInfo=(UserBean)localObject;
-                        _currentUserEntity=localInfo;
+                        UserBean localInfo = (UserBean) localObject;
+                        _currentUserEntity = localInfo;
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return  _currentUserEntity;
+        return _currentUserEntity;
     }
 
-    public void setDoctorID(String doctorID){
-        USER_DOCTOR_ID=doctorID;
+    public void updateDepartCode(String newCode) {
+        UserBean userInfo = getUserInfo();
+        userInfo.DepartCode = newCode;
+        setUserInfo(userInfo);
     }
 
-    public String getDoctorID(){
-        return  USER_DOCTOR_ID;
+    public void updateRealName(String newName) {
+        UserBean userInfo = getUserInfo();
+        userInfo.RealName = newName;
+        setUserInfo(userInfo);
     }
 
-    public boolean exist(){
+    public void setDoctorID(String doctorID) {
+        USER_DOCTOR_ID = doctorID;
+    }
+
+    public String getDoctorID() {
+        return USER_DOCTOR_ID;
+    }
+
+    public boolean exist() {
 //        return true;
-        return getUserInfo()!=null;
+        return getUserInfo() != null;
     }
 
-    public void clear(){
+    public void clear() {
         sharedPreferences.edit().remove(USER_INFO_KEY).commit();
         _instance = null;
     }

@@ -6,6 +6,7 @@ import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.contract.LoginContract;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
+import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.model.UserModel;
@@ -68,6 +69,8 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
             @Override
             public void handlerResultSuccess(RestResult<UserBean> resultData) {
                 UserManager.getInstance().setUserInfo(resultData.Data);
+                UserManager.getInstance().updateDepartCode(resultData.Data.DepartCode);
+                PreferenceManager.getInstance().writeLoginPhone(resultData.Data.Mobile);
                 mLoginView.hideDialog();
                 mLoginView.gotoMainPage();
             }

@@ -79,7 +79,7 @@ public class ReportDetailPresenter extends AbstractPresenter implements ReportCo
     public void sendMsgForReport(ReportDetailBean bean, String content) {
         mView.showDialog();
         mConsultModel.sendMsgForReport(UserManager.getInstance().getUserInfo().AccountId, Constants.TYPE_SENDFORREPORT,
-                content, bean.CheckUnitCode, bean.WorkNo, bean.CheckUnitName, bean.ReportDateForamt,
+                content, bean.CheckUnitCode, bean.WorkNo, bean.CheckUnitName, bean.ReportDateFormat,
                 new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
                     @Override
                     public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {

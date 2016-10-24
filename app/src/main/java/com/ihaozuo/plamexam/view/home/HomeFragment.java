@@ -16,6 +16,7 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.Banner.XBanner;
+import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
@@ -32,6 +33,7 @@ import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -41,6 +43,7 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 
 public class HomeFragment extends AbstractView implements HomeContract.IHomeView, View.OnClickListener {
+    public static final String FILTER_UPDATEBANNER_HOME = "FILTER_UPDATEBANNER_HOME";
 
     @Bind(R.id.listview_home)
     ListView mListView;
@@ -100,9 +103,11 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
             initView();
             mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+            registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
         }
         return rootView;
     }
+
 
     public void setPresenter(HomeContract.IHomePresenter presenter) {
         mPresenter = presenter;
@@ -153,8 +158,24 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     }
 
     @Override
-    public void initBanner(final List<BannerBean> bannerList) {
+    protected void onReceiveBroadcast(String filterAction, Intent intent) {
+        if (filterAction.equals(FILTER_UPDATEBANNER_HOME)) {
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+        }
+    }
 
+    @Override
+    public void initBanner(final List<BannerBean> sourceList) {
+        mBannerList = new ArrayList<BannerBean>();
+        if (null == sourceList || sourceList.size() == 0) {
+            BannerBean defaultBanner = new BannerBean();
+            defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
+            defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
+            mBannerList.add(defaultBanner);
+        } else {
+            mBannerList.addAll(sourceList);
+        }
+        mViewPager.setData(mBannerList);
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, SimpleDraweeView view, int position) {
