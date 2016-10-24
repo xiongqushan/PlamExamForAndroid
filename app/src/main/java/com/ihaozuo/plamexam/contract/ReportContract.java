@@ -14,6 +14,8 @@ import java.util.List;
 public interface ReportContract {
     interface IReportGetView extends IBaseView<IReportGetPresenter> {
         void showReportList();
+
+        void updateHomeBanner();
     }
 
     interface IReportGetPresenter extends IBasePresenter {

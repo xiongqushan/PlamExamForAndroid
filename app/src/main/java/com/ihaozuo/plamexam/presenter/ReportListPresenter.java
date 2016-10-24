@@ -57,6 +57,15 @@ public class ReportListPresenter extends AbstractPresenter implements ReportCont
             @Override
             public void handlerResultSuccess(RestResult<List<ReportItemBean>> resultData) {
                 if (resultData.Data != null && resultData.Data.size() > 0) {
+//                    String currCode = UserManager.getInstance().getUserInfo().DepartCode;
+//                    if (!currCode.equals(resultData.Data.get(0).CheckUnitCode)) {
+//                        UserManager.getInstance().updateDepartCode(resultData.Data.get(0).CheckUnitCode);
+//                        //mView.updateHomeBanner();
+//                    }
+                    String currName = UserManager.getInstance().getUserInfo().RealName;
+                    if (!currName.equals(resultData.Data.get(0).CustomerName)) {
+                        UserManager.getInstance().updateRealName(resultData.Data.get(0).CustomerName);
+                    }
                     mView.showReportList(resultData.Data);
                     mView.hideDialog();
                 } else {
@@ -64,8 +73,8 @@ public class ReportListPresenter extends AbstractPresenter implements ReportCont
                     mView.hideDialog("暂无报告");
                 }
                 mView.toggleRetryLayer(false);
-                ReportManager.getInstance().setReportList(resultData.Data);
                 ReportManager.getInstance().setFirstRequest(false);
+                ReportManager.getInstance().setReportList(resultData.Data);
             }
 
             @Override

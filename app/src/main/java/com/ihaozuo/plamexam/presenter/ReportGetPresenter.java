@@ -7,6 +7,7 @@ import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.manager.ReportManager;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.IBaseModel;
 import com.ihaozuo.plamexam.model.ReportModel;
 import com.ihaozuo.plamexam.view.base.IBaseView;
@@ -54,8 +55,18 @@ public class ReportGetPresenter extends AbstractPresenter implements ReportContr
                     mView.hideDialog("暂无数据");
                 } else {
                     mView.hideDialog();
-                    mView.showReportList();
                     ReportManager.getInstance().setReportList(resultData.Data.Reports);
+                    String currCode = UserManager.getInstance().getUserInfo().DepartCode;
+                    if (!currCode.equals(resultData.Data.CheckUnitCode)) {
+                        UserManager.getInstance().updateDepartCode(resultData.Data.CheckUnitCode);
+                        mView.updateHomeBanner();
+                    }
+                    String currName = UserManager.getInstance().getUserInfo().RealName;
+                    if (!currName.equals(resultData.Data.Reports.get(0).CustomerName)) {
+                        UserManager.getInstance().updateRealName(resultData.Data.Reports.get(0).CustomerName);
+                    }
+                    mView.showReportList();
+                    mView.hideDialog("获取成功");
                 }
             }
 

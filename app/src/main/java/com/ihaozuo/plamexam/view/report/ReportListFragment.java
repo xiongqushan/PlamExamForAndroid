@@ -87,7 +87,6 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
         }
         registerCustomReceiver(FILTER_REFRESH_REPORTLIST);
         initView();
-//        mPresenter.start();
         return rootView;
     }
 

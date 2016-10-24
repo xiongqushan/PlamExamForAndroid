@@ -136,7 +136,6 @@ public class BaseFragment extends Fragment {
     }
 
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
-
     }
 
     protected void sendCustomBroadcast(String activeName) {

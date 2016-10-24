@@ -16,6 +16,7 @@ import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.home.HomeFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -56,7 +57,7 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.add_report_frag, container, false);
+        rootView = inflater.inflate(R.layout.report_add_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.get_report));
         ButterKnife.bind(this, rootView);
         initView();
@@ -65,11 +66,11 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
 
     private void initView() {
         phone.setText(UserManager.getInstance().getUserInfo().Mobile);
-        String realName = UserManager.getInstance().getUserInfo().RealName;
-        if (StringUtil.isNotEmpty(realName)) {
-            etName.setText(realName);
-        }
-//        phone.setEnabled(false);
+        // phone.setEnabled(false);
+//        String realName = UserManager.getInstance().getUserInfo().RealName;
+//        if (StringUtil.isNotEmpty(realName)) {
+//            etName.setText(realName);
+//        }
     }
 
 
@@ -88,13 +89,14 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         switch (view.getId()) {
             case R.id.btn_login:
                 String name = etName.getText().toString();
+                String tele = phone.getText().toString();
                 if (StringUtil.isEmpty(name)) {
                     etName.requestFocus();
                     etName.setFocusableInTouchMode(true);
                     etName.setError("不能为空");
                     return;
                 }
-                mPresenter.getReport(UserManager.getInstance().getUserInfo().Mobile, name);
+                mPresenter.getReport(tele, name);
                 break;
         }
     }
@@ -109,5 +111,11 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         Intent intent = new Intent(ReportListFragment.FILTER_REFRESH_REPORTLIST);
         getActivity().sendBroadcast(intent);
         getActivity().finish();
+    }
+
+    @Override
+    public void updateHomeBanner() {
+        Intent intent = new Intent(HomeFragment.FILTER_UPDATEBANNER_HOME);
+        getActivity().sendBroadcast(intent);
     }
 }

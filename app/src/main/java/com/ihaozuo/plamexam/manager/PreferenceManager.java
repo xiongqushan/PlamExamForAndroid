@@ -12,8 +12,9 @@ public class PreferenceManager {
     private static PreferenceManager mPreferencemManager;
     private static SharedPreferences.Editor editor;
 
+    private static String SHARED_KEY_LOGINPHONE = "SHARED_KEY_LOGIN_PHONE";
+    private static String SHARED_KEY_DEPARTCODE = "SHARED_KEY_DEPARTCODE";
     private static String SHARED_KEY_JPUSH = "SHARED_KEY_JPUSH";
-    private static String SHARED_KEY_DOCTOE_JOB = "SHARED_KEY_DOCTOE_JOB";
 
     private PreferenceManager(Context context) {
         mSharedPreferences = context.getSharedPreferences(PREFERENCE_NAME,
@@ -44,7 +45,17 @@ public class PreferenceManager {
 
     public void writeJpush(boolean state) {
         editor.putBoolean(SHARED_KEY_JPUSH, state);
-        editor.commit();
+        editor.apply();
+    }
+
+
+    public String readLoginPhone() {
+        return mSharedPreferences.getString(SHARED_KEY_LOGINPHONE, "");
+    }
+
+    public void writeLoginPhone(String phone) {
+        editor.putString(SHARED_KEY_LOGINPHONE, phone);
+        editor.apply();
     }
 
 

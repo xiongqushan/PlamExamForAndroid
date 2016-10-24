@@ -16,10 +16,12 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.Banner.XBanner;
+import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
 import com.ihaozuo.plamexam.ioc.HomeModule;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
@@ -42,6 +44,7 @@ import butterknife.ButterKnife;
 import rx.Subscription;
 
 public class HomeFragment extends AbstractView implements HomeContract.IHomeView, View.OnClickListener {
+    public static final String FILTER_UPDATEBANNER_HOME = "FILTER_UPDATEBANNER_HOME";
 
     @Bind(R.id.listview_home)
     ListView mListView;
@@ -100,11 +103,13 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
 
             initView();
+            registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
 //            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
             mPresenter.getBanner("bjbr003");
         }
         return rootView;
     }
+
 
     public void setPresenter(HomeContract.IHomePresenter presenter) {
         mPresenter = presenter;
@@ -155,9 +160,15 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     }
 
     @Override
-    public void initBanner(List<BannerBean> sourceList) {
-        mBannerList = new ArrayList<BannerBean>();
+    protected void onReceiveBroadcast(String filterAction, Intent intent) {
+        if (filterAction.equals(FILTER_UPDATEBANNER_HOME)) {
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+        }
+    }
 
+    @Override
+    public void initBanner(final List<BannerBean> sourceList) {
+        mBannerList = new ArrayList<BannerBean>();
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, SimpleDraweeView view, int position) {
@@ -175,11 +186,12 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             }
         });
 
-        if (null == sourceList || sourceList.size()==0){
+        if (null == sourceList || sourceList.size() == 0) {
             BannerBean defaultBanner = new BannerBean();
-            defaultBanner.ImageUrl="res://com.ihaozuo.plamexam/"+R.drawable.banner;
+            defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
+            defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
             mBannerList.add(defaultBanner);
-        }else{
+        } else {
             mBannerList.addAll(sourceList);
         }
         mViewPager.setData(mBannerList);

@@ -180,5 +180,13 @@ public class ReportFragment extends AbstractView implements ReportContract.IRepo
         super.onDestroyView();
         ButterKnife.unbind(this);
         mPresenter.cancelRequest();
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        fragList.clear();
+        fragList = null;
     }
 }

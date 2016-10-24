@@ -16,6 +16,7 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.common.pinnedheaderlistview.PinnedHeaderListView;
+import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.UIHelper;
 
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class ReportDetailFragment extends Fragment {
     View dividerList;
     private View rootView;
     private boolean showSlideList;
+    private ReportDetailBean mReportDetailBean;
 
     public ReportDetailFragment() {
         // Required empty public constructor
@@ -56,6 +58,7 @@ public class ReportDetailFragment extends Fragment {
     }
 
     public void initView(ReportDetailBean bean) {
+        mReportDetailBean = bean;
         ReportDetailAdapter adapter = new ReportDetailAdapter(bean);
         mListView.setPinHeaders(true);
         mListView.setAdapter(adapter);
@@ -99,7 +102,15 @@ public class ReportDetailFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 adapterSlide.setSelectedPosition(position);
-//                mListView.setSelector(position);
+                int index = 0;
+                for (int i = 0; i < position; i++) {
+                    if (StringUtil.isEmpty(mReportDetailBean.CheckItems.get(i).SummaryFormat)) {
+                        index += mReportDetailBean.CheckItems.get(i).CheckResults.size() + 1;
+                    } else {
+                        index += mReportDetailBean.CheckItems.get(i).CheckResults.size() + 2;
+                    }
+                }
+                mListView.setSelection(index);
             }
         });
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
@@ -113,7 +124,11 @@ public class ReportDetailFragment extends Fragment {
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 if (position != firstVisibleItem) {
                     position = firstVisibleItem;
-                    adapterSlide.setSelectedPosition(firstVisibleItem);
+                    int section = mListView.mAdapter.getSectionForPosition(firstVisibleItem);
+                    adapterSlide.setSelectedPosition(section);
+                    if ((section < mListViewSlide.getFirstVisiblePosition() || section > mListViewSlide.getLastVisiblePosition())) {
+                        mListViewSlide.setSelectionFromTop(section, 0);
+                    }
                 }
 
             }

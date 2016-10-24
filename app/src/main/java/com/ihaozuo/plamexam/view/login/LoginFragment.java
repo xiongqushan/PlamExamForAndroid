@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
+import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
@@ -69,7 +70,10 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 //        String[] arr = {"aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aac"};
 //        arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, arr);
 //        phone.setAdapter(arrayAdapter);
-        phone.setText("13651646955");
+        String numb = PreferenceManager.getInstance().readLoginPhone();
+        if (StringUtil.isNotEmpty(numb)) {
+            phone.setText("numb");
+        }
         etAuthCode.addTextChangedListener(textWatch);
         phone.addTextChangedListener(textWatch);
         btnLogin.setEnabled(false);
@@ -116,11 +120,11 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         String validCode = etAuthCode.getText().toString();
         switch (view.getId()) {
             case R.id.btn_getAuthCode:
-                if (StringUtil.isMobile(phoneNum)){
+                if (StringUtil.isMobile(phoneNum)) {
                     mLoginPresenter.getAuthCode(phoneNum);
                     time = new TimeCount(6000, 1000);
                     time.start();
-                }else {
+                } else {
                     TVLayerPhone.setError(getString(R.string.error_input_phone));
 //                    Toast.makeText(mContext,getString(R.string.error_input_phone),Toast.LENGTH_LONG).show();
                 }
@@ -135,7 +139,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
                     TVLayerPhone.setError(getString(R.string.error_input_phone));
                 } else {
                     TVLayerPhone.setErrorEnabled(false);
-                    mLoginPresenter.register(phoneNum,validCode);
+                    mLoginPresenter.register(phoneNum, validCode);
 //                    gotoMainPage();
                 }
                 break;
