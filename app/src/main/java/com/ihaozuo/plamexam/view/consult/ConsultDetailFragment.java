@@ -137,8 +137,10 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             }
         });
 
+
         registerCustomReceiver(REFRESH_COSULTD_LIST);
         mIConsultPresenter.start();
+        mIConsultPresenter.removeUnreadMark();
         return rootView;
     }
 
@@ -146,6 +148,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
         if (REFRESH_COSULTD_LIST.equals(filterAction)){
             mIConsultPresenter.getConsultDetail();
+            mIConsultPresenter.removeUnreadMark();
         }
     }
 
@@ -165,7 +168,6 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Override
     public void onPause() {
         super.onPause();
-        isForeground = false;
     }
 
     @Override

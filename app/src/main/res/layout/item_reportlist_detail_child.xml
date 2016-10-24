@@ -5,6 +5,7 @@
     android:background="@color/white">
 
     <FrameLayout
+        android:id="@+id/content_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

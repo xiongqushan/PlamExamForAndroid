@@ -224,28 +224,12 @@
             android:name="IFLYTEK_CHANNEL"
             android:value="COM.IHAOZUO.PLAMEXAM" />
 
-        <!-- UMeng 配置-->
-        <!--<meta-data-->
-            <!--android:name="UMENG_APPKEY"-->
-            <!--android:value="@string/UMeng_app_id"/>-->
-        <!--<meta-data-->
-            <!--android:name="UMENG_CHANNEL"-->
-            <!--android:value="UMENG" />-->
-
-
         <!-- Share edit page-->
 
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:theme="@style/Theme.UMDefault"
             android:excludeFromRecents="true" />
-
-        <!--没安装客户端下登录-->
-        <activity android:name="jp.line.android.sdk.activity.WebLoginActivity"
-            android:exported="false"
-            android:configChanges="keyboard|orientation"
-            android:screenOrientation="sensor">
-        </activity>
 
         <!-- tencent -->
         <activity
@@ -282,10 +266,10 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng" >
         </meta-data>
-        <uses-sdk
-            android:minSdkVersion="8"
-            android:targetSdkVersion="22"
-            tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />
+        <!--<uses-sdk-->
+            <!--android:minSdkVersion="8"-->
+            <!--android:targetSdkVersion="22"-->
+            <!--tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />-->
 
     </application>
 

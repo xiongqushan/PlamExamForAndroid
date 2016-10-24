@@ -99,7 +99,8 @@ public class ReportErrorFragment extends Fragment {
             if (mReportDetailBean == null) {
                 return;
             }
-            mReportFragment.sendMsgForReport(mReportDetailBean, String.valueOf(selectData));
+//            mReportFragment.sendMsgForReport(mReportDetailBean, String.valueOf(selectData));
+            mReportFragment.sendMsg(mReportDetailBean, String.valueOf(selectData));
         }
     }
 

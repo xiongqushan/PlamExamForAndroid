@@ -5,7 +5,6 @@ import android.app.Application;
 import android.content.Context;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.frogermcs.dagger2metrics.Dagger2Metrics;
 import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
 import com.ihaozuo.plamexam.BuildConfig;
@@ -70,9 +69,9 @@ public class HZApp extends Application {
         mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具
-        if (BuildConfig.DEBUG) {
-            Dagger2Metrics.enableCapturing(this);
-        }
+//        if (BuildConfig.DEBUG) {
+//            Dagger2Metrics.enableCapturing(this);
+//        }
 
 
         UMShareAPI.get(this);
@@ -81,7 +80,6 @@ public class HZApp extends Application {
                 .appModule(new AppModule(this))
                 .build();
     }
-
 
 
     String getCurProcessName(Context context) {

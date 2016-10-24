@@ -7,7 +7,7 @@
     <string name="tab_mine">我的</string>
     <string name="tab_consult">咨询</string>
     <string name="splash_statent">深度掌握全家健康信息\n实时关注家人健康动态</string>
-    <string name="login_statent">注册登录即表示您同意我们的《掌上体检用户许可协议》</string>
+    <string name="login_statent">注册登录即表示您同意我们的[掌上体检用户许可协议]</string>
     <string name="system_exit">再按一次退出</string>
     <string name="user_info">个人资料</string>
     <string name="system_set">系统设置</string>

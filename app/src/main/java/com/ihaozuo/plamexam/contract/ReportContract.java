@@ -1,6 +1,5 @@
 package com.ihaozuo.plamexam.contract;
 
-import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
 import com.ihaozuo.plamexam.bean.ReportItemBean;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
@@ -41,13 +40,17 @@ public interface ReportContract {
 
         void toggleRetryLayer(boolean show);
 
-        void turnConsultDetail(List<ConsultDetailBean> data);
+//        void turnConsultDetail(List<ConsultDetailBean> data);
+
+        void turnConsultDetail();
     }
 
     interface IReportDetailPresenter extends IBasePresenter {
         void getReportDetail(String workNo, String checkUnitCode);
 
-        void sendMsgForReport(ReportDetailBean bean, String content);
+//        void sendMsgForReport(ReportDetailBean bean, String content);
+
+        void sendReport(ReportDetailBean bean, String content);
     }
 
 }

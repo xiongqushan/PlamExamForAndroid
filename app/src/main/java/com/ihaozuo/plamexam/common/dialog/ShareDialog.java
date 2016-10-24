@@ -79,10 +79,7 @@ public class ShareDialog extends Dialog {
 
             ShareAction shareAction = new ShareAction((Activity) mContext);
 
-            new ShareAction((Activity) mContext).withText("text")
-                    .withMedia(image)
-                    .withTargetUrl(((Activity)mContext).getString(R.string.consult_warning))
-                    .withTitle("title");
+            new ShareAction((Activity) mContext).withText("test");
 
             switch (v.getId()) {
                 case R.id.btn_weixin:
@@ -95,8 +92,8 @@ public class ShareDialog extends Dialog {
                     shareAction.setPlatform(SHARE_MEDIA.SINA).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_pengyouquan:
-//                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
-                    shareAction.setPlatform(SHARE_MEDIA.QZONE).setCallback(umShareListener).share();
+                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
+//                    shareAction.setPlatform(SHARE_MEDIA.QZONE).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_close:
                     dismiss();

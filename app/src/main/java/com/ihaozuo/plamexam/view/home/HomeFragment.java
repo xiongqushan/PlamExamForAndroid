@@ -33,6 +33,7 @@ import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
+import com.umeng.socialize.UmengTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -107,6 +108,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 //            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
             mPresenter.getBanner("bjbr003");
         }
+
+        UmengTool.getSignature(getActivity());
+
         return rootView;
     }
 
