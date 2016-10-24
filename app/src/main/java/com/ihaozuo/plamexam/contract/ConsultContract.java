@@ -10,7 +10,7 @@ import java.util.List;
  * Created by hzguest3 on 2016/10/13.
  */
 public interface ConsultContract {
-    interface IConsultView extends IBaseView<IConsultPresenter>{
+    interface IConsultView extends IBaseView<IConsultPresenter> {
 
         void refreshConsultList(List<ConsultDetailBean> list);
 
@@ -22,7 +22,7 @@ public interface ConsultContract {
 
     }
 
-    interface IConsultPresenter extends IBasePresenter{
+    interface IConsultPresenter extends IBasePresenter {
 
         void getConsultDetail();
 

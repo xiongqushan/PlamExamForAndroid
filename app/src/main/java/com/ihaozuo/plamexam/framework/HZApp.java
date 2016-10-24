@@ -18,6 +18,9 @@ import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 import com.umeng.analytics.MobclickAgent;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.PlatformConfig;
+import com.umeng.socialize.UMShareAPI;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -70,7 +73,10 @@ public class HZApp extends Application {
         if (BuildConfig.DEBUG) {
             Dagger2Metrics.enableCapturing(this);
         }
-        
+
+
+        UMShareAPI.get(this);
+
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
@@ -92,5 +98,13 @@ public class HZApp extends Application {
         return null;
     }
 
+
+    {
+        //微信 wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
+        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
+        PlatformConfig.setSinaWeibo("436196584", "e7e5b817ca06547ef20f3a9c5bd4f650");
+        PlatformConfig.setQQZone("1105699103", "W0grAATJYfxpI7NC");
+        Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
+    }
 
 }

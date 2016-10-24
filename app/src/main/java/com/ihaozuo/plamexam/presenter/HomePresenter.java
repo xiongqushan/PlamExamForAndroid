@@ -1,7 +1,6 @@
 package com.ihaozuo.plamexam.presenter;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
@@ -10,7 +9,6 @@ import com.ihaozuo.plamexam.bean.UnreadMarkBean;
 import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
-import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.ConsultModel;
 import com.ihaozuo.plamexam.model.HomeModel;
@@ -54,21 +52,21 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
     public void start() {
         getNewsList(0,4);
         getUnreadMartState(mUserbean.AccountId);
-        mHomeModel.initData(new OnHandlerResultWithCompletedListener<RestResult>() {
-            @Override
-            public void handlerResult(RestResult bean) {
-                if (bean.Data instanceof BannerBean) {
-                    Log.e("BannerBean", "BannerBean");
-                } else if (bean.Data instanceof NewsBean) {
-                    Log.e("NewsBean", "NewsBean");
-                }
-            }
-
-            @Override
-            public void onCompleted() {
-                Log.e("Listener-nCompleted", "Listener-Completed");
-            }
-        });
+//        mHomeModel.initData(new OnHandlerResultWithCompletedListener<RestResult>() {
+//            @Override
+//            public void handlerResult(RestResult bean) {
+//                if (bean.Data instanceof BannerBean) {
+//                    Log.e("BannerBean", "BannerBean");
+//                } else if (bean.Data instanceof NewsBean) {
+//                    Log.e("NewsBean", "NewsBean");
+//                }
+//            }
+//
+//            @Override
+//            public void onCompleted() {
+//                Log.e("Listener-nCompleted", "Listener-Completed");
+//            }
+//        });
     }
 
 

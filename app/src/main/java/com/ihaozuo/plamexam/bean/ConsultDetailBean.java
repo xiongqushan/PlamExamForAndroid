@@ -17,11 +17,12 @@ public class ConsultDetailBean implements Serializable {
     public String AppendInfo;
     private String Date;
 
-    public String getDate() {
-        return DateUtil.TimeFormatByWeek(Date, "yyyy-MM-dd HH:mm");
+    public String getDate(){
+        return DateUtil.TimeFormatByWeek(Date,"yyyy-MM-dd HH:mm:ss");
     }
 
-    public void setDate(Date date) {
-        this.Date = DateUtil.TimeFormatByWeek(date + "", "yyyy-MM-dd HH:mm");
+    public void setDate(){
+        this.Date =DateUtil.date2Str(new Date(), "yyyy-MM-dd'T'HH:mm:ss");;
+
     }
 }

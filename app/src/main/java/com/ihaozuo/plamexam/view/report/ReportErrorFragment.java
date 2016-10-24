@@ -180,9 +180,7 @@ public class ReportErrorFragment extends Fragment {
             }
         }
         if (num > 0) {
-            data.insert(0, "选中 ( " + num + " ) 项 " + ": ");
-        } else {
-            data.insert(0, "选中 ( " + num + " ) 项");
+            data.insert(0, "异常 ( " + num + " ) 项 " + ": ");
         }
         return data;
     }

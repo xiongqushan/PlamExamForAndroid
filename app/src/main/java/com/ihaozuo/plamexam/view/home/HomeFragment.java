@@ -28,6 +28,7 @@ import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
+import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
@@ -52,7 +53,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     HomePresenter mHomePresenter;
     HomeContract.IHomePresenter mPresenter;
 
-    XBanner mViewPager;
+    private XBanner mViewPager;
     private Context mContext;
     private int maxLength = 10000;// bannerPagerNumber
     private View rootView;
@@ -101,9 +102,11 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             ButterKnife.bind(this, rootView);
             DaggerHomeComponent.builder().appComponent(HZApp.shareApplication()
                     .getAppComponent()).homeModule(new HomeModule(this)).build().inject(this);
+
             initView();
-            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
+//            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+            mPresenter.getBanner("bjbr001");
         }
         return rootView;
     }
@@ -175,7 +178,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         } else {
             mBannerList.addAll(sourceList);
         }
-        mViewPager.setData(mBannerList);
+
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, SimpleDraweeView view, int position) {
@@ -192,11 +195,12 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(intent);
             }
         });
+        mViewPager.setData(mBannerList);
     }
 
     @Override
     public void showUnreadMark() {
-
+        sendCustomBroadcast(MainActivity.SHOW_UNREAD_MARK);
     }
 
 

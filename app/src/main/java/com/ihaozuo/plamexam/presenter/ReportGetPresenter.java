@@ -64,7 +64,6 @@ public class ReportGetPresenter extends AbstractPresenter implements ReportContr
                     String currName = UserManager.getInstance().getUserInfo().RealName;
                     if (!currName.equals(resultData.Data.Reports.get(0).CustomerName)) {
                         UserManager.getInstance().updateRealName(resultData.Data.Reports.get(0).CustomerName);
-                        mView.updateHomeBanner();
                     }
                     mView.showReportList();
                     mView.hideDialog("获取成功");

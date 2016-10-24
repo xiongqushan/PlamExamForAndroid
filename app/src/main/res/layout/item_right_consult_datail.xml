@@ -16,7 +16,7 @@
         tools:text="2016年1月20日"/>
 
     <RelativeLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingLeft="@dimen/consult_photo_height">
@@ -47,6 +47,57 @@
             android:paddingLeft="6dp"
             android:paddingRight="@dimen/consult_textview_padding_left"
             android:textSize="@dimen/textsize_h4"
+            android:visibility="gone"
             tools:text="1234\n1234123\23124\2111111111111111111111111111111111111111111111111111111111111111111111"/>
+
+        <LinearLayout
+            android:id="@+id/report_consult_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="@dimen/consult_textview_marginleft"
+            android:layout_toLeftOf="@id/drawee_consult_item_photo"
+            android:layout_alignTop="@id/drawee_consult_item_photo"
+            android:background="@drawable/chat_icon_bubble_right_v2"
+            android:gravity="left|center_vertical"
+            android:paddingTop="6dp"
+            android:paddingBottom="6dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="@dimen/consult_textview_padding_left"
+            android:textSize="@dimen/textsize_h4"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_reportTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                tools:text="每年大健康上海徐汇总院"/>
+
+            <TextView
+                android:id="@+id/tv_reportDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                tools:text="2016年07月01日"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:background="@color/divider_dd"
+                android:layout_margin="8dp"/>
+
+            <TextView
+                android:id="@+id/tv_reportContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                tools:text="报告内容\n报告内容1111122222222222222222222222222221\n报告内容\n报告内容"/>
+
+        </LinearLayout>
+
+
+
     </RelativeLayout>
 </LinearLayout>

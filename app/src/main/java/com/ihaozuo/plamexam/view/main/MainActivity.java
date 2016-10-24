@@ -44,6 +44,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         LOCAL_CLASS_NAME = getLocalClassName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act);
