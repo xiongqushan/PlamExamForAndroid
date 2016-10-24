@@ -91,12 +91,17 @@ public class ReportErrorFragment extends Fragment {
         showCheckBox = !showCheckBox;
         adapter.notifyDataSetChanged();
         if (showCheckBox) {
-            btnReportError.setText("咨询");
+            if (numSeleted > 0) {
+                btnReportError.setText("咨询(" + numSeleted + "项) ");
+            } else {
+                btnReportError.setText("关闭选择");
+            }
+
         } else {
             StringBuffer selectData = getSelectData();
             Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
             btnReportError.setText("选择异常项咨询");
-            if (mReportDetailBean == null) {
+            if (mReportDetailBean == null || numSeleted == 0) {
                 return;
             }
             mReportFragment.sendMsgForReport(mReportDetailBean, String.valueOf(selectData));
@@ -132,6 +137,16 @@ public class ReportErrorFragment extends Fragment {
                 public void onClick(View v) {
                     boolean checked = cb.isChecked();
                     checkMap.put(position, checked);
+                    if (checked) {
+                        numSeleted++;
+                    } else {
+                        numSeleted--;
+                    }
+                    if (numSeleted == 0) {
+                        btnReportError.setText("关闭选择");
+                    } else {
+                        btnReportError.setText("咨询(" + numSeleted + "项) ");
+                    }
                 }
             });
             ReportDetailBean.CheckItemsBean.CheckResultsBean checkResultsBean = dataList.get(position);
@@ -164,23 +179,25 @@ public class ReportErrorFragment extends Fragment {
         }
     }
 
+    private int numSeleted;
+
     private StringBuffer getSelectData() {
-        int num = 0;
+        numSeleted = 0;
         StringBuffer data = new StringBuffer();
         Set<Integer> keySet = checkMap.keySet();
         Iterator<Integer> iterator = keySet.iterator();
         while (iterator.hasNext()) {
             Integer index = iterator.next();
             if (checkMap.get(index)) {
-                num++;
+                numSeleted++;
                 data.append("\n" + "[" + dataList.get(index).CheckIndexName + " : " + dataList.get(index).ResultValue + "]");
 //                if (StringUtil.isNotEmpty(dataList.get(index).ValueRefFormat)) {
 //                    data.append("  参考值 : " + dataList.get(index).ValueRefFormat + " " + dataList.get(index).Unit);
 //                }
             }
         }
-        if (num > 0) {
-            data.insert(0, "异常 ( " + num + " ) 项 " + ": ");
+        if (numSeleted > 0) {
+            data.insert(0, "异常 ( " + numSeleted + " ) 项 " + ": ");
         }
         return data;
     }

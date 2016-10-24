@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
@@ -24,6 +25,10 @@ public class DisclaimerFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.statement_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.disclaimer));
+        WebView webView = (WebView) rootView.findViewById(R.id.webview);
+        // 加载assets目录下的文件
+        String url = "file:///android_asset/disclaimer.html";
+        webView.loadUrl(url);
         return rootView;
     }
 

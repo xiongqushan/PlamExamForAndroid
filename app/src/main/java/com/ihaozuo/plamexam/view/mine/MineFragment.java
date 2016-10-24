@@ -14,7 +14,6 @@ import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 import com.ihaozuo.plamexam.view.mine.settings.SysSetActivity;
-import com.ihaozuo.plamexam.view.report.ReportActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -70,7 +69,7 @@ public class MineFragment extends BaseFragment {
                 getActivity().startActivity(new Intent(getActivity(), SysSetActivity.class));
                 break;
             case R.id.layoutReportEx:
-                getActivity().startActivity(new Intent(getActivity(), ReportActivity.class));
+                // getActivity().startActivity(new Intent(getActivity(), ReportActivity.class));
                 break;
         }
     }

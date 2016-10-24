@@ -89,13 +89,14 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         switch (view.getId()) {
             case R.id.btn_login:
                 String name = etName.getText().toString();
-                String tele = phone.getText().toString();
+
                 if (StringUtil.isEmpty(name)) {
                     etName.requestFocus();
                     etName.setFocusableInTouchMode(true);
                     etName.setError("不能为空");
                     return;
                 }
+                String tele = phone.getText().toString();
                 mPresenter.getReport(tele, name);
                 break;
         }

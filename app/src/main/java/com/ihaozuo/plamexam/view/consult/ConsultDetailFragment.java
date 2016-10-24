@@ -144,14 +144,14 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     @Override
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
-        if (REFRESH_COSULTD_LIST.equals(filterAction)){
+        if (REFRESH_COSULTD_LIST.equals(filterAction)) {
             mIConsultPresenter.getConsultDetail();
         }
     }
 
 
     @Override
-    public void removeUnreadMark(){
+    public void removeUnreadMark() {
         sendCustomBroadcast(MainActivity.REMOVE_UNREAD_MARK);
     }
 
@@ -242,7 +242,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             swipeLayout.setRefreshing(false);
         }
         mAdapter.refreshList(mContext, consultDetailList, getDoctorInfo());
-        mRecyclerView.scrollToPosition(consultDetailList.size()-1);
+        mRecyclerView.scrollToPosition(consultDetailList.size() - 1);
     }
 
     public void sendMessage() {

@@ -72,7 +72,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 //        phone.setAdapter(arrayAdapter);
         String numb = PreferenceManager.getInstance().readLoginPhone();
         if (StringUtil.isNotEmpty(numb)) {
-            phone.setText("numb");
+            phone.setText(numb);
         }
         etAuthCode.addTextChangedListener(textWatch);
         phone.addTextChangedListener(textWatch);

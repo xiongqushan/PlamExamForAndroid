@@ -53,6 +53,7 @@ public class SettingsDialog extends Dialog {
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listener.OnDialogCancelListener();
                 dismiss();
             }
         });
@@ -87,6 +88,8 @@ public class SettingsDialog extends Dialog {
     public interface OnDialogListener {
 
         void OnDialogConfirmListener();
+
+        void OnDialogCancelListener();
 
     }
 }

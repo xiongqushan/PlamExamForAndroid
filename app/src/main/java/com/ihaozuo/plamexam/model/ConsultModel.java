@@ -13,8 +13,6 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by hzguest3 on 2016/10/13.
@@ -34,8 +32,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.getConsultDetail(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -47,8 +44,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("ConsultContent", consultContent);
         params.put("AppendInfo", "");//暂时为空
         mIConsultService.sendMessage(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -66,8 +62,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.getUnreadMarkState(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -76,8 +71,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.RemoveUnreadMark(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -94,8 +88,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("CheckUnitName", name);
         params.put("ReportDate", date);
         mIConsultService.sendMsgForReport(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 

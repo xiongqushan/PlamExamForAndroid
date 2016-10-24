@@ -173,8 +173,8 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
             }
             TextView tvDepart = UIHelper.getAdapterView(convertView, R.id.tvReportDepart);
             TextView tvTime = UIHelper.getAdapterView(convertView, R.id.tvReportTime);
-            tvDepart.setText(dataList.get(position).CustomerName);
-            tvTime.setText(dataList.get(position).ReportDate);
+            tvDepart.setText(dataList.get(position).ReportName);
+            tvTime.setText(dataList.get(position).ReportDateFormat);
             return convertView;
         }
     }
