@@ -93,15 +93,12 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         mIConsultView.setDoctorInfo();
     }
 
-    ;
-
     @Override
     public void getConsultDetail() {
         mConsultModel.getConsultDetail(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
             @Override
             public void handlerResultSuccess(RestResult<List<ConsultDetailBean>> resultData) {
                 consultDetailList = resultData.Data;
-                mIConsultView.refreshConsultList(consultDetailList);
                 consultListBoolean = true;
                 removeUnreadMark();
                 toggleDialog();
@@ -196,8 +193,8 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             mIConsultView.hideDialog();
 
             consultListBoolean = false;
-            doctorIDBoolean = false;
-            doctorListBoolean = false;
+//            doctorIDBoolean = false;
+//            doctorListBoolean = false;
         }
     }
 

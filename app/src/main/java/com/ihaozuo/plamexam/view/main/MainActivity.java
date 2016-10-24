@@ -106,7 +106,9 @@ public class MainActivity extends BaseActivity {
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
         switch (filterAction){
             case MainActivity.REMOVE_UNREAD_MARK:
-                unreadMarkTab.setVisibility(View.INVISIBLE);
+                if (unreadMarkTab.getVisibility() == View.VISIBLE){
+                    unreadMarkTab.setVisibility(View.INVISIBLE);
+                }
                 break;
 
             case MainActivity.FINISH_ACTIVITY:
@@ -115,7 +117,9 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case MainActivity.SHOW_UNREAD_MARK:
-                unreadMarkTab.setVisibility(View.VISIBLE);
+                if (unreadMarkTab.getVisibility() == View.INVISIBLE){
+                    unreadMarkTab.setVisibility(View.VISIBLE);
+                }
                 break;
 
         }

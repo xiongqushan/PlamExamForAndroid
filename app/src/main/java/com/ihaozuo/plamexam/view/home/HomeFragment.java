@@ -32,6 +32,7 @@ import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -67,7 +68,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     public void onResume() {
         super.onResume();
         mPresenter.start();
-        // mPresenter.getBanner("123");
     }
 
     public void onDestroyView() {
@@ -101,7 +101,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
             initView();
 //            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
-            mPresenter.getBanner("bjbr001");
+            mPresenter.getBanner("bjbr003");
         }
         return rootView;
     }
@@ -155,7 +155,8 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     }
 
     @Override
-    public void initBanner(final List<BannerBean> bannerList) {
+    public void initBanner(List<BannerBean> sourceList) {
+        mBannerList = new ArrayList<BannerBean>();
 
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
@@ -174,7 +175,14 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             }
         });
 
-        mViewPager.setData(bannerList);
+        if (null == sourceList || sourceList.size()==0){
+            BannerBean defaultBanner = new BannerBean();
+            defaultBanner.ImageUrl="res://com.ihaozuo.plamexam/"+R.drawable.banner;
+            mBannerList.add(defaultBanner);
+        }else{
+            mBannerList.addAll(sourceList);
+        }
+        mViewPager.setData(mBannerList);
     }
 
     @Override
