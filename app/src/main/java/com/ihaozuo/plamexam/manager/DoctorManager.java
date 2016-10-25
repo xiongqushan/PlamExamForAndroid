@@ -39,7 +39,6 @@ public class DoctorManager {
         return  doctorInfoList;
     }
 
-
     public void clear(){
         sharedPreferences.edit().remove(USER_INFO_KEY).commit();
         _instance = null;

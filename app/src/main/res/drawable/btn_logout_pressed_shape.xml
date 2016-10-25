@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 圆角 -->
+    <corners android:radius="@dimen/bg_corners" />
+    <!-- 填充 -->
+    <solid android:color="@color/d2m_transparent" /><!-- 填充的颜色 -->
+    <!--&lt;!&ndash; 描边 &ndash;&gt;-->
+    <stroke android:width="@dimen/divider_2dp" android:color="@color/main_color_blue" />
+
+</shape>

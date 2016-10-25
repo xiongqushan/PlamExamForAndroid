@@ -57,7 +57,9 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("AccountId", accountId);
         params.put("Score", score);
         params.put("Content", content);
-        mIConsultService.sendGrade(params);
+        mIConsultService.sendGrade(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
     }
 
     public void getUnreadMarkState(String accountId, final OnHandlerResultListener<RestResult<List<UnreadMarkBean>>> callbackListener) {
@@ -69,10 +71,11 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
                 .subscribe(subscriber);
     }
 
-    public void removeUnreadMark(String accountId, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
+    public void removeUnreadMark(String accountId,int type, final OnHandlerResultListener<RestResult<Boolean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
+        params.put("Type", type);
         mIConsultService.RemoveUnreadMark(params)
                 .compose(applyAsySchedulers())
                 .subscribe(subscriber);

@@ -106,7 +106,6 @@ public class ShareDialog extends Dialog {
         @Override
         public void onResult(SHARE_MEDIA platform) {
             Toast.makeText(mContext,platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
-            dismiss();
         }
 
         @Override

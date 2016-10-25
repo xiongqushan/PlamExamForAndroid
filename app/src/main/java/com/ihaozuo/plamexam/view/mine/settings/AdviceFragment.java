@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.dialog.ConfirmDialog;
@@ -28,10 +29,12 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
     private View rootView;
 
 
+    @Bind(R.id.tv_addReport)
+    TextView tvAddReport;
     @Bind(R.id.et_content)
     EditText etContent;
 
-    @OnClick(R.id.btn_commit_advice)
+    @OnClick({R.id.tv_addReport})
     void commit() {
         if (HZUtils.isFastDoubleClick()) {
             return;
@@ -69,6 +72,9 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
         rootView = inflater.inflate(R.layout.advice_frag, container, false);
         ButterKnife.bind(this, rootView);
         setCustomerTitle(rootView, getString(R.string.advice_feedback));
+        tvAddReport.setText("发送");
+        tvAddReport.setVisibility(View.VISIBLE);
+
         return rootView;
     }
 

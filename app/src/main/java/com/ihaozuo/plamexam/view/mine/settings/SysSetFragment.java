@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.VersionInfoBean;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
@@ -22,6 +24,8 @@ import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
+
+import java.text.DecimalFormat;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -133,7 +137,7 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
                 new SettingsDialog(getActivity(), new SettingsDialog.OnDialogListener() {
                     @Override
                     public void OnDialogConfirmListener() {
-
+                        clearCache();
                     }
 
                     @Override
@@ -182,5 +186,33 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
     @Override
     public void setPresenter(SysSetContract.ISysSetPresenter presenter) {
         mPresenter = presenter;
+    }
+
+    private void clearCache() {
+        long cacheSize = Fresco.getImagePipelineFactory().getMainDiskStorageCache().getSize();
+        String toastMessage;
+        if (cacheSize <= 0) {
+            toastMessage = "无需清理缓存！";
+        } else {
+            Fresco.getImagePipeline().clearCaches();
+            toastMessage = "本次共清理了 ";
+            float cacheSizeTemp1 = changToTwoDecimal(Math.round(cacheSize / 1024));
+            float cacheSizeTemp2 = changToTwoDecimal(Math.round((cacheSize / 1024) / 1024));
+            if (cacheSizeTemp1 < 1) {
+                toastMessage += cacheSize + " B";
+            } else if (((cacheSizeTemp1 >= 1) && (cacheSizeTemp2 < 1))) {
+                toastMessage += cacheSizeTemp1 + " KB";
+            } else if (cacheSizeTemp2 >= 1) {
+                toastMessage += cacheSizeTemp2 + " MB";
+            }
+        }
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    static float changToTwoDecimal(float in) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        String out = df.format(in);
+        float result = Float.parseFloat(out);
+        return result;
     }
 }

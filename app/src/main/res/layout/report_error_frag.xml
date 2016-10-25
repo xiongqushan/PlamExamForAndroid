@@ -21,6 +21,8 @@
         android:id="@+id/btnReportError"
         style="@style/btn_blue_corner"
         android:layout_alignParentBottom="true"
+        android:background="@drawable/bg_blue_corner_shape"
+        android:textColor="@color/white"
         android:text="选择异常项咨询" />
 
 </LinearLayout>

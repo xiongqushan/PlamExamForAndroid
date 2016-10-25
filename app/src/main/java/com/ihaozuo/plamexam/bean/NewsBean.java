@@ -12,9 +12,11 @@ public class NewsBean {
     public String img;
     public String keywords;
     public int rcount;
-    public int time;
+    public long time;
     public String title;
     public int infoclass;
+    public String imgFormat;
+    public String timeFormat;
 
     public String message;
 }

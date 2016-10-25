@@ -4,6 +4,7 @@ package com.ihaozuo.plamexam.view.consult;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -71,10 +72,13 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     ImageButton fab;
     @Bind(R.id.tv_description)
     TextView tvDescription;
+    @Bind(R.id.coordinatorLayout)
+    CoordinatorLayout coordinatorLayout;
 
     public static boolean isForeground = false;
     public static final String REFRESH_COSULTD_LIST = "REFRESH_COSULTD_LIST";
     public static final String REFRESH_COSULTD_WITH_REPORT = "REFRESH_COSULTD_WITH_REPORT";
+
 
     private View rootView;
     private Context mContext;
@@ -113,7 +117,11 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         mAdapter = new ConsultDetailAdapter();
         mRecyclerView.setAdapter(mAdapter);
         swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
-        swipeLayout.setColorSchemeResources(R.color.white);
+//        swipeLayout.setColorSchemeResources(R.color.white);
+        swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -140,7 +148,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
         registerCustomReceiver(REFRESH_COSULTD_LIST);
         mIConsultPresenter.start();
-        mIConsultPresenter.removeUnreadMark();
+        mIConsultPresenter.removeUnreadMark(1);
         return rootView;
     }
 
@@ -148,7 +156,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
         if (REFRESH_COSULTD_LIST.equals(filterAction)) {
             mIConsultPresenter.getConsultDetail();
-            mIConsultPresenter.removeUnreadMark();
+            mIConsultPresenter.removeUnreadMark(1);
         }
     }
 
@@ -172,9 +180,9 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
         voice2TxtUtils.destroyIat();
+        ButterKnife.unbind(this);
+        super.onDestroyView();
     }
 
     @Override
@@ -253,6 +261,15 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             mIConsultPresenter.sendMessage(1, editContent);
         } else {
             Toast.makeText(mContext, "请先输入内容！", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void toggleRetryLayer(boolean show) {
+        if (show) {
+            showRetryLayer(R.id.rLayout);
+        } else {
+            hideRetryLayer(R.id.rLayout);
         }
     }
 

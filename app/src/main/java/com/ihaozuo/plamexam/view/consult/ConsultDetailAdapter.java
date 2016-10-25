@@ -109,7 +109,6 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
         } else if (holder instanceof ConsultRightHolder) {
             bindRightItem(consultDetailEntity, (ConsultRightHolder) holder);
         }
-
     }
 
     public void bindLeftItem(ConsultDetailBean entity, ConsultLeftHolder holder) {

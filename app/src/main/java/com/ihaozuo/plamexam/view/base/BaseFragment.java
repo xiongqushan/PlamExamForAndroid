@@ -22,7 +22,6 @@ import com.ihaozuo.plamexam.manager.DoctorManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
-import com.ihaozuo.plamexam.view.report.ReportGetActivity;
 
 import java.util.List;
 
@@ -57,12 +56,12 @@ public class BaseFragment extends Fragment {
             btnLeft.setVisibility(View.INVISIBLE);
         }
 
-        if (tvAddReport!=null)tvAddReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), ReportGetActivity.class));
-            }
-        });
+//        if (tvAddReport!=null)tvAddReport.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), ReportGetActivity.class));
+//            }
+//        });
 
         if (actionbar != null && !getActivity().getLocalClassName().equals(ConsultDetailActivity.LOCAL_CLASS_NAME)) {
             initState(actionbar);

@@ -19,6 +19,8 @@ public interface ConsultContract {
         void addReply(ConsultDetailBean replyContent);
 
         void removeUnreadMark();
+
+        void toggleRetryLayer(boolean show);
     }
 
     interface IConsultPresenter extends IBasePresenter {
@@ -27,7 +29,7 @@ public interface ConsultContract {
 
         void sendMessage(int type, String consultContent);
 
-        void removeUnreadMark();
+        void removeUnreadMark(int type);
 
 
     }

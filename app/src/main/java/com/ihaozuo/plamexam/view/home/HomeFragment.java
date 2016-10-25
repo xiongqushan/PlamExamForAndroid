@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
@@ -34,7 +33,6 @@ import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
-import com.umeng.socialize.UmengTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +72,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
     }
 
     public void onDestroyView() {
@@ -109,10 +106,11 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
             initView();
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
-//            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
-            mPresenter.getBanner("bjbr003");
-            UmengTool.getSignature(getActivity());
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+//            mPresenter.getBanner("bjbr003");
+            mPresenter.start();
         }
+//        UmengTool.getSignature(getActivity());
         return rootView;
     }
 
@@ -137,6 +135,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         newsListAdapter = new NewsListAdapter(mContext);
         mListView.addHeaderView(headerView);
         mListView.setAdapter(newsListAdapter);
+
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -149,17 +148,20 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         SRLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                SRLayout.setRefreshing(true);
-                SRLayout.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        SRLayout.setRefreshing(false);
-                        Toast.makeText(getActivity(), "刷新成功", Toast.LENGTH_SHORT).show();
-                    }
-                }, 2500);
+                mPresenter.start();
+//                SRLayout.setRefreshing(true);
+//                SRLayout.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        SRLayout.setRefreshing(false);
+//                        Toast.makeText(getActivity(), "刷新成功", Toast.LENGTH_SHORT).show();
+//                    }
+//                }, 2500);
             }
         });
-        SRLayout.setColorScheme(android.R.color.holo_blue_bright,
+        SRLayout.setProgressBackgroundColor(R.color.main_color_blue);
+//        swipeLayout.setColorSchemeResources(R.color.white);
+        SRLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
@@ -203,7 +205,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         mViewPager.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
-                Toast.makeText(mContext, "点击了第" + position + "张图片", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
                 intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, mBannerList.get(position).LinkUrl);
                 startActivity(intent);
@@ -229,6 +230,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     @Override
     public void refreshNewsList(List<NewsBean> newsList) {
+        if (SRLayout.isRefreshing()) {
+            SRLayout.setRefreshing(false);
+        }
         newsListAdapter.refreshList(newsList);
     }
 

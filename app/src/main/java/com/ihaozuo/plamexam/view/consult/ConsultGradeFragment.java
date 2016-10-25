@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
@@ -82,6 +83,7 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mContext = getContext();
         rootView = inflater.inflate(R.layout.consult_grade_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.consult_grade));
         ButterKnife.bind(this, rootView);
@@ -142,6 +144,7 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
 
     @Override
     public void finishView() {
+        Toast.makeText(mContext,"感谢您的评价！",Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 

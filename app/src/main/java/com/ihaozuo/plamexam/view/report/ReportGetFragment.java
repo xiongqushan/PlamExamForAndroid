@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.ReportContract;
@@ -32,6 +33,8 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
     EditText phone;
     @Bind(R.id.et_Name)
     EditText etName;
+    @Bind(R.id.tv_addReport)
+    TextView tvAddReport;
     private View rootView;
 
     public ReportGetFragment() {
@@ -60,17 +63,13 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         rootView = inflater.inflate(R.layout.report_add_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.get_report));
         ButterKnife.bind(this, rootView);
+
         initView();
         return rootView;
     }
 
     private void initView() {
         phone.setText(UserManager.getInstance().getUserInfo().Mobile);
-        // phone.setEnabled(false);
-//        String realName = UserManager.getInstance().getUserInfo().RealName;
-//        if (StringUtil.isNotEmpty(realName)) {
-//            etName.setText(realName);
-//        }
     }
 
 
@@ -99,6 +98,9 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
                 String tele = phone.getText().toString();
                 mPresenter.getReport(tele, name);
                 break;
+            case R.id.tv_addReport:
+                startActivity(new Intent(getContext(), ReportGetActivity.class));
+                break;
         }
     }
 
@@ -119,4 +121,5 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         Intent intent = new Intent(HomeFragment.FILTER_UPDATEBANNER_HOME);
         getActivity().sendBroadcast(intent);
     }
+
 }
