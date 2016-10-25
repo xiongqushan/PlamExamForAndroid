@@ -113,9 +113,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             mPresenter.getBanner("bjbr003");
             UmengTool.getSignature(getActivity());
         }
-
-
-        ButterKnife.bind(this, rootView);
         return rootView;
     }
 

@@ -37,6 +37,8 @@
     <dimen name="mine_img_rightpadding">8dp</dimen>
     <dimen name="mine_img_leftpadding">8dp</dimen>
 
+    <dimen name="set_img_high">19dp</dimen>
+
     <dimen name="card_margin">6dp</dimen>
 
     <dimen name="logo_height">100dp</dimen>

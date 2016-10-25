@@ -12,8 +12,14 @@
         android:layout_marginTop="@dimen/padding_9dp"
         android:background="@color/white">
 
+        <ImageView
+            android:layout_width="@dimen/set_img_high"
+            android:layout_height="@dimen/set_img_high"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_phone_set" />
+
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/phone" />
 
 
@@ -30,7 +36,7 @@
         android:visibility="gone">
 
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/bind_qq" />
 
 
@@ -51,7 +57,7 @@
         android:visibility="gone">
 
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/bind_wechat" />
 
         <TextView
@@ -70,7 +76,7 @@
         android:visibility="gone">
 
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/bind_sina" />
 
         <TextView
@@ -88,34 +94,52 @@
         style="@style/userinfo_layout"
         android:layout_marginTop="@dimen/padding_9dp">
 
+        <ImageView
+            android:layout_width="@dimen/set_img_high"
+            android:layout_height="@dimen/set_img_high"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_aboutus_set" />
+
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/about_us" />
 
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_dd_margin" />
+    <include layout="@layout/divider_dd_marginleft_44dp" />
 
     <RelativeLayout
         android:id="@+id/layoutFeedback"
         style="@style/userinfo_layout">
 
+        <ImageView
+            android:layout_width="@dimen/set_img_high"
+            android:layout_height="@dimen/set_img_high"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_feedback_set" />
+
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/advice_feedback" />
 
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_dd_margin" />
+    <include layout="@layout/divider_dd_marginleft_44dp" />
 
     <RelativeLayout
         android:id="@+id/layoutCheckUpdate"
         style="@style/userinfo_layout">
 
+        <ImageView
+            android:layout_width="@dimen/set_img_high"
+            android:layout_height="@dimen/set_img_high"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_update_set" />
+
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/check_update" />
 
         <include layout="@layout/next_set_right_layout" />
@@ -127,21 +151,33 @@
         style="@style/userinfo_layout"
         android:layout_marginTop="@dimen/padding_9dp">
 
+        <ImageView
+            android:layout_width="@dimen/set_img_high"
+            android:layout_height="@dimen/set_img_high"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_disclaimar_set" />
+
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/disclaimer" />
 
         <include layout="@layout/next_set_right_layout" />
     </RelativeLayout>
 
-    <include layout="@layout/divider_dd_margin" />
+    <include layout="@layout/divider_dd_marginleft_44dp" />
 
     <RelativeLayout
         android:id="@+id/layoutClearChache"
         style="@style/userinfo_layout">
 
+        <ImageView
+            android:layout_width="@dimen/set_img_high"
+            android:layout_height="@dimen/set_img_high"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_clearcache_set" />
+
         <TextView
-            style="@style/userinfo_label"
+            style="@style/sysset_label"
             android:text="@string/clear_cache" />
 
         <include layout="@layout/next_set_right_layout" />

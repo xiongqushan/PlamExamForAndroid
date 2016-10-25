@@ -7,6 +7,9 @@ import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.BaseBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.bean.RestResult;
+import com.ihaozuo.plamexam.bean.VersionInfoBean;
+import com.ihaozuo.plamexam.common.Constants;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
 import com.ihaozuo.plamexam.service.IHomeService;
@@ -66,10 +69,11 @@ public class HomeModel extends AbstractModel {
 
     }
 
-    public void getVersion(int currVersion, final OnHandlerResultListener<RestResult<List<NewsBean>>> callbackListener) {
+    public void getVersion(final OnHandlerResultListener<RestResult<VersionInfoBean>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
-        params.put("VersionCode", currVersion);
+        params.put("VersionCode", HZUtils.getCurrVersion(HZApp.shareApplication()));
+        params.put("OSType", Constants.OSTYPE);
         mIHomeService.getVersion(params)
                 .compose(applyAsySchedulers())
                 .subscribe(subscriber);

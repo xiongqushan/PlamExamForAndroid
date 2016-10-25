@@ -15,19 +15,20 @@ import com.ihaozuo.plamexam.R;
 /**
  * Created by zy on 16/10/25.
  */
-public class SettingsDialog extends Dialog {
+public class VersionDialog extends Dialog {
     private View view;
     private TextView tv_content;
     private Context context;
     private OnDialogListener listener;
     private TextView tv_confirm;
     private TextView tv_cancel;
+    private View divider;
 
-    public SettingsDialog(Context context, OnDialogListener listener) {
+    public VersionDialog(Context context, OnDialogListener listener) {
         super(context);
         this.context = context;
         this.listener = listener;
-        view = LayoutInflater.from(context).inflate(R.layout.settings_dialog, null);
+        view = LayoutInflater.from(context).inflate(R.layout.version_dialog, null);
         initView();
         initWindow();
     }
@@ -40,8 +41,8 @@ public class SettingsDialog extends Dialog {
         WindowManager.LayoutParams p = window.getAttributes();  //获取对话框当前的参数值
 //        p.height = (int) (ScreenUtils.getScreenHeight(context) * 0.3);   //高度设置为屏幕的0.3
 //        p.width = (int) (ScreenUtils.getScreenWidth(context) * 0.8);    //宽度设置为屏幕的0.6
-//        p.height = WindowManager.LayoutParams.WRAP_CONTENT;
-//        p.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        p.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        p.width = WindowManager.LayoutParams.WRAP_CONTENT;
         window.setAttributes(p);     //设置生效
     }
 
@@ -49,6 +50,7 @@ public class SettingsDialog extends Dialog {
         tv_content = (TextView) view.findViewById(R.id.tv_content);
         tv_confirm = (TextView) view.findViewById(R.id.tv_confirm);
         tv_cancel = (TextView) view.findViewById(R.id.tv_cancel);
+        divider = view.findViewById(R.id.divider_dialog);
 
         tv_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,21 +68,23 @@ public class SettingsDialog extends Dialog {
         });
     }
 
-    public SettingsDialog setConfirmText(String str) {
+    public VersionDialog setConfirmText(String str) {
         if (!TextUtils.isEmpty(str)) {
             tv_confirm.setText(str);
         }
         return this;
     }
 
-    public SettingsDialog setCancelText(String str) {
+    public VersionDialog setCancelText(String str) {
         if (!TextUtils.isEmpty(str)) {
             tv_cancel.setText(str);
         }
+        tv_cancel.setVisibility(View.VISIBLE);
+        divider.setVisibility(View.VISIBLE);
         return this;
     }
 
-    public SettingsDialog setContentText(String string) {
+    public VersionDialog setContentText(String string) {
         tv_content.setText(string);
         return this;
     }

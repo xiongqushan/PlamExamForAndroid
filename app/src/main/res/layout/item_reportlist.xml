@@ -1,63 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp"
-    android:layout_marginLeft="@dimen/card_margin"
-    android:layout_marginRight="@dimen/card_margin"
-    app:cardCornerRadius="@dimen/card_margin"
-    app:cardUseCompatPadding="true">
-    <!--app:cardCornerRadius="4dp"-->
-    <!--app:cardElevation="5dp"-->
-    <!--app:cardMaxElevation="10dp"-->
-    <!--app:cardPreventCornerOverlap="true"-->
-    <!--app:cardUseCompatPadding="true">-->
+    android:background="@color/gray_f2"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="10dp">
 
-    <FrameLayout
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/card_margin"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true">
+        <!--app:cardCornerRadius="4dp"-->
+        <!--app:cardElevation="5dp"-->
+        <!--app:cardMaxElevation="10dp"-->
+        <!--app:cardPreventCornerOverlap="true"-->
+        <!--app:cardUseCompatPadding="true">-->
 
-        <RelativeLayout
-
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:background="@drawable/bg_reports_list">
+            android:layout_height="130dp">
 
-        </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@drawable/item_press_white_gray">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+                <ImageView
+                    android:layout_width="52dp"
+                    android:layout_height="130dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/bg_report_left" />
 
-            <TextView
-                android:id="@+id/tvReportDepart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="30dp"
-                android:maxLines="1"
-                android:text="上海市中山医院黄浦区分院上海市中山医院黄浦区分院"
-                android:textColor="@color/gray_33"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/tvReportTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="15dp"
-                android:text="2016-11-11"
-                android:textColor="@color/gray_33"
-                android:textSize="14sp" />
+                <ImageView
+                    android:layout_width="52dp"
+                    android:layout_height="130dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/bg_report_right" />
 
 
-        </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tvReportDepart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:text="上海市中山医院黄浦分院"
+                    android:textColor="@color/gray_33"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tvReportTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="60dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="2016-11-11"
+                    android:textColor="@color/gray_66"
+                    android:textSize="16sp" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
 
-    </FrameLayout>
+            </LinearLayout>
 
 
-</android.support.v7.widget.CardView>
+        </FrameLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
+
+
+
 

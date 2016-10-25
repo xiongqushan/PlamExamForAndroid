@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -38,9 +37,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LoginFragment extends AbstractView implements LoginContract.ILoginView {
 
     @Bind(R.id.phone)
@@ -81,7 +77,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         btnLogin.setEnabled(false);
         tvWarning.setText(getClickableSpan());
         tvWarning.setMovementMethod(LinkMovementMethod.getInstance());
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             phone.setText("13651646955");
         }
         return rootView;
