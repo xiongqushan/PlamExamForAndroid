@@ -25,7 +25,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.content_act);
+        setContentView(R.layout.content_slash);
         DaggerSplashComponent.builder()
                 .appComponent(getAppComponent())
                 .splashModule(new SplashModule())

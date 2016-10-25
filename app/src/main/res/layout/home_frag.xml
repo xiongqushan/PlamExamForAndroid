@@ -12,12 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/listview_home"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/SRLayoutHome"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:headerDividersEnabled="false"
-            android:footerDividersEnabled="false"/>
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/listview_home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:headerDividersEnabled="true" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
 
     </FrameLayout>
 

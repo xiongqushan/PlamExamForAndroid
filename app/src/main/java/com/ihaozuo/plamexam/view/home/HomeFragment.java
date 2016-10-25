@@ -4,6 +4,7 @@ package com.ihaozuo.plamexam.view.home;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,8 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Inject
     HomePresenter mHomePresenter;
     HomeContract.IHomePresenter mPresenter;
+    @Bind(R.id.SRLayoutHome)
+    SwipeRefreshLayout SRLayout;
 
     private XBanner mViewPager;
     private Context mContext;
@@ -76,6 +79,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     public void onDestroyView() {
         super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
     @Override
@@ -107,10 +111,11 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
 //            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
             mPresenter.getBanner("bjbr003");
+            UmengTool.getSignature(getActivity());
         }
 
-        UmengTool.getSignature(getActivity());
 
+        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -125,6 +130,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     }
 
 
+    @SuppressWarnings({"deprecation", "ResourceAsColor"})
     private void initView() {
         View headerView = LayoutInflater.from(getActivity()).inflate(R.layout.header_homelist, null);
         mViewPager = (XBanner) headerView.findViewById(R.id.BannerPager);
@@ -143,6 +149,23 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(new Intent(getActivity(), NewsDetailActivity.class));
             }
         });
+        SRLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                SRLayout.setRefreshing(true);
+                SRLayout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        SRLayout.setRefreshing(false);
+                        Toast.makeText(getActivity(), "刷新成功", Toast.LENGTH_SHORT).show();
+                    }
+                }, 2500);
+            }
+        });
+        SRLayout.setColorScheme(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     @Override

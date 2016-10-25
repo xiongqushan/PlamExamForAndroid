@@ -12,7 +12,7 @@
 
     <style name="AppSplash" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowBackground">@mipmap/ic_splash</item>
     </style>
 
     <style name="dialog_loading" parent="@android:style/Theme.Dialog">
@@ -142,16 +142,15 @@
     </style>
 
     <style name="radiobuttom_reporttab">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">46dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:paddingBottom">4dp</item>
-        <item name="android:paddingTop">4dp</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
-        <item name="android:paddingLeft">8dp</item>
-        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
         <item name="android:textColor">@color/textcolor_tab_report</item>
+        <item name="android:background">@drawable/bg_tabline_report_selector</item>
         <item name="android:textSize">18sp</item>
     </style>
 

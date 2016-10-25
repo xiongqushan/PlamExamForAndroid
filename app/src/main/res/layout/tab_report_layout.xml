@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/gray_f2"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingBottom="@dimen/padding_8dp"
-    android:paddingTop="@dimen/padding_8dp">
+    android:paddingBottom="1dp"
+    android:paddingTop="1dp">
 
     <View
         android:layout_width="0dp"
@@ -23,26 +23,22 @@
         <RadioButton
             android:id="@+id/rb_error_report"
             style="@style/radiobuttom_reporttab"
-            android:background="@drawable/bg_tableft_report"
             android:checked="true"
             android:text="异常报告" />
 
         <RadioButton
             android:id="@+id/rb_detail_report"
             style="@style/radiobuttom_reporttab"
-            android:background="@drawable/bg_tabcenter_report"
             android:checked="false"
             android:text="报告详情" />
 
         <RadioButton
             android:id="@+id/rb_advice_report"
             style="@style/radiobuttom_reporttab"
-            android:background="@drawable/bg_tabright_report"
             android:checked="false"
             android:text="异常解读" />
 
     </RadioGroup>
-
 
     <View
         android:layout_width="0dp"

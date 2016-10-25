@@ -3,23 +3,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/padding_9dp">
+    android:paddingBottom="@dimen/padding_10dp"
+    android:paddingLeft="@dimen/padding_15dp"
+    android:paddingRight="@dimen/padding_15dp"
+    android:paddingTop="@dimen/padding_10dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/padding_10dp"
-        android:paddingLeft="@dimen/padding_12dp"
-        android:paddingRight="@dimen/padding_12dp"
-        android:paddingTop="@dimen/padding_10dp">
+        android:background="@drawable/bg_item_report_list_shape"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tvReportAdviceTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_10dp"
             android:includeFontPadding="false"
             android:text="颈椎侧位检查"
             android:textColor="@color/gray_33"
@@ -30,7 +30,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginTop="@dimen/padding_12dp"
+            android:layout_marginBottom="@dimen/padding_10dp"
+            android:layout_marginLeft="@dimen/padding_10dp"
+            android:layout_marginRight="@dimen/padding_10dp"
+            android:layout_marginTop="@dimen/padding_5dp"
             android:layout_toRightOf="@+id/img_newslist"
             android:includeFontPadding="false"
             android:text="颈椎生理曲度变直，建议专家随访，颈椎生理曲度变直，建议专家随访。颈椎生理曲度变直，建议专家随访，颈椎生理曲度变直，建议专家随访。"

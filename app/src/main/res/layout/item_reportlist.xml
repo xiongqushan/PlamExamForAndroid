@@ -16,19 +16,13 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="130dp">
 
         <RelativeLayout
 
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/ic_item_report_list">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="20dp"
-                android:src="@drawable/ic_mine_user_default" />
+            android:layout_height="130dp"
+            android:background="@drawable/bg_reports_list">
 
         </RelativeLayout>
 
@@ -41,7 +35,7 @@
                 android:id="@+id/tvReportDepart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="115dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="30dp"
                 android:maxLines="1"
                 android:text="上海市中山医院黄浦区分院上海市中山医院黄浦区分院"
@@ -52,7 +46,7 @@
                 android:id="@+id/tvReportTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="115dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="15dp"
                 android:text="2016-11-11"
                 android:textColor="@color/gray_33"

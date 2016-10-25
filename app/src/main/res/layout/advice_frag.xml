@@ -26,75 +26,75 @@
                 android:padding="12dp"
                 android:textSize="@dimen/textsize_h3_16sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                android:gravity="center"
-                android:text="请留下您的电话或者QQ以便我们及时联系您解决问题"
-                android:textSize="14sp" />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="12dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="请留下您的电话或者QQ以便我们及时联系您解决问题"-->
+                <!--android:textSize="14sp" />-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider"
-                android:background="@color/divider_dd" />
+            <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/divider"-->
+            <!--android:background="@color/divider_dd" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_high_48dp">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/actionbar_high_48dp">-->
 
-                <EditText
-                    android:id="@+id/et_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:inputType="phone"
-                    android:paddingLeft="112dp"
-                    android:singleLine="true"
-                    android:textSize="@dimen/textsize_h3_16sp" />
+                <!--<EditText-->
+                    <!--android:id="@+id/et_phone"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:inputType="phone"-->
+                    <!--android:paddingLeft="112dp"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:textSize="@dimen/textsize_h3_16sp" />-->
 
-                <TextView
-                    android:layout_width="96dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="手机号"
-                    android:textColor="@color/gray_66"
-                    android:textSize="18sp" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="96dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="手机号"-->
+                    <!--android:textColor="@color/gray_66"-->
+                    <!--android:textSize="18sp" />-->
+            <!--</RelativeLayout>-->
 
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider"
-                android:background="@color/divider_dd" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/divider"-->
+                <!--android:background="@color/divider_dd" />-->
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_high_48dp">
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/actionbar_high_48dp">-->
 
-                <EditText
-                    android:id="@+id/et_qq"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:inputType="number"
-                    android:paddingLeft="112dp"
-                    android:singleLine="true"
-                    android:textSize="@dimen/textsize_h3_16sp" />
+                <!--<EditText-->
+                    <!--android:id="@+id/et_qq"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:background="@color/white"-->
+                    <!--android:inputType="number"-->
+                    <!--android:paddingLeft="112dp"-->
+                    <!--android:singleLine="true"-->
+                    <!--android:textSize="@dimen/textsize_h3_16sp" />-->
 
-                <TextView
-                    android:layout_width="96dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Q Q"
-                    android:textColor="@color/gray_66"
-                    android:textSize="18sp" />
-            </RelativeLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="96dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:gravity="center"-->
+                    <!--android:text="Q Q"-->
+                    <!--android:textColor="@color/gray_66"-->
+                    <!--android:textSize="18sp" />-->
+            <!--</RelativeLayout>-->
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider"
-                android:background="@color/divider_dd" />
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/divider"-->
+                <!--android:background="@color/divider_dd" />-->
 
             <Button
                 android:id="@+id/btn_commit_advice"
