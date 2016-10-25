@@ -39,12 +39,17 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         mInflater = LayoutInflater.from(mContext);
     }
 
-
-
     public void refreshList(List<NewsBean> list) {
+        newsList.clear();
         newsList.addAll(list);
         notifyDataSetChanged();
     }
+
+    public void loadMoreList(List<NewsBean> list) {
+        newsList.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
 
     @Override

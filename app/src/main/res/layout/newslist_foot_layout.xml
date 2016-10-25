@@ -4,4 +4,5 @@
     android:layout_width="match_parent"
     android:gravity="center"
     android:padding="@dimen/padding_5dp"
-    android:text="加载更多..." />
+    android:text="加载更多..."
+    android:visibility="gone"/>

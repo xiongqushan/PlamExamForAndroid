@@ -23,6 +23,7 @@ public class NewsListPresenter extends AbstractPresenter implements NewsContract
     private HomeModel mHomeModel;
     private int mPageIndex;
     private int mPageSize;
+    private boolean isFirstLoading;
 
 
     @Inject
@@ -32,6 +33,7 @@ public class NewsListPresenter extends AbstractPresenter implements NewsContract
         mNewsListView.setPresenter(this);
         mPageIndex = 1;
         mPageSize = 10;
+        isFirstLoading = true;
     }
 
     @Override
@@ -47,19 +49,27 @@ public class NewsListPresenter extends AbstractPresenter implements NewsContract
     @Override
     public void start() {
         mPageIndex = 1;
-        mPageSize = 10;
-        getNewsList();
+        getNewsList(true);
     }
 
     @Override
-    public void getNewsList() {
+    public void getNewsList(final Boolean isRefresh) {
+        if (isFirstLoading){
+            mNewsListView.showDialog();
+        }
         mHomeModel.getNewsList(mPageIndex, mPageSize, new OnHandlerResultListener<RestResult<List<NewsBean>>>() {
             @Override
             public void handlerResultSuccess(RestResult<List<NewsBean>> resultData) {
                 if (resultData.Data!=null){
-                    mNewsListView.refreshNewsList(resultData.Data);
+                    if (isRefresh){
+                        mNewsListView.refreshNewsList(resultData.Data);
+                    }else {
+                        mNewsListView.loadMoreList(resultData.Data);
+                    }
                     mPageIndex ++;
                 }
+                isFirstLoading = false;
+                mNewsListView.hideDialog();
             }
 
             @Override

@@ -16,11 +16,15 @@ public interface NewsContract {
 
         void refreshNewsList(List<NewsBean> newsList);
 
+        void loadMoreList(List<NewsBean> newsList);
+
     }
 
     interface INewsListPresenter extends IBasePresenter {
 
-        void getNewsList();
+//        void getNewsList();
+
+        void getNewsList(Boolean isRefresh);
 
     }
 

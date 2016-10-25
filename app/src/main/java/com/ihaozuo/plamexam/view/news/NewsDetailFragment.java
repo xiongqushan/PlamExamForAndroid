@@ -10,7 +10,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.contract.NewsDetailContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 
@@ -26,7 +25,6 @@ public class NewsDetailFragment extends AbstractView{
     @Bind(R.id.WebView)
     WebView mWebView;
     private View rootView;
-    private NewsDetailContract.INewsDetailPresenter mPresenter;
 
     public NewsDetailFragment() {
         // Required empty public constructor

@@ -64,7 +64,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
             setCustomerTitle(rootView, getString(R.string.daily_news));
             ButterKnife.bind(this, rootView);
             initView();
-            mPresenter.getNewsList();
+            mPresenter.start();
         }
         ButterKnife.bind(this, rootView);
         return rootView;
@@ -76,6 +76,8 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         mListView.setAdapter(adapter);
         footView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.newslist_foot_layout,null);
         mListView.addFooterView(footView);
+        swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
+        swipeLayout.setColorSchemeResources(R.color.white);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -90,7 +92,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
                         if (canLoadMore){
                             canLoadMore = false;
                             footView.setText("正在加载...");
-                            mPresenter.getNewsList();
+                            mPresenter.getNewsList(false);
                         }
                     }
                 }
@@ -117,17 +119,29 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
 
     @Override
     public void refreshNewsList(List<NewsBean> newsList) {
-        canLoadMore = true;
-        footView.setText("加载更多...");
-        if (newsList.size()<10){
-            canLoadMore = false;
-            footView.setText("已无更多");
+        if (footView.getVisibility() == View.GONE){
+            footView.setVisibility(View.VISIBLE);
         }
         if (swipeLayout.isRefreshing()){
             swipeLayout.setRefreshing(false);
         }
         adapter.refreshList(newsList);
     }
+
+    @Override
+    public void loadMoreList(List<NewsBean> newsList) {
+
+        canLoadMore = true;
+        footView.setText("加载更多...");
+        if (newsList.size()<10){
+            canLoadMore = false;
+            footView.setText("已无更多");
+        }
+
+        adapter.loadMoreList(newsList);
+    }
+
+
 
 
 }

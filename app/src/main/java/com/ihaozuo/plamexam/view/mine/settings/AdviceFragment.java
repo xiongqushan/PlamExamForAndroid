@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.UserBean;
@@ -13,7 +14,6 @@ import com.ihaozuo.plamexam.common.dialog.ConfirmDialog;
 import com.ihaozuo.plamexam.contract.AdviceContract;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
-import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 
@@ -24,13 +24,16 @@ import butterknife.OnClick;
 /**
  * by zy  2016.08.30
  */
-public class AdviceFragment extends AbstractView implements AdviceContract.IAdviceView{
+public class AdviceFragment extends AbstractView implements AdviceContract.IAdviceView {
+
 
     private AdviceContract.IAdvicePresenter mPresenter;
     private View rootView;
 
     private UserBean mUserBean;
 
+    @Bind(R.id.tv_addReport)
+    TextView tvAddReport;
     @Bind(R.id.et_content)
     EditText etContent;
     @Bind(R.id.et_phone)
@@ -38,7 +41,7 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
     @Bind(R.id.et_qq)
     EditText etQQ;
 
-    @OnClick(R.id.btn_commit_advice)
+    @OnClick({R.id.btn_commit_advice,R.id.tv_addReport})
     void commit() {
         String content = etContent.getText().toString();
         boolean validInput = isValidInput(content, etPhone.getText().toString(), etQQ.getText().toString());
@@ -51,9 +54,11 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
         // Required empty public constructor
     }
 
-    public static AdviceFragment newInstance(){
+    public static AdviceFragment newInstance() {
         return new AdviceFragment();
-    };
+    }
+
+    ;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -74,6 +79,8 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
         ButterKnife.bind(this, rootView);
 
         setCustomerTitle(rootView, getString(R.string.advice_feedback));
+        tvAddReport.setText("发送");
+        tvAddReport.setVisibility(View.VISIBLE);
         etPhone.setText(mUserBean.Mobile);
         return rootView;
     }
@@ -91,7 +98,7 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
     }
 
     @Override
-    public void showSuccessDialog(){
+    public void showSuccessDialog() {
         new ConfirmDialog(getActivity(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,16 +116,16 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
             etContent.requestFocus();
             return false;
         }
-        if (!StringUtil.isTrimEmpty(phone) && !HZUtils.checkMobileNumber(phone)) {
-            etPhone.setError("请输入正确的手机号码");
-            etPhone.requestFocus();
-            return false;
-        }
-        if (!StringUtil.isTrimEmpty(qq) && !HZUtils.checkCharacter(qq)) {
-            etQQ.setError("请输入正确QQ号码");
-            etQQ.requestFocus();
-            return false;
-        }
+//        if (!StringUtil.isTrimEmpty(phone) && !HZUtils.checkMobileNumber(phone)) {
+//            etPhone.setError("请输入正确的手机号码");
+//            etPhone.requestFocus();
+//            return false;
+//        }
+//        if (!StringUtil.isTrimEmpty(qq) && !HZUtils.checkCharacter(qq)) {
+//            etQQ.setError("请输入正确QQ号码");
+//            etQQ.requestFocus();
+//            return false;
+//        }
         return true;
     }
 }
