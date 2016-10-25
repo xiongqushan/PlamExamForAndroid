@@ -1,16 +1,20 @@
 package com.ihaozuo.plamexam.view.news;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.common.dialog.ShareDialog;
+import com.ihaozuo.plamexam.framework.SysConfig;
+import com.ihaozuo.plamexam.util.ImageLoadUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,7 @@ public class NewsListAdapter extends SimpleBaseAdapter {
     private List<NewsBean> newsList;
     private Context mContext;
     private LayoutInflater mInflater;
+    private NewsBean newsEntity;
 
 
     public NewsListAdapter(Context context) {
@@ -35,16 +40,17 @@ public class NewsListAdapter extends SimpleBaseAdapter {
     }
 
 
+
     public void refreshList(List<NewsBean> list) {
-        newsList = list;
+        newsList.addAll(list);
         notifyDataSetChanged();
     }
 
 
     @Override
     public int getCount() {
-        return 4;
-//        return newsList.size();
+//        return 4;
+        return newsList.size();
     }
 
     @Override
@@ -67,7 +73,12 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
+        newsEntity = newsList.get(position);
 
+        ResizeOptions resizeOptions= new ResizeOptions(250,170);
+        ImageLoadUtils.getInstance(mContext).display(newsEntity.imgFormat ,holder.imgNewslist,resizeOptions);
+        holder.tvCommiton.setText(newsEntity.timeFormat);
+        holder.tvTitle.setText(newsEntity.title);
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +86,16 @@ public class NewsListAdapter extends SimpleBaseAdapter {
                 ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog);
                 shareDialog.show();
 
+            }
+        });
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, NewsDetailActivity.class);
+//                String url = SysConfig.NEWS_DETAIL_URL+newsEntity.id;
+                String url = SysConfig.NEWS_DETAIL_URL;
+                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY,url);
+                mContext.startActivity(intent);
             }
         });
 

@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
 import com.ihaozuo.plamexam.manager.DoctorManager;
@@ -18,6 +20,8 @@ import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
+
+import java.text.DecimalFormat;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -118,7 +122,7 @@ public class SysSetFragment extends BaseFragment {
                 new SettingsDialog(getActivity(), new SettingsDialog.OnDialogListener() {
                     @Override
                     public void OnDialogConfirmListener() {
-
+                        clearCache();
                     }
                 }).setContentText("是否清理缓存？").show();
                 break;
@@ -137,6 +141,34 @@ public class SysSetFragment extends BaseFragment {
                 }).setContentText("确定退出登录？").show();
                 break;
         }
+    }
+
+    private void clearCache() {
+        long cacheSize = Fresco.getImagePipelineFactory().getMainDiskStorageCache().getSize();
+        String toastMessage;
+        if (cacheSize <= 0) {
+            toastMessage = "无需清理缓存！";
+        } else {
+            Fresco.getImagePipeline().clearCaches();
+            toastMessage = "本次共清理了 ";
+            float cacheSizeTemp1 = changToTwoDecimal(Math.round(cacheSize / 1024));
+            float cacheSizeTemp2 = changToTwoDecimal(Math.round((cacheSize / 1024) / 1024));
+            if (cacheSizeTemp1 < 1) {
+                toastMessage += cacheSize + " B";
+            } else if (((cacheSizeTemp1 >= 1) && (cacheSizeTemp2 < 1))) {
+                toastMessage += cacheSizeTemp1 + " KB";
+            } else if (cacheSizeTemp2 >= 1) {
+                toastMessage += cacheSizeTemp2 + " MB";
+            }
+        }
+        Toast.makeText(getActivity(), toastMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    static float changToTwoDecimal(float in) {
+        DecimalFormat df = new DecimalFormat("0.00");
+        String out = df.format(in);
+        float result = Float.parseFloat(out);
+        return result;
     }
 
 }

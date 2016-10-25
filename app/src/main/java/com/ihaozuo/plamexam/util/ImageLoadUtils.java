@@ -14,6 +14,7 @@ import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.RoundingParams;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.ProgressiveJpegConfig;
 import com.facebook.imagepipeline.image.ImmutableQualityInfo;
@@ -73,25 +74,6 @@ public class ImageLoadUtils {
         this.context = context;
     }
 
-//    public GenericDraweeHierarchy initHierarchy(SimpleDraweeView simpleDraweeView) {
-//        GenericDraweeHierarchy hierarchy = simpleDraweeView.getHierarchy();
-////        hierarchy.setPlaceholderImage(R.drawable.pic_loading); // 修改占位图
-//        hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP); // 修改缩放类型
-//        hierarchy.setActualImageFocusPoint(new PointF(0.5f, 0.5f)); // 居中显示
-//        RoundingParams roundingParams = RoundingParams.fromCornersRadius(10);
-//        roundingParams.setCornersRadius(10);
-////        roundingParams.setBorder(R.color.gray, 1); // 设置边框颜色及宽度
-//        // roundingParams.setOverlayColor(R.color.transparent); // 固定背景颜色
-//        // roundingParams.setCornersRadii(10, 10, 10, 10); // 指定四个角的圆角度数
-////         roundingParams.setRoundAsCircle(false); // 设置为圆圈
-////        hierarchy.setRoundingParams(roundingParams); // 设置圆角
-////        hierarchy.setFailureImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置加载失败的占位图
-////        hierarchy.setRetryImage(context.getResources().getDrawable(R.drawable.pic_loading)); // 设置重试加载的占位图
-////        hierarchy.setProgressBarImage(new ProgressBarDrawable()); // 图片加载进度条, 如果想精确显示加载进度，需要重写 Drawable.onLevelChange
-//        hierarchy.setFadeDuration(1500); // 淡出效果
-//        return hierarchy;
-//    }
-
     public GenericDraweeHierarchy initHierarchyWithPlacehold(SimpleDraweeView simpleDraweeView, int placeHoldImage) {
         GenericDraweeHierarchy hierarchy = simpleDraweeView.getHierarchy();
         if(placeHoldImage!=0){
@@ -124,7 +106,7 @@ public class ImageLoadUtils {
         return this;
     }
 
-    public DraweeController initController(SimpleDraweeView simpleDraweeView, Uri uri) {
+    public DraweeController initController(SimpleDraweeView simpleDraweeView, Uri uri, ResizeOptions resizeOptions) {
 
         if (redMeshPostprocessor == null) {
             redMeshPostprocessor = new BasePostprocessor() {
@@ -158,23 +140,39 @@ public class ImageLoadUtils {
                 }
             };
         }
+        ImageRequest imageRequest;
+        if (resizeOptions != null){
+            imageRequest =
+                    ImageRequestBuilder
+                            .newBuilderWithSource(uri)
+                            .setAutoRotateEnabled(true) // 自动旋转
+                            .setPostprocessor(redMeshPostprocessor) // 设置后处理器
+                            .setProgressiveRenderingEnabled(true) // 渐进式JPEG图
+                            .setLocalThumbnailPreviewsEnabled(true) // 缩略图预览, 仅支持本地图片URI
+                            .setAutoRotateEnabled(true) // 下载完之后自动播放动画，同时，当View从屏幕移除时，停止播放。支持GIF和WebP 格式图片
+                            .setResizeOptions(resizeOptions)
+                            .build();
+        }else {
+            imageRequest =
+                    ImageRequestBuilder
+                            .newBuilderWithSource(uri)
+                            .setAutoRotateEnabled(true) // 自动旋转
+                            .setPostprocessor(redMeshPostprocessor) // 设置后处理器
+                            .setProgressiveRenderingEnabled(true) // 渐进式JPEG图
+                            .setLocalThumbnailPreviewsEnabled(true) // 缩略图预览, 仅支持本地图片URI
+                            .setAutoRotateEnabled(true) // 下载完之后自动播放动画，同时，当View从屏幕移除时，停止播放。支持GIF和WebP 格式图片
+                            .build();
 
-        ImageRequest imageRequest =
-                ImageRequestBuilder
-                        .newBuilderWithSource(uri)
-                        .setAutoRotateEnabled(true) // 自动旋转
-                        .setPostprocessor(redMeshPostprocessor) // 设置后处理器
-                        .setProgressiveRenderingEnabled(true) // 渐进式JPEG图
-                        .setLocalThumbnailPreviewsEnabled(true) // 缩略图预览, 仅支持本地图片URI
-                        .setAutoRotateEnabled(true) // 下载完之后自动播放动画，同时，当View从屏幕移除时，停止播放。支持GIF和WebP 格式图片
-                        .build();
+        }
+
+
 
         DraweeController controller =
                 Fresco.newDraweeControllerBuilder()
                         .setImageRequest(imageRequest)
                         .setControllerListener(controllerListener) // 监听下载事件
                         .setOldController(simpleDraweeView.getController()) // 设置旧 Controller
-                        .setTapToRetryEnabled(false) // 点击重新加载图
+                        .setTapToRetryEnabled(true) // 点击重新加载图
                         .build();
 
         return controller;
@@ -193,7 +191,7 @@ public class ImageLoadUtils {
      */
     public void display(Uri uri, SimpleDraweeView simpleDraweeView) {
         simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView, 0));
-        simpleDraweeView.setController(initController(simpleDraweeView, uri));
+        simpleDraweeView.setController(initController(simpleDraweeView, uri, null));
     }
 
     public void display(String url, SimpleDraweeView simpleDraweeView) {
@@ -206,7 +204,15 @@ public class ImageLoadUtils {
 
         Uri uri = Uri.parse(url);
         simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView,placeHoldImage));
-        simpleDraweeView.setController(initController(simpleDraweeView, uri));
+        simpleDraweeView.setController(initController(simpleDraweeView, uri, null));
 
     }
+
+    public void display(String url, SimpleDraweeView simpleDraweeView, ResizeOptions resizeOptions) {
+        Uri uri = Uri.parse(url);
+        simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView,0));
+        simpleDraweeView.setController(initController(simpleDraweeView, uri, resizeOptions));
+
+    }
+
 }

@@ -140,7 +140,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
         registerCustomReceiver(REFRESH_COSULTD_LIST);
         mIConsultPresenter.start();
-        mIConsultPresenter.removeUnreadMark();
+        mIConsultPresenter.removeUnreadMark(1);
         return rootView;
     }
 
@@ -148,7 +148,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
         if (REFRESH_COSULTD_LIST.equals(filterAction)){
             mIConsultPresenter.getConsultDetail();
-            mIConsultPresenter.removeUnreadMark();
+            mIConsultPresenter.removeUnreadMark(1);
         }
     }
 

@@ -7,9 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
@@ -33,7 +31,6 @@ import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
-import com.umeng.socialize.UmengTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +68,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
     }
 
     public void onDestroyView() {
@@ -107,9 +103,10 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
 //            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
             mPresenter.getBanner("bjbr003");
+            mPresenter.start();
         }
 
-        UmengTool.getSignature(getActivity());
+//        UmengTool.getSignature(getActivity());
 
         return rootView;
     }
@@ -134,15 +131,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         newsListAdapter = new NewsListAdapter(mContext);
         mListView.addHeaderView(headerView);
         mListView.setAdapter(newsListAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position < mListView.getHeaderViewsCount() || HZUtils.isFastDoubleClick()) {
-                    return;
-                }
-                startActivity(new Intent(getActivity(), NewsDetailActivity.class));
-            }
-        });
+
     }
 
     @Override
@@ -183,7 +172,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         mViewPager.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
-                Toast.makeText(mContext, "点击了第" + position + "张图片", Toast.LENGTH_LONG).show();
+//                Toast.makeText(mContext, "点击了第" + position + "张图片", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
                 intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, mBannerList.get(position).LinkUrl);
                 startActivity(intent);

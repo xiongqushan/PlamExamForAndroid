@@ -164,8 +164,8 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
     }
 
     @Override
-    public void removeUnreadMark() {
-        mConsultModel.removeUnreadMark(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<Boolean>>() {
+    public void removeUnreadMark(int type) {
+        mConsultModel.removeUnreadMark(mUserInfo.AccountId, type, new OnHandlerResultListener<RestResult<Boolean>>() {
             @Override
             public void handlerResultSuccess(RestResult<Boolean> resultData) {
                 mIConsultView.removeUnreadMark();

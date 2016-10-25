@@ -9,6 +9,7 @@ import com.ihaozuo.plamexam.view.base.BaseActivity;
 public class NewsDetailActivity extends BaseActivity {
     public static final String URL_NEWSDETAILACTIVITY = "URL_NEWSDETAILACTIVITY";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,8 +17,10 @@ public class NewsDetailActivity extends BaseActivity {
 
         NewsDetailFragment fragment = (NewsDetailFragment) getSupportFragmentManager().findFragmentById(R.id.frameContent);
         if (fragment == null) {
-            fragment = new NewsDetailFragment();
+            fragment = NewsDetailFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.frameContent);
         }
     }
+
+
 }

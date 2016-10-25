@@ -27,7 +27,7 @@ public interface ConsultContract {
 
         void sendMessage(int type, String consultContent);
 
-        void removeUnreadMark();
+        void removeUnreadMark(int type);
 
 
     }

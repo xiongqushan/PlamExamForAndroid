@@ -22,4 +22,6 @@ public class SysConfig {
     public static final int WRITE_TIMEOUT = 30;
     public static final int READ_TIMEOUT = 40;
 
+    public static final String NEWS_DETAIL_URL = "http://www.baidu.com";
+
 }

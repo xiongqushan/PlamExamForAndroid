@@ -50,7 +50,7 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
     @Override
     public void start() {
-        getNewsList(0,4);
+        getNewsList(1,4);
         getUnreadMartState(mUserbean.AccountId);
 //        mHomeModel.initData(new OnHandlerResultWithCompletedListener<RestResult>() {
 //            @Override
