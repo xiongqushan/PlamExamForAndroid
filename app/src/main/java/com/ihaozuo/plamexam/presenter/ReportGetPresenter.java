@@ -54,7 +54,6 @@ public class ReportGetPresenter extends AbstractPresenter implements ReportContr
                 if (resultData.Data.Reports == null || resultData.Data.Reports.size() == 0) {
                     mView.hideDialog("暂无数据");
                 } else {
-                    mView.hideDialog();
                     ReportManager.getInstance().setReportList(resultData.Data.Reports);
                     String currCode = UserManager.getInstance().getUserInfo().DepartCode;
                     if (!currCode.equals(resultData.Data.CheckUnitCode)) {

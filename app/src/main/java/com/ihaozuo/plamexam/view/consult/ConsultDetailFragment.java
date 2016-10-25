@@ -117,7 +117,11 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         mAdapter = new ConsultDetailAdapter();
         mRecyclerView.setAdapter(mAdapter);
         swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
-        swipeLayout.setColorSchemeResources(R.color.white);
+//        swipeLayout.setColorSchemeResources(R.color.white);
+        swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -257,6 +261,15 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             mIConsultPresenter.sendMessage(1, editContent);
         } else {
             Toast.makeText(mContext, "请先输入内容！", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void toggleRetryLayer(boolean show) {
+        if (show) {
+            showRetryLayer(R.id.rLayout);
+        } else {
+            hideRetryLayer(R.id.rLayout);
         }
     }
 

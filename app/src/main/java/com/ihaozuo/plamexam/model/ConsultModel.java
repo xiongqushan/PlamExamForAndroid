@@ -35,8 +35,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.getConsultDetail(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -48,8 +47,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("ConsultContent", consultContent);
         params.put("AppendInfo", "");//暂时为空
         mIConsultService.sendMessage(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -59,7 +57,9 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("AccountId", accountId);
         params.put("Score", score);
         params.put("Content", content);
-        mIConsultService.sendGrade(params);
+        mIConsultService.sendGrade(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
     }
 
     public void getUnreadMarkState(String accountId, final OnHandlerResultListener<RestResult<List<UnreadMarkBean>>> callbackListener) {
@@ -67,8 +67,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("AccountId", accountId);
         mIConsultService.getUnreadMarkState(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -78,8 +77,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("AccountId", accountId);
         params.put("Type", type);
         mIConsultService.RemoveUnreadMark(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 
@@ -101,8 +99,7 @@ public class ConsultModel extends AbstractModel implements IBaseModel {
         params.put("CheckUnitName", name);
         params.put("ReportDate", date);
         mIConsultService.sendMsgForReport(params)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(applyAsySchedulers())
                 .subscribe(subscriber);
     }
 

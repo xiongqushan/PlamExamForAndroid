@@ -66,7 +66,6 @@
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
 
-
     <application
         android:name=".framework.HZApp"
         android:allowBackup="true"
@@ -86,8 +85,9 @@
         <activity android:name=".view.login.LoginActivity" />
         <activity android:name=".view.news.NewsDetailActivity" />
         <activity android:name=".view.login.BindPhoneActivity" />
-        <activity android:name=".view.consult.ConsultDetailActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".view.consult.ConsultDetailActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".view.mine.UserInfoActivity" />
         <activity android:name=".view.report.ReportGetActivity" />
         <activity android:name=".view.mine.settings.SysSetActivity" />
@@ -96,13 +96,12 @@
             android:name=".view.mine.settings.AdviceActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".view.mine.settings.DisclaimerActivity" />
-        <activity android:name=".view.report.ReportListActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".view.report.ReportListActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".view.report.ReportActivity" />
         <activity android:name=".view.consult.ConsultGradeActivity" />
         <activity android:name=".view.news.NewsListActivity" />
-
-
 
 
         <!-- 极光推送 -->
@@ -150,7 +149,7 @@
         <service
             android:name="cn.jpush.android.service.DaemonService"
             android:enabled="true"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
                 <category android:name="haozuo.com.healthdoctor" />
@@ -208,34 +207,35 @@
             </intent-filter>
         </receiver>
 
-         <!--Required  . Enable it you can get statistics data with channel-->
+        <!--Required  . Enable it you can get statistics data with channel-->
         <!--<meta-data-->
-            <!--android:name="JPUSH_APPKEY"-->
-            <!--android:value="@string/JPush_app_id" />-->
+        <!--android:name="JPUSH_APPKEY"-->
+        <!--android:value="@string/JPush_app_id" />-->
         <!--<meta-data-->
-             <!--android:name="JPUSH_CHANNEL"-->
-             <!--android:value="developer-default" />-->
+        <!--android:name="JPUSH_CHANNEL"-->
+        <!--android:value="developer-default" />-->
 
         <!-- 讯飞移动统计分析 -->
-        <meta-data
-            android:name="IFLYTEK_APPKEY"
-            android:value="@string/xunfei_app_id" />
-        <meta-data
-            android:name="IFLYTEK_CHANNEL"
-            android:value="COM.IHAOZUO.PLAMEXAM" />
+        <!--<meta-data-->
+        <!--android:name="IFLYTEK_APPKEY"-->
+        <!--android:value="@string/xunfei_app_id" />-->
+        <!--<meta-data-->
+        <!--android:name="IFLYTEK_CHANNEL"-->
+        <!--android:value="COM.IHAOZUO.PLAMEXAM" />-->
+
 
         <!-- Share edit page-->
 
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
-            android:theme="@style/Theme.UMDefault"
-            android:excludeFromRecents="true" />
+            android:excludeFromRecents="true"
+            android:theme="@style/Theme.UMDefault" />
 
         <!-- tencent -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -247,9 +247,10 @@
         </activity>
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <uses-library
             android:name="com.google.android.maps"
             android:required="false" />
@@ -260,16 +261,15 @@
         <!-- umengAppKey，replace to yours -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="@string/UMeng_app_id" >
-        </meta-data>
+            android:value="@string/UMeng_app_id" />
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="Umeng" >
-        </meta-data>
-        <!--<uses-sdk-->
-            <!--android:minSdkVersion="8"-->
-            <!--android:targetSdkVersion="22"-->
-            <!--tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />-->
+            android:value="Umeng" />
+
+        <uses-sdk
+            android:minSdkVersion="8"
+            android:targetSdkVersion="22"
+            tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />
 
     </application>
 

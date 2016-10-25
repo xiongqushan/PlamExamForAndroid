@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/card_margin"
+    android:layout_marginBottom="20dp"
     android:layout_marginLeft="@dimen/card_margin"
     android:layout_marginRight="@dimen/card_margin"
     app:cardCornerRadius="@dimen/card_margin"
@@ -16,35 +16,45 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="130dp">
 
         <RelativeLayout
+
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/bg_report_list">
+            android:layout_height="130dp"
+            android:background="@drawable/bg_reports_list">
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tvReportDepart"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:maxLines="2"
-            android:paddingLeft="112dp"
-            android:paddingTop="16dp"
-            android:text="上海市中山医院黄浦区分院上海市中山医院黄浦区分院"
-            android:textColor="@color/gray_33"
-            android:textSize="18sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvReportTime"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingLeft="112dp"
-            android:paddingTop="60dp"
-            android:text="2016-11-11"
-            android:textColor="@color/gray_33"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/tvReportDepart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="30dp"
+                android:maxLines="1"
+                android:text="上海市中山医院黄浦区分院上海市中山医院黄浦区分院"
+                android:textColor="@color/gray_33"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvReportTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="15dp"
+                android:text="2016-11-11"
+                android:textColor="@color/gray_33"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
 
     </FrameLayout>
 

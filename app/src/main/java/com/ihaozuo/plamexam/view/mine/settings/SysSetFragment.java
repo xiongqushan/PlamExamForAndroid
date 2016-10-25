@@ -124,12 +124,21 @@ public class SysSetFragment extends BaseFragment {
                     public void OnDialogConfirmListener() {
                         clearCache();
                     }
+
+                    @Override
+                    public void OnDialogCancelListener() {
+
+                    }
                 }).setContentText("是否清理缓存？").show();
                 break;
             case R.id.btn_logout:
                 new SettingsDialog(getActivity(), new SettingsDialog.OnDialogListener() {
                     @Override
                     public void OnDialogConfirmListener() {
+                    }
+
+                    @Override
+                    public void OnDialogCancelListener() {
                         UserManager.getInstance().clear();
                         DoctorManager.getInstance().clear();
                         ReportManager.getInstance().clear();
@@ -138,7 +147,7 @@ public class SysSetFragment extends BaseFragment {
                         getActivity().finish();
                         sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
                     }
-                }).setContentText("确定退出登录？").show();
+                }).setContentText("确定退出登录？").setCancelText("确定").setConfirmText("取消").show();
                 break;
         }
     }

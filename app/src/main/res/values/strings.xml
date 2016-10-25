@@ -83,6 +83,8 @@
     <string name="pref_title_iat_show">显示听写界面</string>
     <string name="pref_title_iat_dwa">结果动态修正</string>
 
+    <string name="gray_f8">#FFF8F8F8</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -138,8 +140,6 @@
     <string name="umeng_socialize_text_waitting">请稍候...</string>
     <string name="umeng_socialize_text_waitting_weixin">跳转微信中，请稍候...</string>
     <string name="umeng_socialize_text_waitting_weixin_circle">跳转朋友圈中，请稍候...</string>
-    <string name="umeng_socialize_text_waitting_yixin">跳转易信中，请稍候...</string>
-    <string name="umeng_socialize_text_waitting_yixin_circle">跳转易信朋友圈中，请稍候...</string>
     <string name="umeng_socialize_text_waitting_qq">跳转QQ中，请稍候...</string>
     <string name="umeng_socialize_text_waitting_qzone">跳转QZone中，请稍候...</string>
     <string name="umeng_socialize_text_waitting_redirect">跳转</string>

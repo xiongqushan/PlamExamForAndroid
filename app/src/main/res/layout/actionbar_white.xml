@@ -17,7 +17,8 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:padding="@dimen/actionbar_padding"
-            android:src="@drawable/go_back" />
+            android:src="@drawable/btn_goback_black"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/txt_actionbar_title"
@@ -43,8 +44,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_1dp"
-        android:background="#88888888" />
+        android:layout_height="@dimen/divider"
+        android:background="@color/divider_dd" />
 
 </LinearLayout>
 

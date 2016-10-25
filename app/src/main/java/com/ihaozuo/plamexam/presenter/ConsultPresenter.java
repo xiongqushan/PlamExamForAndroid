@@ -80,11 +80,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
 
     }
 
-//    public void refresh(List<ConsultDetailBean> list) {
-//        mIConsultView.refreshConsultList(list);
-//        mIConsultView.setDoctorInfo();
-//    }
-
     @Override
     public void getConsultDetail() {
         mConsultModel.getConsultDetail(mUserInfo.AccountId, new OnHandlerResultListener<RestResult<List<ConsultDetailBean>>>() {
@@ -138,6 +133,8 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             @Override
             public void handlerResultError(String message) {
                 mIConsultView.hideDialog(message);
+                mIConsultView.toggleRetryLayer(true);
+
             }
 
         });
@@ -150,7 +147,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
                 if (resultData.Data != null) {
                     DoctorManager.getInstance().setDoctorList(resultData.Data);
                 }
-//                    mLoginView.hideDialog();
                 doctorListBoolean = true;
                 toggleDialog();
             }
@@ -158,6 +154,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             @Override
             public void handlerResultError(String message) {
                 mIConsultView.hideDialog(message);
+                mIConsultView.toggleRetryLayer(true);
             }
 
         });
@@ -173,7 +170,8 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
 
             @Override
             public void handlerResultError(String message) {
-
+                mIConsultView.hideDialog(message);
+                mIConsultView.toggleRetryLayer(true);
             }
         });
     }
@@ -184,6 +182,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             mIConsultView.refreshConsultList(consultDetailList);
             consultDetailList.clear();
             mIConsultView.hideDialog();
+            mIConsultView.toggleRetryLayer(false);
 
             consultListBoolean = false;
 //            doctorIDBoolean = false;

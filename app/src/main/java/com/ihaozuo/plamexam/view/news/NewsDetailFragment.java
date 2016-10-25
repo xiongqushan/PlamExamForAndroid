@@ -78,7 +78,6 @@ public class NewsDetailFragment extends AbstractView{
         mWebView.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(
                     WebView view, String url) {
-                view.loadUrl(url);
                 return true;
             }
 

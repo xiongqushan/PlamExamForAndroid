@@ -60,7 +60,7 @@
             android:padding="3dp"
             android:textSize="@dimen/textsize_h5_12sp"
             android:textColor="@color/gray_66"
-            tools:text="@string/tv_workTime"/>
+            tools:text="@string/workTime"/>
 
     </RelativeLayout>
 

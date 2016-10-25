@@ -22,7 +22,7 @@ public class SplashPresenter extends AbstractPresenter implements SplashContract
 
     @Override
     public IBaseView getBaseView() {
-        return null;
+        return mView;
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.ihaozuo.plamexam.service;
 import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.bean.BaseBean;
 import com.ihaozuo.plamexam.bean.NewsBean;
+import com.ihaozuo.plamexam.bean.VersionInfoBean;
 import com.ihaozuo.plamexam.framework.SysConfig;
 
 import java.util.List;
@@ -29,4 +30,6 @@ public interface IHomeService {
     @POST(SysConfig.CONTROLLER_PRE_API_HOME + "MsgInfo")
     Observable<BaseBean<NewsBean>> getNewsDetail(@Body Map<String, Object> params);
 
+    @POST(SysConfig.CONTROLLER_PRE_API_HOME + "Version")
+    Observable<BaseBean<VersionInfoBean>> getVersion(@Body Map<String, Object> params);
 }

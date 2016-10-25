@@ -77,7 +77,11 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         footView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.newslist_foot_layout,null);
         mListView.addFooterView(footView);
         swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
-        swipeLayout.setColorSchemeResources(R.color.white);
+//        swipeLayout.setColorSchemeResources(R.color.white);
+        swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

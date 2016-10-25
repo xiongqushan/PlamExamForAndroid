@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.bean.UpdateInfoBean;
+import com.ihaozuo.plamexam.bean.VersionInfoBean;
 import com.ihaozuo.plamexam.contract.SplashContract;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
@@ -66,15 +66,15 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
     }
 
     @Override
-    public void updateInfo(final UpdateInfoBean bean) {
+    public void updateInfo(final VersionInfoBean bean) {
         if (bean.IsValid) {//TODO 还能用
-            if (StringUtil.isTrimEmpty(bean.Notification)) {
+            if (StringUtil.isTrimEmpty(bean.Message)) {
                 turnNextAty();
             } else {
                 AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
                 dialog.setTitle("检测到更新")
                         .setCancelable(false)
-                        .setMessage(bean.Notification)
+                        .setMessage(bean.Message)
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -87,7 +87,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
             dialog.setTitle("检测到更新，当前版本不再维护")
                     .setCancelable(false)
-                    .setMessage(bean.Notification)
+                    .setMessage(bean.Message)
                     .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -101,7 +101,11 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
 
     @Override
     public void turnNextAty() {
-        TimerTask task = new TimerTask() { public void run() { turnAction();  }  };
+        TimerTask task = new TimerTask() {
+            public void run() {
+                turnAction();
+            }
+        };
         Timer timer = new Timer();
         long time = System.currentTimeMillis();
         long requestTime = time - lastTime;

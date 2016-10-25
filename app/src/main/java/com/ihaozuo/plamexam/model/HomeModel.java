@@ -42,7 +42,7 @@ public class HomeModel extends AbstractModel {
 
     }
 
-    public void addFeedback(String departName,String realName, String mobile, String content,final OnHandlerResultListener<RestResult<List<BannerBean>>> callbackListener) {
+    public void addFeedback(String departName, String realName, String mobile, String content, final OnHandlerResultListener<RestResult<List<BannerBean>>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("DepartName", departName);
@@ -55,12 +55,22 @@ public class HomeModel extends AbstractModel {
 
     }
 
-    public void getNewsList(int pageIndex,int pageSize,final OnHandlerResultListener<RestResult<List<NewsBean>>> callbackListener) {
+    public void getNewsList(int pageIndex, int pageSize, final OnHandlerResultListener<RestResult<List<NewsBean>>> callbackListener) {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
         params.put("PageIndex", pageIndex);
         params.put("PageSize", pageSize);
         mIHomeService.getNewsList(params)
+                .compose(applyAsySchedulers())
+                .subscribe(subscriber);
+
+    }
+
+    public void getVersion(int currVersion, final OnHandlerResultListener<RestResult<List<NewsBean>>> callbackListener) {
+        Subscriber subscriber = getSubscriber(callbackListener);
+        Map<String, Object> params = HZUtils.initParamsMap();
+        params.put("VersionCode", currVersion);
+        mIHomeService.getVersion(params)
                 .compose(applyAsySchedulers())
                 .subscribe(subscriber);
 
