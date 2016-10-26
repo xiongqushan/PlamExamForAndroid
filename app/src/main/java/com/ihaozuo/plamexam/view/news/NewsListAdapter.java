@@ -81,7 +81,7 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         newsEntity = newsList.get(position);
 
         ResizeOptions resizeOptions= new ResizeOptions(250,170);
-        ImageLoadUtils.getInstance(mContext).display(newsEntity.imgFormat ,holder.imgNewslist,resizeOptions);
+        ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist,resizeOptions);
         holder.tvCommiton.setText(newsEntity.timeFormat);
         holder.tvTitle.setText(newsEntity.title);
         holder.btnShare.setOnClickListener(new View.OnClickListener() {

@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="105dp"
-    android:padding="@dimen/padding_10dp">
+    android:padding="@dimen/padding_10dp"
+    android:background="@color/white">
 
     <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/img_newslist"

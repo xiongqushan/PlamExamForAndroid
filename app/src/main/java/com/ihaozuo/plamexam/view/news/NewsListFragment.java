@@ -78,7 +78,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         mListView.addFooterView(footView);
         swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
 //        swipeLayout.setColorSchemeResources(R.color.white);
-        swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+        swipeLayout.setColorSchemeResources(android.R.color.white,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);

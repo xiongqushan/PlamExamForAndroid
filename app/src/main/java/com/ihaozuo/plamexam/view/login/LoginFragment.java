@@ -4,7 +4,6 @@ package com.ihaozuo.plamexam.view.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,6 +13,7 @@ import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,7 +127,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
             case R.id.btn_getAuthCode:
                 if (StringUtil.isMobile(phoneNum)) {
                     mLoginPresenter.getAuthCode(phoneNum);
-                    time = new TimeCount(6000, 1000);
+                    time = new TimeCount(30000, 1000);
                     time.start();
                 } else {
                     TVLayerPhone.setError(getString(R.string.error_input_phone));
@@ -157,22 +157,33 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         getActivity().finish();
     }
 
-    private class TimeCount extends CountDownTimer {
+    private class TimeCount extends com.ihaozuo.plamexam.common.CountDownTimer {
         public TimeCount(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);//参数依次为总时长,和计时的时间间隔
         }
 
         @Override
         public void onFinish() {//计时完毕时触发
-            btnGetAuthCode.setText(getString(R.string.get_authcode));
-            btnGetAuthCode.setClickable(true);
-
+            if (btnGetAuthCode!=null){
+                btnGetAuthCode.setText(getString(R.string.get_authcode));
+                btnGetAuthCode.setClickable(true);
+            }
         }
 
         @Override
         public void onTick(long millisUntilFinished) {//计时过程显示
-            btnGetAuthCode.setClickable(false);
-            btnGetAuthCode.setText(millisUntilFinished / 1000 + getString(R.string.reget_authcode));
+            if (getActivity()!=null){
+                if (btnGetAuthCode!= null){
+                    btnGetAuthCode.setClickable(false);
+                    btnGetAuthCode.setText(millisUntilFinished / 1000 + getString(R.string.reget_authcode));
+                }
+            }else{
+                Log.e(mContext+"!countdowntimer","cancel");
+                cancel();
+            }
+
+
+
         }
     }
 
@@ -228,6 +239,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
             mListener.onClick(v);
         }
     }
+
 
 
 }

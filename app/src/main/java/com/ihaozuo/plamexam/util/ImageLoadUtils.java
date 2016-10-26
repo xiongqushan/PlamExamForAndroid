@@ -41,8 +41,8 @@ public class ImageLoadUtils {
 //        return UtilsHolder.instance;
 //    }
 //
-    public static ImageLoadUtils getInstance(Context context) {
-        UtilsHolder.instance.initContext(context);
+    public static ImageLoadUtils getInstance() {
+        UtilsHolder.instance.initContext();
         return UtilsHolder.instance;
     }
 
@@ -70,8 +70,11 @@ public class ImageLoadUtils {
     private Postprocessor redMeshPostprocessor = null; // 图片后处理器
     private ControllerListener controllerListener = null;
 
-    public void initContext(Context context) {
-        this.context = context;
+//    public void initContext(Context context) {
+//        this.context = context;
+//    }
+    public void initContext() {
+//        this.context = context;
     }
 
     public GenericDraweeHierarchy initHierarchyWithPlacehold(SimpleDraweeView simpleDraweeView, int placeHoldImage) {

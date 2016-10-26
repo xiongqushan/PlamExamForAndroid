@@ -47,11 +47,11 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
     @Override
     public void getAuthCode(String mobile) {
-        mLoginView.showDialog();
+//        mLoginView.showDialog();
         mUserModel.getAuthCode(mobile, new OnHandlerResultListener<RestResult<Boolean>>() {
             @Override
             public void handlerResultSuccess(RestResult<Boolean> resultData) {
-                mLoginView.hideDialog();
+//                mLoginView.hideDialog();
             }
 
             @Override

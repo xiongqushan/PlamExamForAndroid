@@ -53,7 +53,7 @@ public class HZApp extends Application {
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
         //fresco
-        Fresco.initialize(this, ImageLoadUtils.getInstance(this)
+        Fresco.initialize(this, ImageLoadUtils.getInstance()
                 .CustomConfig(this));
 
         //极光
