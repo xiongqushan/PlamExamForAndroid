@@ -22,6 +22,10 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
+    <!--<uses-sdk-->
+        <!--android:minSdkVersion="19"-->
+        <!--android:targetSdkVersion="22"-->
+        <!--tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />-->
     <!-- Jpush权限 -->
     <permission
         android:name="com.ihaozuo.plamexam.permission.JPUSH_MESSAGE"
@@ -72,6 +76,17 @@
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="ihaozhuo.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.ihaozuo.plamexam.database.newsdbutils.NewsDBPojo" />
+
         <activity
             android:name=".view.splash.SplashActivity"
             android:theme="@style/AppSplash">
@@ -266,10 +281,6 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng" />
 
-        <uses-sdk
-            android:minSdkVersion="8"
-            android:targetSdkVersion="22"
-            tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />
 
     </application>
 

@@ -4,14 +4,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.common.dialog.CustomDialog;
 import com.ihaozuo.plamexam.common.dialog.LoadingDialog;
-import com.ihaozuo.plamexam.util.StringUtil;
+import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.StringUtil;
+import com.ihaozuo.plamexam.util.ToastUtils;
 
 
 /**
@@ -54,7 +54,7 @@ public abstract class AbstractView extends BaseFragment {
             loadingDialog.dismiss();
         }
         if (StringUtil.isNotTrimEmpty(msg)) {
-            Toast.makeText(getContext(), msg, Toast.LENGTH_SHORT).show();
+            ToastUtils.showToast(getContext(), msg);
         }
     }
 

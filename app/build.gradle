@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId "com.ihaozuo.plamexam"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 22
         versionCode 30
         versionName "V3.0"
@@ -76,7 +76,7 @@ buildscript {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/Msc.jar')
     compile files('libs/Sunflower.jar')
     testCompile 'junit:junit:4.12'
@@ -100,5 +100,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
-
+    compile files('libs/ActiveAndroid-3.1.jar')
 }

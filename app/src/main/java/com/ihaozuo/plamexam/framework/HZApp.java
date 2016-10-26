@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
+import com.activeandroid.ActiveAndroid;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
@@ -45,9 +46,17 @@ public class HZApp extends Application {
     }
 
     @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ActiveAndroid.dispose();
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         application = this;
+
+        ActiveAndroid.initialize(this);
 
         PreferenceManager.init(this);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);

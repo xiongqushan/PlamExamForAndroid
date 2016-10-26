@@ -68,6 +68,9 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 //        String[] arr = {"aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aa", "aab", "aac"};
 //        arrayAdapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, arr);
 //        phone.setAdapter(arrayAdapter);
+        if (BuildConfig.DEBUG) {
+            phone.setText("13651646955");
+        }
         String numb = PreferenceManager.getInstance().readLoginPhone();
         if (StringUtil.isNotEmpty(numb)) {
             phone.setText(numb);
@@ -77,9 +80,6 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         btnLogin.setEnabled(false);
         tvWarning.setText(getClickableSpan());
         tvWarning.setMovementMethod(LinkMovementMethod.getInstance());
-        if (BuildConfig.DEBUG) {
-            phone.setText("13651646955");
-        }
         return rootView;
     }
 

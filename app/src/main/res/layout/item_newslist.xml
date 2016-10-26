@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="105dp"
+    android:background="@drawable/item_press_white_gray"
     android:padding="@dimen/padding_10dp">
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -20,8 +19,8 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/img_newslist"
         android:layout_marginTop="@dimen/padding_5dp"
+        android:layout_toRightOf="@+id/img_newslist"
         android:lineSpacingExtra="2dp"
         android:maxLines="2"
         android:text="艾欧尼亚艾欧尼亚艾欧尼亚艾欧尼欧尼亚艾欧尼亚"
@@ -32,9 +31,9 @@
         android:id="@+id/tv_commiton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/img_newslist"
-        android:layout_marginBottom="@dimen/padding_5dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/padding_5dp"
+        android:layout_toRightOf="@+id/img_newslist"
         android:maxLines="1"
         android:text="2016-08-03"
         android:textColor="@color/gray_99"
@@ -44,15 +43,15 @@
         android:id="@+id/btn_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:layout_marginBottom="@dimen/padding_5dp"
-        android:paddingTop="@dimen/padding_10dp"
+        android:drawableLeft="@drawable/btn_share"
         android:drawablePadding="@dimen/padding_10dp"
+        android:paddingTop="@dimen/padding_10dp"
         android:text="分享"
         android:textColor="@color/gray_99"
-        android:textSize="@dimen/textsize_h5_12sp"
-        android:drawableLeft="@drawable/btn_share"/>
+        android:textSize="@dimen/textsize_h5_12sp" />
 
 </RelativeLayout>
 
