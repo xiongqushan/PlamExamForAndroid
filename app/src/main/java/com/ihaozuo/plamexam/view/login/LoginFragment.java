@@ -4,6 +4,7 @@ package com.ihaozuo.plamexam.view.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.SpannableString;
@@ -22,9 +23,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
@@ -34,9 +35,15 @@ import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.mine.settings.DisclaimerActivity;
 
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
+import cn.jpush.android.api.TagAliasCallback;
 
 public class LoginFragment extends AbstractView implements LoginContract.ILoginView {
 
@@ -78,9 +85,9 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         btnLogin.setEnabled(false);
         tvWarning.setText(getClickableSpan());
         tvWarning.setMovementMethod(LinkMovementMethod.getInstance());
-        if (BuildConfig.DEBUG) {
-            phone.setText("13651646955");
-        }
+//        if (BuildConfig.DEBUG) {
+//            phone.setText("13651646955");
+//        }
         return rootView;
     }
 
@@ -233,6 +240,62 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         public void onClick(View v) {
             mListener.onClick(v);
         }
+    }
+
+
+    public void setAlias(String alias) {
+        if (isValidTagAndAlias(alias)) {
+            mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_TAGS, alias));
+        }
+    }
+
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs ;
+            switch (code) {
+                case 0:
+                    logs = "Set tag and alias success";
+                    // 建议这里往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+                    break;
+                case 6002:
+                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+                    // 延迟 60 秒来调用 Handler 设置别名
+                    mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_TAGS, alias), 1000 * 60);
+                    break;
+                default:
+                    logs = "Failed with errorCode = " + code;
+            }
+            Log.e(mContext+"",logs);
+        }
+    };
+    private static final String TAG = "JPush";
+    private static final int MSG_SET_ALIAS = 1001;
+    private static final int MSG_SET_TAGS = 1002;
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case MSG_SET_ALIAS:
+                case MSG_SET_TAGS:
+                    Log.d(TAG, "Set alias in handler.");
+                    // 调用 JPush 接口来设置别名。
+                    JPushInterface.setAliasAndTags(HZApp.shareApplication(),
+                            (String) msg.obj,
+                            null,
+                            mAliasCallback);
+                    break;
+                default:
+                    Log.i(TAG, "Unhandled msg - " + msg.what);
+            }
+        }
+    };
+
+    private static boolean isValidTagAndAlias(String s) {
+        Pattern p = Pattern.compile("^[\u4E00-\u9FA50-9a-zA-Z_!@#$&*+=.|￥¥]+$");
+        Matcher m = p.matcher(s);
+        return m.matches();
     }
 
 }

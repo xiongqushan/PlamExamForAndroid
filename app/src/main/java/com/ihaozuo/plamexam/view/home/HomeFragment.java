@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,9 @@ import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
+import com.umeng.socialize.Config;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.UmengTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +76,8 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onResume() {
         super.onResume();
+        UmengTool.getSignature(getActivity());
+        Log.e(mContext+"",Config.REDIRECT_URL);
     }
 
     public void onDestroyView() {
@@ -240,6 +246,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         }
         newsListAdapter.refreshList(newsList);
     }
+
 
 
 }

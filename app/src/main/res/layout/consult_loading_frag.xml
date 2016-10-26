@@ -50,12 +50,13 @@
 
 
     <TextView
+        android:id="@+id/tv_goConsult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginBottom="66dp"
         android:textSize="@dimen/textsize_h3_16sp"
         android:lineSpacingExtra="5dp"
-        android:text="1 位健管师将为您提供健康咨询\nloading..."/>
+        android:text="1 位健管师将为您提供咨询服务\n请点击"/>
 
 </LinearLayout>

@@ -219,7 +219,7 @@ public class WaveView extends ImageView {
 
             float fraction = (mCurrentRadius - mSmallRadius) * 1.0f / (mLargeRadius - mSmallRadius) * 1.0f;
             System.out.println(fraction);
-            int color = evaluate(fraction, 0xaa177cb0, 0x00177cb0);
+            int color = evaluate(fraction, 0xaa9ccff9, 0x009ccff9);
             mPaint.setColor(color);
 
             canvas.drawCircle(mWidth / 2, mHeight / 2, mCurrentRadius, mPaint);
