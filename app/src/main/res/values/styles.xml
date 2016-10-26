@@ -90,6 +90,14 @@
         <item name="android:textColor">@color/gray_33</item>
         <item name="android:textSize">@dimen/textsize_h2</item>
     </style>
+    <style name="sysset_label">
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:textColor">@color/gray_33</item>
+        <item name="android:textSize">@dimen/textsize_h2</item>
+    </style>
 
     <style name="userinfo_label_content">
         <item name="android:textSize">@dimen/textsize_h3_16sp</item>

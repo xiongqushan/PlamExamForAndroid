@@ -1,23 +1,36 @@
 package com.ihaozuo.plamexam.view.mine.settings;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.contract.SysSetContract;
+import com.ihaozuo.plamexam.ioc.DaggerSysSetComponent;
+import com.ihaozuo.plamexam.ioc.SysSetModule;
+import com.ihaozuo.plamexam.presenter.SysSetPresenter;
 import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
 
+import javax.inject.Inject;
+
 public class SysSetActivity extends BaseActivity {
+    @Inject
+    SysSetPresenter mPresenter;
+
+    @Inject
+    SysSetContract.ISysSetView mView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_act);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        SysSetFragment fragment = (SysSetFragment) fragmentManager.findFragmentById(R.id.frameContent);
+        DaggerSysSetComponent.builder()
+                .appComponent(getAppComponent())
+                .sysSetModule(new SysSetModule())
+                .build().inject(this);
+        SysSetFragment fragment = (SysSetFragment) getSupportFragmentManager().findFragmentById(R.id.frameContent);
         if (fragment == null) {
-            fragment = new SysSetFragment();
-            ActivityUtils.addFragmentToActivity(fragmentManager, fragment, R.id.frameContent);
+            fragment = (SysSetFragment) mView;
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.frameContent);
         }
     }
 }

@@ -12,12 +12,16 @@ import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.bean.VersionInfoBean;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
+import com.ihaozuo.plamexam.common.dialog.VersionDialog;
+import com.ihaozuo.plamexam.contract.SysSetContract;
 import com.ihaozuo.plamexam.manager.DoctorManager;
 import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
+import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
-import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -27,9 +31,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SysSetFragment extends BaseFragment {
+public class SysSetFragment extends AbstractView implements SysSetContract.ISysSetView {
 
-
+    SysSetContract.ISysSetPresenter mPresenter;
     @Bind(R.id.tvSetPhone)
     TextView tvSetPhone;
     @Bind(R.id.layoutSetPhone)
@@ -54,6 +58,16 @@ public class SysSetFragment extends BaseFragment {
 
     public SysSetFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    protected IBasePresenter getPresenter() {
+        return mPresenter;
+    }
+
+    @Override
+    protected View getRootView() {
+        return rootView;
     }
 
     public static SysSetFragment newInstance() {
@@ -114,6 +128,7 @@ public class SysSetFragment extends BaseFragment {
                 getActivity().startActivity(new Intent(getActivity(), AdviceActivity.class));
                 break;
             case R.id.layoutCheckUpdate:
+                mPresenter.getVersion();
                 break;
             case R.id.layoutDisclaimer:
                 getActivity().startActivity(new Intent(getActivity(), DisclaimerActivity.class));
@@ -142,14 +157,35 @@ public class SysSetFragment extends BaseFragment {
                         UserManager.getInstance().clear();
                         DoctorManager.getInstance().clear();
                         ReportManager.getInstance().clear();
+                        sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
                         startActivity(new Intent(getContext(), LoginActivity.class));
-                        sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
                         getActivity().finish();
-                        sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
                     }
                 }).setContentText("确定退出登录？").setCancelText("确定").setConfirmText("取消").show();
                 break;
         }
+    }
+
+    @Override
+    public void showUpdateInfo(VersionInfoBean bean) {
+
+        new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+            @Override
+            public void OnDialogConfirmListener() {
+
+            }
+
+            @Override
+            public void OnDialogCancelListener() {
+            }
+        })
+                //.setCancelText("取消")
+                .show();
+    }
+
+    @Override
+    public void setPresenter(SysSetContract.ISysSetPresenter presenter) {
+        mPresenter = presenter;
     }
 
     private void clearCache() {
@@ -179,5 +215,4 @@ public class SysSetFragment extends BaseFragment {
         float result = Float.parseFloat(out);
         return result;
     }
-
 }

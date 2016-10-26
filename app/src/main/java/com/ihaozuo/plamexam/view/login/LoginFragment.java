@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -27,6 +26,7 @@ import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.LoginContract;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
+import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
@@ -38,9 +38,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class LoginFragment extends AbstractView implements LoginContract.ILoginView {
 
     @Bind(R.id.phone)
@@ -81,7 +78,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         btnLogin.setEnabled(false);
         tvWarning.setText(getClickableSpan());
         tvWarning.setMovementMethod(LinkMovementMethod.getInstance());
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             phone.setText("13651646955");
         }
         return rootView;
@@ -153,6 +150,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 
     @Override
     public void gotoMainPage() {
+        setAlias(UserManager.getInstance().getUserInfo().AccountId);
         startActivity(new Intent(mContext, MainActivity.class));
         getActivity().finish();
     }
@@ -181,9 +179,6 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
                 Log.e(mContext+"!countdowntimer","cancel");
                 cancel();
             }
-
-
-
         }
     }
 
@@ -239,7 +234,5 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
             mListener.onClick(v);
         }
     }
-
-
 
 }

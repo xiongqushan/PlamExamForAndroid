@@ -106,14 +106,11 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
             initView();
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
-//            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
-            mPresenter.getBanner("bjbr003");
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
+//            mPresenter.getBanner("bjbr003");
             mPresenter.start();
         }
-
 //        UmengTool.getSignature(getActivity());
-
-        ButterKnife.bind(this, rootView);
         return rootView;
     }
 
@@ -208,7 +205,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         mViewPager.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
-//                Toast.makeText(mContext, "点击了第" + position + "张图片", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
                 intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, mBannerList.get(position).LinkUrl);
                 startActivity(intent);
@@ -239,7 +235,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     @Override
     public void refreshNewsList(List<NewsBean> newsList) {
-        if (SRLayout.isRefreshing()){
+        if (SRLayout.isRefreshing()) {
             SRLayout.setRefreshing(false);
         }
         newsListAdapter.refreshList(newsList);

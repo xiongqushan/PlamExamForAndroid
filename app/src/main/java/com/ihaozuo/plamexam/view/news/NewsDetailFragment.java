@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -86,14 +87,14 @@ public class NewsDetailFragment extends AbstractView{
             }
         });
 
-//        mWebView.setWebChromeClient(new WebChromeClient() {
-//            public void onProgressChanged(WebView view,
-//                                          int newProgress) {
-//                if (newProgress == 90) {
-//                    hideDialog();
-//                }
-//            }
-//        });
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view,
+                                          int newProgress) {
+                if (newProgress == 90) {
+                    hideDialog();
+                }
+            }
+        });
     }
 
     @Override
