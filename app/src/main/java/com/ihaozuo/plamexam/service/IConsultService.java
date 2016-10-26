@@ -26,7 +26,6 @@ public interface IConsultService {
     @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "Informs")
     Observable<BaseBean<List<UnreadMarkBean>>> getUnreadMarkState(@Body Map<String, Object> params);
 
-
     @POST(SysConfig.CONTROLLER_PRE_API_CONSULT + "RemoveInform")
     Observable<BaseBean<Boolean>> RemoveUnreadMark(@Body Map<String, Object> params);
 

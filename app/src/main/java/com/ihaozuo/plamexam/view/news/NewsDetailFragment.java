@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -16,10 +17,7 @@ import com.ihaozuo.plamexam.view.base.AbstractView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class NewsDetailFragment extends AbstractView{
+public class NewsDetailFragment extends AbstractView {
 
 
     @Bind(R.id.WebView)
@@ -30,7 +28,7 @@ public class NewsDetailFragment extends AbstractView{
         // Required empty public constructor
     }
 
-    static NewsDetailFragment newInstance(){
+    static NewsDetailFragment newInstance() {
         return new NewsDetailFragment();
     }
 
@@ -86,14 +84,15 @@ public class NewsDetailFragment extends AbstractView{
             }
         });
 
-//        mWebView.setWebChromeClient(new WebChromeClient() {
-//            public void onProgressChanged(WebView view,
-//                                          int newProgress) {
-//                if (newProgress == 90) {
-//                    hideDialog();
-//                }
-//            }
-//        });
+        mWebView.setWebChromeClient(new WebChromeClient() {
+            public void onProgressChanged(WebView view,
+                                          int newProgress) {
+                if (newProgress == 90) {
+                    hideDialog();
+                }
+            }
+        });
+        mWebView.setOnTouchListener(null);
     }
 
     @Override
@@ -101,7 +100,6 @@ public class NewsDetailFragment extends AbstractView{
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
 
 
 }

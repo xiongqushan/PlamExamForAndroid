@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.BannerBean;
-import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
@@ -77,7 +76,7 @@ public class BannerFragment extends Fragment {
                     }
                 });
             } else {
-                ImageLoadUtils.getInstance(HZApp.shareApplication()).display(dataList.get(position).ImageUrl, img);
+                ImageLoadUtils.getInstance().display(dataList.get(position).ImageUrl, img);
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

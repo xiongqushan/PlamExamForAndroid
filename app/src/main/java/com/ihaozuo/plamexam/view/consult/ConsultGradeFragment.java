@@ -16,7 +16,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.contract.ConsultGradeContract;
-import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
@@ -97,7 +96,7 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
             return;
         }
         if (null != mDoctorInfo.ImageSrc) {
-            ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mDoctorInfo.ImageSrc, imgHead);
+            ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, imgHead);
         }
         tvName.setText(mDoctorInfo.RealName);
         tvSpeciality.setText(mDoctorInfo.Speciality);

@@ -61,33 +61,38 @@ public class HZApp extends Application {
         PreferenceManager.init(this);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
-        //fresco
-        Fresco.initialize(this, ImageLoadUtils.getInstance(this)
-                .CustomConfig(this));
+            PreferenceManager.init(this);
+            MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
+
+            //fresco
+            Fresco.initialize(this, ImageLoadUtils.getInstance()
+                    .CustomConfig(this));
+
+            //讯飞
+            SpeechUtility.createUtility(this, "appid=" + getString(R.string.xunfei_app_id));
+            Setting.setShowLog(BuildConfig.DEBUG);
+
+            //leakcanary
+            mRefWatcher = LeakCanary.install(this);
+
+            //dagger2注入检查工具
+//        if (BuildConfig.DEBUG) {
+//            Dagger2Metrics.enableCapturing(this);
+//        }
+
+            UMShareAPI.get(this);
+
+            mAppComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(this))
+                    .build();
+//        }
 
         //极光
         JPushInterface.setDebugMode(BuildConfig.DEBUG);    // 设置开启日志,发布时请关闭日志
         JPushInterface.init(this);
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
 
-        //讯飞
-        SpeechUtility.createUtility(this, "appid=" + getString(R.string.xunfei_app_id));
-        Setting.setShowLog(BuildConfig.DEBUG);
 
-        //leakcanary
-        mRefWatcher = LeakCanary.install(this);
-
-        //dagger2注入检查工具
-//        if (BuildConfig.DEBUG) {
-//            Dagger2Metrics.enableCapturing(this);
-//        }
-
-
-        UMShareAPI.get(this);
-
-        mAppComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build();
     }
 
 

@@ -3,6 +3,8 @@ package com.ihaozuo.plamexam.util;
 import android.content.Context;
 import android.widget.Toast;
 
+import com.ihaozuo.plamexam.framework.HZApp;
+
 public class ToastUtils {
     private static String oldMsg;
     protected static Toast toast = null;
@@ -31,12 +33,12 @@ public class ToastUtils {
         oneTime = twoTime;
     }
 
-    public static void showToast(Context context, String text) {
+    public static void showToast(String text) {
         // Toast toast = Toast.makeText(this, "toast", Toast.LENGTH_LONG);
         if (toast != null) {
             toast.cancel();
         }
-        toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+        toast = Toast.makeText(HZApp.shareApplication(), text, Toast.LENGTH_SHORT);
         // View view =
         // LayoutInflater.from(context).inflate(R.layout.custom_toast,
         // null);

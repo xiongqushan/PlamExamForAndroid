@@ -85,7 +85,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onDestroy() {
         super.onDestroy();
-        ButterKnife.unbind(rootView);
+        ButterKnife.unbind(this);
     }
 
     public HomeFragment() {
@@ -154,10 +154,8 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             }
         });
         SRLayout.setProgressBackgroundColor(R.color.main_color_blue);
-        SRLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
+        SRLayout.setColorSchemeResources(android.R.color.white);
+        initBannerView();
     }
 
     @Override
@@ -185,13 +183,12 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         }
     }
 
-    @Override
-    public void initBanner(final List<BannerBean> sourceList) {
+    public void initBannerView() {
         mBannerList = new ArrayList<BannerBean>();
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, SimpleDraweeView view, int position) {
-                ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mBannerList.get(position).ImageUrl, view, R.drawable.banner);
+                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner);
             }
         });
 
@@ -204,15 +201,20 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             }
         });
 
-        if (null == sourceList || sourceList.size() == 0) {
-            BannerBean defaultBanner = new BannerBean();
-            defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
-            defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
-            mBannerList.add(defaultBanner);
-        } else {
-            mBannerList.addAll(sourceList);
-        }
+        BannerBean defaultBanner = new BannerBean();
+        defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
+        defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
+        mBannerList.add(defaultBanner);
         mViewPager.setData(mBannerList);
+
+    }
+
+
+    @Override
+    public void initBanner(final List<BannerBean> sourceList) {
+        if (null != sourceList && sourceList.size() > 0) {
+            mViewPager.setData(mBannerList);
+        }
     }
 
     @Override
@@ -266,7 +268,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             TextView btnShare = UIHelper.getAdapterView(convertView, R.id.btn_share);
             newsEntity = newsList.get(position);
             ResizeOptions resizeOptions = new ResizeOptions(250, 170);
-            ImageLoadUtils.getInstance(mContext).display(newsEntity.getImg(), imgNewslist, resizeOptions);
+            ImageLoadUtils.getInstance().display(newsEntity.getImg(), imgNewslist, resizeOptions);
             tvCommiton.setText(newsEntity.getTime());
             tvTitle.setText(newsEntity.getTitle());
             btnShare.setOnClickListener(new View.OnClickListener() {

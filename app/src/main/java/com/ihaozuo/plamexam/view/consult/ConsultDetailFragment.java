@@ -27,7 +27,6 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.contract.ConsultContract;
-import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
@@ -118,7 +117,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         mRecyclerView.setAdapter(mAdapter);
         swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
 //        swipeLayout.setColorSchemeResources(R.color.white);
-        swipeLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+        swipeLayout.setColorSchemeResources(android.R.color.white,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
@@ -174,8 +173,9 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onStop() {
+        super.onStop();
+        isForeground = false;
     }
 
     @Override
@@ -231,7 +231,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public void setDoctorInfo() {
         mDoctorInfo = getDoctorInfo();
         if (null != mDoctorInfo.ImageSrc) {
-            ImageLoadUtils.getInstance(HZApp.shareApplication()).display(mDoctorInfo.ImageSrc, imgHead);
+            ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, imgHead);
         }
         tvName.setText(mDoctorInfo.RealName);
         tvSpeciality.setText(mDoctorInfo.Speciality);
