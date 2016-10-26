@@ -24,11 +24,8 @@ import butterknife.OnClick;
  * by zy  2016.08.30
  */
 public class AdviceFragment extends AbstractView implements AdviceContract.IAdviceView {
-
     private AdviceContract.IAdvicePresenter mPresenter;
     private View rootView;
-
-
     @Bind(R.id.tv_addReport)
     TextView tvAddReport;
     @Bind(R.id.et_content)
@@ -40,10 +37,10 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
             return;
         }
         String content = etContent.getText().toString();
-        isValidInput(content);
-        mPresenter.addFeedback(content);
+        if (isValidInput(content)) {
+            mPresenter.addFeedback(content);
+        }
     }
-
 
     public AdviceFragment() {
         // Required empty public constructor
@@ -52,8 +49,6 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
     public static AdviceFragment newInstance() {
         return new AdviceFragment();
     }
-
-    ;
 
     @Override
     protected IBasePresenter getPresenter() {
@@ -65,7 +60,6 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
         return rootView;
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,10 +68,8 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
         setCustomerTitle(rootView, getString(R.string.advice_feedback));
         tvAddReport.setText("发送");
         tvAddReport.setVisibility(View.VISIBLE);
-
         return rootView;
     }
-
 
     @Override
     public void onDestroyView() {
@@ -95,9 +87,7 @@ public class AdviceFragment extends AbstractView implements AdviceContract.IAdvi
         new ConfirmDialog(getActivity(), new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 getActivity().finish();
-
             }
         }).setContentText("感谢您的反馈！").show();
 

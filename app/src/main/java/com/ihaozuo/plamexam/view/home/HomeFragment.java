@@ -154,7 +154,10 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             }
         });
         SRLayout.setProgressBackgroundColor(R.color.main_color_blue);
-        SRLayout.setColorSchemeResources(android.R.color.white);
+        SRLayout.setColorSchemeResources(android.R.color.white,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
         initBannerView();
     }
 
