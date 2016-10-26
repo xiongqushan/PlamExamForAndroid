@@ -172,9 +172,17 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         isForeground = true;
     }
 
+
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        isForeground = false;
+
     }
 
     @Override

@@ -35,8 +35,6 @@ import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 import com.umeng.socialize.Config;
-import com.umeng.socialize.UMShareAPI;
-import com.umeng.socialize.UmengTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +74,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onResume() {
         super.onResume();
-        UmengTool.getSignature(getActivity());
+//        UmengTool.getSignature(getActivity());
         Log.e(mContext+"",Config.REDIRECT_URL);
     }
 
@@ -116,7 +114,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 //            mPresenter.getBanner("bjbr003");
             mPresenter.start();
         }
-//        UmengTool.getSignature(getActivity());
         return rootView;
     }
 

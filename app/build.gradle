@@ -104,4 +104,5 @@ dependencies {
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/open_sdk_r5756_lite.jar')
     compile files('libs/weiboSDKCore_3.1.4.jar')
+    compile files('libs/SocialSDK_umengwx.jar')
 }
