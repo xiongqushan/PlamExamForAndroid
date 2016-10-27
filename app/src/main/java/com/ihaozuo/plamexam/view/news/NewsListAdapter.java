@@ -30,7 +30,7 @@ public class NewsListAdapter extends SimpleBaseAdapter {
     private List<NewsBean> newsList;
     private Context mContext;
     private LayoutInflater mInflater;
-    private NewsBean newsEntity;
+//    private NewsBean newsEntity;
 
 
     public NewsListAdapter(Context context) {
@@ -78,7 +78,7 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        newsEntity = newsList.get(position);
+        final NewsBean newsEntity = newsList.get(position);
 
         ResizeOptions resizeOptions= new ResizeOptions(250,170);
         ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist,resizeOptions);

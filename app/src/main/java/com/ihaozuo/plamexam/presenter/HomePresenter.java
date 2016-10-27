@@ -8,6 +8,8 @@ import com.ihaozuo.plamexam.bean.RestResult;
 import com.ihaozuo.plamexam.bean.UnreadMarkBean;
 import com.ihaozuo.plamexam.bean.UserBean;
 import com.ihaozuo.plamexam.contract.HomeContract;
+import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
+import com.ihaozuo.plamexam.database.newsdbutils.NewsDBPojo;
 import com.ihaozuo.plamexam.listener.OnHandlerResultListener;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.model.ConsultModel;
@@ -50,23 +52,21 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
     @Override
     public void start() {
-        getNewsList(1,4);
+        getNewsList(1, 4);
         getUnreadMartState(mUserbean.AccountId);
-//        mHomeModel.initData(new OnHandlerResultWithCompletedListener<RestResult>() {
-//            @Override
-//            public void handlerResult(RestResult bean) {
-//                if (bean.Data instanceof BannerBean) {
-//                    Log.e("BannerBean", "BannerBean");
-//                } else if (bean.Data instanceof NewsBean) {
-//                    Log.e("NewsBean", "NewsBean");
-//                }
-//            }
-//
-//            @Override
-//            public void onCompleted() {
-//                Log.e("Listener-nCompleted", "Listener-Completed");
-//            }
-//        });
+        mHomeModel.getBaner(UserManager.getInstance().getUserInfo().DepartCode, new OnHandlerResultListener<RestResult<List<BannerBean>>>() {
+            @Override
+            public void handlerResultSuccess(RestResult<List<BannerBean>> resultData) {
+                mHomeView.stopRefreshing();
+                mHomeView.initBanner(resultData.Data);
+            }
+
+            @Override
+            public void handlerResultError(String message) {
+                mHomeView.stopRefreshing();
+                mHomeView.hideDialog(message);
+            }
+        });
     }
 
 
@@ -82,6 +82,7 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
             @Override
             public void handlerResultError(String message) {
+                mHomeView.stopRefreshing();
                 mHomeView.hideDialog(message);
             }
 
@@ -93,11 +94,11 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
         mConsultModel.getUnreadMarkState(accountId, new OnHandlerResultListener<RestResult<List<UnreadMarkBean>>>() {
             @Override
             public void handlerResultSuccess(RestResult<List<UnreadMarkBean>> resultData) {
-                if (resultData.Data != null ) {
-                    for (UnreadMarkBean unreadMarkBean : resultData.Data){
-                        if(unreadMarkBean!= null && unreadMarkBean.Type == 1){
+                if (resultData.Data != null) {
+                    for (UnreadMarkBean unreadMarkBean : resultData.Data) {
+                        if (unreadMarkBean != null && unreadMarkBean.Type == 1) {
                             mHomeView.showUnreadMark();
-                            break;
+                            return;
                         }
                     }
                 }
@@ -105,24 +106,23 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
             @Override
             public void handlerResultError(String message) {
-                mHomeView.hideDialog(message);
             }
         });
     }
 
     @Override
-    public void getNewsList(int pageIndex,int pageSize) {
+    public void getNewsList(int pageIndex, int pageSize) {
         mHomeModel.getNewsList(pageIndex, pageSize, new OnHandlerResultListener<RestResult<List<NewsBean>>>() {
             @Override
-            public void handlerResultSuccess(RestResult<List<NewsBean>> resultData) {
-                if (resultData.Data!=null){
-                    mHomeView.refreshNewsList(resultData.Data);
+            public void handlerResultSuccess(final RestResult<List<NewsBean>> resultData) {
+                if (resultData.Data != null) {
+                    List<NewsDBPojo> list = NewsDBManager.repalceNews(resultData.Data);
+                    mHomeView.refreshNewsList(list);
                 }
             }
 
             @Override
             public void handlerResultError(String message) {
-                mHomeView.hideDialog(message);
             }
         });
     }

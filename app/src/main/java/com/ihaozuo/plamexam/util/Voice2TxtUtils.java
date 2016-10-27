@@ -72,7 +72,8 @@ public class Voice2TxtUtils {
             // 不显示听写对话框
             ret = mIat.startListening(mRecognizerListener);
             if (ret != ErrorCode.SUCCESS) {
-                showTip("听写失败,错误码：" + ret);
+                Log.e(mContext+"","听写失败,错误码：" + ret);
+//                showTip("听写失败,错误码：" + ret);
             } else {
 //                showTip(getString(R.string.text_begin));
                 showTip(TEXT_BEGIN);
@@ -113,7 +114,8 @@ public class Voice2TxtUtils {
             // Tips：
             // 错误码：10118(您没有说话)，可能是录音机权限被禁，需要提示用户打开应用的录音权限。
             // 如果使用本地功能（语记）需要提示用户开启语记的录音权限。
-            showTip(error.getPlainDescription(true));
+//            showTip(error.getPlainDescription(true));
+            Log.e(mContext+"",error.getPlainDescription(true));
         }
 
         @Override
@@ -180,7 +182,8 @@ public class Voice2TxtUtils {
          * 识别回调错误.
          */
         public void onError(SpeechError error) {
-            showTip(error.getPlainDescription(true));
+//            showTip(error.getPlainDescription(true));
+            Log.e(mContext+"",error.getPlainDescription(true));
         }
 
     };

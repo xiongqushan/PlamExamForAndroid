@@ -28,6 +28,7 @@ import com.ihaozuo.plamexam.bean.ConsultDetailBean;
 import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.contract.ConsultContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.Voice2TxtUtils;
@@ -174,15 +175,9 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
 
     @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
         isForeground = false;
-
     }
 
     @Override
@@ -225,6 +220,9 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
                 break;
 
             case R.id.btn_send:
+                if (HZUtils.isFastDoubleClick()) {
+                    break;
+                }
                 sendMessage();
                 break;
 
@@ -237,13 +235,15 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Override
     public void setDoctorInfo() {
         mDoctorInfo = getDoctorInfo();
-        if (null != mDoctorInfo.ImageSrc) {
+
+        if (null != mDoctorInfo && null != mDoctorInfo.ImageSrc) {
             ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, imgHead);
+            tvName.setText(mDoctorInfo.RealName);
+            tvSpeciality.setText(mDoctorInfo.Speciality);
+            tvDescription.setText(getString(R.string.workTime));
+            fab.setVisibility(View.VISIBLE);
         }
-        tvName.setText(mDoctorInfo.RealName);
-        tvSpeciality.setText(mDoctorInfo.Speciality);
-        tvDescription.setText(getString(R.string.workTime));
-        fab.setVisibility(View.VISIBLE);
+
     }
 
     @Override
@@ -255,9 +255,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     @Override
     public void refreshConsultList(List<ConsultDetailBean> consultDetailList) {
-        if (swipeLayout.isRefreshing()) {
-            swipeLayout.setRefreshing(false);
-        }
+        hideRefresh();
         mAdapter.refreshList(mContext, consultDetailList, getDoctorInfo());
         mRecyclerView.scrollToPosition(consultDetailList.size() - 1);
     }
@@ -277,6 +275,13 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             showRetryLayer(R.id.rLayout);
         } else {
             hideRetryLayer(R.id.rLayout);
+        }
+    }
+
+    @Override
+    public void hideRefresh(){
+        if (swipeLayout.isRefreshing()){
+            swipeLayout.setRefreshing(false);
         }
     }
 

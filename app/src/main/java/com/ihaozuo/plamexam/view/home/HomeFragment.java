@@ -9,16 +9,20 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.common.ResizeOptions;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.BannerBean;
-import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.Banner.XBanner;
 import com.ihaozuo.plamexam.common.Constants;
+import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
+import com.ihaozuo.plamexam.common.dialog.ShareDialog;
 import com.ihaozuo.plamexam.contract.HomeContract;
+import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
+import com.ihaozuo.plamexam.database.newsdbutils.NewsDBPojo;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.ioc.DaggerHomeComponent;
 import com.ihaozuo.plamexam.ioc.HomeModule;
@@ -27,12 +31,12 @@ import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
+import com.ihaozuo.plamexam.util.UIHelper;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
-import com.ihaozuo.plamexam.view.news.NewsListAdapter;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
 import com.umeng.socialize.Config;
 
@@ -62,7 +66,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     private int maxLength = 10000;// bannerPagerNumber
     private View rootView;
     private Subscription subscribePager;
-    private NewsListAdapter newsListAdapter;
+    private ListAdapter newsListAdapter;
     private List<BannerBean> mBannerList;
 
 
@@ -80,12 +84,12 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     public HomeFragment() {
@@ -110,13 +114,20 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
             initView();
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
-            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
 //            mPresenter.getBanner("bjbr003");
+            mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
             mPresenter.start();
         }
         return rootView;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (SRLayout.isRefreshing()) {
+            SRLayout.setRefreshing(false);
+        }
+    }
 
     public void setPresenter(HomeContract.IHomePresenter presenter) {
         mPresenter = presenter;
@@ -135,39 +146,19 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         headerView.findViewById(R.id.btn_report).setOnClickListener(this);
         headerView.findViewById(R.id.btn_consult).setOnClickListener(this);
         headerView.findViewById(R.id.layout_home_news).setOnClickListener(this);
-        newsListAdapter = new NewsListAdapter(mContext);
+        newsListAdapter = new ListAdapter(mContext);
         mListView.addHeaderView(headerView);
         mListView.setAdapter(newsListAdapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position < mListView.getHeaderViewsCount() || HZUtils.isFastDoubleClick()) {
-                    return;
-                }
-                startActivity(new Intent(getActivity(), NewsDetailActivity.class));
-            }
-        });
+        List<NewsDBPojo> list = NewsDBManager.queryPojo();
+        refreshNewsList(list);
         SRLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 mPresenter.start();
-//                SRLayout.setRefreshing(true);
-//                SRLayout.postDelayed(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        SRLayout.setRefreshing(false);
-//                        Toast.makeText(getActivity(), "刷新成功", Toast.LENGTH_SHORT).show();
-//                    }
-//                }, 2500);
             }
         });
         SRLayout.setProgressBackgroundColor(R.color.main_color_blue);
-//        swipeLayout.setColorSchemeResources(R.color.white);
-        SRLayout.setColorSchemeResources(android.R.color.white,
-                android.R.color.holo_green_light,
-                android.R.color.holo_orange_light,
-                android.R.color.holo_red_light);
-
+        SRLayout.setColorSchemeResources(android.R.color.white);
         initBannerView();
     }
 
@@ -196,7 +187,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         }
     }
 
-    public void initBannerView(){
+    public void initBannerView() {
         mBannerList = new ArrayList<BannerBean>();
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
@@ -225,8 +216,15 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     @Override
     public void initBanner(final List<BannerBean> sourceList) {
-        if (null != sourceList && sourceList.size()>0){
+        if (null != sourceList && sourceList.size() > 0) {
             mViewPager.setData(mBannerList);
+        }
+    }
+
+    @Override
+    public void stopRefreshing() {
+        if (SRLayout.isRefreshing()) {
+            SRLayout.setRefreshing(false);
         }
     }
 
@@ -236,12 +234,65 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     }
 
 
-    @Override
-    public void refreshNewsList(List<NewsBean> newsList) {
-        if (SRLayout.isRefreshing()) {
-            SRLayout.setRefreshing(false);
-        }
+    public void refreshNewsList(List<NewsDBPojo> newsList) {
         newsListAdapter.refreshList(newsList);
+    }
+
+    private class ListAdapter extends SimpleBaseAdapter {
+        private List<NewsDBPojo> newsList;
+        private Context mContext;
+        private LayoutInflater mInflater;
+
+        public ListAdapter(Context context) {
+            newsList = new ArrayList();
+            mContext = context;
+            mInflater = LayoutInflater.from(mContext);
+        }
+
+        public void refreshList(List<NewsDBPojo> list) {
+            newsList.clear();
+            newsList.addAll(list);
+            notifyDataSetChanged();
+        }
+
+        @Override
+        public int getCount() {
+            return newsList.size();
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView = mInflater.inflate(R.layout.item_newslist, null);
+            }
+            SimpleDraweeView imgNewslist = UIHelper.getAdapterView(convertView, R.id.img_newslist);
+            TextView tvTitle = UIHelper.getAdapterView(convertView, R.id.tv_title);
+            TextView tvCommiton = UIHelper.getAdapterView(convertView, R.id.tv_commiton);
+            TextView btnShare = UIHelper.getAdapterView(convertView, R.id.btn_share);
+            final NewsDBPojo newsEntity = newsList.get(position);
+            ResizeOptions resizeOptions = new ResizeOptions(250, 170);
+            ImageLoadUtils.getInstance().display(newsEntity.getImg(), imgNewslist, resizeOptions);
+            tvCommiton.setText(newsEntity.getTime());
+            tvTitle.setText(newsEntity.getTitle());
+            btnShare.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ShareDialog shareDialog = new ShareDialog(mContext, R.style.draw_dialog);
+                    shareDialog.show();
+                }
+            });
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, NewsDetailActivity.class);
+                    String url = newsEntity.getUrl();
+                    intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, url);
+                    mContext.startActivity(intent);
+                }
+            });
+            return convertView;
+        }
+
     }
 
 

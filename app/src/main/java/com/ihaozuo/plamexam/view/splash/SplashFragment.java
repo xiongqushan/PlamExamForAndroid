@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.VersionInfoBean;
 import com.ihaozuo.plamexam.contract.SplashContract;
+import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
+import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
@@ -55,6 +57,10 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.splash_frag, container, false);
             lastTime = System.currentTimeMillis();
+            if (PreferenceManager.getInstance().readNewsState()) {
+                NewsDBManager.initNews();
+                PreferenceManager.getInstance().writeNewsState(false);
+            }
 //            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
 //                mPresenter.start();
 //            } else {

@@ -85,9 +85,7 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
         btnLogin.setEnabled(false);
         tvWarning.setText(getClickableSpan());
         tvWarning.setMovementMethod(LinkMovementMethod.getInstance());
-//        if (BuildConfig.DEBUG) {
-//            phone.setText("13651646955");
-//        }
+
         return rootView;
     }
 
@@ -203,6 +201,11 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 
         @Override
         public void afterTextChanged(Editable s) {
+//            if (!btnGetAuthCode.isClickable()){
+//                if (StringUtil.isMobile(phone.getText().toString())){
+//
+//                }
+//            }
             if (StringUtil.isEmpty(phone.getText().toString())
                     || StringUtil.isEmpty(etAuthCode.getText().toString())) {
                 btnLogin.setEnabled(false);
@@ -244,8 +247,10 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 
 
     public void setAlias(String alias) {
+        alias = alias.replaceAll("-","_");
         if (isValidTagAndAlias(alias)) {
             mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_TAGS, alias));
+//            mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_TAGS, "13818724007"));
         }
     }
 

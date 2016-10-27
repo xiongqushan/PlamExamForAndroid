@@ -56,7 +56,10 @@
             android:layout_margin="10dp"
             android:text="@string/get_authcode"
             android:textSize="@dimen/textsize_h3_16sp"
-            android:textColor="@color/main_color_green"/>
+            android:textColor="@color/main_color_green" />
+        <!--android:textColor="@color/gray_cc"-->
+        <!--android:clickable="false"-->
+
 
     </FrameLayout>
 

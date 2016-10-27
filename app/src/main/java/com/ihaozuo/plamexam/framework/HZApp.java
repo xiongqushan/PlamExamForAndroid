@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
+import com.activeandroid.ActiveAndroid;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.iflytek.cloud.Setting;
 import com.iflytek.cloud.SpeechUtility;
@@ -45,11 +46,20 @@ public class HZApp extends Application {
     }
 
     @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ActiveAndroid.dispose();
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         application = this;
 
-//        if (getCurProcessName(getApplicationContext()).equals("com.ihaozuo.plamexam")){
+        ActiveAndroid.initialize(this);
+
+        PreferenceManager.init(this);
+        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
             PreferenceManager.init(this);
             MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
@@ -83,6 +93,11 @@ public class HZApp extends Application {
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
 
 
+
+
+
+
+
     }
 
 
@@ -108,5 +123,6 @@ public class HZApp extends Application {
         PlatformConfig.setQQZone("1105699103", "W0grAATJYfxpI7NC");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
     }
+
 
 }

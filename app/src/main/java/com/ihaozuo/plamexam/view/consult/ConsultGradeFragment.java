@@ -133,7 +133,7 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
                         content += cb.getText().toString();
                     }
                 }
-                int score = RatingBar.getNumStars();
+                int score = (int) RatingBar.getRating();
 
                 mIConsultPresenter.sendGrade(score, content);
                 break;

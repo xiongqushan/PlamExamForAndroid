@@ -1,7 +1,7 @@
 package com.ihaozuo.plamexam.contract;
 
 import com.ihaozuo.plamexam.bean.BannerBean;
-import com.ihaozuo.plamexam.bean.NewsBean;
+import com.ihaozuo.plamexam.database.newsdbutils.NewsDBPojo;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.view.base.IBaseView;
 
@@ -14,11 +14,11 @@ public interface HomeContract {
     interface IHomeView extends IBaseView<IHomePresenter> {
         void initBanner(List<BannerBean> bannerList);
 
-//        void initNews(List<NewsBean> newsList);
+        void stopRefreshing();
 
         void showUnreadMark();
 
-        void refreshNewsList(List<NewsBean> newsList);
+        void refreshNewsList(List<NewsDBPojo> newsList);
 
     }
 

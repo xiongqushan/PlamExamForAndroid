@@ -75,6 +75,7 @@ public class NewsListPresenter extends AbstractPresenter implements NewsContract
             @Override
             public void handlerResultError(String message) {
                 mNewsListView.hideDialog(message);
+                mNewsListView.stopRefreshing();
             }
         });
     }

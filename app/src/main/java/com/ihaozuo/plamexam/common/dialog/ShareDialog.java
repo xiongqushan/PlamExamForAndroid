@@ -105,6 +105,9 @@ public class ShareDialog extends Dialog {
     };
 
     private UMShareListener umShareListener = new UMShareListener() {
+
+
+
         @Override
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat","platform"+platform);

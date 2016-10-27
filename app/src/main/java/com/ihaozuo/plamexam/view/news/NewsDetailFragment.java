@@ -17,10 +17,7 @@ import com.ihaozuo.plamexam.view.base.AbstractView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class NewsDetailFragment extends AbstractView{
+public class NewsDetailFragment extends AbstractView {
 
 
     @Bind(R.id.WebView)
@@ -31,7 +28,7 @@ public class NewsDetailFragment extends AbstractView{
         // Required empty public constructor
     }
 
-    static NewsDetailFragment newInstance(){
+    static NewsDetailFragment newInstance() {
         return new NewsDetailFragment();
     }
 
@@ -95,6 +92,7 @@ public class NewsDetailFragment extends AbstractView{
                 }
             }
         });
+        mWebView.setOnTouchListener(null);
     }
 
     @Override
@@ -102,7 +100,6 @@ public class NewsDetailFragment extends AbstractView{
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
-
 
 
 }

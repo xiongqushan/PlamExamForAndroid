@@ -111,11 +111,12 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
     }
 
     public void bindLeftItem(ConsultDetailBean entity, ConsultLeftHolder holder) {
-        if (null != mDoctorInfo.ImageSrc) {
+        if (null != mDoctorInfo && null != mDoctorInfo.ImageSrc) {
             ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, holder.draweeConsultItemPhoto);
         }
         holder.txtConsultCommiton.setText(entity.getDate());
         holder.txtConsultItem.setText(entity.Content);
+
     }
 
     public void bindRightItem(ConsultDetailBean entity, ConsultRightHolder holder) {
@@ -126,6 +127,7 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
                 holder.reportConsultItem.setVisibility(View.GONE);
                 holder.txtConsultItem.setVisibility(View.VISIBLE);
                 holder.txtConsultItem.setText(entity.Content);
+//                holder.tvReportContent.setText(Html.fromHtml("<p>test<br/>test</p>"));
                 break;
 
             case 3:
@@ -137,6 +139,7 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
                 holder.tvReportTitle.setText(reportInfoList.get(2));
                 holder.tvReportDate.setText(reportInfoList.get(3));
                 holder.tvReportContent.setText(entity.Content);
+//                holder.tvReportContent.setText(Html.fromHtml(entity.Content));
                 break;
         }
         holder.txtConsultCommiton.setText(entity.getDate());
