@@ -16,7 +16,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
-        android:text="一般检查"
+        android:layout_marginRight="20dp"
+        android:maxLines="1"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold" />

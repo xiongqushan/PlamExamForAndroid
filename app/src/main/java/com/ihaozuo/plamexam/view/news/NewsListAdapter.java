@@ -11,9 +11,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.common.ResizeOptions;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.NewsBean;
+import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.common.dialog.ShareDialog;
-import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 
 import java.util.ArrayList;
@@ -51,7 +51,6 @@ public class NewsListAdapter extends SimpleBaseAdapter {
     }
 
 
-
     @Override
     public int getCount() {
 //        return 4;
@@ -75,20 +74,20 @@ public class NewsListAdapter extends SimpleBaseAdapter {
             convertView = mInflater.inflate(R.layout.item_newslist, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         newsEntity = newsList.get(position);
 
-        ResizeOptions resizeOptions= new ResizeOptions(250,170);
-        ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist,resizeOptions);
+        ResizeOptions resizeOptions = new ResizeOptions(250, 170);
+        ImageLoadUtils.getInstance().display(newsEntity.imgFormat, holder.imgNewslist, resizeOptions);
         holder.tvCommiton.setText(newsEntity.timeFormat);
         holder.tvTitle.setText(newsEntity.title);
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog);
+                ShareDialog shareDialog = new ShareDialog(mContext, R.style.draw_dialog);
                 shareDialog.show();
 
             }
@@ -97,9 +96,8 @@ public class NewsListAdapter extends SimpleBaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
-                String url = SysConfig.NEWS_DETAIL_URL+newsEntity.id;
-//                String url = SysConfig.NEWS_DETAIL_URL;
-                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY,url);
+                String url = Constants.URL_HEADER_WEBVIEW + newsEntity.id + Constants.URL_FOOTER_WEBVIEW;
+                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, url);
                 mContext.startActivity(intent);
             }
         });

@@ -14,6 +14,7 @@ import android.support.v7.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.ToastUtils;
@@ -90,9 +91,9 @@ public class UpdateService extends Service {
         String fileName = appName;
         intent.setDataAndType(Uri.fromFile(new File(fileName)),
                 "application/vnd.android.package-archive");
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
+        PendingIntent pendingIntent = PendingIntent.getActivity(HZApp.shareApplication(), 0,
                 intent, 0);
-        notification = new NotificationCompat.Builder(this)
+        notification = new NotificationCompat.Builder(HZApp.shareApplication())
                 // .setSmallIcon(R.drawable.icon_notifycation)
                 // .setTicker("tickerText")
                 .setWhen(System.currentTimeMillis())
@@ -101,7 +102,7 @@ public class UpdateService extends Service {
                 .setContent(remoteViews).setContentIntent(pendingIntent)
                 .build();
         manager.notify(ID_NOTIFF, notification);
-        this.stopSelf();
+       // this.stopSelf();
     }
 
     public void updateNotify(final Integer values) {

@@ -5,7 +5,6 @@ import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.Constants;
-import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.util.HZUtils;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ import java.util.List;
 public class NewsDBManager {
 
     public static NewsDBPojo convert(NewsBean bean) {
-        String url = SysConfig.NEWS_DETAIL_URL + bean.id;
+        String url = Constants.URL_HEADER_WEBVIEW + bean.id + Constants.URL_FOOTER_WEBVIEW;
         String title = bean.title;
         String subtitle;
         if (bean.description == null) {

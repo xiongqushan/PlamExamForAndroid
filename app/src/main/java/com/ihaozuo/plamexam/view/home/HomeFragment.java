@@ -228,7 +228,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void initBanner(final List<BannerBean> sourceList) {
         if (null != sourceList && sourceList.size() > 0) {
-            mViewPager.setData(mBannerList);
+            mBannerList.clear();
+            mBannerList.addAll(sourceList);
+            mViewPager.setData(sourceList);
         }
     }
 
