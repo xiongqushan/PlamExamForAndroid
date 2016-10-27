@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.VersionInfoBean;
+import com.ihaozuo.plamexam.common.UpdateService;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
 import com.ihaozuo.plamexam.common.dialog.VersionDialog;
 import com.ihaozuo.plamexam.contract.SysSetContract;
@@ -24,6 +25,7 @@ import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.ToastUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
@@ -148,7 +150,6 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
 
                     @Override
                     public void OnDialogCancelListener() {
-
                     }
                 }).setContentText("是否清理缓存？").show();
                 break;
@@ -165,7 +166,6 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
                         ReportManager.getInstance().clear();
                         sendCustomBroadcast(MainActivity.FINISH_ACTIVITY);
                         mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_TAGS, ""));
-                        mHandler.sendMessage(mHandler.obtainMessage(MSG_SET_ALIAS, ""));
                         startActivity(new Intent(getContext(), LoginActivity.class));
                         getActivity().finish();
                     }
@@ -180,15 +180,35 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
         new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
             @Override
             public void OnDialogConfirmListener() {
+                if (UpdateService.isLording) {
+                    ToastUtils.showToast("正在下载");
+                } else {
+                    Intent intent = new Intent(getActivity(), UpdateService.class);
+                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+                            "http://www.todayonhistory.com/toh.apk");
+                    getActivity().startService(intent);
+                }
 
             }
 
             @Override
             public void OnDialogCancelListener() {
             }
-        })
-                //.setCancelText("取消")
-                .show();
+        }).setTitle("检测到更新").setSubtitle("是否开启后台下载").setCancelText("取消").show();
+//        new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+//            @Override
+//            public void OnDialogConfirmListener() {
+//                Intent intent = new Intent(getActivity(), UpdateService.class);
+//                intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+//                        "http://www.todayonhistory.com/toh.apk");
+//                getActivity().startService(intent);
+//            }
+//
+//            @Override
+//            public void OnDialogCancelListener() {
+//            }
+//        }).setTitle("已是最新版本").show();
+
     }
 
     @Override
@@ -252,6 +272,7 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
             super.handleMessage(msg);
             switch (msg.what) {
                 case MSG_SET_ALIAS:
+                case MSG_SET_TAGS:
                     Log.d(TAG, "Set alias in handler.");
                     // 调用 JPush 接口来设置别名。
                     JPushInterface.setAliasAndTags(HZApp.shareApplication(),

@@ -17,7 +17,8 @@ import com.ihaozuo.plamexam.R;
  */
 public class VersionDialog extends Dialog {
     private View view;
-    private TextView tv_content;
+    private TextView tv_title;
+    private TextView tv_subtitle;
     private Context context;
     private OnDialogListener listener;
     private TextView tv_confirm;
@@ -47,7 +48,8 @@ public class VersionDialog extends Dialog {
     }
 
     private void initView() {
-        tv_content = (TextView) view.findViewById(R.id.tv_content);
+        tv_title = (TextView) view.findViewById(R.id.tv_title);
+        tv_subtitle = (TextView) view.findViewById(R.id.tv_subtitle);
         tv_confirm = (TextView) view.findViewById(R.id.tv_confirm);
         tv_cancel = (TextView) view.findViewById(R.id.tv_cancel);
         divider = view.findViewById(R.id.divider_dialog);
@@ -84,8 +86,16 @@ public class VersionDialog extends Dialog {
         return this;
     }
 
-    public VersionDialog setContentText(String string) {
-        tv_content.setText(string);
+    public VersionDialog setTitle(String string) {
+        tv_title.setText(string);
+        return this;
+    }
+
+    public VersionDialog setSubtitle(String string) {
+        if (!string.equals("")) {
+            tv_subtitle.setText(string);
+            tv_subtitle.setVisibility(View.VISIBLE);
+        }
         return this;
     }
 

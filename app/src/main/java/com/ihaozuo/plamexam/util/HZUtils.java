@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
  * Created by zhangzhongyao on 2016/8/31.
  */
 public class HZUtils {
-    private static final String DIR_CACHE = "UhealthCache";
+    private static final String DIR_CACHE = "PECache";
 
     private static long lastClickTime;
 
@@ -231,9 +231,35 @@ public class HZUtils {
 
     public static Map initParamsMap() {
         Map<String, Object> params = new TreeMap<>();
-        params.put("timespan", System.currentTimeMillis()/1000L);
+        params.put("timespan", System.currentTimeMillis() / 1000L);
 
         return params;
+    }
+
+
+    /**
+     * 创建目录
+     *
+     * @param context
+     * @param dirName 文件夹名�?
+     * @return
+     */
+    public static File createFileDir(Context context, String dirName) {
+        String filePath;
+        // 如SD卡已存在，则存储；反之存在data目录�?
+        if (hasSdcard()) {
+            // SD卡路�?
+            filePath = Environment.getExternalStorageDirectory()
+                    + File.separator + dirName;
+        } else {
+            filePath = context.getCacheDir().getPath() + File.separator
+                    + dirName;
+        }
+        File destDir = new File(filePath);
+        if (!destDir.exists()) {
+            boolean isCreate = destDir.mkdirs();
+        }
+        return destDir;
     }
 
 }

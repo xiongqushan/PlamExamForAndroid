@@ -60,10 +60,10 @@ public class ReportGetPresenter extends AbstractPresenter implements ReportContr
                         UserManager.getInstance().updateDepartCode(resultData.Data.CheckUnitCode);
                         mView.updateHomeBanner();
                     }
-                    String currName = UserManager.getInstance().getUserInfo().RealName;
-                    if (!currName.equals(resultData.Data.Reports.get(0).CustomerName)) {
-                        UserManager.getInstance().updateRealName(resultData.Data.Reports.get(0).CustomerName);
-                    }
+//                    String currName = UserManager.getInstance().getUserInfo().RealName;
+//                    if (!currName.equals(resultData.Data.Reports.get(0).CustomerName)) {
+//                        UserManager.getInstance().updateRealName(resultData.Data.Reports.get(0).CustomerName);
+//                    }
                     mView.showReportList();
                     mView.hideDialog("获取成功");
                 }

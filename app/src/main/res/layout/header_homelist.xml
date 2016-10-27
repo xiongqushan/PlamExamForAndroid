@@ -11,34 +11,86 @@
     <com.ihaozuo.plamexam.common.Banner.XBanner xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/BannerPager"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:padding="@dimen/padding_10dp"
-        app:AutoPlayTime="3000"
+        android:layout_height="200dp"
+        app:AutoPlayTime="4000"
         app:pointNormal="@drawable/shape_noraml"
         app:pointSelect="@drawable/shape_selected"
         app:pointsPosition="CENTER" />
 
-    <!--<include layout="@layout/divider_9dp" />-->
-    <!--android:layout_marginTop="@dimen/divider_9dp"-->
     <com.ihaozuo.plamexam.common.RevealLayout
         android:layout_width="match_parent"
-        android:layout_height="132dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="@dimen/padding_9dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
 
+        <LinearLayout
+            android:id="@+id/layoutTJYY"
+            style="@style/llayout_home_header">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_tjyy" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="体检预约"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutGHYY"
+            style="@style/llayout_home_header">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_ghyy" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="挂号预约"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFXPG"
+            style="@style/llayout_home_header">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_fxpg" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="风险评估"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+    </com.ihaozuo.plamexam.common.RevealLayout>
+
+    <com.ihaozuo.plamexam.common.RevealLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:layout_marginTop="@dimen/padding_9dp"
         android:background="@color/white"
         android:orientation="horizontal">
 
         <LinearLayout
             android:id="@+id/btn_report"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            style="@style/llayout_home_header">
 
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="48dp"
@@ -48,15 +100,19 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_8dp"
+                android:layout_marginTop="@dimen/padding_12dp"
                 android:text="@string/report"
                 android:textColor="@color/gray_33"
                 android:textSize="@dimen/textsize_h2" />
 
-            <View
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_marginTop="@dimen/padding_8dp"
+                android:text="查报告、看报告"
+                android:textColor="@color/gray_66"
+                android:textSize="14sp" />
+
 
         </LinearLayout>
 
@@ -64,22 +120,13 @@
         <View
             android:layout_width="@dimen/divider"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/padding_10dp"
-            android:layout_marginTop="@dimen/padding_10dp"
+            android:layout_marginBottom="@dimen/padding_9dp"
+            android:layout_marginTop="@dimen/padding_9dp"
             android:background="@color/divider_dd" />
 
         <LinearLayout
             android:id="@+id/btn_consult"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+            style="@style/llayout_home_header">
 
 
             <ImageView
@@ -91,16 +138,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_8dp"
+                android:layout_marginTop="@dimen/padding_12dp"
                 android:gravity="center"
                 android:text="@string/health_consult"
                 android:textColor="@color/gray_33"
                 android:textSize="@dimen/textsize_h2" />
 
-            <View
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_marginTop="@dimen/padding_8dp"
+                android:text="专家在线解读"
+                android:textColor="@color/gray_66"
+                android:textSize="14sp" />
+
 
         </LinearLayout>
 

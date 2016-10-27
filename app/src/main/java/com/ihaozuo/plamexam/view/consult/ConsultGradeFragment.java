@@ -125,9 +125,9 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
                 checkBoxes.add(CheckBoxB);
                 checkBoxes.add(CheckBoxC);
                 checkBoxes.add(CheckBoxD);
-                for (CheckBox cb: checkBoxes){
-                    if (cb.isChecked()){
-                        if (!StringUtil.isEmpty(content)){
+                for (CheckBox cb : checkBoxes) {
+                    if (cb.isChecked()) {
+                        if (!StringUtil.isEmpty(content)) {
                             content += ",";
                         }
                         content += cb.getText().toString();
@@ -143,7 +143,7 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
 
     @Override
     public void finishView() {
-        Toast.makeText(mContext,"感谢您的评价！",Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "感谢您的评价！", Toast.LENGTH_SHORT).show();
         getActivity().finish();
     }
 

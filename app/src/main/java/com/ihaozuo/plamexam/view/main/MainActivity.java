@@ -54,7 +54,6 @@ public class MainActivity extends BaseActivity {
         supportFragmentManager = getSupportFragmentManager();
         mTabHost.setup(this, supportFragmentManager, R.id.realtabcontent);
         addTab(getString(R.string.tab_home), R.drawable.tabhost_home, HomeFragment.class);
-//        addTab(getString(R.string.tab_consult), R.drawable.tabhost_consult, NewsListFragment.class);
         addTab(getString(R.string.tab_consult), R.drawable.tabhost_consult, ConsultLoadingFragment.class);
         addTab(getString(R.string.tab_mine), R.drawable.tabhost_mine, MineFragment.class);
 
@@ -105,9 +104,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
-        switch (filterAction){
+        switch (filterAction) {
             case MainActivity.REMOVE_UNREAD_MARK:
-                if (unreadMarkTab.getVisibility() == View.VISIBLE){
+                if (unreadMarkTab.getVisibility() == View.VISIBLE) {
                     unreadMarkTab.setVisibility(View.INVISIBLE);
                 }
                 break;
@@ -118,7 +117,7 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case MainActivity.SHOW_UNREAD_MARK:
-                if (unreadMarkTab.getVisibility() == View.INVISIBLE){
+                if (unreadMarkTab.getVisibility() == View.INVISIBLE) {
                     unreadMarkTab.setVisibility(View.VISIBLE);
                 }
                 break;

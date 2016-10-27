@@ -12,50 +12,52 @@
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- 讯飞权限 -->
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
+    <!-- <uses-permission android:name="android.permission.INTERNET" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
-    <!--<uses-sdk-->
-        <!--android:minSdkVersion="19"-->
-        <!--android:targetSdkVersion="22"-->
-        <!--tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" />-->
+    <!-- <uses-sdk -->
+    <!-- android:minSdkVersion="19" -->
+    <!-- android:targetSdkVersion="22" -->
+    <!-- tools:overrideLibrary="com.umeng.socialize.evernote,com.umeng.socialize.pinterest" /> -->
     <!-- Jpush权限 -->
     <permission
         android:name="com.ihaozuo.plamexam.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
-    <!-- Required  一些系统要求的权限，如访问网络等-->
+    <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.ihaozuo.plamexam.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <!--<uses-permission android:name="android.permission.INTERNET" />-->
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
-    <!--<uses-permission android:name="android.permission.WRITE_SETTINGS" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
+    <!-- <uses-permission android:name="android.permission.INTERNET" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_SETTINGS" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
     <!-- Optional for location -->
-    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
-    <!--<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-    <!--<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />-->
-    <!--<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />-->
-    <!--<uses-permission android:name="android.permission.GET_TASKS" />-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> -->
+    <!-- <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" /> -->
+    <!-- <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.GET_TASKS" /> -->
+
 
     <!-- 友盟 -->
-    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>-->
-    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />-->
-    <!--<uses-permission android:name="android.permission.INTERNET"></uses-permission>-->
-    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>-->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.INTERNET"></uses-permission> -->
+    <!-- <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission> -->
+
 
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
@@ -69,14 +71,12 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
 
-
     <application
         android:name=".framework.HZApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="AA_DB_NAME"
             android:value="ihaozhuo.db" />
@@ -117,14 +117,10 @@
         <activity android:name=".view.report.ReportActivity" />
         <activity android:name=".view.consult.ConsultGradeActivity" />
         <activity android:name=".view.news.NewsListActivity" />
-
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
+        <service
+            android:name=".common.UpdateService"
+            android:enabled="true"
+            android:exported="true"></service>
 
         <!-- 极光推送 -->
         <!-- Rich push 核心功能 since 2.0.6 -->
@@ -174,10 +170,10 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
+
                 <category android:name="haozuo.com.healthdoctor" />
             </intent-filter>
         </service>
-
 
         <!-- Required SDK核心功能 -->
         <receiver
@@ -211,7 +207,6 @@
         <receiver
             android:name=".common.MyJpushReceiver"
             android:enabled="true">
-
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -229,23 +224,31 @@
             </intent-filter>
         </receiver>
 
-        <!--Required  . Enable it you can get statistics data with channel-->
-        <!--<meta-data-->
-        <!--android:name="JPUSH_APPKEY"-->
-        <!--android:value="@string/JPush_app_id" />-->
-        <!--<meta-data-->
-        <!--android:name="JPUSH_CHANNEL"-->
-        <!--android:value="developer-default" />-->
+        <!-- Required  . Enable it you can get statistics data with channel -->
+        <!-- <meta-data -->
+        <!-- android:name="JPUSH_APPKEY" -->
+        <!-- android:value="@string/JPush_app_id" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="JPUSH_CHANNEL" -->
+        <!-- android:value="developer-default" /> -->
+
 
         <!-- 讯飞移动统计分析 -->
-        <!--<meta-data-->
-        <!--android:name="IFLYTEK_APPKEY"-->
-        <!--android:value="@string/xunfei_app_id" />-->
-        <!--<meta-data-->
-        <!--android:name="IFLYTEK_CHANNEL"-->
-        <!--android:value="COM.IHAOZUO.PLAMEXAM" />-->
+        <!-- <meta-data -->
+        <!-- android:name="IFLYTEK_APPKEY" -->
+        <!-- android:value="@string/xunfei_app_id" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="IFLYTEK_CHANNEL" -->
+        <!-- android:value="COM.IHAOZUO.PLAMEXAM" /> -->
 
         <!-- Share edit page-->
+
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"

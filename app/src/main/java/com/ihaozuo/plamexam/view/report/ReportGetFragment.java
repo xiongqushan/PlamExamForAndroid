@@ -3,19 +3,19 @@ package com.ihaozuo.plamexam.view.report;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
-import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
 
@@ -23,9 +23,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class ReportGetFragment extends AbstractView implements ReportContract.IReportGetView {
 
     ReportContract.IReportGetPresenter mPresenter;
@@ -33,8 +30,8 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
     EditText phone;
     @Bind(R.id.et_Name)
     EditText etName;
-    @Bind(R.id.tv_addReport)
-    TextView tvAddReport;
+    @Bind(R.id.btn_login)
+    Button btnLogin;
     private View rootView;
 
     public ReportGetFragment() {
@@ -63,13 +60,31 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         rootView = inflater.inflate(R.layout.report_add_frag, container, false);
         setCustomerTitle(rootView, getString(R.string.get_report));
         ButterKnife.bind(this, rootView);
-
         initView();
         return rootView;
     }
 
     private void initView() {
+//        phone.setEnabled(false);
         phone.setText(UserManager.getInstance().getUserInfo().Mobile);
+        etName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() == 0) {
+                    btnLogin.setEnabled(false);
+                } else {
+                    btnLogin.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 
 
@@ -89,10 +104,10 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
             case R.id.btn_login:
                 String name = etName.getText().toString();
 
-                if (StringUtil.isEmpty(name)) {
+                if (name.length() < 2 || name.length() > 15) {
                     etName.requestFocus();
                     etName.setFocusableInTouchMode(true);
-                    etName.setError("不能为空");
+                    etName.setError("请重新输入");
                     return;
                 }
                 String tele = phone.getText().toString();
