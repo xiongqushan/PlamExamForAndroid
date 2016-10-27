@@ -122,13 +122,18 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
     }
 
     @Override
+    public void stopRefreshing() {
+        if (swipeLayout.isRefreshing()) {
+            swipeLayout.setRefreshing(false);
+        }
+    }
+
+    @Override
     public void refreshNewsList(List<NewsBean> newsList) {
         if (footView.getVisibility() == View.GONE){
             footView.setVisibility(View.VISIBLE);
         }
-        if (swipeLayout.isRefreshing()){
-            swipeLayout.setRefreshing(false);
-        }
+        stopRefreshing();
         adapter.refreshList(newsList);
     }
 

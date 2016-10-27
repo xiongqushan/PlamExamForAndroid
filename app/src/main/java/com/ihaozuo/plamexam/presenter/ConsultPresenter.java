@@ -94,6 +94,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             @Override
             public void handlerResultError(String message) {
                 mIConsultView.hideDialog(message);
+                mIConsultView.hideRefresh();
             }
 
         });
@@ -126,8 +127,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
                     UserManager.getInstance().setDoctorID(resultData.Data);
                 }
                 doctorIDBoolean = true;
-//                    mLoginView.hideDialog();
-                toggleDialog();
+                    toggleDialog();
             }
 
             @Override
@@ -176,8 +176,24 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         });
     }
 
+    public void checkDoctorID(){
+        ConsultDetailBean consultDetailBean;
+        String doctorID = new String();
+        for (int i=consultDetailList.size()-1;i>=0;i--){
+            consultDetailBean = consultDetailList.get(i);
+            if(consultDetailBean.SourceType==2){
+                doctorID = consultDetailBean.DoctorId;
+                if (!doctorID.equals(UserManager.getInstance().getDoctorID())){
+                    UserManager.getInstance().setDoctorID(doctorID);
+                }
+                return;
+            }
+        }
+    }
+
     public void toggleDialog() {
         if (consultListBoolean && doctorIDBoolean && doctorListBoolean) {
+            checkDoctorID();
             mIConsultView.setDoctorInfo();
             mIConsultView.refreshConsultList(consultDetailList);
             consultDetailList.clear();

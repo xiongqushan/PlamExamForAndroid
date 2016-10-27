@@ -18,6 +18,8 @@ public interface NewsContract {
 
         void loadMoreList(List<NewsBean> newsList);
 
+        void stopRefreshing();
+
     }
 
     interface INewsListPresenter extends IBasePresenter {

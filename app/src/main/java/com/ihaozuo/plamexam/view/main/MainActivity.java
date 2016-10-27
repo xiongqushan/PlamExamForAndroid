@@ -19,6 +19,7 @@ import com.ihaozuo.plamexam.view.consult.ConsultLoadingFragment;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.mine.MineFragment;
+import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -123,6 +124,14 @@ public class MainActivity extends BaseActivity {
 
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /** attention to this below ,must add this**/
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+        com.umeng.socialize.utils.Log.d("result","onActivityResult");
     }
 }
 

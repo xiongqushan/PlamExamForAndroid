@@ -14,6 +14,7 @@ import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.common.dialog.ShareDialog;
+import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
 
 import java.util.ArrayList;
@@ -83,7 +84,7 @@ public class NewsListAdapter extends SimpleBaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
-                String url = Constants.URL_HEADER_WEBVIEW + newsEntity.id + Constants.URL_FOOTER_WEBVIEW;
+                String url = SysConfig.NEWS_DETAIL_URL[0] + newsEntity.id + SysConfig.NEWS_DETAIL_URL[1];
                 intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, url);
                 mContext.startActivity(intent);
             }

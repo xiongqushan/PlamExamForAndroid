@@ -32,7 +32,7 @@
                         layout="@layout/consult_docinfo_layout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_scrollFlags="scroll|enterAlwaysCollapsed|snap" />
+                        app:layout_scrollFlags="scroll|enterAlways|snap" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                         android:id="@+id/pull_refresh_recycler"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingBottom="@dimen/padding_10dp" />
+                        android:paddingBottom="10dp" />
 
                 </android.support.v4.widget.SwipeRefreshLayout>
 

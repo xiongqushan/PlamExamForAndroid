@@ -21,6 +21,8 @@ public interface ConsultContract {
         void removeUnreadMark();
 
         void toggleRetryLayer(boolean show);
+
+        void hideRefresh();
     }
 
     interface IConsultPresenter extends IBasePresenter {

@@ -16,6 +16,7 @@ import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.utils.Log;
 
 /**
  * Created by hzguest3 on 2016/10/21.
@@ -69,6 +70,7 @@ public class ShareDialog extends Dialog {
         btnWeibo.setOnClickListener(onClickListener);
         btnPengyouquan.setOnClickListener(onClickListener);
         btnClose.setOnClickListener(onClickListener);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -103,14 +105,25 @@ public class ShareDialog extends Dialog {
     };
 
     private UMShareListener umShareListener = new UMShareListener() {
+
+
+
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Toast.makeText(mContext,platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            Log.d("plat","platform"+platform);
+            if(platform.name().equals("WEIXIN_FAVORITE")){
+                Toast.makeText(mContext,platform + " 收藏成功啦",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(mContext, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+            }
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
             Toast.makeText(mContext,platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if(t!=null){
+                Log.d("throw","throw:"+t.getMessage());
+            }
         }
 
         @Override
@@ -118,6 +131,7 @@ public class ShareDialog extends Dialog {
             Toast.makeText(mContext,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
+
 
 
 }

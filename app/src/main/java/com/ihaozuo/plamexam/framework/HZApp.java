@@ -91,6 +91,11 @@ public class HZApp extends Application {
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
 
 
+
+
+
+
+
     }
 
 
@@ -116,5 +121,6 @@ public class HZApp extends Application {
         PlatformConfig.setQQZone("1105699103", "W0grAATJYfxpI7NC");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
     }
+
 
 }

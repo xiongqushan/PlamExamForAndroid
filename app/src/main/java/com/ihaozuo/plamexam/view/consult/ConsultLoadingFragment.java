@@ -64,7 +64,7 @@ public class ConsultLoadingFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.btn_consult_loading)
+    @OnClick({R.id.tv_goConsult,R.id.btn_consult_loading})
     public void onClick() {
         startActivity(new Intent(mContext, ConsultDetailActivity.class));
     }

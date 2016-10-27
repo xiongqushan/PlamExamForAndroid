@@ -16,14 +16,9 @@ import android.widget.TextView;
 
 import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.bean.DoctorInfoBean;
 import com.ihaozuo.plamexam.framework.HZApp;
-import com.ihaozuo.plamexam.manager.DoctorManager;
-import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
-
-import java.util.List;
 
 
 /**
@@ -140,17 +135,6 @@ public class BaseFragment extends Fragment {
     protected void sendCustomBroadcast(String activeName) {
         Intent intent = new Intent(activeName);
         getContext().sendBroadcast(intent);
-    }
-
-    public DoctorInfoBean getDoctorInfo(){
-        String doctorID = UserManager.getInstance().getDoctorID();
-        List<DoctorInfoBean> doctorList = DoctorManager.getInstance().getDoctorList();
-        for (DoctorInfoBean d : doctorList){
-            if (doctorID.equals(d.ID)){
-                return d;
-            }
-        }
-        return null;
     }
 
 
