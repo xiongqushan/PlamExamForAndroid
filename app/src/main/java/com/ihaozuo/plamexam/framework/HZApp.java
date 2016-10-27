@@ -90,12 +90,6 @@ public class HZApp extends Application {
         JPushInterface.init(this);
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
 
-
-
-
-
-
-
     }
 
 
@@ -106,7 +100,6 @@ public class HZApp extends Application {
         for (ActivityManager.RunningAppProcessInfo appProcess : mActivityManager
                 .getRunningAppProcesses()) {
             if (appProcess.pid == pid) {
-
                 return appProcess.processName;
             }
         }
@@ -116,10 +109,11 @@ public class HZApp extends Application {
 
     {
         //微信 wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
-        PlatformConfig.setWeixin("wx35e5655ba6776765", "a01938c93230a27b338cf5bece21adea");
         PlatformConfig.setSinaWeibo("436196584", "e7e5b817ca06547ef20f3a9c5bd4f650");
         PlatformConfig.setQQZone("1105699103", "W0grAATJYfxpI7NC");
+        PlatformConfig.setWeixin("wx35e5655ba6776765", "a01938c93230a27b338cf5bece21adea");
         Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
+
     }
 
 

@@ -11,7 +11,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.common.ResizeOptions;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.NewsBean;
-import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.common.dialog.ShareDialog;
 import com.ihaozuo.plamexam.framework.SysConfig;
@@ -22,6 +21,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit.http.HEAD;
 
 /**
  * Created by hzguest3 on 2016/10/19.
@@ -68,14 +68,15 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         final NewsBean newsEntity = newsList.get(position);
 
         ResizeOptions resizeOptions = new ResizeOptions(250, 170);
-        ImageLoadUtils.getInstance().display(newsEntity.imgFormat, holder.imgNewslist, resizeOptions);
+        ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist, R.drawable.banner,resizeOptions);
         holder.tvCommiton.setText(newsEntity.timeFormat);
         holder.tvTitle.setText(newsEntity.title);
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ShareDialog shareDialog = new ShareDialog(mContext, R.style.draw_dialog);
+                String linkUrl = SysConfig.NEWS_DETAIL_URL[0]+ newsEntity.id + SysConfig.NEWS_DETAIL_URL[1];
+                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog,newsEntity.title, linkUrl);
                 shareDialog.show();
 
             }

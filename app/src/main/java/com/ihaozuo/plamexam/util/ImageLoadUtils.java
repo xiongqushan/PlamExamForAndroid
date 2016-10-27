@@ -211,9 +211,9 @@ public class ImageLoadUtils {
 
     }
 
-    public void display(String url, SimpleDraweeView simpleDraweeView, ResizeOptions resizeOptions) {
+    public void display(String url, SimpleDraweeView simpleDraweeView, int placeHoldeImage, ResizeOptions resizeOptions) {
         Uri uri = Uri.parse(url);
-        simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView,0));
+        simpleDraweeView.setHierarchy(initHierarchyWithPlacehold(simpleDraweeView,placeHoldeImage));
         simpleDraweeView.setController(initController(simpleDraweeView, uri, resizeOptions));
 
     }

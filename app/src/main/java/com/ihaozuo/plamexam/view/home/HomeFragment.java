@@ -80,6 +80,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         super.onResume();
 //        UmengTool.getSignature(getActivity());
         Log.e(mContext+"",Config.REDIRECT_URL);
+        mViewPager.startAutoPlay();
     }
 
     public void onDestroyView() {
@@ -137,7 +138,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     protected View getRootView() {
         return rootView;
     }
-
 
     @SuppressWarnings({"deprecation", "ResourceAsColor"})
     private void initView() {
@@ -204,10 +204,21 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
     public void initBannerView() {
         mBannerList = new ArrayList<BannerBean>();
+
+        int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+        mViewPager.measure(w, h);
+        int height =mViewPager.getMeasuredHeight();
+        int width =mViewPager.getMeasuredWidth();
+        final ResizeOptions resizeOptions = new ResizeOptions(width,height);
+
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
-            public void loadBanner(XBanner banner, SimpleDraweeView view, int position) {
-                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner);
+            public void loadBanner(XBanner banner, final SimpleDraweeView view, int position) {
+//                view.measure(0,0);
+
+//                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner);
+                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner,resizeOptions);
             }
         });
 
@@ -234,7 +245,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         if (null != sourceList && sourceList.size() > 0) {
             mBannerList.clear();
             mBannerList.addAll(sourceList);
-            mViewPager.setData(sourceList);
+            mViewPager.setData(mBannerList);
         }
     }
 
@@ -287,14 +298,21 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             TextView tvCommiton = UIHelper.getAdapterView(convertView, R.id.tv_commiton);
             TextView btnShare = UIHelper.getAdapterView(convertView, R.id.btn_share);
             final NewsDBPojo newsEntity = newsList.get(position);
+//
+//            int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+//            int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+//            imgNewslist.measure(w, h);
+//            int height =imgNewslist.getMeasuredHeight();
+//            int width =imgNewslist.getMeasuredWidth();
+
             ResizeOptions resizeOptions = new ResizeOptions(250, 170);
-            ImageLoadUtils.getInstance().display(newsEntity.getImg(), imgNewslist, resizeOptions);
+            ImageLoadUtils.getInstance().display(newsEntity.getImg(), imgNewslist, R.drawable.banner, resizeOptions);
             tvCommiton.setText(newsEntity.getTime());
             tvTitle.setText(newsEntity.getTitle());
             btnShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ShareDialog shareDialog = new ShareDialog(mContext, R.style.draw_dialog);
+                    ShareDialog shareDialog = new ShareDialog(mContext, R.style.draw_dialog,newsEntity.getTitle(),newsEntity.getUrl());
                     shareDialog.show();
                 }
             });
@@ -311,7 +329,5 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         }
 
     }
-
-
 
 }

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.framework.HZApp;
+import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -29,14 +31,19 @@ public class ShareDialog extends Dialog {
     ImageView btnPengyouquan;
     ImageView btnClose;
     private Context mContext;
+    private String title;
+    private String targetUrl;
     UMImage image ;
 
-    public ShareDialog(Context context, int themeResId) {
+    public ShareDialog(Context context, int themeResId,String title, String targetUrl) {
         super(context, themeResId);
         this.mContext = context;
+        this.title = title;
+        this.targetUrl = targetUrl;
+        Config.dialog = new LoadingDialog(HZApp.shareApplication());
+        Config.IsToastTip = false;
         initWindow();
     }
-
 
     private void initWindow() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -77,15 +84,20 @@ public class ShareDialog extends Dialog {
         @Override
         public void onClick(View v) {
 
-            image = new UMImage(mContext, R.drawable.logo);
+            image = new UMImage(HZApp.shareApplication(), R.drawable.logo);
 
-            ShareAction shareAction = new ShareAction((Activity) mContext);
+            image.setTitle("掌上体检");
 
-            new ShareAction((Activity) mContext).withText("test");
+            ShareAction shareAction = new ShareAction((Activity) mContext)
+                    .withTitle(title)
+                    .withMedia(image)
+                    .withTargetUrl(targetUrl);
 
             switch (v.getId()) {
                 case R.id.btn_weixin:
-                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN).setCallback(umShareListener).share();
+                    new ShareAction((Activity) mContext)
+                            .withText("test")
+                            .share();
                     break;
                 case R.id.btn_qq:
                     shareAction.setPlatform(SHARE_MEDIA.QQ).setCallback(umShareListener).share();
@@ -94,8 +106,12 @@ public class ShareDialog extends Dialog {
                     shareAction.setPlatform(SHARE_MEDIA.SINA).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_pengyouquan:
-                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
-//                    shareAction.setPlatform(SHARE_MEDIA.QZONE).setCallback(umShareListener).share();
+//                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
+                    new ShareAction((Activity) mContext)
+                        .withTitle(title)
+                        .withMedia(image)
+                        .withTargetUrl(targetUrl)
+                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).share();
                     break;
                 case R.id.btn_close:
                     dismiss();
@@ -112,15 +128,15 @@ public class ShareDialog extends Dialog {
         public void onResult(SHARE_MEDIA platform) {
             Log.d("plat","platform"+platform);
             if(platform.name().equals("WEIXIN_FAVORITE")){
-                Toast.makeText(mContext,platform + " 收藏成功啦",Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext,checkPlatform(platform) + " 收藏成功啦",Toast.LENGTH_SHORT).show();
             }else{
-                Toast.makeText(mContext, platform + " 分享成功啦", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, checkPlatform(platform) + " 分享成功啦", Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(mContext,platform + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,checkPlatform(platform) + " 分享失败啦", Toast.LENGTH_SHORT).show();
             if(t!=null){
                 Log.d("throw","throw:"+t.getMessage());
             }
@@ -128,9 +144,24 @@ public class ShareDialog extends Dialog {
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(mContext,platform + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,checkPlatform(platform) + " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
+
+    public String checkPlatform(SHARE_MEDIA platform){
+        switch (platform){
+            case WEIXIN_CIRCLE:
+                return "朋友圈";
+            case WEIXIN:
+                return "微信";
+            case QQ:
+                return "QQ";
+            case SINA:
+                return "新浪";
+            default:
+                return "";
+        }
+    }
 
 
 
