@@ -38,7 +38,6 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         // Required empty public constructor
     }
 
-
     @Override
     protected IBasePresenter getPresenter() {
         return mPresenter;
@@ -52,7 +51,6 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
     public static ReportGetFragment newInstance() {
         return new ReportGetFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

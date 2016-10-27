@@ -81,14 +81,14 @@ public class NewsListAdapter extends SimpleBaseAdapter {
         final NewsBean newsEntity = newsList.get(position);
 
         ResizeOptions resizeOptions= new ResizeOptions(250,170);
-        ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist,resizeOptions);
+        ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist, R.drawable.banner,resizeOptions);
         holder.tvCommiton.setText(newsEntity.timeFormat);
         holder.tvTitle.setText(newsEntity.title);
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog);
+                String linkUrl = SysConfig.NEWS_DETAIL_URL[0]+ newsEntity.id + SysConfig.NEWS_DETAIL_URL[1];
+                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog,newsEntity.title,linkUrl);
                 shareDialog.show();
 
             }

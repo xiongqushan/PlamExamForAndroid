@@ -121,15 +121,12 @@ public class MainActivity extends BaseActivity {
                     unreadMarkTab.setVisibility(View.VISIBLE);
                 }
                 break;
-
         }
-
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /** attention to this below ,must add this**/
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         com.umeng.socialize.utils.Log.d("result","onActivityResult");
     }
