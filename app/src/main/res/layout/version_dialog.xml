@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/white"
-            android:text="检测到更新"
+            android:gravity="center"
+            android:text="当前版本已是最新版本\n祝您使用愉快"
             android:textColor="@color/gray_33"
             android:textSize="18sp" />
 
@@ -29,10 +30,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/padding_15dp"
             android:background="@color/white"
+            android:gravity="center"
             android:paddingBottom="4dp"
-            android:text="跳转到软件商店。。。啦啦啦德玛西亚"
             android:textColor="@color/gray_66"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:visibility="gone" />
     </LinearLayout>
 
 

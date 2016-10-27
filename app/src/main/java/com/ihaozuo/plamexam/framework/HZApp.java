@@ -61,30 +61,28 @@ public class HZApp extends Application {
         PreferenceManager.init(this);
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
-            PreferenceManager.init(this);
-            MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
 
-            //fresco
-            Fresco.initialize(this, ImageLoadUtils.getInstance()
-                    .CustomConfig(this));
+        //fresco
+        Fresco.initialize(this, ImageLoadUtils.getInstance()
+                .CustomConfig(this));
 
-            //讯飞
-            SpeechUtility.createUtility(this, "appid=" + getString(R.string.xunfei_app_id));
-            Setting.setShowLog(BuildConfig.DEBUG);
+        //讯飞
+        SpeechUtility.createUtility(this, "appid=" + getString(R.string.xunfei_app_id));
+        Setting.setShowLog(BuildConfig.DEBUG);
 
-            //leakcanary
-            mRefWatcher = LeakCanary.install(this);
+        //leakcanary
+        mRefWatcher = LeakCanary.install(this);
 
-            //dagger2注入检查工具
+        //dagger2注入检查工具
 //        if (BuildConfig.DEBUG) {
 //            Dagger2Metrics.enableCapturing(this);
 //        }
 
-            UMShareAPI.get(this);
+        UMShareAPI.get(this);
 
-            mAppComponent = DaggerAppComponent.builder()
-                    .appModule(new AppModule(this))
-                    .build();
+        mAppComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
 //        }
 
         //极光

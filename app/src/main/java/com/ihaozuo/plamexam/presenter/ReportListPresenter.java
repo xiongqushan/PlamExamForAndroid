@@ -62,10 +62,10 @@ public class ReportListPresenter extends AbstractPresenter implements ReportCont
 //                        UserManager.getInstance().updateDepartCode(resultData.Data.get(0).CheckUnitCode);
 //                        //mView.updateHomeBanner();
 //                    }
-                    String currName = UserManager.getInstance().getUserInfo().RealName;
-                    if (!currName.equals(resultData.Data.get(0).CustomerName)) {
-                        UserManager.getInstance().updateRealName(resultData.Data.get(0).CustomerName);
-                    }
+//                    String currName = UserManager.getInstance().getUserInfo().RealName;
+//                    if (!currName.equals(resultData.Data.get(0).CustomerName)) {
+//                        UserManager.getInstance().updateRealName(resultData.Data.get(0).CustomerName);
+//                    }
                     mView.showReportList(resultData.Data);
                     mView.hideDialog();
                 } else {

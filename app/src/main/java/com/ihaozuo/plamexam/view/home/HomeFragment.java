@@ -142,6 +142,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         headerView.findViewById(R.id.btn_report).setOnClickListener(this);
         headerView.findViewById(R.id.btn_consult).setOnClickListener(this);
         headerView.findViewById(R.id.layout_home_news).setOnClickListener(this);
+        headerView.findViewById(R.id.layoutTJYY).setOnClickListener(this);
+        headerView.findViewById(R.id.layoutGHYY).setOnClickListener(this);
+        headerView.findViewById(R.id.layoutFXPG).setOnClickListener(this);
         newsListAdapter = new ListAdapter(mContext);
         mListView.addHeaderView(headerView);
         mListView.setAdapter(newsListAdapter);
@@ -174,6 +177,15 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(new Intent(mContext, ConsultDetailActivity.class));
                 break;
             case R.id.layout_home_news:
+                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                break;
+            case R.id.layoutTJYY:
+                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                break;
+            case R.id.layoutGHYY:
+                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                break;
+            case R.id.layoutFXPG:
                 startActivity(new Intent(getActivity(), NewsListActivity.class));
                 break;
         }

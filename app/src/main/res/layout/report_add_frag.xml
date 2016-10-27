@@ -65,8 +65,7 @@
         android:id="@+id/btn_login"
         style="@style/btn_blue_corner"
         android:layout_marginTop="50dp"
-        android:background="@drawable/bg_blue_corner_shape"
-        android:textColor="@color/white"
+        android:enabled="false"
         android:text="@string/confirm" />
 
 </LinearLayout>

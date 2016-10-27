@@ -18,8 +18,6 @@
 
     <Button
         android:id="@+id/btn_logout"
-        android:background="@drawable/bg_btn_logout_selector"
-        android:textColor="@drawable/tv_color_selector"
         style="@style/btn_blue_corner"
         android:text="@string/logout" />
 

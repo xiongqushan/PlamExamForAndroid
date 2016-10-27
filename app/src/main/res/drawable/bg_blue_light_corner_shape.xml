@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 圆角 -->
+    <corners android:radius="@dimen/bg_corners" />
+    <!-- 填充 -->
+    <solid android:color="@color/blue_light" /><!-- 填充的颜色 -->
+
+    <!--&lt;!&ndash; 描边 &ndash;&gt;-->
+    <!--<stroke-->
+        <!--android:width="@dimen/divider"-->
+        <!--android:color="@color/gray_f2" />-->
+
+</shape>

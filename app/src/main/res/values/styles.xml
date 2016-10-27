@@ -90,6 +90,7 @@
         <item name="android:textColor">@color/gray_33</item>
         <item name="android:textSize">@dimen/textsize_h2</item>
     </style>
+
     <style name="sysset_label">
         <item name="android:layout_marginLeft">32dp</item>
         <item name="android:layout_width">wrap_content</item>
@@ -137,6 +138,7 @@
         <item name="android:layout_marginRight">@dimen/padding_10dp</item>
     </style>
 
+
     <style name="btn_blue_corner">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -144,20 +146,10 @@
         <item name="android:layout_marginLeft">@dimen/padding_15dp</item>
         <item name="android:layout_marginRight">@dimen/padding_15dp</item>
         <item name="android:layout_marginTop">@dimen/padding_9dp</item>
+        <item name="android:background">@drawable/btn_corner_selector</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">@dimen/textsize_h2</item>
     </style>
-
-    <!--<style name="btn_blue_corner">-->
-        <!--<item name="android:layout_width">match_parent</item>-->
-        <!--<item name="android:layout_height">wrap_content</item>-->
-        <!--<item name="android:layout_marginBottom">@dimen/padding_15dp</item>-->
-        <!--<item name="android:layout_marginLeft">@dimen/padding_15dp</item>-->
-        <!--<item name="android:layout_marginRight">@dimen/padding_15dp</item>-->
-        <!--<item name="android:layout_marginTop">@dimen/padding_9dp</item>-->
-        <!--<item name="android:background">@drawable/bg_blue_corner_shape</item>-->
-        <!--<item name="android:textColor">@color/white</item>-->
-        <!--<item name="android:textSize">@dimen/textsize_h2</item>-->
-    <!--</style>-->
 
     <style name="radiobuttom_reporttab">
         <item name="android:layout_width">wrap_content</item>
@@ -269,6 +261,14 @@
         <item name="android:layout_marginRight">6dp</item>
         <item name="android:layout_marginTop">6dp</item>
         <item name="android:layout_marginBottom">6dp</item>
+    </style>
+
+    <style name="llayout_home_header">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
 
