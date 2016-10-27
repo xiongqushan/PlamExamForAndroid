@@ -22,6 +22,7 @@ import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.ToastUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -170,10 +171,15 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
         new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
             @Override
             public void OnDialogConfirmListener() {
-                Intent intent = new Intent(getActivity(), UpdateService.class);
-                intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
-                        "http://www.todayonhistory.com/toh.apk");
-                getActivity().startService(intent);
+                if (UpdateService.isLording) {
+                    ToastUtils.showToast("正在下载");
+                } else {
+                    Intent intent = new Intent(getActivity(), UpdateService.class);
+                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+                            "http://www.todayonhistory.com/toh.apk");
+                    getActivity().startService(intent);
+                }
+
             }
 
             @Override

@@ -27,7 +27,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class UpdateService extends Service {
-
+    public static boolean isLording = false;
     private String appName = "";
     private static final String DIR_CACHE = "PECache";
     public static final String INTENTKEY_UPDATE_URL = "INTENTKEY_UPDATE_URL";
@@ -52,6 +52,7 @@ public class UpdateService extends Service {
 
     private void download(String url) {
         new DownloadAsyncTast().execute(url);
+        isLording = true;
         ToastUtils.showToast("正在后台为你下载");
     }
 
@@ -79,6 +80,7 @@ public class UpdateService extends Service {
     }
 
     public void finishNotify() {
+        isLording = false;
         updateNotify(fileLength);
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -99,7 +101,7 @@ public class UpdateService extends Service {
                 .setContent(remoteViews).setContentIntent(pendingIntent)
                 .build();
         manager.notify(ID_NOTIFF, notification);
-
+        this.stopSelf();
     }
 
     public void updateNotify(final Integer values) {
@@ -185,6 +187,7 @@ public class UpdateService extends Service {
 
         @Override
         protected void onPostExecute(String result) {
+
             finishNotify();
             ToastUtils.showToast(result + "最新版下载完成");
             // 代码安装
