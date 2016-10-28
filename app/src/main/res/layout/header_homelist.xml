@@ -31,7 +31,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="29dp"
-                android:src="@drawable/ic_tjyy" />
+                android:src="@drawable/ic_home_exam_" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -39,7 +39,8 @@
                 android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
                 android:text="体检预约"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/gray_87"/>
         </LinearLayout>
 
         <LinearLayout
@@ -49,7 +50,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="29dp"
-                android:src="@drawable/ic_ghyy" />
+                android:src="@drawable/ic_home_guahao_" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -57,7 +58,8 @@
                 android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
                 android:text="挂号预约"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/gray_87"/>
         </LinearLayout>
 
         <LinearLayout
@@ -67,7 +69,7 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="29dp"
-                android:src="@drawable/ic_fxpg" />
+                android:src="@drawable/ic_home_risk_" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +77,8 @@
                 android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
                 android:text="风险评估"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textColor="@color/gray_87"/>
         </LinearLayout>
 
     </com.ihaozuo.plamexam.common.RevealLayout>

@@ -12,7 +12,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
+import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.ToastUtils;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.tauth.Tencent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
@@ -34,6 +39,8 @@ public class ShareDialog extends Dialog {
     private String title;
     private String subTitle;
     private String targetUrl;
+    private IWXAPI wxapi;
+    private Tencent mTencent;
     UMImage image ;
 
     public ShareDialog(Context context, int themeResId,String title, String targetUrl,String subtitle) {
@@ -43,7 +50,8 @@ public class ShareDialog extends Dialog {
         this.subTitle = subtitle;
         this.targetUrl = targetUrl.replace(targetUrl.charAt(targetUrl.length()-1)+"","1");
         Config.dialog = new LoadingDialog(mContext);
-        Config.IsToastTip = true;
+        Config.IsToastTip = false;
+
         initWindow();
     }
 
@@ -80,6 +88,9 @@ public class ShareDialog extends Dialog {
         btnPengyouquan.setOnClickListener(onClickListener);
         btnClose.setOnClickListener(onClickListener);
 
+        wxapi = WXAPIFactory.createWXAPI(mContext, mContext.getString(R.string.WEIXIN_APP_ID));
+        mTencent = Tencent.createInstance(mContext.getString(R.string.QQ_APP_ID), HZApp.shareApplication().getApplicationContext());
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -96,22 +107,34 @@ public class ShareDialog extends Dialog {
 
             switch (v.getId()) {
                 case R.id.btn_weixin:
+                    if (wxapi.isWXAppSupportAPI() && wxapi.isWXAppInstalled()) {
+                        shareAction.setPlatform(SHARE_MEDIA.WEIXIN).setCallback(umShareListener).share();
+                    }  else{
+                        ToastUtils.showToast("当前微信版本过低或未安装!");
+                    }
 
-                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_qq:
-                    shareAction.setPlatform(SHARE_MEDIA.QQ).setCallback(umShareListener).share();
+                    if (mTencent.isSessionValid()){
+                        shareAction.setPlatform(SHARE_MEDIA.QQ).setCallback(umShareListener).share();
+                    }else {
+                        ToastUtils.showToast("当前QQ版本过低或未安装!");
+                    }
                     break;
                 case R.id.btn_weibo:
                     new ShareAction((Activity) mContext)
                             .setPlatform(SHARE_MEDIA.SINA)
-                            .withTitle(title)
-                            .withText(subTitle + targetUrl)
+                            .withText(title)
+                            .withTargetUrl(targetUrl)
+                            .setCallback(umShareListener)
                             .share();
-//                            .withMedia(new UMImage(mContext, R.drawable.logo))
                     break;
                 case R.id.btn_pengyouquan:
-                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
+                    if (wxapi.isWXAppSupportAPI() && wxapi.isWXAppInstalled()) {
+                        shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
+                    }  else{
+                        ToastUtils.showToast("当前微信版本过低或未安装!");
+                    }
                     break;
                 case R.id.btn_close:
                     dismiss();
