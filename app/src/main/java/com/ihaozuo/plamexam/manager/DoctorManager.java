@@ -17,7 +17,7 @@ public class DoctorManager {
     private static final String USER_INFO_KEY = "DOCTOR_INFO_KEY";
     private static DoctorManager _instance;
     private SharedPreferences sharedPreferences;
-    private static List<DoctorInfoBean> doctorInfoList;
+    private List<DoctorInfoBean> doctorInfoList;
     private DoctorManager() {
         if (null == sharedPreferences) {
             sharedPreferences = HZApp.shareApplication().getSharedPreferences(SP_NAME, Activity.MODE_PRIVATE);

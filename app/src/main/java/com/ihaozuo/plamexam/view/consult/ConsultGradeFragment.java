@@ -115,6 +115,12 @@ public class ConsultGradeFragment extends AbstractView implements ConsultGradeCo
         ButterKnife.unbind(this);
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mIConsultPresenter.cancelRequest();
+    }
+
     @OnClick({R.id.btn_commit_grade})
     public void onClick(View v) {
         switch (v.getId()) {

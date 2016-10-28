@@ -104,6 +104,12 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        mLoginPresenter.cancelRequest();
+    }
+
+    @Override
     protected IBasePresenter getPresenter() {
         return mLoginPresenter;
     }
@@ -120,21 +126,22 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
 
     @OnClick({R.id.btn_getAuthCode, R.id.btn_login})
     public void onClick(View view) {
+        Log.e(mContext+"",UserManager.getInstance().getDoctorID()+"");
         if (HZUtils.isFastDoubleClick()) {
             return;
         }
         String phoneNum = phone.getText().toString();
-        String validCode = etAuthCode.getText().toString();
-        switch (view.getId()) {
-            case R.id.btn_getAuthCode:
-                if (StringUtil.isMobile(phoneNum)) {
-                    mLoginPresenter.getAuthCode(phoneNum);
-                    time = new TimeCount(30000, 1000);
-                    time.start();
-                } else {
-                    TVLayerPhone.setError(getString(R.string.error_input_phone));
+                String validCode = etAuthCode.getText().toString();
+                switch (view.getId()) {
+                    case R.id.btn_getAuthCode:
+                        if (StringUtil.isMobile(phoneNum)) {
+                            mLoginPresenter.getAuthCode(phoneNum);
+                            time = new TimeCount(60000, 1000);
+                            time.start();
+                        } else {
+                            TVLayerPhone.setError(getString(R.string.error_input_phone));
 //                    Toast.makeText(mContext,getString(R.string.error_input_phone),Toast.LENGTH_LONG).show();
-                }
+                        }
 
                 //                startActivity(new Intent(mContext, BindPhoneActivity.class));
                 //                getActivity().finish();

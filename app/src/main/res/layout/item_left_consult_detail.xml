@@ -27,7 +27,7 @@
             android:layout_height="@dimen/consult_photo_height"
             android:layout_marginLeft="@dimen/consult_photot_marginleft"
             android:layout_marginTop="@dimen/consult_photo_margintop"
-            fresco:placeholderImage="@drawable/user_default_url"
+            fresco:placeholderImage="@drawable/ic_doctor_small"
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundAsCircle="true" />
 

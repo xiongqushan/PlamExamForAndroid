@@ -108,11 +108,11 @@
             </item>
 
             <!-- Blue button pressed -->
-            <item>
-                <shape android:shape="oval">
-                    <solid android:color="#90CAF9"/>
-                </shape>
-            </item>
+            <!--<item>-->
+                <!--<shape android:shape="oval">-->
+                    <!--<solid android:color="#90CAF9"/>-->
+                <!--</shape>-->
+            <!--</item>-->
         </layer-list>
     </item>
 
@@ -129,8 +129,7 @@
                                 android:bottom="4px"
                                 android:left="4px"
                                 android:right="4px"
-                                android:top="4px"
-                                />
+                                android:top="4px" />
                         </shape>
                     </item>
                     <item>
@@ -140,8 +139,7 @@
                                 android:bottom="2px"
                                 android:left="2px"
                                 android:right="2px"
-                                android:top="2px"
-                                />
+                                android:top="2px" />
                         </shape>
                     </item>
                     <item>
@@ -151,8 +149,7 @@
                                 android:bottom="2px"
                                 android:left="2px"
                                 android:right="2px"
-                                android:top="2px"
-                                />
+                                android:top="2px" />
                         </shape>
                     </item>
                     <item>
@@ -162,8 +159,7 @@
                                 android:bottom="1px"
                                 android:left="1px"
                                 android:right="1px"
-                                android:top="1px"
-                                />
+                                android:top="1px" />
                         </shape>
                     </item>
                     <item>
@@ -173,8 +169,7 @@
                                 android:bottom="1px"
                                 android:left="1px"
                                 android:right="1px"
-                                android:top="1px"
-                                />
+                                android:top="1px" />
                         </shape>
                     </item>
                     <item>
@@ -184,8 +179,7 @@
                                 android:bottom="1px"
                                 android:left="1px"
                                 android:right="1px"
-                                android:top="1px"
-                                />
+                                android:top="1px" />
                         </shape>
                     </item>
                     <item>
@@ -195,8 +189,7 @@
                                 android:bottom="1px"
                                 android:left="1px"
                                 android:right="1px"
-                                android:top="1px"
-                                />
+                                android:top="1px" />
                         </shape>
                     </item>
                     <item>
@@ -226,11 +219,11 @@
 
             <!-- Blue button -->
 
-            <item>
-                <shape android:shape="oval">
-                    <solid android:color="#03A9F4"/>
-                </shape>
-            </item>
+            <!--<item>-->
+                <!--<shape android:shape="oval">-->
+                    <!--<solid android:color="#03A9F4"/>-->
+                <!--</shape>-->
+            <!--</item>-->
         </layer-list>
 
     </item>

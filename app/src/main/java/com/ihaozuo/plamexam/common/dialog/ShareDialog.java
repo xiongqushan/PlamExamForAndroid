@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.util.HZUtils;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
@@ -32,16 +32,18 @@ public class ShareDialog extends Dialog {
     ImageView btnClose;
     private Context mContext;
     private String title;
+    private String subTitle;
     private String targetUrl;
     UMImage image ;
 
-    public ShareDialog(Context context, int themeResId,String title, String targetUrl) {
+    public ShareDialog(Context context, int themeResId,String title, String targetUrl,String subtitle) {
         super(context, themeResId);
         this.mContext = context;
         this.title = title;
-        this.targetUrl = targetUrl;
-        Config.dialog = new LoadingDialog(HZApp.shareApplication());
-        Config.IsToastTip = false;
+        this.subTitle = subtitle;
+        this.targetUrl = targetUrl.replace(targetUrl.charAt(targetUrl.length()-1)+"","1");
+        Config.dialog = new LoadingDialog(mContext);
+        Config.IsToastTip = true;
         initWindow();
     }
 
@@ -83,35 +85,33 @@ public class ShareDialog extends Dialog {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-
-            image = new UMImage(HZApp.shareApplication(), R.drawable.logo);
-
-            image.setTitle("掌上体检");
-
+            if (HZUtils.isFastDoubleClick()){
+                return;
+            }
             ShareAction shareAction = new ShareAction((Activity) mContext)
                     .withTitle(title)
-                    .withMedia(image)
-                    .withTargetUrl(targetUrl);
+                    .withText(subTitle)
+                    .withTargetUrl(targetUrl)
+                    .withMedia(new UMImage(mContext, R.drawable.logo));
 
             switch (v.getId()) {
                 case R.id.btn_weixin:
-                    new ShareAction((Activity) mContext)
-                            .withText("test")
-                            .share();
+
+                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_qq:
                     shareAction.setPlatform(SHARE_MEDIA.QQ).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_weibo:
-                    shareAction.setPlatform(SHARE_MEDIA.SINA).setCallback(umShareListener).share();
+                    new ShareAction((Activity) mContext)
+                            .setPlatform(SHARE_MEDIA.SINA)
+                            .withTitle(title)
+                            .withText(subTitle + targetUrl)
+                            .share();
+//                            .withMedia(new UMImage(mContext, R.drawable.logo))
                     break;
                 case R.id.btn_pengyouquan:
-//                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
-                    new ShareAction((Activity) mContext)
-                        .withTitle(title)
-                        .withMedia(image)
-                        .withTargetUrl(targetUrl)
-                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).share();
+                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
                     break;
                 case R.id.btn_close:
                     dismiss();
@@ -121,8 +121,6 @@ public class ShareDialog extends Dialog {
     };
 
     private UMShareListener umShareListener = new UMShareListener() {
-
-
 
         @Override
         public void onResult(SHARE_MEDIA platform) {

@@ -38,7 +38,7 @@ public class NewsListPresenter extends AbstractPresenter implements NewsContract
 
     @Override
     public IBaseView getBaseView() {
-        return null;
+        return mNewsListView;
     }
 
     @Override

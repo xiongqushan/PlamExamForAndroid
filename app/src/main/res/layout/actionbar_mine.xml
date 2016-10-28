@@ -18,7 +18,7 @@
             android:id="@+id/img_user"
             android:layout_width="107dp"
             android:layout_height="107dp"
-            android:src="@drawable/icon_user_default"
+            android:src="@drawable/ic_mine_user_default"
             fresco:placeholderImage="@drawable/ic_mine_user_default"
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundAsCircle="true" />

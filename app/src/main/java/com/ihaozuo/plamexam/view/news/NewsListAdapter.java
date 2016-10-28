@@ -88,7 +88,10 @@ public class NewsListAdapter extends SimpleBaseAdapter {
             @Override
             public void onClick(View v) {
                 String linkUrl = SysConfig.NEWS_DETAIL_URL[0]+ newsEntity.id + SysConfig.NEWS_DETAIL_URL[1];
-                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog,newsEntity.title,linkUrl);
+                ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog,
+                        newsEntity.title,
+                        linkUrl,
+                        newsEntity.description);
                 shareDialog.show();
 
             }
@@ -97,9 +100,10 @@ public class NewsListAdapter extends SimpleBaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
-                String url = SysConfig.NEWS_DETAIL_URL[0]+newsEntity.id+SysConfig.NEWS_DETAIL_URL[1];
+//                String url = SysConfig.NEWS_DETAIL_URL[0]+newsEntity.id+SysConfig.NEWS_DETAIL_URL[1];
 //                String url = SysConfig.NEWS_DETAIL_URL;
-                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY,url);
+//                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY,url);
+                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY,newsEntity);
                 mContext.startActivity(intent);
             }
         });

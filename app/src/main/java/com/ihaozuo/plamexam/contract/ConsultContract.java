@@ -23,6 +23,9 @@ public interface ConsultContract {
         void toggleRetryLayer(boolean show);
 
         void hideRefresh();
+
+        void setBtnSendClickable(Boolean clickable);
+
     }
 
     interface IConsultPresenter extends IBasePresenter {

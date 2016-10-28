@@ -130,6 +130,12 @@ public class MainActivity extends BaseActivity {
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
         com.umeng.socialize.utils.Log.d("result","onActivityResult");
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unRegisterReceiver();
+    }
 }
 
 

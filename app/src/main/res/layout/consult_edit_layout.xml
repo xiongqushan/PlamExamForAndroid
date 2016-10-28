@@ -47,6 +47,7 @@
         android:inputType="text"
         android:paddingLeft="@dimen/consult_customer_edittext_padding"
         android:paddingRight="@dimen/consult_customer_edittext_padding"
-        tools:text="1234" />
+        android:hint="请输入内容..."
+        android:textColorHint="@color/gray_cc" />
 
 </RelativeLayout>
