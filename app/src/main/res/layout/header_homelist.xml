@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_f2"
     android:orientation="vertical">
     <!--<com.ihaozuo.plamexam.common.AutoViewPager-->
     <!--android:id="@+id/BannerPager"-->
@@ -16,6 +17,89 @@
         app:pointNormal="@drawable/shape_noraml"
         app:pointSelect="@drawable/shape_selected"
         app:pointsPosition="CENTER" />
+
+
+    <com.ihaozuo.plamexam.common.RevealLayout
+        android:layout_width="match_parent"
+        android:layout_height="143dp"
+        android:layout_marginTop="@dimen/padding_9dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/btn_report"
+            style="@style/llayout_home_header">
+
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_report_home" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_12dp"
+                android:includeFontPadding="false"
+                android:text="@string/report"
+                android:textColor="@color/gray_33"
+                android:textSize="@dimen/textsize_h2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:includeFontPadding="false"
+                android:text="查报告、看报告"
+                android:textColor="@color/gray_66"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="@dimen/divider"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/padding_9dp"
+            android:layout_marginTop="@dimen/padding_9dp"
+            android:background="@color/divider_dd" />
+
+        <LinearLayout
+            android:id="@+id/btn_consult"
+            style="@style/llayout_home_header">
+
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_consult_home" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_12dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/health_consult"
+                android:textColor="@color/gray_33"
+                android:textSize="@dimen/textsize_h2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:includeFontPadding="false"
+                android:text="专家在线解读"
+                android:textColor="@color/gray_66"
+                android:textSize="14sp" />
+
+
+        </LinearLayout>
+
+
+    </com.ihaozuo.plamexam.common.RevealLayout>
 
     <com.ihaozuo.plamexam.common.RevealLayout
         android:layout_width="match_parent"
@@ -79,86 +163,6 @@
         </LinearLayout>
 
     </com.ihaozuo.plamexam.common.RevealLayout>
-
-    <com.ihaozuo.plamexam.common.RevealLayout
-        android:layout_width="match_parent"
-        android:layout_height="143dp"
-        android:layout_marginTop="@dimen/padding_9dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/btn_report"
-            style="@style/llayout_home_header">
-
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_report_home" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_12dp"
-                android:text="@string/report"
-                android:textColor="@color/gray_33"
-                android:textSize="@dimen/textsize_h2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_8dp"
-                android:text="查报告、看报告"
-                android:textColor="@color/gray_66"
-                android:textSize="14sp" />
-
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="@dimen/divider"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/padding_9dp"
-            android:layout_marginTop="@dimen/padding_9dp"
-            android:background="@color/divider_dd" />
-
-        <LinearLayout
-            android:id="@+id/btn_consult"
-            style="@style/llayout_home_header">
-
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_consult_home" />
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_12dp"
-                android:gravity="center"
-                android:text="@string/health_consult"
-                android:textColor="@color/gray_33"
-                android:textSize="@dimen/textsize_h2" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_8dp"
-                android:text="专家在线解读"
-                android:textColor="@color/gray_66"
-                android:textSize="14sp" />
-
-
-        </LinearLayout>
-
-
-    </com.ihaozuo.plamexam.common.RevealLayout>
-
-    <!--<include layout="@layout/divider_dd" />-->
 
     <RelativeLayout
         android:id="@+id/layout_home_news"

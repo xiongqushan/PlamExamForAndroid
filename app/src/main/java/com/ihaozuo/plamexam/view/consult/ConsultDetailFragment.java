@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -69,7 +68,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Bind(R.id.edittxt_message)
     EditText edittxtMessage;
     @Bind(R.id.fab)
-    ImageButton fab;
+    TextView fab;
     @Bind(R.id.tv_description)
     TextView tvDescription;
     @Bind(R.id.coordinatorLayout)
@@ -177,7 +176,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Override
     public void onStop() {
         super.onStop();
-        isForeground = false;
+
     }
 
     @Override
@@ -190,6 +189,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isForeground = false;
     }
 
 

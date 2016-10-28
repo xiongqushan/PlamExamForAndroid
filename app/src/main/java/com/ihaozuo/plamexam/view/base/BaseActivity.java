@@ -77,8 +77,8 @@ public abstract class BaseActivity extends AppCompatActivity {
 //            decorView.setSystemUiVisibility(option);
 //            getWindow().setStatusBarColor(Color.TRANSPARENT);
 //        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4到5.0
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
+        WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
+        localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
 //        }
 
 //        actionBar.setPadding(0, getStatusBarHeight(getActivity()), 0, 0);
@@ -159,6 +159,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+        }
     }
 
 

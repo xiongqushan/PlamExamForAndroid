@@ -5,19 +5,31 @@
 
     <include layout="@layout/actionbar" />
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_Layout"
+    <FrameLayout
+        android:id="@+id/rLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
-            android:id="@+id/NewsList"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_Layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:headerDividersEnabled="false"
-            android:footerDividersEnabled="false" />
+            android:layout_height="match_parent">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+            <ListView
+                android:id="@+id/NewsList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:footerDividersEnabled="false"
+                android:headerDividersEnabled="false" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/btn_turn_consult"
+            style="@style/btn_consult"
+            android:layout_gravity="bottom|end"
+            android:text="咨询" />
+    </FrameLayout>
 
 
 </LinearLayout>

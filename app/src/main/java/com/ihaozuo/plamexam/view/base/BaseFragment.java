@@ -42,9 +42,9 @@ public class BaseFragment extends Fragment {
         ImageView btnLeft = (ImageView) view.findViewById(R.id.img_actionbar_left);
         TextView tvAddReport = (TextView) view.findViewById(R.id.tv_addReport);
         View actionbar = view.findViewById(R.id.actionbar);
-        if (textView!=null) textView.setText(title);
+        if (textView != null) textView.setText(title);
 
-        if (btnLeft!=null && !getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
+        if (btnLeft != null && !getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
             btnLeft.setVisibility(View.VISIBLE);
             btnLeft.setOnClickListener(finishActivity);
         } else {
@@ -147,5 +147,6 @@ public class BaseFragment extends Fragment {
         if (BuildConfig.DEBUG) {
             HZApp.shareApplication().getRefWatcher().watch(this);
         }
+
     }
 }

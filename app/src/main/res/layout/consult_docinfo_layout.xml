@@ -16,9 +16,9 @@
         android:layout_marginLeft="@dimen/docinfo_padding"
         android:layout_marginRight="@dimen/docinfo_padding"
         fresco:roundAsCircle="true"
-        fresco:placeholderImage="@drawable/user_default_url"
+        fresco:placeholderImage="@drawable/ic_doctor_default"
         fresco:placeholderImageScaleType="fitCenter"
-        fresco:failureImage="@drawable/user_default_url"
+        fresco:failureImage="@drawable/ic_doctor_default"
         fresco:failureImageScaleType="fitCenter"/>
 
 
@@ -37,6 +37,7 @@
             tools:text="健管师"/>
 
         <TextView
+            android:maxLines="2"
             android:id="@+id/tv_Speciality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

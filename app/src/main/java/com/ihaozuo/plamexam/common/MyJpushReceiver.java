@@ -60,7 +60,7 @@ public class MyJpushReceiver extends BroadcastReceiver {
             Log.e(TAG, "[MyReceiver] 用户点击打开了通知" + printBundle(bundle));
             Intent intentPush = new Intent();
             // TODO 打开自定义的Activity
-            Log.e(TAG, "MainActivity:");
+            Log.e(TAG, "ConsultDetailActivity:");
             intentPush.setClass(context, ConsultDetailActivity.class);
             intentPush.putExtras(bundle);
 //            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

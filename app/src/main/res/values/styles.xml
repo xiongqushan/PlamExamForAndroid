@@ -271,5 +271,15 @@
         <item name="android:orientation">vertical</item>
     </style>
 
+    <style name="btn_consult">
+        <item name="android:layout_width">58dp</item>
+        <item name="android:layout_height">58dp</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+        <item name="android:background">@drawable/btn_consult_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
 
 </resources>

@@ -17,7 +17,8 @@ public class DoctorManager {
     private static final String USER_INFO_KEY = "DOCTOR_INFO_KEY";
     private static DoctorManager _instance;
     private SharedPreferences sharedPreferences;
-    private static List<DoctorInfoBean> doctorInfoList;
+    private List<DoctorInfoBean> doctorInfoList;
+
     private DoctorManager() {
         if (null == sharedPreferences) {
             sharedPreferences = HZApp.shareApplication().getSharedPreferences(SP_NAME, Activity.MODE_PRIVATE);
@@ -31,15 +32,15 @@ public class DoctorManager {
         return _instance;
     }
 
-    public void setDoctorList(List<DoctorInfoBean> doctorList){
-        doctorInfoList=doctorList;
+    public void setDoctorList(List<DoctorInfoBean> doctorList) {
+        doctorInfoList = doctorList;
     }
 
-    public List<DoctorInfoBean> getDoctorList(){
-        return  doctorInfoList;
+    public List<DoctorInfoBean> getDoctorList() {
+        return doctorInfoList;
     }
 
-    public void clear(){
+    public void clear() {
         sharedPreferences.edit().remove(USER_INFO_KEY).commit();
         _instance = null;
     }

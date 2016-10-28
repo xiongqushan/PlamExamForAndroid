@@ -85,15 +85,12 @@
                 <!--android:src="@drawable/fab_bg"-->
                 <!--app:layout_scrollFlags="scroll|enterAlways|snap" />-->
 
-                <ImageButton
+                <TextView
                     android:id="@+id/fab"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/btn_consult"
                     android:layout_gravity="bottom|end"
-                    android:layout_margin="@dimen/fab_margin"
-                    android:background="@drawable/fab_bg_selector"
-                    android:src="@drawable/fab_bg"
-                    android:visibility="invisible" />
+                    android:text="评价"
+                    android:visibility="gone" />
 
 
             </android.support.design.widget.CoordinatorLayout>

@@ -70,7 +70,7 @@ public class HZApp extends Application {
         SpeechUtility.createUtility(this, "appid=" + getString(R.string.xunfei_app_id));
         Setting.setShowLog(BuildConfig.DEBUG);
 
-        //leakcanary
+//        leakcanary
         mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具

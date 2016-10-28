@@ -19,7 +19,7 @@ import java.io.ObjectOutputStream;
 public class UserManager {
     private static final String SP_NAME = "USER";
     private static final String USER_INFO_KEY = "USER_INFO_KEY";
-    private static String USER_DOCTOR_ID;
+    private String USER_DOCTOR_ID;
     private static UserManager _instance;
     private SharedPreferences sharedPreferences;
     private UserBean _currentUserEntity;
@@ -82,11 +82,11 @@ public class UserManager {
         setUserInfo(userInfo);
     }
 
-    public void updateRealName(String newName) {
-        UserBean userInfo = getUserInfo();
-        userInfo.RealName = newName;
-        setUserInfo(userInfo);
-    }
+//    public void updateRealName(String newName) {
+//        UserBean userInfo = getUserInfo();
+//        userInfo.RealName = newName;
+//        setUserInfo(userInfo);
+//    }
 
     public void setDoctorID(String doctorID) {
         USER_DOCTOR_ID = doctorID;

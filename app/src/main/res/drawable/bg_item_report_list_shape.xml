@@ -5,7 +5,7 @@
     <corners android:radius="@dimen/bg_corners" />
 
 
-    <solid android:color="@color/gray_f2" />
+    <solid android:color="@color/white" />
 
     <!--&lt;!&ndash; 描边 &ndash;&gt;-->
     <stroke

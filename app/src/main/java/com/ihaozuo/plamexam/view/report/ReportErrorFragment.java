@@ -71,7 +71,7 @@ public class ReportErrorFragment extends Fragment {
         for (int i = 0; i < CheckItemSize; i++) {
             int CheckResultSize = reportDetailBean.CheckItems.get(i).CheckResults.size();
             for (int j = 0; j < CheckResultSize; j++) {
-                if (reportDetailBean.CheckItems.get(i).CheckResults.get(j).IsAbnormalForamt || reportDetailBean.CheckItems.get(i).CheckResults.get(j).IsAbandon) {
+                if (reportDetailBean.CheckItems.get(i).CheckResults.get(j).IsAbnormalForamt) {
                     dataList.add(reportDetailBean.CheckItems.get(i).CheckResults.get(j));
                 }
             }
@@ -99,10 +99,12 @@ public class ReportErrorFragment extends Fragment {
 
         } else {
             StringBuffer selectData = getSelectData();
-            Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
+
             btnReportError.setText("选择异常项咨询");
             if (mReportDetailBean == null || numSeleted == 0) {
                 return;
+            } else {
+                Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
             }
 //            mReportFragment.sendMsgForReport(mReportDetailBean, String.valueOf(selectData));
             mReportFragment.sendMsg(mReportDetailBean, String.valueOf(selectData));
@@ -164,10 +166,10 @@ public class ReportErrorFragment extends Fragment {
                 tvValue.setVisibility(View.VISIBLE);
                 tvUnit.setVisibility(View.VISIBLE);
                 tvValue.setText(checkResultsBean.ResultValue);
-                if (StringUtil.isTrimEmpty(checkResultsBean.LowValueRef)) {
+                if (StringUtil.isTrimEmpty(checkResultsBean.ValueRefFormat)) {
                     tvSubtitle.setText("");
                 } else {
-                    tvSubtitle.setText("参考范围 : " + checkResultsBean.LowValueRef);
+                    tvSubtitle.setText("参考范围 : " + checkResultsBean.ValueRefFormat);
                 }
                 if (StringUtil.isTrimEmpty(checkResultsBean.Unit)) {
                     tvUnit.setText("");

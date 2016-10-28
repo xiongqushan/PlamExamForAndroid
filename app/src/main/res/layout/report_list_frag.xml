@@ -38,12 +38,18 @@
         </RelativeLayout>
 
         <ListView
-            android:layout_marginTop="8dp"
             android:id="@+id/listview_report"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="8dp"
             android:divider="@null"
             android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/btn_turn_consult"
+            style="@style/btn_consult"
+            android:layout_gravity="bottom|end"
+            android:text="咨询" />
 
     </FrameLayout>
 
