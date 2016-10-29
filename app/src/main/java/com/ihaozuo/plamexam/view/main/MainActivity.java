@@ -19,6 +19,7 @@ import com.ihaozuo.plamexam.view.consult.ConsultLoadingFragment;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.mine.MineFragment;
+import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.UMShareAPI;
 
 import butterknife.Bind;
@@ -26,6 +27,8 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
+
+    public static boolean isLived = false;
     public static final String FINISH_ACTIVITY = "FINISHACTIVITY";
     public static final String REMOVE_UNREAD_MARK = "REMOVE_UNREAD_MARK";
     public static final String SHOW_UNREAD_MARK = "SHOW_UNREAD_MARK";
@@ -45,7 +48,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        isLived = true;
         LOCAL_CLASS_NAME = getLocalClassName();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_act);
@@ -85,6 +88,8 @@ public class MainActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (isExit) {
+                isLived = false;
+                MobclickAgent.onKillProcess(this);
                 System.exit(0);
                 return true;
             } else {
@@ -128,7 +133,7 @@ public class MainActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
-        com.umeng.socialize.utils.Log.d("result","onActivityResult");
+        com.umeng.socialize.utils.Log.d("result", "onActivityResult");
     }
 
     @Override

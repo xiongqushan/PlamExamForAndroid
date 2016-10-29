@@ -47,10 +47,11 @@ public class ShareDialog extends Dialog {
         this.mContext = context;
         this.title = title;
         this.subTitle = subtitle;
-        this.targetUrl = targetUrl.replace(targetUrl.charAt(targetUrl.length()-1)+"","1");
+//        this.targetUrl = targetUrl.replace(targetUrl.length()-1+"","1");
+        this.targetUrl=targetUrl.substring(0,targetUrl.length()-1);
+        this.targetUrl+="1";
         Config.dialog = new LoadingDialog(mContext);
         Config.IsToastTip = false;
-
         initWindow();
     }
 

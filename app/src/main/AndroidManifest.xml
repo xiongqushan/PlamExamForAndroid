@@ -206,7 +206,7 @@
 
         <!-- User defined.   用户自定义的广播接收器 -->
         <receiver
-            android:name=".common.MyJpushReceiver"
+            android:name=".common.jpush.MyJpushReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
@@ -295,7 +295,8 @@
 
         <activity android:name=".view.home.RiskActivity" />
         <activity android:name=".view.home.ExamActivity" />
-        <activity android:name=".view.home.GuaHaoActivity"></activity>
+        <activity android:name=".view.home.GuaHaoActivity" />
+        <activity android:name=".common.jpush.WakeActivity" />
     </application>
 
 </manifest>

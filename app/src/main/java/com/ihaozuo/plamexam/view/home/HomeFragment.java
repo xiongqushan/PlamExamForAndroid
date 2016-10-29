@@ -30,6 +30,7 @@ import com.ihaozuo.plamexam.presenter.HomePresenter;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
+import com.ihaozuo.plamexam.util.ToastUtils;
 import com.ihaozuo.plamexam.util.UIHelper;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
@@ -182,13 +183,14 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(new Intent(getActivity(), NewsListActivity.class));
                 break;
             case R.id.layoutTJYY:
-                startActivity(new Intent(getActivity(), ExamActivity.class));
-                break;
+//                startActivity(new Intent(getActivity(), ExamActivity.class));
+//                break;
             case R.id.layoutGHYY:
-                startActivity(new Intent(getActivity(), GuaHaoActivity.class));
-                break;
+//                startActivity(new Intent(getActivity(), GuaHaoActivity.class));
+//                break;
             case R.id.layoutFXPG:
-                startActivity(new Intent(getActivity(), RiskActivity.class));
+//                startActivity(new Intent(getActivity(), RiskActivity.class));
+                ToastUtils.showToast("敬请期待");
                 break;
         }
     }

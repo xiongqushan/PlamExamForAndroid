@@ -53,7 +53,6 @@ public class HZApp extends Application {
     public void onCreate() {
         super.onCreate();
         application = this;
-
         ActiveAndroid.initialize(this);
 
         PreferenceManager.init(this);

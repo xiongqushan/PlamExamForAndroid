@@ -124,7 +124,7 @@ public class BaseFragment extends Fragment {
         for (String activeName : filterActiveNames) {
             filter.addAction(activeName);
         }
-        getContext().registerReceiver(receiver, filter);
+        getActivity().registerReceiver(receiver, filter);
     }
 
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
@@ -132,7 +132,7 @@ public class BaseFragment extends Fragment {
 
     protected void sendCustomBroadcast(String activeName) {
         Intent intent = new Intent(activeName);
-        getContext().sendBroadcast(intent);
+        getActivity().sendBroadcast(intent);
     }
 
 
@@ -140,7 +140,7 @@ public class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         if (receiver != null) {
-            getContext().unregisterReceiver(receiver);
+            getActivity().unregisterReceiver(receiver);
         }
 //        if (BuildConfig.DEBUG) {
 //            HZApp.shareApplication().getRefWatcher().watch(this);
