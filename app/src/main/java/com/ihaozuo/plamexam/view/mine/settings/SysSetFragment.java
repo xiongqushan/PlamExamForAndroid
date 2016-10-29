@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.VersionInfoBean;
-import com.ihaozuo.plamexam.common.UpdateService;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
 import com.ihaozuo.plamexam.common.dialog.VersionDialog;
 import com.ihaozuo.plamexam.contract.SysSetContract;
@@ -25,7 +24,6 @@ import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
-import com.ihaozuo.plamexam.util.ToastUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
@@ -177,37 +175,37 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
     @Override
     public void showUpdateInfo(VersionInfoBean bean) {
 
-        new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
-            @Override
-            public void OnDialogConfirmListener() {
-                if (UpdateService.isLording) {
-                    ToastUtils.showToast("正在下载");
-                } else {
-                    Intent intent = new Intent(getActivity(), UpdateService.class);
-                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
-                            "http://www.todayonhistory.com/toh.apk");
-                    getActivity().startService(intent);
-                }
-
-            }
-
-            @Override
-            public void OnDialogCancelListener() {
-            }
-        }).setTitle("检测到更新").setSubtitle("是否开启后台下载").setCancelText("取消").show();
 //        new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
 //            @Override
 //            public void OnDialogConfirmListener() {
-//                Intent intent = new Intent(getActivity(), UpdateService.class);
-//                intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
-//                        "http://www.todayonhistory.com/toh.apk");
-//                getActivity().startService(intent);
+//                if (UpdateService.isLording) {
+//                    ToastUtils.showToast("正在下载");
+//                } else {
+//                    Intent intent = new Intent(getActivity(), UpdateService.class);
+//                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+//                            "http://www.todayonhistory.com/toh.apk");
+//                    getActivity().startService(intent);
+//                }
+//
 //            }
 //
 //            @Override
 //            public void OnDialogCancelListener() {
 //            }
-//        }).setTitle("已是最新版本").show();
+//        }).setTitle("检测到更新").setSubtitle("是否开启后台下载").setCancelText("取消").show();
+        new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+            @Override
+            public void OnDialogConfirmListener() {
+//                Intent intent = new Intent(getActivity(), UpdateService.class);
+//                intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+//                        "http://www.todayonhistory.com/toh.apk");
+//                getActivity().startService(intent);
+            }
+
+            @Override
+            public void OnDialogCancelListener() {
+            }
+        }).show();
 
     }
 
@@ -247,7 +245,7 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
     private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
         @Override
         public void gotResult(int code, String alias, Set<String> tags) {
-            String logs ;
+            String logs;
             switch (code) {
                 case 0:
                     logs = "Set tag and alias success";
