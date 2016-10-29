@@ -19,12 +19,14 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
+import com.umeng.analytics.MobclickAgent;
 
 
 /**
  * Created by xiongwei1 on 2016/8/1.
  */
 public class BaseFragment extends Fragment {
+    private String frag = "BaseFragment";
     private BroadcastReceiver receiver;
     View.OnClickListener finishActivity = new View.OnClickListener() {
         @Override
@@ -38,6 +40,7 @@ public class BaseFragment extends Fragment {
     }
 
     protected void setCustomerTitle(View view, String title, String color) {
+        frag = title;
         TextView textView = (TextView) view.findViewById(R.id.txt_actionbar_title);
         ImageView btnLeft = (ImageView) view.findViewById(R.id.img_actionbar_left);
         TextView tvAddReport = (TextView) view.findViewById(R.id.tv_addReport);
@@ -65,6 +68,16 @@ public class BaseFragment extends Fragment {
         if (color != null) {
             actionbar.setBackgroundColor(Color.parseColor(color));
         }
+    }
+
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(frag); //统计页面，"MainScreen"为页面名称，可自定义
+    }
+
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(frag);
     }
 
     /**
@@ -126,7 +139,7 @@ public class BaseFragment extends Fragment {
         for (String activeName : filterActiveNames) {
             filter.addAction(activeName);
         }
-        getActivity().registerReceiver(receiver, filter);
+        getContext().registerReceiver(receiver, filter);
     }
 
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
@@ -134,7 +147,7 @@ public class BaseFragment extends Fragment {
 
     protected void sendCustomBroadcast(String activeName) {
         Intent intent = new Intent(activeName);
-        getActivity().sendBroadcast(intent);
+        getContext().sendBroadcast(intent);
     }
 
 
@@ -142,7 +155,7 @@ public class BaseFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         if (receiver != null) {
-            getActivity().unregisterReceiver(receiver);
+            getContext().unregisterReceiver(receiver);
         }
         if (BuildConfig.DEBUG) {
             HZApp.shareApplication().getRefWatcher().watch(this);

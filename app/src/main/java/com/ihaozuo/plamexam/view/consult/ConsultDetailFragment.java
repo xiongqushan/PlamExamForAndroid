@@ -145,7 +145,6 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
             }
         });
 
-
         registerCustomReceiver(REFRESH_COSULTD_LIST);
         mIConsultPresenter.start();
         mIConsultPresenter.removeUnreadMark(1);

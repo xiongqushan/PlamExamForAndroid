@@ -115,7 +115,8 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
             ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, holder.draweeConsultItemPhoto);
         }
         holder.txtConsultCommiton.setText(entity.getDate());
-        holder.txtConsultItem.setText(entity.Content);
+        String replace = entity.Content.replace("\\n", "\n");
+        holder.txtConsultItem.setText(replace);
 
     }
 
@@ -126,7 +127,7 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
             case 1:
                 holder.reportConsultItem.setVisibility(View.GONE);
                 holder.txtConsultItem.setVisibility(View.VISIBLE);
-                holder.txtConsultItem.setText(entity.Content);
+                holder.txtConsultItem.setText(entity.Content.replace("\\n", "\n"));
 //                holder.tvReportContent.setText(Html.fromHtml("<p>test<br/>test</p>"));
                 break;
 
@@ -138,8 +139,7 @@ public class ConsultDetailAdapter extends Adapter<RecyclerView.ViewHolder> {
                 holder.txtConsultItem.setVisibility(View.GONE);
                 holder.tvReportTitle.setText(reportInfoList.get(2));
                 holder.tvReportDate.setText(reportInfoList.get(3));
-                holder.tvReportContent.setText(entity.Content);
-//                holder.tvReportContent.setText(Html.fromHtml(entity.Content));
+                holder.tvReportContent.setText(entity.Content.replace("\\n", "\n"));
                 break;
         }
         holder.txtConsultCommiton.setText(entity.getDate());
