@@ -30,8 +30,6 @@ public class NewsListAdapter extends SimpleBaseAdapter {
     private List<NewsBean> newsList;
     private Context mContext;
     private LayoutInflater mInflater;
-//    private NewsBean newsEntity;
-
 
     public NewsListAdapter(Context context) {
         newsList = new ArrayList();
@@ -51,21 +49,9 @@ public class NewsListAdapter extends SimpleBaseAdapter {
     }
 
 
-
     @Override
     public int getCount() {
-//        return 4;
         return newsList.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
     }
 
     @Override
@@ -75,12 +61,12 @@ public class NewsListAdapter extends SimpleBaseAdapter {
             convertView = mInflater.inflate(R.layout.item_newslist, null);
             holder = new ViewHolder(convertView);
             convertView.setTag(holder);
-        }else {
+        } else {
             holder = (ViewHolder) convertView.getTag();
         }
         final NewsBean newsEntity = newsList.get(position);
 
-        ResizeOptions resizeOptions= new ResizeOptions(250,170);
+        ResizeOptions resizeOptions = new ResizeOptions(250, 170);
         ImageLoadUtils.getInstance().display(newsEntity.imgFormat ,holder.imgNewslist, R.drawable.banner,resizeOptions);
         holder.tvCommiton.setText(newsEntity.timeFormat);
         holder.tvTitle.setText(newsEntity.title);

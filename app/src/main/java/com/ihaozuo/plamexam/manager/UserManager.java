@@ -82,11 +82,11 @@ public class UserManager {
         setUserInfo(userInfo);
     }
 
-    public void updateRealName(String newName) {
-        UserBean userInfo = getUserInfo();
-        userInfo.RealName = newName;
-        setUserInfo(userInfo);
-    }
+//    public void updateRealName(String newName) {
+//        UserBean userInfo = getUserInfo();
+//        userInfo.RealName = newName;
+//        setUserInfo(userInfo);
+//    }
 
     public void setDoctorID(String doctorID) {
         USER_DOCTOR_ID = doctorID;

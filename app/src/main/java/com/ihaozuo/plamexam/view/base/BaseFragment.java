@@ -14,9 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -42,9 +40,9 @@ public class BaseFragment extends Fragment {
         ImageView btnLeft = (ImageView) view.findViewById(R.id.img_actionbar_left);
         TextView tvAddReport = (TextView) view.findViewById(R.id.tv_addReport);
         View actionbar = view.findViewById(R.id.actionbar);
-        if (textView!=null) textView.setText(title);
+        if (textView != null) textView.setText(title);
 
-        if (btnLeft!=null && !getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
+        if (btnLeft != null && !getActivity().getLocalClassName().equals(MainActivity.LOCAL_CLASS_NAME)) {
             btnLeft.setVisibility(View.VISIBLE);
             btnLeft.setOnClickListener(finishActivity);
         } else {
@@ -144,8 +142,9 @@ public class BaseFragment extends Fragment {
         if (receiver != null) {
             getContext().unregisterReceiver(receiver);
         }
-        if (BuildConfig.DEBUG) {
-            HZApp.shareApplication().getRefWatcher().watch(this);
-        }
+//        if (BuildConfig.DEBUG) {
+//            HZApp.shareApplication().getRefWatcher().watch(this);
+//        }
+
     }
 }

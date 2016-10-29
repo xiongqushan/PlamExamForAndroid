@@ -192,6 +192,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Override
     public void onDestroy() {
         super.onDestroy();
+        isForeground = false;
     }
 
 

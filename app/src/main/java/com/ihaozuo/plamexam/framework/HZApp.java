@@ -15,8 +15,6 @@ import com.ihaozuo.plamexam.ioc.AppModule;
 import com.ihaozuo.plamexam.ioc.DaggerAppComponent;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
@@ -30,16 +28,16 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class HZApp extends Application {
     private static HZApp application;
-    private RefWatcher mRefWatcher;
+//    private RefWatcher mRefWatcher;
     private AppComponent mAppComponent;
 
     public static HZApp shareApplication() {
         return application;
     }
 
-    public RefWatcher getRefWatcher() {
-        return mRefWatcher;
-    }
+//    public RefWatcher getRefWatcher() {
+//        return mRefWatcher;
+//    }
 
     public AppComponent getAppComponent() {
         return mAppComponent;
@@ -70,8 +68,8 @@ public class HZApp extends Application {
         SpeechUtility.createUtility(this, "appid=" + getString(R.string.xunfei_app_id));
         Setting.setShowLog(BuildConfig.DEBUG);
 
-        //leakcanary
-        mRefWatcher = LeakCanary.install(this);
+//        leakcanary
+//        mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具
 //        if (BuildConfig.DEBUG) {
@@ -112,7 +110,5 @@ public class HZApp extends Application {
         }
         return null;
     }
-
-
 
 }

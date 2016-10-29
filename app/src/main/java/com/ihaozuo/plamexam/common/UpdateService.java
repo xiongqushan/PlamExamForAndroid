@@ -93,7 +93,7 @@ public class UpdateService extends Service {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 intent, 0);
         notification = new NotificationCompat.Builder(this)
-                // .setSmallIcon(R.drawable.icon_notifycation)
+                .setSmallIcon(R.drawable.icon_notifycation)
                 // .setTicker("tickerText")
                 .setWhen(System.currentTimeMillis())
                 // .setContentTitle("ContentTitle")
@@ -101,7 +101,6 @@ public class UpdateService extends Service {
                 .setContent(remoteViews).setContentIntent(pendingIntent)
                 .build();
         manager.notify(ID_NOTIFF, notification);
-        this.stopSelf();
     }
 
     public void updateNotify(final Integer values) {
@@ -124,7 +123,6 @@ public class UpdateService extends Service {
             InputStream is = null;
             FileOutputStream fos = null;
             try {
-                // URL url=new URL(anime.getVideoUrl());
                 URL url = new URL(str);
                 HttpURLConnection conn = (HttpURLConnection) url
                         .openConnection();
@@ -161,10 +159,6 @@ public class UpdateService extends Service {
                     if (is != null) {
                         is.close();
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
                     if (fos != null) {
                         fos.close();
                     }
@@ -187,7 +181,6 @@ public class UpdateService extends Service {
 
         @Override
         protected void onPostExecute(String result) {
-
             finishNotify();
             ToastUtils.showToast(result + "最新版下载完成");
             // 代码安装
@@ -197,6 +190,7 @@ public class UpdateService extends Service {
             intent.setDataAndType(Uri.fromFile(new File(fileName)),
                     "application/vnd.android.package-archive");
             startActivity(intent);
+
         }
 
     }

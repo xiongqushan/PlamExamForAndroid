@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +37,6 @@ import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
-import com.umeng.socialize.Config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +69,15 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     private List<BannerBean> mBannerList;
 
 
+    public HomeFragment() {
+        // Required empty public constructor
+    }
+
+    @Override
+    protected IBasePresenter getPresenter() {
+        return mPresenter;
+    }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -79,28 +86,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onResume() {
         super.onResume();
-//        UmengTool.getSignature(getActivity());
-        Log.e(mContext+"",Config.REDIRECT_URL);
         mViewPager.startAutoPlay();
-    }
-
-    public void onDestroyView() {
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
-    public HomeFragment() {
-        // Required empty public constructor
-    }
-
-    @Override
-    protected IBasePresenter getPresenter() {
-        return mPresenter;
     }
 
     @Override
@@ -130,6 +116,16 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         if (SRLayout.isRefreshing()) {
             SRLayout.setRefreshing(false);
         }
+    }
+
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
     }
 
     public void setPresenter(HomeContract.IHomePresenter presenter) {
@@ -186,13 +182,13 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 startActivity(new Intent(getActivity(), NewsListActivity.class));
                 break;
             case R.id.layoutTJYY:
-                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                startActivity(new Intent(getActivity(), ExamActivity.class));
                 break;
             case R.id.layoutGHYY:
-                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                startActivity(new Intent(getActivity(), GuaHaoActivity.class));
                 break;
             case R.id.layoutFXPG:
-                startActivity(new Intent(getActivity(), NewsListActivity.class));
+                startActivity(new Intent(getActivity(), RiskActivity.class));
                 break;
         }
     }
@@ -207,19 +203,19 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     public void initBannerView() {
         mBannerList = new ArrayList<BannerBean>();
 
-        int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
-        int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+        int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
         mViewPager.measure(w, h);
-        int height =mViewPager.getMeasuredHeight();
-        int width =mViewPager.getMeasuredWidth();
-        final ResizeOptions resizeOptions = new ResizeOptions(width,height);
+        int height = mViewPager.getMeasuredHeight();
+        int width = mViewPager.getMeasuredWidth();
+        final ResizeOptions resizeOptions = new ResizeOptions(width, height);
 
         mViewPager.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, final SimpleDraweeView view, int position) {
 //                view.measure(0,0);
 //                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner);
-                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner,resizeOptions);
+                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner, resizeOptions);
             }
         });
 
@@ -315,6 +311,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                             newsEntity.getUrl(),
                             newsEntity.getSubtitle()
                     ).show();
+
                 }
             });
             convertView.setOnClickListener(new View.OnClickListener() {

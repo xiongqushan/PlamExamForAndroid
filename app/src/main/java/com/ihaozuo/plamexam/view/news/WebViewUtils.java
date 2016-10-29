@@ -5,14 +5,13 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.webkit.WebSettings;
-import android.webkit.WebSettings.RenderPriority;
 import android.webkit.WebView;
 
 import java.io.File;
 
 @SuppressLint("SetJavaScriptEnabled")
 public class WebViewUtils {
-    private static String DIR_CACHE = "PEcache";
+    private static String DIR_CACHE = "PECache";
 
     public static boolean isNetworkAvailable(Context context) {
         ConnectivityManager connectivity = (ConnectivityManager) context
@@ -35,7 +34,7 @@ public class WebViewUtils {
     @SuppressWarnings("deprecation")
     public static void initWebView(WebView mWebView, Context mContext) {
         mWebView.getSettings().setJavaScriptEnabled(true);
-        mWebView.getSettings().setRenderPriority(RenderPriority.HIGH);
+       // mWebView.getSettings().setRenderPriority(RenderPriority.HIGH);
         // 设置缓存模式
         if (isNetworkAvailable(mContext)) {
             mWebView.getSettings().setCacheMode(WebSettings.LOAD_DEFAULT);

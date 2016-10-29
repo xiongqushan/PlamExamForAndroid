@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailFragment;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -59,8 +60,8 @@ public class MyJpushReceiver extends BroadcastReceiver {
             Log.e(TAG, "[MyReceiver] 用户点击打开了通知" + printBundle(bundle));
             Intent intentPush = new Intent();
             // TODO 打开自定义的Activity
-            Log.e(TAG, "MainActivity:");
-            intentPush.setClass(context, MainActivity.class);
+            Log.e(TAG, "ConsultDetailActivity:");
+            intentPush.setClass(context, ConsultDetailActivity.class);
             intentPush.putExtras(bundle);
 //            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK

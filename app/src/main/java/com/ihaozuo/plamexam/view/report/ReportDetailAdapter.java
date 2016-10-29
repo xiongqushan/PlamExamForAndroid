@@ -93,17 +93,16 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
                 tvValue.setVisibility(View.VISIBLE);
                 tvUnit.setVisibility(View.VISIBLE);
                 tvValue.setText(checkResultsBean.ResultValue);
-                if (StringUtil.isTrimEmpty(checkResultsBean.LowValueRef)) {
+                if (StringUtil.isTrimEmpty(checkResultsBean.ValueRefFormat)) {
                     tvSubtitle.setText("");
                 } else {
-                    tvSubtitle.setText("参考范围 : " + checkResultsBean.LowValueRef);
+                    tvSubtitle.setText("参考范围 : " + checkResultsBean.ValueRefFormat);
                 }
                 if (StringUtil.isTrimEmpty(checkResultsBean.Unit)) {
                     tvUnit.setText("");
                 } else {
                     tvUnit.setText("单位 : " + checkResultsBean.Unit);
                 }
-
             }
         }
         return convertView;

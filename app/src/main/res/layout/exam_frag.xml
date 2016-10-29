@@ -1,0 +1,102 @@
+<com.ihaozuo.plamexam.common.RevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_f2"
+    android:orientation="vertical"
+    tools:context="com.ihaozuo.plamexam.view.home.ExamFragment">
+
+    <include layout="@layout/actionbar" />
+
+    <LinearLayout
+        android:id="@+id/layoutTCYY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/bg_item_report_list_shape"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_developing" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_10dp"
+                android:text="套餐预约"
+                android:textColor="@color/gray_33"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+        <include layout="@layout/divider_dd" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:text="对应医院的体检套餐，方便用户在App中完成体检套餐的选择和预约。"
+            android:textColor="@color/gray_66"
+            android:textSize="@dimen/textsize_h3_16sp" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layoutSRDZ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_item_report_list_shape"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_10dp"
+                android:text="私人订制"
+                android:textColor="@color/gray_33"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_developing" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/divider_dd" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_10dp"
+            android:text="完成检前问卷，根据问卷结果对应到当前体检中心的体检套餐"
+            android:textColor="@color/gray_66"
+            android:textSize="@dimen/textsize_h3_16sp" />
+
+
+    </LinearLayout>
+
+</com.ihaozuo.plamexam.common.RevealLayout>

@@ -17,8 +17,10 @@ import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
 import com.ihaozuo.plamexam.contract.ReportContract;
 import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.UIHelper;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,12 +120,25 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 
-    @OnClick({R.id.layout_report_add, R.id.tv_addReport})
-    public void onClick() {
-        startActivity(new Intent(getActivity(), ReportGetActivity.class));
+    @OnClick({R.id.tv_addReport, R.id.layout_report_add, R.id.btn_turn_consult})
+    public void onClick(View view) {
+        if (HZUtils.isFastDoubleClick()) {
+            return;
+        }
+        switch (view.getId()) {
+            case R.id.tv_addReport:
+            case R.id.layout_report_add:
+                startActivity(new Intent(getActivity(), ReportGetActivity.class));
+                break;
+            case R.id.btn_turn_consult:
+                startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
+                break;
+        }
     }
+
 
     @Override
     public void setPresenter(ReportContract.IReportListPresenter presenter) {
@@ -153,6 +168,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
         mListView.setVisibility(View.VISIBLE);
         tvGetReport.setVisibility(View.VISIBLE);
     }
+
 
     private class ListAdapter extends SimpleBaseAdapter {
 

@@ -2,6 +2,7 @@ package com.ihaozuo.plamexam.view.news;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -15,12 +16,15 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.NewsBean;
 import com.ihaozuo.plamexam.contract.NewsContract;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
+import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class NewsListFragment extends AbstractView implements NewsContract.INewsListView {
 
@@ -80,7 +84,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         canLoadMore = true;
         adapter = new NewsListAdapter(mContext);
         mListView.setAdapter(adapter);
-        footView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.newslist_foot_layout,null);
+        footView = (TextView) LayoutInflater.from(mContext).inflate(R.layout.newslist_foot_layout, null);
         mListView.addFooterView(footView);
         swipeLayout.setProgressBackgroundColor(R.color.main_color_blue);
 //        swipeLayout.setColorSchemeResources(R.color.white);
@@ -96,10 +100,10 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         });
         mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState){
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
                     if (view.getLastVisiblePosition() == view.getCount() - 1) {
-                        if (canLoadMore){
+                        if (canLoadMore) {
                             canLoadMore = false;
                             footView.setText("正在加载...");
                             mPresenter.getNewsList(false);
@@ -136,7 +140,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
 
     @Override
     public void refreshNewsList(List<NewsBean> newsList) {
-        if (footView.getVisibility() == View.GONE){
+        if (footView.getVisibility() == View.GONE) {
             footView.setVisibility(View.VISIBLE);
         }
         stopRefreshing();
@@ -148,7 +152,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
 
         canLoadMore = true;
         footView.setText("加载更多...");
-        if (newsList.size()<10){
+        if (newsList.size() < 10) {
             canLoadMore = false;
             footView.setText("已无更多");
         }
@@ -157,6 +161,11 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
     }
 
 
-
-
+    @OnClick(R.id.btn_turn_consult)
+    public void onClick() {
+        if (HZUtils.isFastDoubleClick()) {
+            return;
+        }
+        startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
+    }
 }

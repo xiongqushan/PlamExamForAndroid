@@ -10,6 +10,6 @@
             </item>
         </layer-list>
     </item>
-    <item android:drawable="@color/gray_f2" />
+    <item android:drawable="@color/white" />
 
 </selector>

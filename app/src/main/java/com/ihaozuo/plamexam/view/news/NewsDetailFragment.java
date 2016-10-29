@@ -122,8 +122,16 @@ public class NewsDetailFragment extends AbstractView {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
+        if (mWebView != null) {
+            ViewGroup parent = (ViewGroup) mWebView.getParent();
+            if (parent != null) {
+                parent.removeView(mWebView);
+            }
+            mWebView.removeAllViews();
+            mWebView.destroy();
+        }
         ButterKnife.unbind(this);
+        super.onDestroyView();
     }
 
 

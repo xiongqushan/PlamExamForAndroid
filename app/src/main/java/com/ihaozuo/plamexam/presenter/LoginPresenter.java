@@ -68,8 +68,10 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
         mUserModel.register(mobile, validCode, new OnHandlerResultListener<RestResult<UserBean>>() {
             @Override
             public void handlerResultSuccess(RestResult<UserBean> resultData) {
+                if (resultData.Data.DepartCode == null) {
+                    resultData.Data.DepartCode = "";
+                }
                 UserManager.getInstance().setUserInfo(resultData.Data);
-                UserManager.getInstance().updateDepartCode(resultData.Data.DepartCode);
                 PreferenceManager.getInstance().writeLoginPhone(resultData.Data.Mobile);
                 mLoginView.hideDialog();
                 mLoginView.gotoMainPage();

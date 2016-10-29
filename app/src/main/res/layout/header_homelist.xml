@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray_f2"
     android:orientation="vertical">
     <!--<com.ihaozuo.plamexam.common.AutoViewPager-->
     <!--android:id="@+id/BannerPager"-->
@@ -83,6 +84,7 @@
 
     </com.ihaozuo.plamexam.common.RevealLayout>
 
+
     <com.ihaozuo.plamexam.common.RevealLayout
         android:layout_width="match_parent"
         android:layout_height="143dp"
@@ -104,6 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_12dp"
+                android:includeFontPadding="false"
                 android:text="@string/report"
                 android:textColor="@color/gray_33"
                 android:textSize="@dimen/textsize_h2" />
@@ -111,7 +114,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_8dp"
+                android:layout_marginTop="4dp"
+                android:includeFontPadding="false"
                 android:text="查报告、看报告"
                 android:textColor="@color/gray_66"
                 android:textSize="14sp" />
@@ -143,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/padding_12dp"
                 android:gravity="center"
+                android:includeFontPadding="false"
                 android:text="@string/health_consult"
                 android:textColor="@color/gray_33"
                 android:textSize="@dimen/textsize_h2" />
@@ -150,7 +155,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_8dp"
+                android:layout_marginTop="4dp"
+                android:includeFontPadding="false"
                 android:text="专家在线解读"
                 android:textColor="@color/gray_66"
                 android:textSize="14sp" />
@@ -161,7 +167,6 @@
 
     </com.ihaozuo.plamexam.common.RevealLayout>
 
-    <!--<include layout="@layout/divider_dd" />-->
 
     <RelativeLayout
         android:id="@+id/layout_home_news"
