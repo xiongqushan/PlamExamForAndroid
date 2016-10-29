@@ -75,6 +75,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     CoordinatorLayout coordinatorLayout;
 
     public static boolean isForeground = false;
+    public static boolean isLive = false;
     public static final String REFRESH_COSULTD_LIST = "REFRESH_COSULTD_LIST";
     public static final String REFRESH_COSULTD_WITH_REPORT = "REFRESH_COSULTD_WITH_REPORT";
 
@@ -170,13 +171,15 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public void onResume() {
         super.onResume();
         isForeground = true;
+        isLive = true;
     }
 
 
     @Override
     public void onStop() {
         super.onStop();
-
+        isForeground = false;
+        mIConsultPresenter.cancelRequest();
     }
 
     @Override
@@ -188,8 +191,8 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     @Override
     public void onDestroy() {
+        isLive = false;
         super.onDestroy();
-        isForeground = false;
     }
 
 
@@ -279,8 +282,8 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     }
 
     @Override
-    public void hideRefresh(){
-        if (swipeLayout.isRefreshing()){
+    public void hideRefresh() {
+        if (swipeLayout.isRefreshing()) {
             swipeLayout.setRefreshing(false);
         }
     }

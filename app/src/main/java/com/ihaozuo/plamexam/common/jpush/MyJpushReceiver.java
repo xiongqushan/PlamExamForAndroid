@@ -1,4 +1,4 @@
-package com.ihaozuo.plamexam.common;
+package com.ihaozuo.plamexam.common.jpush;
 
 
 import android.content.BroadcastReceiver;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailFragment;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -54,19 +53,28 @@ public class MyJpushReceiver extends BroadcastReceiver {
 
             // TODO 向指定的ACTIVITY发送广播
             senBroadcastToActivity(context, bundle);
-
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent
                 .getAction())) {
             Log.e(TAG, "[MyReceiver] 用户点击打开了通知" + printBundle(bundle));
-            Intent intentPush = new Intent();
             // TODO 打开自定义的Activity
-            Log.e(TAG, "ConsultDetailActivity:");
-            intentPush.setClass(context, ConsultDetailActivity.class);
-            intentPush.putExtras(bundle);
+            if (MainActivity.isLived) {
+                Intent intentPush = new Intent();
+                intentPush.setClass(context, WakeActivity.class);
+                intentPush.putExtras(bundle);
 //            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                    | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            context.startActivity(intentPush);
+                intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intentPush);
+            } else {
+                Intent intentPush = new Intent();
+                intentPush.setClass(context, MainActivity.class);
+                intentPush.putExtras(bundle);
+//            intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intentPush.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                context.startActivity(intentPush);
+            }
+
 
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent
                 .getAction())) {
@@ -123,10 +131,14 @@ public class MyJpushReceiver extends BroadcastReceiver {
 
     //send msg to MainActivity
     private void senBroadcastToActivity(Context context, Bundle bundle) {
-        if (ConsultDetailFragment.isForeground) {
+        if (ConsultDetailFragment.isLive) {
             Intent msgIntent = new Intent(ConsultDetailFragment.REFRESH_COSULTD_LIST);
             context.sendBroadcast(msgIntent);
-        }else{
+            if (!ConsultDetailFragment.isForeground) {
+                msgIntent = new Intent(MainActivity.SHOW_UNREAD_MARK);
+                context.sendBroadcast(msgIntent);
+            }
+        } else {
             Intent msgIntent = new Intent(MainActivity.SHOW_UNREAD_MARK);
             context.sendBroadcast(msgIntent);
         }

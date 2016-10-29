@@ -33,14 +33,14 @@ public class ShareDialog extends Dialog {
     private Context mContext;
     private String title;
     private String targetUrl;
-    UMImage image ;
+    UMImage image;
 
-    public ShareDialog(Context context, int themeResId,String title, String targetUrl) {
+    public ShareDialog(Context context, int themeResId, String title, String targetUrl) {
         super(context, themeResId);
         this.mContext = context;
         this.title = title;
         this.targetUrl = targetUrl;
-        Config.dialog = new LoadingDialog(HZApp.shareApplication());
+        Config.dialog = new LoadingDialog(mContext);
         Config.IsToastTip = false;
         initWindow();
     }
@@ -52,7 +52,7 @@ public class ShareDialog extends Dialog {
         WindowManager.LayoutParams winlp = getWindow()
                 .getAttributes();
         winlp.alpha = 1.0f; // 0.0-1.0
-        winlp.dimAmount=0.6f;
+        winlp.dimAmount = 0.6f;
         getWindow().setAttributes(winlp);
 
         Window win = getWindow();
@@ -108,10 +108,10 @@ public class ShareDialog extends Dialog {
                 case R.id.btn_pengyouquan:
 //                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
                     new ShareAction((Activity) mContext)
-                        .withTitle(title)
-                        .withMedia(image)
-                        .withTargetUrl(targetUrl)
-                        .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).share();
+                            .withTitle(title)
+                            .withMedia(image)
+                            .withTargetUrl(targetUrl)
+                            .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).share();
                     break;
                 case R.id.btn_close:
                     dismiss();
@@ -123,33 +123,32 @@ public class ShareDialog extends Dialog {
     private UMShareListener umShareListener = new UMShareListener() {
 
 
-
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Log.d("plat","platform"+platform);
-            if(platform.name().equals("WEIXIN_FAVORITE")){
-                Toast.makeText(mContext,checkPlatform(platform) + " 收藏成功啦",Toast.LENGTH_SHORT).show();
-            }else{
+            Log.d("plat", "platform" + platform);
+            if (platform.name().equals("WEIXIN_FAVORITE")) {
+                Toast.makeText(mContext, checkPlatform(platform) + " 收藏成功啦", Toast.LENGTH_SHORT).show();
+            } else {
                 Toast.makeText(mContext, checkPlatform(platform) + " 分享成功啦", Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(mContext,checkPlatform(platform) + " 分享失败啦", Toast.LENGTH_SHORT).show();
-            if(t!=null){
-                Log.d("throw","throw:"+t.getMessage());
+            Toast.makeText(mContext, checkPlatform(platform) + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if (t != null) {
+                Log.d("throw", "throw:" + t.getMessage());
             }
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(mContext,checkPlatform(platform) + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, checkPlatform(platform) + " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 
-    public String checkPlatform(SHARE_MEDIA platform){
-        switch (platform){
+    public String checkPlatform(SHARE_MEDIA platform) {
+        switch (platform) {
             case WEIXIN_CIRCLE:
                 return "朋友圈";
             case WEIXIN:
@@ -162,7 +161,6 @@ public class ShareDialog extends Dialog {
                 return "";
         }
     }
-
 
 
 }
