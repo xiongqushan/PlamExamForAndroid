@@ -117,6 +117,12 @@
         <activity android:name=".view.report.ReportActivity" />
         <activity android:name=".view.consult.ConsultGradeActivity" />
         <activity android:name=".view.news.NewsListActivity" />
+        <activity android:name=".view.home.RiskActivity" />
+        <activity android:name=".view.home.ExamActivity" />
+        <activity android:name=".view.home.GuaHaoActivity" />
+        <activity android:name=".common.jpush.WakeActivity" />
+        <activity android:name=".view.guide.GuideActivity"
+            android:theme="@style/AppGuide"/>
 
         <service
             android:name=".common.UpdateService"
@@ -293,10 +299,7 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng" />
 
-        <activity android:name=".view.home.RiskActivity" />
-        <activity android:name=".view.home.ExamActivity" />
-        <activity android:name=".view.home.GuaHaoActivity" />
-        <activity android:name=".common.jpush.WakeActivity" />
+
     </application>
 
 </manifest>

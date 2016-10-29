@@ -140,25 +140,26 @@ public class LoginFragment extends AbstractView implements LoginContract.ILoginV
                             time.start();
                         } else {
                             TVLayerPhone.setError(getString(R.string.error_input_phone));
-//                    Toast.makeText(mContext,getString(R.string.error_input_phone),Toast.LENGTH_LONG).show();
                         }
 
-                //                startActivity(new Intent(mContext, BindPhoneActivity.class));
-                //                getActivity().finish();
                 break;
             case R.id.btn_login:
-//                String authCode = etAuthCode.getText().toString();
                 if (!StringUtil.isMobile(phoneNum)) {
                     TVLayerPhone.setErrorEnabled(true);
                     TVLayerPhone.setError(getString(R.string.error_input_phone));
                 } else {
                     TVLayerPhone.setErrorEnabled(false);
+//                    btnLogin.setEnabled(false);
                     mLoginPresenter.register(phoneNum, validCode);
-//                    gotoMainPage();
                 }
                 break;
         }
     }
+
+//    @Override
+//    public void setBtnClickable(Boolean clickable){
+//        btnLogin.setEnabled(clickable);
+//    }
 
     @Override
     public void gotoMainPage() {

@@ -15,6 +15,7 @@ public class PreferenceManager {
     private static String SHARED_KEY_LOGINPHONE = "SHARED_KEY_LOGIN_PHONE";
     private static String SHARED_KEY_DEPARTCODE = "SHARED_KEY_DEPARTCODE";
     private static String SHARED_KEY_JPUSH = "SHARED_KEY_JPUSH";
+    private static String SHARED_KEY_GUIDE = "SHARED_KEY_GUIDE";
     private static String SHARED_KEY_INITNEWS = "SHARED_KEY_INITNEWS";
 
     private PreferenceManager(Context context) {
@@ -46,6 +47,15 @@ public class PreferenceManager {
 
     public void writeJpush(boolean state) {
         editor.putBoolean(SHARED_KEY_JPUSH, state);
+        editor.apply();
+    }
+
+    public boolean readGuideState() {
+        return mSharedPreferences.getBoolean(SHARED_KEY_GUIDE, false);
+    }
+
+    public void writeGuideState(boolean state) {
+        editor.putBoolean(SHARED_KEY_GUIDE, state);
         editor.apply();
     }
 

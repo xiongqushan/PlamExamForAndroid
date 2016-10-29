@@ -15,6 +15,11 @@
         <item name="android:windowBackground">@mipmap/ic_splash</item>
     </style>
 
+    <style name="AppGuide" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowEnterAnimation">@anim/dialog_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/dialog_exit_anim</item>
+    </style>
+
     <style name="dialog_loading" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowNoTitle">true</item>

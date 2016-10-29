@@ -19,6 +19,7 @@ import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
+import com.ihaozuo.plamexam.view.guide.GuideActivity;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 
@@ -49,7 +50,6 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
     public static SplashFragment newInstance() {
         return new SplashFragment();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -123,11 +123,17 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
     }
 
     private void turnAction() {
-        if (UserManager.getInstance().exist()) {
-            startActivity(new Intent(getActivity(), MainActivity.class));
-        } else {
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+        if (PreferenceManager.getInstance().readGuideState()) {
+            if (UserManager.getInstance().exist()) {
+                startActivity(new Intent(getActivity(), MainActivity.class));
+            } else {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        }else {
+            PreferenceManager.getInstance().writeGuideState(true);
+            startActivity(new Intent(getActivity(), GuideActivity.class));
         }
+
         getActivity().finish();
     }
 

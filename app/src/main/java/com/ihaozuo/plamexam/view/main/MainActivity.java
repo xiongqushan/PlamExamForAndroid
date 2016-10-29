@@ -17,7 +17,6 @@ import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
 import com.ihaozuo.plamexam.view.consult.ConsultLoadingFragment;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
-import com.ihaozuo.plamexam.view.login.LoginActivity;
 import com.ihaozuo.plamexam.view.mine.MineFragment;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.UMShareAPI;
@@ -117,7 +116,6 @@ public class MainActivity extends BaseActivity {
                 break;
 
             case MainActivity.FINISH_ACTIVITY:
-                startActivity(new Intent(getBaseContext(), LoginActivity.class));
                 finish();
                 break;
 
@@ -139,7 +137,6 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        unRegisterReceiver();
     }
 }
 

@@ -52,8 +52,8 @@ public class AboutUsFragment extends BaseFragment {
                 ImageLoadUtils.getInstance().display("res://com.ihaozuo.plamexam/"+idList.get(position), view);
             }
         });
+        banner.setmAutoPlayAble(false);
         banner.setData(idList);
-        banner.stopAutoPlay();
 
         return rootView;
     }

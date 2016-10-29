@@ -99,4 +99,5 @@ dependencies {
     compile 'io.reactivex:rxjava:1.1.0'
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
+    compile 'me.relex:circleindicator:1.2.1'
 }

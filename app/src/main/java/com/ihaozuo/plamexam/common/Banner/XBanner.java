@@ -438,6 +438,7 @@ public class XBanner extends RelativeLayout {
         this.mIsAutoPlay = mAutoPlayAble;
     }
 
+
     /**
      * 设置自动轮播时间间隔
      *
