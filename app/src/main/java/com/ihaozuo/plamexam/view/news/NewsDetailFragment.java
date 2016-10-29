@@ -45,6 +45,7 @@ public class NewsDetailFragment extends AbstractView {
     private Context mContext;
     private String mTitle;
     private String mSubTitle;
+    private String mImgUrl;
 
     public NewsDetailFragment() {
         mContext = getContext();
@@ -82,12 +83,14 @@ public class NewsDetailFragment extends AbstractView {
             mLinkURL = SysConfig.NEWS_DETAIL_URL[0]+ ((NewsBean) obj).id +SysConfig.NEWS_DETAIL_URL[1];
             mTitle = ((NewsBean) obj).title;
             mSubTitle =((NewsBean) obj).description;
+            mImgUrl = ((NewsBean) obj).imgFormat;
             tvAddReport.setText("分享");
             tvAddReport.setVisibility(View.VISIBLE);
         } else if (obj instanceof NewsDBPojo){
             mLinkURL = ((NewsDBPojo) obj).getUrl();
             mTitle = ((NewsDBPojo) obj).getTitle();
             mSubTitle =((NewsDBPojo) obj).getSubtitle();
+            mImgUrl=((NewsDBPojo) obj).getImg();
             tvAddReport.setText("分享");
             tvAddReport.setVisibility(View.VISIBLE);
         }
@@ -140,6 +143,6 @@ public class NewsDetailFragment extends AbstractView {
         if (HZUtils.isFastDoubleClick()){
             return;
         }
-        new ShareDialog(mContext, R.style.draw_dialog,mTitle,mLinkURL,mSubTitle).show();
+        new ShareDialog(mContext, R.style.draw_dialog,mTitle,mLinkURL,mSubTitle,mImgUrl).show();
     }
 }

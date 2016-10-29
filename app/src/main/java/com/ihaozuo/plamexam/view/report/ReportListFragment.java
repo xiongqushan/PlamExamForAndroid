@@ -21,6 +21,7 @@ import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.util.UIHelper;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -135,6 +136,7 @@ public class ReportListFragment extends AbstractView implements ReportContract.I
                 break;
             case R.id.btn_turn_consult:
                 startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
+                MobclickAgent.onEvent(getActivity(), "doctorConsult");
                 break;
         }
     }

@@ -77,7 +77,8 @@ public class NewsListAdapter extends SimpleBaseAdapter {
                 ShareDialog shareDialog = new ShareDialog(mContext,R.style.draw_dialog,
                         newsEntity.title,
                         linkUrl,
-                        newsEntity.description);
+                        newsEntity.description,
+                        newsEntity.imgFormat);
                 shareDialog.show();
 
             }

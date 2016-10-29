@@ -81,8 +81,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     apt 'com.google.dagger:dagger-compiler:2.2'
     provided 'javax.annotation:jsr250-api:1.0'
-//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
-//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
+    //    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
+
+    //    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
     compile files('libs/ActiveAndroid-3.1.jar')
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
@@ -100,4 +101,6 @@ dependencies {
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'me.relex:circleindicator:1.2.1'
+    compile files('libs/SocialSDK_Sina.jar')
+    compile files('libs/weiboSDKCore_3.1.4.jar')
 }

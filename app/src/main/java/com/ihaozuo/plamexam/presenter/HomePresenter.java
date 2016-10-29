@@ -82,7 +82,6 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
 
             @Override
             public void handlerResultError(String message) {
-                mHomeView.stopRefreshing();
                 mHomeView.hideDialog(message);
             }
 

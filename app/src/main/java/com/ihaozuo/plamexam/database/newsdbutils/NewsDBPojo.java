@@ -6,7 +6,7 @@ import com.activeandroid.annotation.Table;
 
 import java.io.Serializable;
 
-@Table(name = "newsdb" )
+@Table(name = "newsdb")
 public class NewsDBPojo extends Model implements Serializable {
     @Column
     private String time;
@@ -19,17 +19,17 @@ public class NewsDBPojo extends Model implements Serializable {
     @Column
     private String img;
     @Column
-    private String date;
+    private String mkey;
 
 
-    public NewsDBPojo(String url, String title, String subtitle, String img, String time, String date) {
+    public NewsDBPojo(String url, String title, String subtitle, String img, String time, String mkey) {
         super();
         this.url = url;
         this.title = title;
         this.subtitle = subtitle;
         this.img = img;
         this.time = time;
-        this.date = date;
+        this.mkey = mkey;
     }
 
     public NewsDBPojo() {
@@ -78,11 +78,11 @@ public class NewsDBPojo extends Model implements Serializable {
     }
 
     public String getDate() {
-        return date;
+        return mkey;
     }
 
     public void setDate(String date) {
-        this.date = date;
+        this.mkey = date;
     }
 
     @Override
