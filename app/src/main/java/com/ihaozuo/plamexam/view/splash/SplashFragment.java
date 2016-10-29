@@ -58,7 +58,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             rootView = inflater.inflate(R.layout.splash_frag, container, false);
             lastTime = System.currentTimeMillis();
             if (PreferenceManager.getInstance().readNewsState()) {
-                NewsDBManager.initNews();
+                NewsDBManager.initNews(getActivity());
                 PreferenceManager.getInstance().writeNewsState(false);
             }
 //            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {

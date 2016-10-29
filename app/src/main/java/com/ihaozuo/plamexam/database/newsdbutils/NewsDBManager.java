@@ -1,13 +1,18 @@
 package com.ihaozuo.plamexam.database.newsdbutils;
 
+import android.content.Context;
+
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
 import com.ihaozuo.plamexam.bean.NewsBean;
-import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.framework.SysConfig;
 import com.ihaozuo.plamexam.util.HZUtils;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +38,7 @@ public class NewsDBManager {
     }
 
     public static boolean hasPojo(NewsDBPojo pojo) {
-        NewsDBPojo mNewsDBPojo = new Select().from(NewsDBPojo.class).where("date=?", pojo.getDate()).executeSingle();
+        NewsDBPojo mNewsDBPojo = new Select().from(NewsDBPojo.class).where("url=?", pojo.getDate()).executeSingle();
         return mNewsDBPojo != null;
     }
 
@@ -51,18 +56,35 @@ public class NewsDBManager {
     }
 
     public static void delete(NewsDBPojo pojo) {
-        new Delete().from(NewsDBPojo.class).where("date=?", pojo.getDate()).execute();
+        new Delete().from(NewsDBPojo.class).where("url=?", pojo.getDate()).execute();
     }
 
-    public static void initNews() {
+    public static void initNews(Context context) {
         ActiveAndroid.beginTransaction();
         try {
-            for (int i = 0; i < 4; i++) {
-                NewsDBPojo newsDBPojo = new NewsDBPojo(Constants.LINKURL_HOMEBANNER_DEFAULT, "艾欧尼亚" + i, "",
-                        Constants.IMAGEURL_HOMEBANNER_DEFAULT, "time" + i, "time" + i);
-                save(newsDBPojo);
+            InputStream in = context.getApplicationContext().getAssets().open("news.txt");
+            int size = in.available();
+            byte[] buffer = new byte[size];
+            in.read(buffer);
+            in.close();
+            String json = new String(buffer);
+
+            JSONArray array = new JSONArray(json);
+            int length = array.length();
+            for (int i = 0; i < length; i++) {
+                JSONObject object = array.getJSONObject(i);
+                String url = SysConfig.NEWS_DETAIL_URL[0] + object.getInt("id") + SysConfig.NEWS_DETAIL_URL[1];
+                String title = object.getString("title");
+                String img = object.getString("imgFormat");
+                String time = object.getString("timeFormat");
+                String mkey = "mkey" + i;
+                NewsDBPojo pojo = new NewsDBPojo(url, title, title, img, time, mkey);
+                pojo.save();
             }
+
+
             ActiveAndroid.setTransactionSuccessful();
+        } catch (Exception e) {
         } finally {
             ActiveAndroid.endTransaction();
         }
@@ -84,6 +106,7 @@ public class NewsDBManager {
         }
         return list;
     }
+
 
 }
 

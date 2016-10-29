@@ -38,6 +38,7 @@ import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.ihaozuo.plamexam.view.news.NewsDetailActivity;
 import com.ihaozuo.plamexam.view.news.NewsListActivity;
 import com.ihaozuo.plamexam.view.report.ReportListActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,9 +103,9 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
 
             initView();
             registerCustomReceiver(FILTER_UPDATEBANNER_HOME);
-//            mPresenter.getBanner("bjbr003");
             mPresenter.getBanner(UserManager.getInstance().getUserInfo().DepartCode);
-            mPresenter.start();
+            mPresenter.getNewsList(1, 4);
+            mPresenter.getUnreadMartState(UserManager.getInstance().getUserInfo().AccountId);
         }
         return rootView;
     }
@@ -112,7 +113,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onStop() {
         super.onStop();
-        if (SRLayout.isRefreshing()) {
+        if (SRLayout != null && SRLayout.isRefreshing()) {
             SRLayout.setRefreshing(false);
         }
     }
@@ -176,6 +177,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
                 break;
             case R.id.btn_consult:
                 startActivity(new Intent(mContext, ConsultDetailActivity.class));
+                MobclickAgent.onEvent(getActivity(), "doctorConsult");
                 break;
             case R.id.layout_home_news:
                 startActivity(new Intent(getActivity(), NewsListActivity.class));

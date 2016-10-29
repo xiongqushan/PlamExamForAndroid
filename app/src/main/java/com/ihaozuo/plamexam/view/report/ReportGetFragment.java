@@ -18,6 +18,7 @@ import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.home.HomeFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -100,8 +101,8 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
         }
         switch (view.getId()) {
             case R.id.btn_login:
+                MobclickAgent.onEvent(getActivity(), "getReports");
                 String name = etName.getText().toString();
-
                 if (name.length() < 2 || name.length() > 15) {
                     etName.requestFocus();
                     etName.setFocusableInTouchMode(true);
@@ -110,9 +111,6 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
                 }
                 String tele = phone.getText().toString();
                 mPresenter.getReport(tele, name);
-                break;
-            case R.id.tv_addReport:
-                startActivity(new Intent(getContext(), ReportGetActivity.class));
                 break;
         }
     }

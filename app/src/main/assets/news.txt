@@ -1,0 +1,53 @@
+[{
+		"count": 279,
+		"description": "\"健康中国2030\"规划纲要将如何影响生活？ 在完善健康筹资机制方面，规划纲要要求健全政府健康领域相关投入机制，调整优化财政支出结构，加大健康领域投入力度，科学合理界定中央政府和地方政府支出责任，履行政府保障基本健康服务需求的责任",
+		"fcount": 0,
+		"id": 6831,
+		"img": "/info/161027/f5175b7c38447daf4e6074ddba1a8e07.jpg",
+		"keywords": "健康 保险 中国 规划 纲要 ",
+		"rcount": 0,
+		"time": 1477575045000,
+		"title": "2030年\"健康中国\"预期寿命再增3岁规划纲要明确",
+		"infoclass": 6,
+		"imgFormat": "http://tnfs.tngou.net/image/info/161027/f5175b7c38447daf4e6074ddba1a8e07.jpg",
+		"timeFormat": "2016-10-27"
+	}, {
+		"count": 120,
+		"description": "医院检查到底难在哪？以检养医问题突出 ”对此，常年关注医改的业界人士廖新波多次为医生劳动价值鼓呼：“只有在医生劳动价值得到科学体现的情况下，医生判断患者是否需要重新检验或检查时，才能完全取决于经验与水平，而不与任何经济收益、任何考核指标挂钩，因为他们不需要从重复检查中获得半毛钱利益",
+		"fcount": 0,
+		"id": 6830,
+		"img": "/info/161027/23d155d7ebf5d74ddf08a754d88d26b6.png",
+		"keywords": "医院 检查 检验 结果 医疗机构 ",
+		"rcount": 0,
+		"time": 1477575045000,
+		"title": "我们医院有四五百个检查项目",
+		"infoclass": 2,
+		"imgFormat": "http://tnfs.tngou.net/image/info/161027/23d155d7ebf5d74ddf08a754d88d26b6.png",
+		"timeFormat": "2016-10-27"
+	}, {
+		"count": 68,
+		"description": "“健康中国”不能成为“医疗中国”！ 慢性病有两个显著特征：其一，致病原因主要受到社会环境和生活方式的影响；其二，慢性病通常只能控制而不可治愈，非医药所能解决",
+		"fcount": 0,
+		"id": 6829,
+		"img": "/info/161027/671465ed00eba96e86eb4d5731d94009.jpg",
+		"keywords": "健康 医疗 中国 服务 慢性病 ",
+		"rcount": 0,
+		"time": 1477575044000,
+		"title": "这或许和“健康中国”的概念被偷换成“医疗中国”有关",
+		"infoclass": 6,
+		"imgFormat": "http://tnfs.tngou.net/image/info/161027/671465ed00eba96e86eb4d5731d94009.jpg",
+		"timeFormat": "2016-10-27"
+	}, {
+		"count": 121,
+		"description": "脐血脐带都是宝，造血干细胞有大本领！ 脐带间间充质干细胞具有较强的免疫调节作用，降低细胞或器官移植后的免疫排斥反应，提高细胞或器官移植的成功率;还可以用于心血管疾病、神经系统疾病、骨组织病、自身免疫性疾病、移植后GVHD等多种疾病",
+		"fcount": 0,
+		"id": 6828,
+		"img": "/info/161027/78d5cdbadcb92a0778940483766dff8d.jpg",
+		"keywords": "干细胞 脐带血 脐带 造血干细胞 新生儿 ",
+		"rcount": 0,
+		"time": 1477575044000,
+		"title": "保存新生儿的脐带血非常有必要",
+		"infoclass": 2,
+		"imgFormat": "http://tnfs.tngou.net/image/info/161027/78d5cdbadcb92a0778940483766dff8d.jpg",
+		"timeFormat": "2016-10-27"
+}]

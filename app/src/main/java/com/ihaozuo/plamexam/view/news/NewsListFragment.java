@@ -19,6 +19,7 @@ import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
+import com.umeng.analytics.MobclickAgent;
 
 import java.util.List;
 
@@ -160,6 +161,7 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         if (HZUtils.isFastDoubleClick()) {
             return;
         }
+        MobclickAgent.onEvent(getActivity(), "doctorConsult");
         startActivity(new Intent(getActivity(), ConsultDetailActivity.class));
     }
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.common.WaveView;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
+import com.umeng.analytics.MobclickAgent;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -66,6 +67,8 @@ public class ConsultLoadingFragment extends BaseFragment {
 
     @OnClick({R.id.tv_goConsult,R.id.btn_consult_loading})
     public void onClick() {
+
+        MobclickAgent.onEvent(getActivity(), "doctorConsult");
         startActivity(new Intent(mContext, ConsultDetailActivity.class));
     }
 }
