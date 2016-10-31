@@ -114,7 +114,7 @@ public class HomePresenter extends AbstractPresenter implements HomeContract.IHo
         mHomeModel.getNewsList(pageIndex, pageSize, new OnHandlerResultListener<RestResult<List<NewsBean>>>() {
             @Override
             public void handlerResultSuccess(final RestResult<List<NewsBean>> resultData) {
-                if (resultData.Data != null && resultData.Data.size() > 0) {
+                if (resultData.Data != null && resultData.Data.size()>0) {
                     List<NewsDBPojo> list = NewsDBManager.repalceNews(resultData.Data);
                     mHomeView.refreshNewsList(list);
                 }

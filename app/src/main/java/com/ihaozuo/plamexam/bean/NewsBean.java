@@ -1,9 +1,11 @@
 package com.ihaozuo.plamexam.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by zhangzhongyao on 2016/10/17.
  */
-public class NewsBean {
+public class NewsBean implements Serializable{
 
     public int count;
     public String description;

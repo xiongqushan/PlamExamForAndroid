@@ -117,6 +117,12 @@
         <activity android:name=".view.report.ReportActivity" />
         <activity android:name=".view.consult.ConsultGradeActivity" />
         <activity android:name=".view.news.NewsListActivity" />
+        <activity android:name=".view.home.RiskActivity" />
+        <activity android:name=".view.home.ExamActivity" />
+        <activity android:name=".view.home.GuaHaoActivity" />
+        <activity android:name=".common.jpush.WakeActivity" />
+        <activity android:name=".view.guide.GuideActivity"
+            android:theme="@style/AppGuide"/>
 
         <service
             android:name=".common.UpdateService"
@@ -246,6 +252,24 @@
         <!-- Share edit page -->
 
         <activity
+            android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+        <service android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false"></service>
+
+        <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
@@ -293,10 +317,7 @@
             android:name="UMENG_CHANNEL"
             android:value="Umeng" />
 
-        <activity android:name=".view.home.RiskActivity" />
-        <activity android:name=".view.home.ExamActivity" />
-        <activity android:name=".view.home.GuaHaoActivity" />
-        <activity android:name=".common.jpush.WakeActivity" />
+
     </application>
 
 </manifest>

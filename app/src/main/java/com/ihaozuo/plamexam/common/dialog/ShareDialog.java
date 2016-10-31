@@ -13,6 +13,11 @@ import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.framework.HZApp;
+import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.ToastUtils;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.tencent.tauth.Tencent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
@@ -32,14 +37,22 @@ public class ShareDialog extends Dialog {
     ImageView btnClose;
     private Context mContext;
     private String title;
+    private String subTitle;
     private String targetUrl;
-    UMImage image;
+    private String imgUrl;
+    private IWXAPI wxapi;
+    private Tencent mTencent;
+    UMImage image ;
 
-    public ShareDialog(Context context, int themeResId, String title, String targetUrl) {
+    public ShareDialog(Context context, int themeResId,String title, String targetUrl,String subtitle,String imgUrl) {
         super(context, themeResId);
         this.mContext = context;
         this.title = title;
-        this.targetUrl = targetUrl;
+        this.subTitle = subtitle;
+//        this.targetUrl = targetUrl.replace(targetUrl.length()-1+"","1");
+        this.targetUrl=targetUrl.substring(0,targetUrl.length()-1);
+        this.targetUrl+="1";
+        this.imgUrl = imgUrl;
         Config.dialog = new LoadingDialog(mContext);
         Config.IsToastTip = false;
         initWindow();
@@ -52,7 +65,7 @@ public class ShareDialog extends Dialog {
         WindowManager.LayoutParams winlp = getWindow()
                 .getAttributes();
         winlp.alpha = 1.0f; // 0.0-1.0
-        winlp.dimAmount = 0.6f;
+        winlp.dimAmount=0.6f;
         getWindow().setAttributes(winlp);
 
         Window win = getWindow();
@@ -78,43 +91,65 @@ public class ShareDialog extends Dialog {
         btnPengyouquan.setOnClickListener(onClickListener);
         btnClose.setOnClickListener(onClickListener);
 
+        wxapi = WXAPIFactory.createWXAPI(mContext, mContext.getString(R.string.WEIXIN_APP_ID));
+        mTencent = Tencent.createInstance(mContext.getString(R.string.QQ_APP_ID), mContext);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (HZUtils.isFastDoubleClick()){
+                return;
+            }
 
-            image = new UMImage(HZApp.shareApplication(), R.drawable.logo);
-
-            image.setTitle("掌上体检");
+            image = new UMImage(HZApp.shareApplication(), imgUrl);
 
             ShareAction shareAction = new ShareAction((Activity) mContext)
                     .withTitle(title)
+                    .withText(subTitle)
                     .withMedia(image)
-                    .withTargetUrl(targetUrl);
+                    .withTargetUrl(targetUrl)
+                    .setCallback(umShareListener);
 
             switch (v.getId()) {
                 case R.id.btn_weixin:
-                    new ShareAction((Activity) mContext)
-                            .withText("test")
-                            .share();
+
+                    if (wxapi.isWXAppSupportAPI() && wxapi.isWXAppInstalled()) {
+                        shareAction.setPlatform(SHARE_MEDIA.WEIXIN).share();
+                    }  else{
+                        ToastUtils.showToast("当前微信版本过低或未安装!");
+                    }
+
                     break;
                 case R.id.btn_qq:
-                    shareAction.setPlatform(SHARE_MEDIA.QQ).setCallback(umShareListener).share();
+
+                    shareAction.setPlatform(SHARE_MEDIA.QQ).share();
+
                     break;
                 case R.id.btn_weibo:
-                    shareAction.setPlatform(SHARE_MEDIA.SINA).setCallback(umShareListener).share();
+
+                    new ShareAction((Activity) mContext)
+                            .setPlatform(SHARE_MEDIA.SINA)
+                            .withText(title + targetUrl)
+                            .withMedia(image)
+                            .setCallback(umShareListener)
+                            .share();
+
                     break;
                 case R.id.btn_pengyouquan:
-//                    shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).setCallback(umShareListener).share();
-                    new ShareAction((Activity) mContext)
-                            .withTitle(title)
-                            .withMedia(image)
-                            .withTargetUrl(targetUrl)
-                            .setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).share();
+
+                    if (wxapi.isWXAppSupportAPI() && wxapi.isWXAppInstalled()) {
+                        shareAction.setPlatform(SHARE_MEDIA.WEIXIN_CIRCLE).share();
+                    }  else{
+                        ToastUtils.showToast("当前微信版本过低或未安装!");
+                    }
+
                     break;
                 case R.id.btn_close:
+
                     dismiss();
+
                     break;
             }
         }
@@ -122,33 +157,32 @@ public class ShareDialog extends Dialog {
 
     private UMShareListener umShareListener = new UMShareListener() {
 
-
         @Override
         public void onResult(SHARE_MEDIA platform) {
-            Log.d("plat", "platform" + platform);
-            if (platform.name().equals("WEIXIN_FAVORITE")) {
-                Toast.makeText(mContext, checkPlatform(platform) + " 收藏成功啦", Toast.LENGTH_SHORT).show();
-            } else {
+            Log.d("plat","platform"+platform);
+            if(platform.name().equals("WEIXIN_FAVORITE")){
+                Toast.makeText(mContext,checkPlatform(platform) + " 收藏成功啦",Toast.LENGTH_SHORT).show();
+            }else{
                 Toast.makeText(mContext, checkPlatform(platform) + " 分享成功啦", Toast.LENGTH_SHORT).show();
             }
         }
 
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
-            Toast.makeText(mContext, checkPlatform(platform) + " 分享失败啦", Toast.LENGTH_SHORT).show();
-            if (t != null) {
-                Log.d("throw", "throw:" + t.getMessage());
+            Toast.makeText(mContext,checkPlatform(platform) + " 分享失败啦", Toast.LENGTH_SHORT).show();
+            if(t!=null){
+                Log.d("throw","throw:"+t.getMessage());
             }
         }
 
         @Override
         public void onCancel(SHARE_MEDIA platform) {
-            Toast.makeText(mContext, checkPlatform(platform) + " 分享取消了", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,checkPlatform(platform) + " 分享取消了", Toast.LENGTH_SHORT).show();
         }
     };
 
-    public String checkPlatform(SHARE_MEDIA platform) {
-        switch (platform) {
+    public String checkPlatform(SHARE_MEDIA platform){
+        switch (platform){
             case WEIXIN_CIRCLE:
                 return "朋友圈";
             case WEIXIN:
@@ -161,6 +195,7 @@ public class ShareDialog extends Dialog {
                 return "";
         }
     }
+
 
 
 }

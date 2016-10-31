@@ -28,7 +28,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/consult_photot_marginleft"
             android:layout_marginTop="@dimen/consult_photo_margintop"
-            fresco:placeholderImage="@drawable/user_default_url"
+            fresco:placeholderImage="@drawable/ic_user_small"
             fresco:placeholderImageScaleType="fitXY"
             fresco:roundAsCircle="true" />
 

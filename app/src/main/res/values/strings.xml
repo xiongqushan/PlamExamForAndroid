@@ -47,7 +47,7 @@
     <string name="scale_down_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleDownShowBehavior</string>
     <string name="scale_up_show_behavior">com.ihaozuo.plamexam.view.consult.behavior.ScaleUpShowBehavior</string>
     <string name="swipe_dismiss_behavior">android.support.design.widget.SwipeDismissBehavior</string>
-    <string name="url_default">http://article.h5.ihaozhuo.com/1475216088834.html</string>
+    <string name="URL_default">http://article.h5.ihaozhuo.com/1475216088834.html</string>
 
     <string name="phone">手机号码</string>
     <string name="photo">头像</string>
@@ -70,7 +70,16 @@
     <!--语音听写APP_ID-->
     <string name="xunfei_app_id">5804a7be</string>
     <string name="JPush_app_id">750c95297adeffc03b5439cb</string>
-    <string name="UMeng_app_id">5809aabbaed17930ee002f01</string>
+    <string name="UMeng_app_id">57be474667e58ef053000087</string>
+
+    <string name="QQ_APP_ID">1105699103</string>
+    <string name="QQ_APP_KEY">W0grAATJYfxpI7NC</string>
+    <string name="WEIXIN_APP_ID">wx35e5655ba6776765</string>
+    <string name="WEIXIN_APP_KEY">a01938c93230a27b338cf5bece21adea</string>
+    <string name="SINA_APP_ID">436196584</string>
+    <string name="SINA_APP_KEY">e7e5b817ca06547ef20f3a9c5bd4f650</string>
+    <string name="SINA_OAUTH_URL">http://sns.whalecloud.com/sina2/callback</string>
+
     <!-- 听写 -->
     <string name="text_begin">请开始说话…</string>
     <string name="text_begin_recognizer">开始音频流识别</string>

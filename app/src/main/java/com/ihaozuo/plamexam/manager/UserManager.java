@@ -19,9 +19,9 @@ import java.io.ObjectOutputStream;
 public class UserManager {
     private static final String SP_NAME = "USER";
     private static final String USER_INFO_KEY = "USER_INFO_KEY";
-    private String USER_DOCTOR_ID;
     private static UserManager _instance;
     private SharedPreferences sharedPreferences;
+    private String USER_DOCTOR_ID;
     private UserBean _currentUserEntity;
 
     private UserManager() {
@@ -104,5 +104,6 @@ public class UserManager {
     public void clear() {
         sharedPreferences.edit().remove(USER_INFO_KEY).commit();
         _instance = null;
+        String a = getInstance().getDoctorID();
     }
 }

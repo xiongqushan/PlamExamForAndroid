@@ -51,6 +51,7 @@ import rx.Subscription;
 
 public class HomeFragment extends AbstractView implements HomeContract.IHomeView, View.OnClickListener {
     public static final String FILTER_UPDATEBANNER_HOME = "FILTER_UPDATEBANNER_HOME";
+    private static String DEFAULT_BANNER_URL = "DEFAULT_BANNER_URL";
 
     @Bind(R.id.listview_home)
     ListView mListView;
@@ -113,6 +114,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     @Override
     public void onStop() {
         super.onStop();
+        mPresenter.cancelRequest();
         if (SRLayout != null && SRLayout.isRefreshing()) {
             SRLayout.setRefreshing(false);
         }
@@ -216,7 +218,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             @Override
             public void loadBanner(XBanner banner, final SimpleDraweeView view, int position) {
 //                view.measure(0,0);
-
 //                ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner);
                 ImageLoadUtils.getInstance().display(mBannerList.get(position).ImageUrl, view, R.drawable.banner, resizeOptions);
             }
@@ -225,20 +226,23 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
         mViewPager.setOnItemClickListener(new XBanner.OnItemClickListener() {
             @Override
             public void onItemClick(XBanner banner, int position) {
+                if (DEFAULT_BANNER_URL.equals(mBannerList.get(position).LinkUrl)){
+                    return;
+                }
                 Intent intent = new Intent(mContext, NewsDetailActivity.class);
-                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, mBannerList.get(position).LinkUrl);
+                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, mBannerList.get(position));
+//                intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, mBannerList.get(position).LinkUrl);
                 startActivity(intent);
             }
         });
 
         BannerBean defaultBanner = new BannerBean();
         defaultBanner.ImageUrl = Constants.IMAGEURL_HOMEBANNER_DEFAULT;
-        defaultBanner.LinkUrl = Constants.LINKURL_HOMEBANNER_DEFAULT;
+        defaultBanner.LinkUrl = DEFAULT_BANNER_URL;
         mBannerList.add(defaultBanner);
         mViewPager.setData(mBannerList);
 
     }
-
 
     @Override
     public void initBanner(final List<BannerBean> sourceList) {
@@ -298,12 +302,6 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             TextView tvCommiton = UIHelper.getAdapterView(convertView, R.id.tv_commiton);
             TextView btnShare = UIHelper.getAdapterView(convertView, R.id.btn_share);
             final NewsDBPojo newsEntity = newsList.get(position);
-//
-//            int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
-//            int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
-//            imgNewslist.measure(w, h);
-//            int height =imgNewslist.getMeasuredHeight();
-//            int width =imgNewslist.getMeasuredWidth();
 
             ResizeOptions resizeOptions = new ResizeOptions(250, 170);
             ImageLoadUtils.getInstance().display(newsEntity.getImg(), imgNewslist, R.drawable.banner, resizeOptions);
@@ -312,16 +310,21 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
             btnShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ShareDialog shareDialog = new ShareDialog(mContext, R.style.draw_dialog, newsEntity.getTitle(), newsEntity.getUrl());
-                    shareDialog.show();
+                    new ShareDialog(mContext, R.style.draw_dialog,
+                            newsEntity.getTitle(),
+                            newsEntity.getUrl(),
+                            newsEntity.getSubtitle(),
+                            newsEntity.getImg()
+                    ).show();
+
                 }
             });
             convertView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, NewsDetailActivity.class);
-                    String url = newsEntity.getUrl();
-                    intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, url);
+//                    String url = newsEntity.getUrl();
+                    intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, newsEntity);
                     mContext.startActivity(intent);
                 }
             });

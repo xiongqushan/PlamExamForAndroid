@@ -75,6 +75,12 @@ public class NewsListFragment extends AbstractView implements NewsContract.INews
         return rootView;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPresenter.cancelRequest();
+    }
+
     private void initView() {
         canLoadMore = true;
         adapter = new NewsListAdapter(mContext);

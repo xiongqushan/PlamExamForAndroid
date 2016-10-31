@@ -330,6 +330,9 @@ public class XBanner extends RelativeLayout {
         @Override
         public Object instantiateItem(ViewGroup container, final int position) {
             SimpleDraweeView imageView = new SimpleDraweeView(getContext());
+//            GenericDraweeHierarchy hierarchy = imageView.getHierarchy();
+//            hierarchy.setPlaceholderImageFocusPoint(new PointF(0.5f, 0.5f));
+//            imageView.setHierarchy(hierarchy);
             imageView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -434,6 +437,7 @@ public class XBanner extends RelativeLayout {
     public void setmAutoPlayAble(boolean mAutoPlayAble) {
         this.mIsAutoPlay = mAutoPlayAble;
     }
+
 
     /**
      * 设置自动轮播时间间隔

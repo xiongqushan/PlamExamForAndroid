@@ -63,19 +63,19 @@ public class BannerFragment extends Fragment {
             view = inflater.inflate(R.layout.banner_frag, container,
                     false);
             SimpleDraweeView img = (SimpleDraweeView) view.findViewById(R.id.imgBanner);
-            if (dataList == null || dataList.size() == 0) {
-                img.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (HZUtils.isFastDoubleClick()) {
-                            return;
-                        }
-                        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, getString(R.string.url_default));
-                        startActivity(intent);
-                    }
-                });
-            } else {
+//            if (dataList == null || dataList.size() == 0) {
+//                img.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (HZUtils.isFastDoubleClick()) {
+//                            return;
+//                        }
+//                        Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
+//                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, getString(R.string.url_default));
+//                        startActivity(intent);
+//                    }
+//                });
+//            } else {
                 ImageLoadUtils.getInstance().display(dataList.get(position).ImageUrl, img);
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -84,12 +84,13 @@ public class BannerFragment extends Fragment {
                             return;
                         }
                         Intent intent = new Intent(getActivity(), NewsDetailActivity.class);
-                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, dataList.get(position).LinkUrl);
+                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, dataList.get(position));
+//                        intent.putExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY, dataList.get(position).LinkUrl);
                         startActivity(intent);
 
                     }
                 });
-            }
+//            }
 
         }
         return view;

@@ -11,6 +11,7 @@ public interface LoginContract {
 
         void gotoMainPage();
 
+//        void setBtnClickable(Boolean clickable);
     }
 
     interface ILoginPresenter extends IBasePresenter{

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.ReportDetailBean;
@@ -104,7 +103,7 @@ public class ReportErrorFragment extends Fragment {
             if (mReportDetailBean == null || numSeleted == 0) {
                 return;
             } else {
-                Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), selectData, Toast.LENGTH_SHORT).show();
             }
 //            mReportFragment.sendMsgForReport(mReportDetailBean, String.valueOf(selectData));
             mReportFragment.sendMsg(mReportDetailBean, String.valueOf(selectData));

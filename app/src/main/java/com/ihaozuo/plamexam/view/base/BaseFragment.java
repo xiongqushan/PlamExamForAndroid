@@ -14,9 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
-import com.ihaozuo.plamexam.framework.HZApp;
 import com.ihaozuo.plamexam.view.consult.ConsultDetailActivity;
 import com.ihaozuo.plamexam.view.main.MainActivity;
 import com.umeng.analytics.MobclickAgent;
@@ -157,9 +155,9 @@ public class BaseFragment extends Fragment {
         if (receiver != null) {
             getContext().unregisterReceiver(receiver);
         }
-        if (BuildConfig.DEBUG) {
-            HZApp.shareApplication().getRefWatcher().watch(this);
-        }
+//        if (BuildConfig.DEBUG) {
+//            HZApp.shareApplication().getRefWatcher().watch(this);
+//        }
 
     }
 }

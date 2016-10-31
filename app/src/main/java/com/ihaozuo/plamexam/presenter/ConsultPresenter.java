@@ -46,7 +46,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         mIConsultView.setPresenter(this);
         mUserInfo = UserManager.getInstance().getUserInfo();
         mDoctorID = UserManager.getInstance().getDoctorID();
-
     }
 
     @Override
@@ -65,6 +64,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         if (null != UserManager.getInstance().getDoctorID()) {
             doctorIDBoolean = true;
         }
+
         if (null != DoctorManager.getInstance().getDoctorList()) {
             doctorListBoolean = true;
         }
@@ -77,7 +77,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         } else {
             toggleDialog();
         }
-
     }
 
     @Override
@@ -100,7 +99,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
         });
     }
 
-
     @Override
     public void sendMessage(final int type, final String consultContent) {
         mIConsultView.showDialog();
@@ -110,11 +108,13 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             public void handlerResultSuccess(RestResult<Boolean> resultData) {
                 mIConsultView.addReply(creatReplayContent(consultContent, type));
                 mIConsultView.hideDialog();
+                mIConsultView.setBtnSendClickable(true);
             }
 
             @Override
             public void handlerResultError(String message) {
                 mIConsultView.hideDialog(message);
+                mIConsultView.setBtnSendClickable(true);
             }
         });
     }
@@ -127,7 +127,7 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
                     UserManager.getInstance().setDoctorID(resultData.Data);
                 }
                 doctorIDBoolean = true;
-                    toggleDialog();
+                toggleDialog();
             }
 
             @Override
@@ -136,7 +136,6 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
                 mIConsultView.toggleRetryLayer(true);
 
             }
-
         });
     }
 
@@ -190,6 +189,8 @@ public class ConsultPresenter extends AbstractPresenter implements ConsultContra
             }
         }
     }
+
+
 
     public void toggleDialog() {
         if (consultListBoolean && doctorIDBoolean && doctorListBoolean) {

@@ -46,8 +46,8 @@
             android:text="添加报告"
             android:textColor="@color/white"
             android:layout_alignParentRight="true"
-            android:padding="5dp"
-            android:visibility="invisible"/>
+            android:padding="@dimen/padding_10dp"
+            android:visibility="gone"/>
 
 
     </RelativeLayout>

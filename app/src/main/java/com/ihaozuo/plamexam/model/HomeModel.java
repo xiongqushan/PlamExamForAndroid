@@ -15,6 +15,7 @@ import com.ihaozuo.plamexam.listener.OnHandlerResultWithCompletedListener;
 import com.ihaozuo.plamexam.service.IHomeService;
 import com.ihaozuo.plamexam.util.HZUtils;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -83,7 +84,7 @@ public class HomeModel extends AbstractModel {
     public void initData(final OnHandlerResultWithCompletedListener<RestResult> callback) {
         final Observable<BaseBean<BannerBean>> observable1 = Observable.just(new BaseBean<BannerBean>(new BannerBean()));
         final Observable<BaseBean<NewsBean>> observable2 = Observable.just(new BaseBean<NewsBean>(new NewsBean()));
-        Observable<BaseBean<?>> merge = Observable.merge(observable1, observable2);
+        Observable<BaseBean<? extends Serializable>> merge = Observable.merge(observable1, observable2);
         merge.subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<BaseBean<?>>() {
                     @Override

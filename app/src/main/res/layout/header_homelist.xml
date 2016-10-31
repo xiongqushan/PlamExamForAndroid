@@ -18,6 +18,72 @@
         app:pointSelect="@drawable/shape_selected"
         app:pointsPosition="CENTER" />
 
+    <com.ihaozuo.plamexam.common.RevealLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="@dimen/padding_9dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/layoutTJYY"
+            style="@style/llayout_home_header">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_home_exam_" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="体检预约"
+                android:textSize="15sp"
+                android:textColor="@color/gray_87"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutGHYY"
+            style="@style/llayout_home_header">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_home_guahao_" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="挂号预约"
+                android:textSize="15sp"
+                android:textColor="@color/gray_87"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFXPG"
+            style="@style/llayout_home_header">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="29dp"
+                android:src="@drawable/ic_home_risk_" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:includeFontPadding="false"
+                android:text="风险评估"
+                android:textSize="15sp"
+                android:textColor="@color/gray_87"/>
+        </LinearLayout>
+
+    </com.ihaozuo.plamexam.common.RevealLayout>
+
 
     <com.ihaozuo.plamexam.common.RevealLayout
         android:layout_width="match_parent"
@@ -101,68 +167,6 @@
 
     </com.ihaozuo.plamexam.common.RevealLayout>
 
-    <com.ihaozuo.plamexam.common.RevealLayout
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="@dimen/padding_9dp"
-        android:background="@color/white"
-        android:orientation="horizontal">
-
-        <LinearLayout
-            android:id="@+id/layoutTJYY"
-            style="@style/llayout_home_header">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="29dp"
-                android:src="@drawable/ic_tjyy" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:includeFontPadding="false"
-                android:text="体检预约"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutGHYY"
-            style="@style/llayout_home_header">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="29dp"
-                android:src="@drawable/ic_ghyy" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:includeFontPadding="false"
-                android:text="挂号预约"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutFXPG"
-            style="@style/llayout_home_header">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="29dp"
-                android:src="@drawable/ic_fxpg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:includeFontPadding="false"
-                android:text="风险评估"
-                android:textSize="15sp" />
-        </LinearLayout>
-
-    </com.ihaozuo.plamexam.common.RevealLayout>
 
     <RelativeLayout
         android:id="@+id/layout_home_news"

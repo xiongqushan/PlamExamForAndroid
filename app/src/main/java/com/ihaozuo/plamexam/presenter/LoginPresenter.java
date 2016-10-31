@@ -21,6 +21,7 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
     private LoginContract.ILoginView mLoginView;
     private UserModel mUserModel;
+    private boolean canRegister = true;
 
 
     @Inject
@@ -64,6 +65,10 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
 
     @Override
     public void register(String mobile, String validCode) {
+        if (!canRegister) {
+            return;
+        }
+        canRegister=false;
         mLoginView.showDialog();
         mUserModel.register(mobile, validCode, new OnHandlerResultListener<RestResult<UserBean>>() {
             @Override
@@ -80,6 +85,8 @@ public class LoginPresenter extends AbstractPresenter implements LoginContract.I
             @Override
             public void handlerResultError(String message) {
                 mLoginView.hideDialog(message);
+//                mLoginView.setBtnClickable(true);
+                canRegister=true;
             }
 
         });

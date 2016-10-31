@@ -63,6 +63,7 @@
 
     <LinearLayout
         android:id="@+id/layoutReportEx"
+        android:visibility="gone"
         style="@style/hlayout_h44">
 
         <ImageView

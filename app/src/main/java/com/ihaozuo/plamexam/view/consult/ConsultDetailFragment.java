@@ -78,11 +78,13 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public static boolean isLive = false;
     public static final String REFRESH_COSULTD_LIST = "REFRESH_COSULTD_LIST";
     public static final String REFRESH_COSULTD_WITH_REPORT = "REFRESH_COSULTD_WITH_REPORT";
+    @Bind(R.id.btn_send)
+    ImageView btnSend;
 
 
     private View rootView;
     private Context mContext;
-    private ConsultContract.IConsultPresenter mIConsultPresenter;
+    private ConsultContract.IConsultPresenter mPresenter;
 
     private LinearLayoutManager linearLayoutManager;
     private RecyclerView mRecyclerView;
@@ -125,7 +127,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                mIConsultPresenter.getConsultDetail();
+                mPresenter.getConsultDetail();
             }
         });
 
@@ -146,16 +148,16 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
         });
 
         registerCustomReceiver(REFRESH_COSULTD_LIST);
-        mIConsultPresenter.start();
-        mIConsultPresenter.removeUnreadMark(1);
+        mPresenter.start();
+        mPresenter.removeUnreadMark(1);
         return rootView;
     }
 
     @Override
     protected void onReceiveBroadcast(String filterAction, Intent intent) {
         if (REFRESH_COSULTD_LIST.equals(filterAction)) {
-            mIConsultPresenter.getConsultDetail();
-            mIConsultPresenter.removeUnreadMark(1);
+            mPresenter.getConsultDetail();
+            mPresenter.removeUnreadMark(1);
         }
     }
 
@@ -177,8 +179,8 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     @Override
     public void onStop() {
         super.onStop();
+        mPresenter.cancelRequest();
         isForeground = false;
-        mIConsultPresenter.cancelRequest();
     }
 
     @Override
@@ -197,7 +199,7 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     @Override
     protected IBasePresenter getPresenter() {
-        return mIConsultPresenter;
+        return mPresenter;
     }
 
     @Override
@@ -207,11 +209,14 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
 
     @Override
     public void setPresenter(ConsultContract.IConsultPresenter presenter) {
-        mIConsultPresenter = presenter;
+        mPresenter = presenter;
     }
 
     @OnClick({R.id.btn_voice, R.id.btn_send, R.id.fab, R.id.btn_report})
     public void onClick(View view) {
+        if (HZUtils.isFastDoubleClick()) {
+            return;
+        }
         switch (view.getId()) {
             case R.id.btn_voice:
                 voice2TxtUtils.getVoiceContent(edittxtMessage);
@@ -222,9 +227,6 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
                 break;
 
             case R.id.btn_send:
-                if (HZUtils.isFastDoubleClick()) {
-                    break;
-                }
                 sendMessage();
                 break;
 
@@ -265,9 +267,18 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public void sendMessage() {
         String editContent = edittxtMessage.getText().toString();
         if (!StringUtil.isEmpty(editContent)) {
-            mIConsultPresenter.sendMessage(1, editContent);
+            btnSend.setClickable(false);
+            mPresenter.sendMessage(1, editContent);
+//            edittxtMessage.setText(null);
         } else {
             Toast.makeText(mContext, "请先输入内容！", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @Override
+    public void setBtnSendClickable(Boolean clickable){
+        if (btnSend != null){
+            btnSend.setClickable(clickable);
         }
     }
 

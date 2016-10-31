@@ -15,8 +15,6 @@ import com.ihaozuo.plamexam.ioc.AppModule;
 import com.ihaozuo.plamexam.ioc.DaggerAppComponent;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.util.ImageLoadUtils;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
@@ -30,16 +28,16 @@ import cn.jpush.android.api.JPushInterface;
  */
 public class HZApp extends Application {
     private static HZApp application;
-    private RefWatcher mRefWatcher;
+//    private RefWatcher mRefWatcher;
     private AppComponent mAppComponent;
 
     public static HZApp shareApplication() {
         return application;
     }
 
-    public RefWatcher getRefWatcher() {
-        return mRefWatcher;
-    }
+//    public RefWatcher getRefWatcher() {
+//        return mRefWatcher;
+//    }
 
     public AppComponent getAppComponent() {
         return mAppComponent;
@@ -70,7 +68,7 @@ public class HZApp extends Application {
         Setting.setShowLog(BuildConfig.DEBUG);
 
 //        leakcanary
-        mRefWatcher = LeakCanary.install(this);
+//        mRefWatcher = LeakCanary.install(this);
 
         //dagger2注入检查工具
 //        if (BuildConfig.DEBUG) {
@@ -89,6 +87,13 @@ public class HZApp extends Application {
         JPushInterface.init(this);
         // JPushInterface.setLatestNotificationNumber(this, 3);//限制保留的通知条数。默认为保留最近 5 条通知。
 
+
+        PlatformConfig.setSinaWeibo(getString(R.string.SINA_APP_ID), getString(R.string.SINA_APP_KEY));
+        PlatformConfig.setQQZone(getString(R.string.QQ_APP_ID), getString(R.string.QQ_APP_KEY));
+        PlatformConfig.setWeixin(getString(R.string.WEIXIN_APP_ID), getString(R.string.WEIXIN_APP_KEY));
+        Config.REDIRECT_URL = getString(R.string.SINA_OAUTH_URL);
+        
+
     }
 
 
@@ -104,16 +109,5 @@ public class HZApp extends Application {
         }
         return null;
     }
-
-
-    {
-        //微信 wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
-        PlatformConfig.setSinaWeibo("436196584", "e7e5b817ca06547ef20f3a9c5bd4f650");
-        PlatformConfig.setQQZone("1105699103", "W0grAATJYfxpI7NC");
-        PlatformConfig.setWeixin("wx35e5655ba6776765", "a01938c93230a27b338cf5bece21adea");
-        Config.REDIRECT_URL = "http://sns.whalecloud.com/sina2/callback";
-
-    }
-
 
 }

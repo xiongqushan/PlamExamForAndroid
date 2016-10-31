@@ -82,7 +82,7 @@ public class ImageLoadUtils {
         if(placeHoldImage!=0){
             hierarchy.setPlaceholderImage(placeHoldImage); // 修改占位图
         }
-        hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FOCUS_CROP); // 修改缩放类型
+        hierarchy.setActualImageScaleType(ScalingUtils.ScaleType.FIT_XY); // 修改缩放类型
         hierarchy.setActualImageFocusPoint(new PointF(0.5f, 0.5f)); // 居中显示
         RoundingParams roundingParams = RoundingParams.fromCornersRadius(10);
         roundingParams.setCornersRadius(10);
