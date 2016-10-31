@@ -1,5 +1,6 @@
 package com.ihaozuo.plamexam.view.guide;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,12 +27,16 @@ public class GuideFragment extends BaseFragment {
     private int mDrawableID;
     private boolean mShowTV;
 
-    public GuideFragment(int DrawableID,boolean showTV) {
+    public GuideFragment() {
+    }
+
+    @SuppressLint("ValidFragment")
+    public GuideFragment(int DrawableID, boolean showTV) {
         mDrawableID = DrawableID;
         mShowTV = showTV;
     }
 
-    public static GuideFragment newInstance(int DrawableID,boolean showTV) {
+    public static GuideFragment newInstance(int DrawableID, boolean showTV) {
         return new GuideFragment(DrawableID, showTV);
     }
 
@@ -43,7 +48,7 @@ public class GuideFragment extends BaseFragment {
         }
         ButterKnife.bind(this, rootView);
 
-        ImageLoadUtils.getInstance().display("res://com.ihaozuo.plamexam/"+mDrawableID, draweeView);
+        ImageLoadUtils.getInstance().display("res://com.ihaozuo.plamexam/" + mDrawableID, draweeView);
 
         return rootView;
     }
@@ -56,13 +61,13 @@ public class GuideFragment extends BaseFragment {
 
     @OnClick(R.id.draweeView)
     public void onClick() {
-        if(!mShowTV){
+        if (!mShowTV) {
             return;
         }
 //        if (UserManager.getInstance().exist()) {
 //            startActivity(new Intent(getActivity(), MainActivity.class));
 //        } else {
-            startActivity(new Intent(getActivity(), LoginActivity.class));
+        startActivity(new Intent(getActivity(), LoginActivity.class));
 //        }
         getActivity().finish();
     }

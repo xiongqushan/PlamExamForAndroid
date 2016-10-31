@@ -20,5 +20,4 @@ public class VersionInfoBean {
     public int Status;
     public String Message;
     public String DownLink;
-    public boolean IsValid = false;
 }

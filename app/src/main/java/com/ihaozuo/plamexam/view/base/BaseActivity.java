@@ -161,11 +161,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    protected void unRegisterReceiver(){
-        if (receiver != null) {
-            getBaseContext().unregisterReceiver(receiver);
-        }
-    };
 
     @Override
     public void onDestroy() {

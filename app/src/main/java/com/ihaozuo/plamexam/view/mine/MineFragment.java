@@ -71,7 +71,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.layoutReportEx:
                 MobclickAgent.onEvent(getActivity(), "reportEX");
-                // getActivity().startActivity(new Intent(getActivity(), ReportActivity.class));
+                //  getActivity().startActivity(new Intent(getActivity(), ReportEXActivity.class));
                 break;
         }
     }

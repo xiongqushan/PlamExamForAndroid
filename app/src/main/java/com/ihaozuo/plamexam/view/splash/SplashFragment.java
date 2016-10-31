@@ -16,7 +16,6 @@ import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
-import com.ihaozuo.plamexam.util.ConnectedUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.guide.GuideActivity;
@@ -61,11 +60,11 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
                 NewsDBManager.initNews(getActivity());
                 PreferenceManager.getInstance().writeNewsState(false);
             }
-            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
-                mPresenter.start();
-            } else {
-                turnNextAty();
-            }
+//            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
+//                mPresenter.start();
+//            } else {
+            turnNextAty();
+//            }
         }
 
         return rootView;
@@ -73,7 +72,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
 
     @Override
     public void updateInfo(final VersionInfoBean bean) {
-        if (bean.IsValid) {//TODO 还能用
+        if (bean.Status != 0) {//TODO 还能用
             if (StringUtil.isTrimEmpty(bean.Message)) {
                 turnNextAty();
             } else {
@@ -114,7 +113,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
                 @Override
                 public void OnDialogCancelListener() {
                 }
-            }).setTitle("检测到更新\n当前版本不再维护")
+            }).setTitle("检测到更新").setSubtitle("当前版本不再维护,点击确定下载掌上体检最新版")
                     .setCanCancel(false).show();
         }
     }
@@ -143,7 +142,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             } else {
                 startActivity(new Intent(getActivity(), LoginActivity.class));
             }
-        }else {
+        } else {
             PreferenceManager.getInstance().writeGuideState(true);
             startActivity(new Intent(getActivity(), GuideActivity.class));
         }

@@ -13,7 +13,6 @@ import android.widget.EditText;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.contract.ReportContract;
-import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
@@ -65,7 +64,8 @@ public class ReportGetFragment extends AbstractView implements ReportContract.IR
 
     private void initView() {
 //        phone.setEnabled(false);
-        phone.setText(UserManager.getInstance().getUserInfo().Mobile);
+        //      phone.setText(UserManager.getInstance().getUserInfo().Mobile);
+        phone.setText("13651646955");
         etName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
