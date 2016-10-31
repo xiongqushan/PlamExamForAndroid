@@ -174,7 +174,6 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
 
     @Override
     public void showUpdateInfo(VersionInfoBean bean) {
-
 //        new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
 //            @Override
 //            public void OnDialogConfirmListener() {
