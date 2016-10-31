@@ -52,7 +52,9 @@ public class MyJpushReceiver extends BroadcastReceiver {
             Log.d(TAG, "[MyReceiver] 接收到推送下来的通知的ID: " + notifactionId);
 
             // TODO 向指定的ACTIVITY发送广播
-            senBroadcastToActivity(context, bundle);
+            if (MainActivity.isLived) {
+                senBroadcastToActivity(context, bundle);
+            }
         } else if (JPushInterface.ACTION_NOTIFICATION_OPENED.equals(intent
                 .getAction())) {
             Log.e(TAG, "[MyReceiver] 用户点击打开了通知" + printBundle(bundle));

@@ -46,7 +46,7 @@ public class NewsDetailFragment extends AbstractView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.news_detail_frag, container, false);
-        setCustomerTitle(rootView, getString(R.string.app_name));
+        setCustomerTitle(rootView, "文章详情");
         ButterKnife.bind(this, rootView);
         initView();
         String url = getActivity().getIntent().getStringExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY);

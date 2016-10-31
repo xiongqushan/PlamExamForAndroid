@@ -1,8 +1,6 @@
 package com.ihaozuo.plamexam.view.splash;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,12 +9,14 @@ import android.view.ViewGroup;
 
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.VersionInfoBean;
+import com.ihaozuo.plamexam.common.UpdateService;
+import com.ihaozuo.plamexam.common.dialog.VersionDialog;
 import com.ihaozuo.plamexam.contract.SplashContract;
 import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
-import com.ihaozuo.plamexam.util.HZUtils;
+import com.ihaozuo.plamexam.util.ConnectedUtils;
 import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
@@ -61,11 +61,11 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
                 NewsDBManager.initNews(getActivity());
                 PreferenceManager.getInstance().writeNewsState(false);
             }
-//            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
-//                mPresenter.start();
-//            } else {
-            turnNextAty();
-//            }
+            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
+                mPresenter.start();
+            } else {
+                turnNextAty();
+            }
         }
 
         return rootView;
@@ -77,31 +77,45 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             if (StringUtil.isTrimEmpty(bean.Message)) {
                 turnNextAty();
             } else {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-                dialog.setTitle("检测到更新")
-                        .setCancelable(false)
-                        .setMessage(bean.Message)
-                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                turnNextAty();
-                            }
-                        }).show();
+                new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+                    @Override
+                    public void OnDialogConfirmListener() {
+                        Intent intent = new Intent(getActivity(), UpdateService.class);
+                        intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+                                bean.DownLink);
+                        getActivity().startService(intent);
+                        turnNextAty();
+                    }
+
+                    @Override
+                    public void OnDialogCancelListener() {
+                        turnNextAty();
+                    }
+                }).setTitle("检测到更新")
+                        .setSubtitle(bean.Message)
+                        .setConfirmText("马上下载")
+                        .setCancelText("暂不更新")
+                        .setCanCancel(false)
+                        .show();
             }
 
         } else {//TODO 不能用
-            AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity());
-            dialog.setTitle("检测到更新，当前版本不再维护")
-                    .setCancelable(false)
-                    .setMessage(bean.Message)
-                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            //TODO 跳AppStore，没有就关闭 待修改为跳转到固定的下载界面
-                            HZUtils.turnStore(getActivity());
-                            getActivity().finish();
-                        }
-                    }).show();
+            new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+                @Override
+                public void OnDialogConfirmListener() {
+                    //TODO 跳AppStore，没有就关闭 待修改为跳转到固定的下载界面
+                    Intent intent = new Intent(getActivity(), UpdateService.class);
+                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+                            bean.DownLink);
+                    getActivity().startService(intent);
+                    getActivity().finish();
+                }
+
+                @Override
+                public void OnDialogCancelListener() {
+                }
+            }).setTitle("检测到更新\n当前版本不再维护")
+                    .setCanCancel(false).show();
         }
     }
 
