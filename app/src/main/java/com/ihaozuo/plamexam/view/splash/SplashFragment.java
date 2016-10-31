@@ -57,10 +57,10 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.splash_frag, container, false);
             lastTime = System.currentTimeMillis();
-            if (PreferenceManager.getInstance().readNewsState()) {
-                NewsDBManager.initNews(getActivity());
-                PreferenceManager.getInstance().writeNewsState(false);
-            }
+//            if (PreferenceManager.getInstance().readNewsState()) {
+//                NewsDBManager.initNews(getActivity());
+//                PreferenceManager.getInstance().writeNewsState(false);
+//            }
             if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
                 mPresenter.start();
             } else {
@@ -73,6 +73,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
 
     @Override
     public void updateInfo(final VersionInfoBean bean) {
+        bean.IsValid=true;
         if (bean.IsValid) {//TODO 还能用
             if (StringUtil.isTrimEmpty(bean.Message)) {
                 turnNextAty();
@@ -145,6 +146,7 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             }
         }else {
             PreferenceManager.getInstance().writeGuideState(true);
+            NewsDBManager.initNews(getActivity());
             startActivity(new Intent(getActivity(), GuideActivity.class));
         }
 

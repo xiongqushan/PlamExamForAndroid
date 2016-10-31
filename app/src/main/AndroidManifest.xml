@@ -266,8 +266,6 @@
             android:windowSoftInputMode="adjustResize"
             android:exported="false" >
         </activity>
-        <service android:name="com.sina.weibo.sdk.net.DownloadService"
-            android:exported="false"></service>
 
         <activity
             android:name=".wxapi.WXEntryActivity"
@@ -291,7 +289,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="tencent1105699103" />
             </intent-filter>
         </activity>
         <activity

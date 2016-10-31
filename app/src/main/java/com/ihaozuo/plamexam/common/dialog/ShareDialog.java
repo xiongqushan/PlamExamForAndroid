@@ -132,7 +132,6 @@ public class ShareDialog extends Dialog {
                     new ShareAction((Activity) mContext)
                             .setPlatform(SHARE_MEDIA.SINA)
                             .withText(title + targetUrl)
-                            .withMedia(image)
                             .setCallback(umShareListener)
                             .share();
 
