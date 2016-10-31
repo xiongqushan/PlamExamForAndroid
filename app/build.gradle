@@ -101,6 +101,4 @@ dependencies {
     compile 'cn.jiguang:jpush:2.1.8'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'me.relex:circleindicator:1.2.1'
-    compile files('libs/SocialSDK_Sina.jar')
-    compile files('libs/weiboSDKCore_3.1.4.jar')
 }
