@@ -71,7 +71,7 @@ public class NewsDetailFragment extends AbstractView {
                              Bundle savedInstanceState) {
         mContext = getContext();
         rootView = inflater.inflate(R.layout.news_detail_frag, container, false);
-        setCustomerTitle(rootView, getString(R.string.app_name));
+        setCustomerTitle(rootView, "文章详情");
         ButterKnife.bind(this, rootView);
         showDialog();
         initView();

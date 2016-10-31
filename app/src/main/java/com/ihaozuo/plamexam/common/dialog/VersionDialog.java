@@ -99,6 +99,11 @@ public class VersionDialog extends Dialog {
         return this;
     }
 
+    public VersionDialog setCanCancel(boolean flag) {
+        setCancelable(flag);
+        return this;
+    }
+
     public interface OnDialogListener {
 
         void OnDialogConfirmListener();

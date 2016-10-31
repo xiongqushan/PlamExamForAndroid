@@ -4,15 +4,18 @@ package com.ihaozuo.plamexam.view.mine.settings;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.ihaozuo.plamexam.BuildConfig;
 import com.ihaozuo.plamexam.R;
 import com.ihaozuo.plamexam.bean.VersionInfoBean;
 import com.ihaozuo.plamexam.common.dialog.SettingsDialog;
@@ -60,6 +63,10 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
     RelativeLayout layoutDisclaimer;
     @Bind(R.id.layoutClearChache)
     RelativeLayout layoutClearChache;
+    @Bind(R.id.tv_version)
+    TextView tvVersion;
+    @Bind(R.id.btn_logout)
+    Button btnLogout;
     private View rootView;
 
     public SysSetFragment() {
@@ -93,6 +100,7 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
 
     private void initView() {
         tvSetPhone.setText(UserManager.getInstance().getUserInfo().Mobile);
+        tvVersion.setText(BuildConfig.VERSION_NAME);
 //        tvQQState.setText(getString(R.string.unbind));
 //        tvWeChatState.setText(getString(R.string.unbind));
 //        tvSinaState.setText(getString(R.string.unbind));
@@ -265,7 +273,7 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
     private static final int MSG_SET_TAGS = 1002;
     private final Handler mHandler = new Handler() {
         @Override
-        public void handleMessage(android.os.Message msg) {
+        public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
                 case MSG_SET_ALIAS:

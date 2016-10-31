@@ -142,7 +142,10 @@
             style="@style/sysset_label"
             android:text="@string/check_update" />
 
-        <include layout="@layout/next_set_right_layout" />
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/userinfo_label_content"
+            tools:text="V3.0" />
     </RelativeLayout>
 
 
