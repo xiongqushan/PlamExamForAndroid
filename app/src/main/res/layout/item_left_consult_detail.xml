@@ -39,7 +39,7 @@
             android:layout_marginRight="50dp"
             android:layout_toRightOf="@id/drawee_consult_item_photo"
             android:layout_alignTop="@id/drawee_consult_item_photo"
-            android:background="@drawable/chat_icon_bubble_left_v2"
+            android:background="@drawable/bg_chat_left_"
             android:gravity="left|center_vertical"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"

@@ -2,10 +2,6 @@ package com.ihaozuo.plamexam.view.report.example;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,57 +64,58 @@ public class ReportEXFragment extends BaseFragment {
                 }
             }
         });
-        PagerAdapter adapter = new ReportPagerAdapter(getChildFragmentManager());
-        mViewPager.setAdapter(adapter);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if (position == 0) {
-                    rbError.setChecked(true);
-                }
-                if (position == 1) {
-                    rbDetail.setChecked(true);
-                }
-                if (position == 2) {
-                    rbAdvice.setChecked(true);
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+      //  PagerAdapter adapter = new ReportPagerAdapter(getChildFragmentManager());
+//        mViewPager.setAdapter(adapter);
+//        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                if (position == 0) {
+//                    rbError.setChecked(true);
+//                }
+//                if (position == 1) {
+//                    rbDetail.setChecked(true);
+//                }
+//                if (position == 2) {
+//                    rbAdvice.setChecked(true);
+//                }
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
     }
 
 
-    private class ReportPagerAdapter extends FragmentPagerAdapter {
-
-        public ReportPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            if (position == 0) {
-                return EXErrorFragment.newInstance();
-            }
-            if (position == 1) {
-                return EXDetailFragment.newInstance();
-            }
-            return EXAdviceFragment.newInstance();
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-    }
+//    private class ReportPagerAdapter extends FragmentPagerAdapter {
+//
+//        public ReportPagerAdapter(FragmentManager fm) {
+//            super(fm);
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            if (position == 0) {
+//                return EXErrorFragment.newInstance();
+//            }
+//            if (position == 1) {
+//                return EXDetailFragment.newInstance();
+//            }
+//            return EXAdviceFragment.newInstance();
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return 3;
+//        }
+//    }
 
     @Override
     public void onDestroyView() {

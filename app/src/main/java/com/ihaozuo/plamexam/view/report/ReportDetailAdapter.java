@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.view.report;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,11 +39,13 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
 
     @Override
     public int getSectionCount() {
+        if (datalist.CheckItems == null) return 0;
         return datalist.CheckItems.size();
     }
 
     @Override
     public int getCountForSection(int section) {
+        if (datalist.CheckItems.get(section).CheckResults == null) return 0;
         String summaryFormat = datalist.CheckItems.get(section).SummaryFormat;
         if (StringUtil.isEmpty(summaryFormat)) {
             return datalist.CheckItems.get(section).CheckResults.size();
@@ -62,8 +65,13 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
         if (position == datalist.CheckItems.get(section).CheckResults.size()) {
             layoutSummary.setVisibility(View.VISIBLE);
             layoutComment.setVisibility(View.GONE);
-            TextView tvTitle = UIHelper.getAdapterView(convertView, R.id.tvSummary);
-            tvTitle.setText("小结 : " + datalist.CheckItems.get(section).SummaryFormat);
+            TextView tvSummary = UIHelper.getAdapterView(convertView, R.id.tvSummary);
+//            if (datalist.CheckItems.get(section).true) {
+//                tvSummary.setTextColor(Color.parseColor("#FFF25353"));
+//            } else {
+//                tvSummary.setTextColor(Color.parseColor("#FF333333"));
+//            }
+            tvSummary.setText("小结 : " + datalist.CheckItems.get(section).SummaryFormat);
         } else {
             layoutSummary.setVisibility(View.GONE);
             layoutComment.setVisibility(View.VISIBLE);
@@ -74,13 +82,11 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
 
             ReportDetailBean.CheckItemsBean.CheckResultsBean checkResultsBean = datalist.CheckItems.get(section).CheckResults.get(position);
             tvTitle.setText(checkResultsBean.CheckIndexName);
-//            if (checkResultsBean.IsAbandonFormat) {
-//                tvTitle.setTextColor(Color.parseColor("#FFFA7981"));
-//                tvValue.setTextColor(Color.parseColor("#FFFA7981"));
-//            } else {
-//                tvTitle.setTextColor(Color.parseColor("#FF333333"));
-//                tvValue.setTextColor(Color.parseColor("#FF333333"));
-//            }
+            if (checkResultsBean.IsAbnormalForamt) {
+                tvValue.setTextColor(Color.parseColor("#FFF25353"));
+            } else {
+                tvValue.setTextColor(Color.parseColor("#FF333333"));
+            }
             boolean unitEmpty = StringUtil.isTrimEmpty(checkResultsBean.Unit);
             boolean rangeEmpty = StringUtil.isTrimEmpty(checkResultsBean.ValueRefFormat);
             if (unitEmpty && rangeEmpty) {

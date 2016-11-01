@@ -9,6 +9,7 @@
 
 
     <FrameLayout
+        android:background="@color/gray_f2"
         android:id="@+id/rLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

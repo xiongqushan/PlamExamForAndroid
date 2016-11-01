@@ -93,6 +93,9 @@
     <string name="pref_title_iat_dwa">结果动态修正</string>
 
     <string name="gray_f8">#FFF8F8F8</string>
+    <string name="red_report_error">#FFF25353</string>
+    <string name="blue_theme">#FF309BF2</string>
+    <string name="gray_33">#FF333333</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -162,8 +162,6 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginRight">10dp</item>
         <item name="android:textColor">@color/textcolor_tab_report</item>
         <item name="android:background">@drawable/bg_tabline_report_selector</item>
         <item name="android:textSize">18sp</item>

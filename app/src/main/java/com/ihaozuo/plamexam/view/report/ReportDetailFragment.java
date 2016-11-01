@@ -162,10 +162,10 @@ public class ReportDetailFragment extends Fragment {
             TextView tvMark = UIHelper.getAdapterView(convertView, R.id.tvMark);
             tvName.setText(list.get(position).CheckItemName);
             if (selectedPosition == position) {
-                tvName.setTextColor(Color.parseColor("#FF309BF2"));
-                tvMark.setBackgroundColor(Color.parseColor("#FF309BF2"));
+                tvName.setTextColor(Color.parseColor(getString(R.string.blue_theme)));
+                tvMark.setBackgroundColor(Color.parseColor(getString(R.string.blue_theme)));
             } else {
-                tvName.setTextColor(Color.parseColor("#FF333333"));
+                tvName.setTextColor(Color.parseColor(getString(R.string.gray_33)));
                 tvMark.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
             }
             return convertView;

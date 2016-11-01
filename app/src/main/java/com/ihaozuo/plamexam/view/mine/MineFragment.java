@@ -14,6 +14,7 @@ import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.util.HZUtils;
 import com.ihaozuo.plamexam.view.base.BaseFragment;
 import com.ihaozuo.plamexam.view.mine.settings.SysSetActivity;
+import com.ihaozuo.plamexam.view.report.example.ReportEXActivity;
 import com.umeng.analytics.MobclickAgent;
 
 import butterknife.Bind;
@@ -71,7 +72,7 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.layoutReportEx:
                 MobclickAgent.onEvent(getActivity(), "reportEX");
-                //  getActivity().startActivity(new Intent(getActivity(), ReportEXActivity.class));
+                getActivity().startActivity(new Intent(getActivity(), ReportEXActivity.class));
                 break;
         }
     }

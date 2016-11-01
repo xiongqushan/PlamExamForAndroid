@@ -8,23 +8,28 @@
     android:paddingBottom="1dp"
     android:paddingTop="1dp">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+
 
     <RadioGroup
         android:id="@+id/groupConsult"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/rb_error_report"
             style="@style/radiobuttom_reporttab"
             android:checked="true"
             android:text="异常报告" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <RadioButton
             android:id="@+id/rb_detail_report"
@@ -32,17 +37,26 @@
             android:checked="false"
             android:text="报告详情" />
 
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <RadioButton
             android:id="@+id/rb_advice_report"
             style="@style/radiobuttom_reporttab"
             android:checked="false"
             android:text="异常解读" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </RadioGroup>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+    <!--<View-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1" />-->
 
 </LinearLayout>
