@@ -19,7 +19,6 @@
         app:pointsPosition="CENTER" />
 
 
-
     <com.ihaozuo.plamexam.common.RevealLayout
         android:layout_width="match_parent"
         android:layout_height="143dp"
@@ -124,8 +123,8 @@
                 android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
                 android:text="体检预约"
-                android:textSize="15sp"
-                android:textColor="@color/gray_87"/>
+                android:textColor="@color/gray_87"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -143,8 +142,8 @@
                 android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
                 android:text="挂号预约"
-                android:textSize="15sp"
-                android:textColor="@color/gray_87"/>
+                android:textColor="@color/gray_87"
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -162,13 +161,11 @@
                 android:layout_marginTop="6dp"
                 android:includeFontPadding="false"
                 android:text="风险评估"
-                android:textSize="15sp"
-                android:textColor="@color/gray_87"/>
+                android:textColor="@color/gray_87"
+                android:textSize="15sp" />
         </LinearLayout>
 
     </com.ihaozuo.plamexam.common.RevealLayout>
-
-
 
     <RelativeLayout
         android:id="@+id/layout_home_news"

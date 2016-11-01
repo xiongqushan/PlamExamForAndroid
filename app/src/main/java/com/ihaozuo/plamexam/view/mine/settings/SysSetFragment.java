@@ -28,7 +28,6 @@ import com.ihaozuo.plamexam.manager.ReportManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
 import com.ihaozuo.plamexam.util.HZUtils;
-import com.ihaozuo.plamexam.util.StringUtil;
 import com.ihaozuo.plamexam.util.ToastUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
@@ -185,61 +184,62 @@ public class SysSetFragment extends AbstractView implements SysSetContract.ISysS
 
     @Override
     public void showUpdateInfo(final VersionInfoBean bean) {
-        if (bean.Status != 0) {//TODO 还能用
-            if (StringUtil.isTrimEmpty(bean.Message)) {
-                new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
-                    @Override
-                    public void OnDialogConfirmListener() {
-                    }
-
-                    @Override
-                    public void OnDialogCancelListener() {
-                    }
-                }).setTitle("已是最新版")
-                        .setSubtitle("感谢你的使用!")
-                        .show();
-            } else {
-                new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
-                    @Override
-                    public void OnDialogConfirmListener() {
-                        if (UpdateService.isLording) {
-                            ToastUtils.showToast("正在下载");
-                        } else {
-                            Intent intent = new Intent(getActivity(), UpdateService.class);
-                            intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
-                                    bean.DownLink);
-                            getActivity().startService(intent);
-                        }
-                    }
-
-                    @Override
-                    public void OnDialogCancelListener() {
-                    }
-                }).setTitle("检测到更新")
-                        .setSubtitle(bean.Message)
-                        .setConfirmText("马上下载")
-                        .setCancelText("暂不更新")
-                        .setCanCancel(false)
-                        .show();
-            }
-
-        } else {//TODO 不能用
+        if (bean == null || bean.Status == 2) {//TODO 还能用
             new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
                 @Override
                 public void OnDialogConfirmListener() {
-                    Intent intent = new Intent(getActivity(), UpdateService.class);
-                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
-                            bean.DownLink);
-                    getActivity().startService(intent);
                 }
 
                 @Override
                 public void OnDialogCancelListener() {
                 }
-            }).setTitle("检测到更新").setSubtitle("当前版本不再维护,点击确定下载掌上体检最新版")
-                    .setCanCancel(false).show();
+            }).setTitle("已是最新版")
+                    .setSubtitle("感谢你的使用!")
+                    .show();
+            return;
+        }
+        if (bean.Status == 1) {
+            new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+                @Override
+                public void OnDialogConfirmListener() {
+                    if (UpdateService.isLording) {
+                        ToastUtils.showToast("正在下载");
+                    } else {
+                        Intent intent = new Intent(getActivity(), UpdateService.class);
+                        intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+                                bean.DownLink);
+                        getActivity().startService(intent);
+                    }
+                }
+
+                @Override
+                public void OnDialogCancelListener() {
+                }
+            }).setTitle("检测到更新")
+                    .setSubtitle(bean.Message)
+                    .setConfirmText("马上下载")
+                    .setCancelText("暂不更新")
+                    .setCanCancel(false)
+                    .show();
         }
     }
+
+//else{//TODO 不能用
+//        new VersionDialog(getActivity(),new VersionDialog.OnDialogListener(){
+//@Override
+//public void OnDialogConfirmListener(){
+//        Intent intent=new Intent(getActivity(),UpdateService.class);
+//        intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+//        bean.DownLink);
+//        getActivity().startService(intent);
+//        }
+//
+//@Override
+//public void OnDialogCancelListener(){
+//        }
+//        }).setTitle("检测到更新").setSubtitle("当前版本不再维护,点击确定下载掌上体检最新版")
+//        .setCanCancel(false).show();
+//        }
 
     @Override
     public void setPresenter(SysSetContract.ISysSetPresenter presenter) {

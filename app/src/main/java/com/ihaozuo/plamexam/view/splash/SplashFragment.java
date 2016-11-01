@@ -16,7 +16,7 @@ import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
 import com.ihaozuo.plamexam.manager.PreferenceManager;
 import com.ihaozuo.plamexam.manager.UserManager;
 import com.ihaozuo.plamexam.presenter.IBasePresenter;
-import com.ihaozuo.plamexam.util.StringUtil;
+import com.ihaozuo.plamexam.util.ConnectedUtils;
 import com.ihaozuo.plamexam.view.base.AbstractView;
 import com.ihaozuo.plamexam.view.guide.GuideActivity;
 import com.ihaozuo.plamexam.view.login.LoginActivity;
@@ -56,15 +56,11 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.splash_frag, container, false);
             lastTime = System.currentTimeMillis();
-            if (PreferenceManager.getInstance().readNewsState()) {
-                NewsDBManager.initNews(getActivity());
-                PreferenceManager.getInstance().writeNewsState(false);
+            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
+                mPresenter.start();
+            } else {
+                turnNextAty();
             }
-//            if (ConnectedUtils.isConnected(getActivity().getApplicationContext())) {
-//                mPresenter.start();
-//            } else {
-            turnNextAty();
-//            }
         }
 
         return rootView;
@@ -72,37 +68,38 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
 
     @Override
     public void updateInfo(final VersionInfoBean bean) {
-        if (bean.Status != 0) {//TODO 还能用
-            if (StringUtil.isTrimEmpty(bean.Message)) {
-                turnNextAty();
-            } else {
-                new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
-                    @Override
-                    public void OnDialogConfirmListener() {
-                        Intent intent = new Intent(getActivity(), UpdateService.class);
-                        intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
-                                bean.DownLink);
-                        getActivity().startService(intent);
-                        turnNextAty();
-                    }
-
-                    @Override
-                    public void OnDialogCancelListener() {
-                        turnNextAty();
-                    }
-                }).setTitle("检测到更新")
-                        .setSubtitle(bean.Message)
-                        .setConfirmText("马上下载")
-                        .setCancelText("暂不更新")
-                        .setCanCancel(false)
-                        .show();
-            }
-
-        } else {//TODO 不能用
+        if (bean == null || bean.Status == 2) {
+            turnNextAty();
+            return;
+        }
+        if (bean.Status == 1) {//TODO 1提醒 2可用 3不能用
             new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
                 @Override
                 public void OnDialogConfirmListener() {
-                    //TODO 跳AppStore，没有就关闭 待修改为跳转到固定的下载界面
+                    Intent intent = new Intent(getActivity(), UpdateService.class);
+                    intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
+                            bean.DownLink);
+                    getActivity().startService(intent);
+                    turnNextAty();
+                }
+
+                @Override
+                public void OnDialogCancelListener() {
+                    turnNextAty();
+                }
+            }).setTitle("检测到更新")
+                    .setSubtitle(bean.Message + "")
+                    .setConfirmText("马上下载")
+                    .setCancelText("暂不更新")
+                    .setCanCancel(false)
+                    .show();
+
+        }
+        if (bean.Status == 3) {//TODO 不能用
+            new VersionDialog(getActivity(), new VersionDialog.OnDialogListener() {
+                @Override
+                public void OnDialogConfirmListener() {
+                    //TODO  开启服务下载
                     Intent intent = new Intent(getActivity(), UpdateService.class);
                     intent.putExtra(UpdateService.INTENTKEY_UPDATE_URL,
                             bean.DownLink);
@@ -144,9 +141,9 @@ public class SplashFragment extends AbstractView implements SplashContract.ISpla
             }
         } else {
             PreferenceManager.getInstance().writeGuideState(true);
+            NewsDBManager.initNews(getActivity());
             startActivity(new Intent(getActivity(), GuideActivity.class));
         }
-
         getActivity().finish();
     }
 

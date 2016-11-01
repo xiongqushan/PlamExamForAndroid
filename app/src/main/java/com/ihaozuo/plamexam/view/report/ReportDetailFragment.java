@@ -95,7 +95,10 @@ public class ReportDetailFragment extends Fragment {
         }
     }
 
+    private int CheckResultsSize;
+
     private void initSlideList(List<ReportDetailBean.CheckItemsBean> checkItems) {
+
         final SlideListAdapter adapterSlide = new SlideListAdapter(checkItems);
         mListViewSlide.setAdapter(adapterSlide);
         mListViewSlide.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -104,10 +107,16 @@ public class ReportDetailFragment extends Fragment {
                 adapterSlide.setSelectedPosition(position);
                 int index = 0;
                 for (int i = 0; i < position; i++) {
+                    if (mReportDetailBean.CheckItems.get(i).CheckResults != null){
+                        CheckResultsSize = mReportDetailBean.CheckItems.get(i).CheckResults.size();
+                    }else {
+                        CheckResultsSize = 0;
+                    }
+
                     if (StringUtil.isEmpty(mReportDetailBean.CheckItems.get(i).SummaryFormat)) {
-                        index += mReportDetailBean.CheckItems.get(i).CheckResults.size() + 1;
+                        index += CheckResultsSize + 1;
                     } else {
-                        index += mReportDetailBean.CheckItems.get(i).CheckResults.size() + 2;
+                        index += CheckResultsSize + 2;
                     }
                 }
                 mListView.setSelection(index);

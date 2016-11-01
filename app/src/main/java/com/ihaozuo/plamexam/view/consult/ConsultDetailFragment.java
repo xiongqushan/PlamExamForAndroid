@@ -240,8 +240,10 @@ public class ConsultDetailFragment extends AbstractView implements ConsultContra
     public void setDoctorInfo() {
         mDoctorInfo = getDoctorInfo();
 
-        if (null != mDoctorInfo && null != mDoctorInfo.ImageSrc) {
-            ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, imgHead);
+        if (null != mDoctorInfo){
+             if( null != mDoctorInfo.ImageSrc) {
+                ImageLoadUtils.getInstance().display(mDoctorInfo.ImageSrc, imgHead);
+             }
             tvName.setText(mDoctorInfo.RealName);
             tvSpeciality.setText(mDoctorInfo.Speciality);
             tvDescription.setText(getString(R.string.workTime));

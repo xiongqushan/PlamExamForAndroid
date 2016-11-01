@@ -17,6 +17,7 @@ import com.ihaozuo.plamexam.view.login.LoginActivity;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit.http.HEAD;
 
 
 public class GuideFragment extends BaseFragment {
@@ -31,7 +32,8 @@ public class GuideFragment extends BaseFragment {
     }
 
     @SuppressLint("ValidFragment")
-    public GuideFragment(int DrawableID, boolean showTV) {
+
+    public GuideFragment(int DrawableID,boolean showTV) {
         mDrawableID = DrawableID;
         mShowTV = showTV;
     }

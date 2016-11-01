@@ -1,5 +1,8 @@
 package com.ihaozuo.plamexam.view.splash;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.WindowManager;
@@ -11,6 +14,8 @@ import com.ihaozuo.plamexam.ioc.SplashModule;
 import com.ihaozuo.plamexam.presenter.SplashPresenter;
 import com.ihaozuo.plamexam.util.ActivityUtils;
 import com.ihaozuo.plamexam.view.base.BaseActivity;
+
+import java.lang.reflect.Method;
 
 import javax.inject.Inject;
 
@@ -36,6 +41,7 @@ public class SplashActivity extends BaseActivity {
             fragment = (SplashFragment) mView;
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), fragment, R.id.frameContent);
         }
+
     }
 
     @Override
@@ -46,5 +52,29 @@ public class SplashActivity extends BaseActivity {
         return super.onKeyDown(keyCode, event);
     }
 
+
+    public static boolean checkPermission(Context context, String permission) {
+        boolean result = false;
+        if (Build.VERSION.SDK_INT >= 23) {
+            try {
+                Class<?> clazz = Class.forName("android.content.Context");
+                Method method = clazz.getMethod("checkSelfPermission", String.class);
+                int rest = (Integer) method.invoke(context, permission);
+                if (rest == PackageManager.PERMISSION_GRANTED) {
+                    result = true;
+                } else {
+                    result = false;
+                }
+            } catch (Exception e) {
+                result = false;
+            }
+        } else {
+            PackageManager pm = context.getPackageManager();
+            if (pm.checkPermission(permission, context.getPackageName()) == PackageManager.PERMISSION_GRANTED) {
+                result = true;
+            }
+        }
+        return result;
+    }
 
 }

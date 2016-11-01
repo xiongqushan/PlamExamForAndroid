@@ -76,8 +76,8 @@
     <string name="QQ_APP_KEY">W0grAATJYfxpI7NC</string>
     <string name="WEIXIN_APP_ID">wx35e5655ba6776765</string>
     <string name="WEIXIN_APP_KEY">a01938c93230a27b338cf5bece21adea</string>
-    <string name="SINA_APP_ID">436196584</string>
-    <string name="SINA_APP_KEY">e7e5b817ca06547ef20f3a9c5bd4f650</string>
+    <string name="SINA_APP_ID">288072964</string>
+    <string name="SINA_APP_KEY">38804b1278734d396a428662f577ba45</string>
     <string name="SINA_OAUTH_URL">http://sns.whalecloud.com/sina2/callback</string>
 
     <!-- 听写 -->

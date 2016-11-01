@@ -252,7 +252,7 @@
 
 
         <!-- Share edit page -->
-
+        <!--weibo -->
         <activity
             android:name=".WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -269,7 +269,7 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize"></activity>
 
-
+        <!-- weixin -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -292,7 +292,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent100424468" />
+                <data android:scheme="tencent1105699103" />
             </intent-filter>
         </activity>
         <activity
@@ -300,13 +300,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- <activity -->
-        <!-- android:name=".wxapi.WXEntryActivity" -->
-        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
-        <!-- android:exported="true" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
 
 
         <!-- *************************     related to Share END **************************** -->

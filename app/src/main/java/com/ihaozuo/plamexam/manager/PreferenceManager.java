@@ -16,7 +16,7 @@ public class PreferenceManager {
     private static String SHARED_KEY_DEPARTCODE = "SHARED_KEY_DEPARTCODE";
     private static String SHARED_KEY_JPUSH = "SHARED_KEY_JPUSH";
     private static String SHARED_KEY_GUIDE = "SHARED_KEY_GUIDE";
-    private static String SHARED_KEY_INITNEWS = "SHARED_KEY_INITNEWS";
+//    private static String SHARED_KEY_INITNEWS = "SHARED_KEY_INITNEWS";
 
     private PreferenceManager(Context context) {
         mSharedPreferences = context.getSharedPreferences(PREFERENCE_NAME,
@@ -69,14 +69,14 @@ public class PreferenceManager {
         editor.apply();
     }
 
-    public boolean readNewsState() {
-        return mSharedPreferences.getBoolean(SHARED_KEY_INITNEWS, true);
-    }
-
-    public void writeNewsState(boolean state) {
-        editor.putBoolean(SHARED_KEY_INITNEWS, state);
-        editor.apply();
-    }
+//    public boolean readNewsState() {
+//        return mSharedPreferences.getBoolean(SHARED_KEY_INITNEWS, true);
+//    }
+//
+//    public void writeNewsState(boolean state) {
+//        editor.putBoolean(SHARED_KEY_INITNEWS, state);
+//        editor.apply();
+//    }
 
 
 }

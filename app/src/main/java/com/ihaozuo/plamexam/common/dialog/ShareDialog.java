@@ -129,9 +129,11 @@ public class ShareDialog extends Dialog {
                     break;
                 case R.id.btn_weibo:
 
+
                     new ShareAction((Activity) mContext)
                             .setPlatform(SHARE_MEDIA.SINA)
-                            .withText(title + targetUrl)
+                            .withText(title)
+                            .withTargetUrl(targetUrl)
                             .withMedia(image)
                             .setCallback(umShareListener)
                             .share();
