@@ -57,11 +57,12 @@ public class ReportDetailPresenter extends AbstractPresenter implements ReportCo
     }
 
     @Override
-    public void getReportDetail(String workNo, String checkUnitCode) {
+    public void getReportDetail(final String workNo, String checkUnitCode) {
         mView.showDialog();
         mReportModel.getReportDetail(workNo, checkUnitCode, new OnHandlerResultListener<RestResult<ReportDetailBean>>() {
             @Override
             public void handlerResultSuccess(RestResult<ReportDetailBean> resultData) {
+                resultData.Data.WorkNo = workNo;
                 mView.updateFragment(resultData.Data);
                 mView.toggleRetryLayer(false);
                 mView.hideDialog();

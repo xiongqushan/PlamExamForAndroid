@@ -26,13 +26,17 @@ public class GuideFragment extends BaseFragment {
     private int mDrawableID;
     private boolean mShowTV;
 
+    public GuideFragment(){}
+
     public GuideFragment(int DrawableID,boolean showTV) {
         mDrawableID = DrawableID;
         mShowTV = showTV;
     }
 
     public static GuideFragment newInstance(int DrawableID,boolean showTV) {
-        return new GuideFragment(DrawableID, showTV);
+//        mDrawableID = DrawableID;
+//        mShowTV = showTV;
+        return new GuideFragment(DrawableID,showTV);
     }
 
     @Nullable

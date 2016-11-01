@@ -120,6 +120,7 @@
         <activity android:name=".view.home.RiskActivity" />
         <activity android:name=".view.home.ExamActivity" />
         <activity android:name=".view.home.GuaHaoActivity" />
+        <activity android:name=".view.report.example.ReportEXActivity"/>
         <activity android:name=".common.jpush.WakeActivity" />
         <activity android:name=".view.guide.GuideActivity"
             android:theme="@style/AppGuide"/>
@@ -250,7 +251,7 @@
 
 
         <!-- Share edit page -->
-
+        <!--weibo -->
         <activity
             android:name=".WBShareActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -267,6 +268,7 @@
             android:exported="false" >
         </activity>
 
+        <!-- weixin -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -297,13 +299,6 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- <activity -->
-        <!-- android:name=".wxapi.WXEntryActivity" -->
-        <!-- android:configChanges="keyboardHidden|orientation|screenSize" -->
-        <!-- android:exported="true" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
 
 
         <!-- *************************     related to Share END **************************** -->

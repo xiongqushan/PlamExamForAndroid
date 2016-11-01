@@ -21,7 +21,6 @@ public class ReportDetailBean {
     public String WorkNo;
     public List<String> GroupIds;
     public String ReportDateFormat;
-    //public String[] GroupIds;
 
     public List<CheckItemsBean> CheckItems;
 
