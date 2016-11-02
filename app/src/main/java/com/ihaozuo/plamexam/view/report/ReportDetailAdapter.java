@@ -66,11 +66,11 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
             layoutSummary.setVisibility(View.VISIBLE);
             layoutComment.setVisibility(View.GONE);
             TextView tvSummary = UIHelper.getAdapterView(convertView, R.id.tvSummary);
-//            if (datalist.CheckItems.get(section).true) {
-//                tvSummary.setTextColor(Color.parseColor("#FFF25353"));
-//            } else {
-//                tvSummary.setTextColor(Color.parseColor("#FF333333"));
-//            }
+            if (datalist.CheckItems.get(section).IsAbnormal) {
+                tvSummary.setTextColor(Color.parseColor("#FFF25353"));
+            } else {
+                tvSummary.setTextColor(Color.parseColor("#FF333333"));
+            }
             tvSummary.setText("小结 : " + datalist.CheckItems.get(section).SummaryFormat);
         } else {
             layoutSummary.setVisibility(View.GONE);
@@ -92,13 +92,21 @@ public class ReportDetailAdapter extends SectionedBaseAdapter {
             if (unitEmpty && rangeEmpty) {
                 tvValue.setVisibility(View.GONE);
                 tvUnit.setVisibility(View.GONE);
-                String resultValue = checkResultsBean.ResultValue;
-                if (resultValue.equals("")) resultValue = "未见异常";
-                tvSubtitle.setText(resultValue);
+                if (StringUtil.isEmpty(checkResultsBean.ResultValue)) {
+                    tvSubtitle.setText("未见异常");
+                } else {
+                    tvSubtitle.setText(checkResultsBean.ResultValue);
+                }
+                if (checkResultsBean.IsAbnormalForamt) {
+                    tvSubtitle.setTextColor(Color.parseColor("#FFF25353"));
+                } else {
+                    tvSubtitle.setTextColor(Color.parseColor("#FF666666"));
+                }
             } else {
                 tvValue.setVisibility(View.VISIBLE);
                 tvUnit.setVisibility(View.VISIBLE);
                 tvValue.setText(checkResultsBean.ResultValue);
+                tvSubtitle.setTextColor(Color.parseColor("#FF666666"));
                 if (StringUtil.isTrimEmpty(checkResultsBean.ValueRefFormat)) {
                     tvSubtitle.setText("");
                 } else {

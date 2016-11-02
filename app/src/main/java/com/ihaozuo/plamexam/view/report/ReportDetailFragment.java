@@ -62,7 +62,7 @@ public class ReportDetailFragment extends Fragment {
         ReportDetailAdapter adapter = new ReportDetailAdapter(bean);
         mListView.setPinHeaders(true);
         mListView.setAdapter(adapter);
-        if (bean.CheckItems.size() > 0) {
+        if (bean.CheckItems != null && bean.CheckItems.size() > 0) {
             mListView.setOnItemClickListener(new PinnedHeaderListView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int section, int position, long id) {
@@ -107,9 +107,9 @@ public class ReportDetailFragment extends Fragment {
                 adapterSlide.setSelectedPosition(position);
                 int index = 0;
                 for (int i = 0; i < position; i++) {
-                    if (mReportDetailBean.CheckItems.get(i).CheckResults != null){
+                    if (mReportDetailBean.CheckItems.get(i).CheckResults != null) {
                         CheckResultsSize = mReportDetailBean.CheckItems.get(i).CheckResults.size();
-                    }else {
+                    } else {
                         CheckResultsSize = 0;
                     }
 

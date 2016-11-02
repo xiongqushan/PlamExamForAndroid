@@ -73,7 +73,7 @@ public class HomeModel extends AbstractModel {
         Subscriber subscriber = getSubscriber(callbackListener);
         Map<String, Object> params = HZUtils.initParamsMap();
 //        params.put("VersionCode", HZUtils.getCurrVersion(HZApp.shareApplication()));
-        params.put("VersionCode", 30);
+        params.put("VersionCode", 3.0);
         params.put("OSType", Constants.OSTYPE);
         mIHomeService.getVersion(params)
                 .compose(applyAsySchedulers())

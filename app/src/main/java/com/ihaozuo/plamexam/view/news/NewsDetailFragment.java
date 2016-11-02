@@ -75,29 +75,32 @@ public class NewsDetailFragment extends AbstractView {
         ButterKnife.bind(this, rootView);
         showDialog();
         initView();
+        String url = "file:///android_asset/newsDetail.html";
+        mWebView.loadUrl(url);
 //        String url = getActivity().getIntent().getStringExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY);
         Object obj = getActivity().getIntent().getSerializableExtra(NewsDetailActivity.URL_NEWSDETAILACTIVITY);
-        if (obj instanceof BannerBean){
+        if (obj instanceof BannerBean) {
             mLinkURL = ((BannerBean) obj).LinkUrl;
-        }else if (obj instanceof NewsBean){
-            mLinkURL = SysConfig.NEWS_DETAIL_URL[0]+ ((NewsBean) obj).id +SysConfig.NEWS_DETAIL_URL[1];
+        } else if (obj instanceof NewsBean) {
+            mLinkURL = SysConfig.NEWS_DETAIL_URL[0] + ((NewsBean) obj).id + SysConfig.NEWS_DETAIL_URL[1];
             mTitle = ((NewsBean) obj).title;
-            mSubTitle =((NewsBean) obj).description;
+            mSubTitle = ((NewsBean) obj).description;
             mImgUrl = ((NewsBean) obj).imgFormat;
             tvAddReport.setText("分享");
             tvAddReport.setVisibility(View.VISIBLE);
-        } else if (obj instanceof NewsDBPojo){
+        } else if (obj instanceof NewsDBPojo) {
             mLinkURL = ((NewsDBPojo) obj).getUrl();
             mTitle = ((NewsDBPojo) obj).getTitle();
-            mSubTitle =((NewsDBPojo) obj).getSubtitle();
-            mImgUrl=((NewsDBPojo) obj).getImg();
+            mSubTitle = ((NewsDBPojo) obj).getSubtitle();
+            mImgUrl = ((NewsDBPojo) obj).getImg();
             tvAddReport.setText("分享");
             tvAddReport.setVisibility(View.VISIBLE);
         }
-        mWebView.loadUrl(mLinkURL);
-
         return rootView;
     }
+
+    private String header = "<div>大规模、有组织的抗清武装斗争结束之后，反清思想通过各种形式的文字作品在民间流传，并与以恢复明朝为目的的反清暴动结合起来，使满族统治不得安宁。雍正皇帝曾说：&ldquo;从来异姓先后继统，前朝宗姓臣服于后代者甚多，从未有如本朝奸民，假称朱姓，摇惑人心，若此之众者。&rdquo;清代文字狱泛滥有其特殊的历史原因。</div>";
+    private String content = "<div>大规模、有组织的抗清武装斗争结束之后，反清思想通过各种形式的文字作品在民间流传，并与以恢复明朝为目的的反清暴动结合起来，使满族统治不得安宁。雍正皇帝曾说：&ldquo;从来异姓先后继统，前朝宗姓臣服于后代者甚多，从未有如本朝奸民，假称朱姓，摇惑人心，若此之众者。&rdquo;清代文字狱泛滥有其特殊的历史原因。</div>";
 
     private void initView() {
         WebViewUtils.initWebView(mWebView, getActivity());
@@ -109,6 +112,8 @@ public class NewsDetailFragment extends AbstractView {
 
             public void onPageFinished(WebView view, String url) {
                 hideDialog();
+                mWebView.loadUrl("javascript:setContent('" + header + "','" + content + "')");
+                mWebView.loadUrl("javascript:setData('" + header + "')");
             }
         });
 
@@ -120,7 +125,7 @@ public class NewsDetailFragment extends AbstractView {
                 }
             }
         });
-        mWebView.setOnTouchListener(null);
+        mWebView.setOnLongClickListener(null);
     }
 
     @Override
@@ -140,9 +145,9 @@ public class NewsDetailFragment extends AbstractView {
 
     @OnClick(R.id.tv_addReport)
     public void onClick() {
-        if (HZUtils.isFastDoubleClick()){
+        if (HZUtils.isFastDoubleClick()) {
             return;
         }
-        new ShareDialog(mContext, R.style.draw_dialog,mTitle,mLinkURL,mSubTitle,mImgUrl).show();
+        new ShareDialog(mContext, R.style.draw_dialog, mTitle, mLinkURL, mSubTitle, mImgUrl).show();
     }
 }

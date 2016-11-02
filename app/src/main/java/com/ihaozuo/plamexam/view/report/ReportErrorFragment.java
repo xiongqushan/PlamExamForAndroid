@@ -1,6 +1,7 @@
 package com.ihaozuo.plamexam.view.report;
 
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.ArrayMap;
@@ -66,8 +67,14 @@ public class ReportErrorFragment extends Fragment {
 
     public void initView(ReportDetailBean reportDetailBean) {
         mReportDetailBean = reportDetailBean;
+        if (reportDetailBean.CheckItems == null) {
+            return;
+        }
         int CheckItemSize = reportDetailBean.CheckItems.size();
         for (int i = 0; i < CheckItemSize; i++) {
+            if (reportDetailBean.CheckItems.get(i).CheckResults == null) {
+                continue;
+            }
             int CheckResultSize = reportDetailBean.CheckItems.get(i).CheckResults.size();
             for (int j = 0; j < CheckResultSize; j++) {
                 if (reportDetailBean.CheckItems.get(i).CheckResults.get(j).IsAbnormalForamt) {
@@ -159,9 +166,15 @@ public class ReportErrorFragment extends Fragment {
                 tvValue.setVisibility(View.GONE);
                 tvUnit.setVisibility(View.GONE);
                 String resultValue = checkResultsBean.ResultValue;
-                if (resultValue.equals("")) resultValue = "未见异常";
+                if (resultValue == null || resultValue.equals("")) resultValue = "未见异常";
                 tvSubtitle.setText(resultValue);
+                if (checkResultsBean.IsAbnormalForamt) {
+                    tvSubtitle.setTextColor(Color.parseColor("#FFF25353"));
+                } else {
+                    tvSubtitle.setTextColor(Color.parseColor("#FF666666"));
+                }
             } else {
+                tvSubtitle.setTextColor(Color.parseColor("#FF666666"));
                 tvValue.setVisibility(View.VISIBLE);
                 tvUnit.setVisibility(View.VISIBLE);
                 tvValue.setText(checkResultsBean.ResultValue);

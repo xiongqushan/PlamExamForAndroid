@@ -153,6 +153,8 @@ public class XBanner extends RelativeLayout {
 
     }
 
+
+
     private void initView(Context context) {
         //关闭view的OverScroll
         setOverScrollMode(OVER_SCROLL_NEVER);
@@ -163,6 +165,8 @@ public class XBanner extends RelativeLayout {
         //添加ViewPager
         mViewPager = new ViewPager(context);
         addView(mViewPager, new LayoutParams(RMP, RMP));
+      //  mViewPager.setNestedpParent(this);
+
         //设置指示器背景容器
         RelativeLayout pointContainerRl = new RelativeLayout(context);
         if (Build.VERSION.SDK_INT >= 16) {
@@ -515,4 +519,6 @@ public class XBanner extends RelativeLayout {
     public interface XBannerAdapter {
         void loadBanner(XBanner banner, SimpleDraweeView view, int position);
     }
+
+
 }

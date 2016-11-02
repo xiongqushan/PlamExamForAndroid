@@ -18,6 +18,7 @@ import com.ihaozuo.plamexam.bean.BannerBean;
 import com.ihaozuo.plamexam.common.Banner.XBanner;
 import com.ihaozuo.plamexam.common.Constants;
 import com.ihaozuo.plamexam.common.SimpleBaseAdapter;
+import com.ihaozuo.plamexam.common.SwipeRLayout;
 import com.ihaozuo.plamexam.common.dialog.ShareDialog;
 import com.ihaozuo.plamexam.contract.HomeContract;
 import com.ihaozuo.plamexam.database.newsdbutils.NewsDBManager;
@@ -60,7 +61,7 @@ public class HomeFragment extends AbstractView implements HomeContract.IHomeView
     HomePresenter mHomePresenter;
     HomeContract.IHomePresenter mPresenter;
     @Bind(R.id.SRLayoutHome)
-    SwipeRefreshLayout SRLayout;
+    SwipeRLayout SRLayout;
 
     private XBanner mViewPager;
     private Context mContext;

@@ -36,6 +36,7 @@ public class ReportDetailBean {
         public String CheckStateID;
         public String CheckUserName;
         public String SummaryFormat;
+        public boolean IsAbnormal;
 
         public List<CheckResultsBean> CheckResults;
 
